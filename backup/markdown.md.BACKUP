@@ -1,0 +1,43 @@
+# API Documentation MD
+
+## Example Documentation
+
+This is a Markdown file in your Sphinx documentation.
+
+## Section Heading
+
+Here's some additional content, with a list:
+
+- Item 1
+- Item 2
+- Item 3
+
+And here is a **bold text** and _italic text_.
+
+### Subsection Heading
+
+Here's a more detailed section with a blockquote:
+
+> This is a quote from someone important.
+
+#### Subsubsection Heading
+
+Subsections can also have their own headings.
+
+## Table Example
+
+| Column 1 | Column 2 | Column 3 |
+| -------- | -------- | -------- |
+| Row 1    | Data 1   | Data 1   |
+| Row 2    | Data 2   | Data 2   |
+| Row 3    | Data 3   | Data 3   |
+
+## Including a toctree
+
+Para incluir un `toctree` a `api2`, necesitas una sintaxis especial de MyST para bloques de directivas:
+
+```{toctree}
+:maxdepth: 2
+
+api2
+```
