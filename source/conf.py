@@ -26,7 +26,6 @@ extensions = [
         # 'sphinx.ext.autosummary', # solamente si se la quiere usar
         # 'sphinx.ext.viewcode']
 
-templates_path = ['_templates']
 exclude_patterns = []
 
 language = 'es'
@@ -35,12 +34,26 @@ language = 'es'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 #html_theme = 'alabaster'
-html_theme = 'sphinx_rtd_theme'
+#html_theme = 'sphinx_rtd_theme'
+html_theme = 'sphinxawesome_theme'
 html_static_path = ['_static']
+html_css_files = ['styles.css']         # Fichero para personalizar el tema
+html_favicon = "_static/favicon.ico"
+
+# Configuración de sphinxawesome_theme
+html_theme_options = {
+    "logo_light": "logo_dark.png",
+    "logo_dark": "logo_light.png",
+    "awesome_headerlinks": False
+}
+html_title = "> Documentación"
 
 # Agrega un directorio de codigo fuente para analizar
 #sys.path.insert(0, os.path.abspath('../api'))
 
 # Tabla de contenidos
-html_sidebars = { '**': ['globaltoc.html', 'relations.html',
-        'sourcelink.html', 'searchbox.html'], }
+# html_sidebars = { 
+#         '**': ['globaltoc.html', 'relations.html',
+#         'sourcelink.html', 'searchbox.html'], 
+# }
+
