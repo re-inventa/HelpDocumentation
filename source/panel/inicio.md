@@ -1,4 +1,4 @@
-# Acceso
+# Como acceder
 
 Para comenzar a usar la herramienta de **re-AuditIA**, será tener un usuario de acceso.
 
