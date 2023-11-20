@@ -31,6 +31,7 @@ jobs:
       - name: Init new repo in build/html folder and commit generated files
         run: |
           cd build/html/
+          git config --global --add safe.directory /github/workspace/build/html
           git init
           touch .nojekyll
           git add -A
