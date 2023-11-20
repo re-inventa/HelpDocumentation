@@ -9,7 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      GIT_CONFIG_NOSYSTEM: 1
 
     steps:
       - name: Checkout
@@ -34,13 +33,14 @@ jobs:
           cd build/html/
           git init
           touch .nojekyll
+          git config --global --add safe.directory /github/workspace/build/html
           git add -A
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git commit -m 'deploy'
 
       - name: Force push to destination branch
-        uses: ad-m/github-push-action@v0.5.0
+        uses: ad-m/github-push-action@v0.8.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages
