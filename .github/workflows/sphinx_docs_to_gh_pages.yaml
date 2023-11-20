@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      GIT_CONFIG_NOSYSTEM: 1
 
     steps:
       - name: Checkout
@@ -31,7 +32,6 @@ jobs:
       - name: Init new repo in build/html folder and commit generated files
         run: |
           cd build/html/
-          git config --global --add safe.directory '*'
           git init
           touch .nojekyll
           git add -A
