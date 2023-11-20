@@ -25,6 +25,8 @@ jobs:
           show-channel-urls: true
       - name: Running the Sphinx to gh-pages Action
         uses: uibcdf/action-sphinx-docs-to-gh-pages@v2.0.0
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         with:
           branch: main
           dir_docs: source
