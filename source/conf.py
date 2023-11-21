@@ -45,7 +45,7 @@ html_theme_options = {
     "logo_dark": "logo_light.png",
     "awesome_headerlinks": False
 }
-html_title = "> Documentación 2"
+html_title = "> Documentación"
 
 # Agrega un directorio de codigo fuente para analizar
 #sys.path.insert(0, os.path.abspath('../api'))
