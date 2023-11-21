@@ -7,7 +7,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'Re-AuditIA | Ayuda'
-copyright = '2023, Andi Moya'
+copyright = '2023, Re-Inventa'
 author = 'Andi Moya'
 
 # -- General configuration ---------------------------------------------------
