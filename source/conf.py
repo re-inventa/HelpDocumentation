@@ -35,5 +35,4 @@ html_theme_options = {
     "logo_dark": "logo_light.png",
     "awesome_headerlinks": False
 }
-html_title = "> Documentación R2
-"
+html_title = "> Documentación R2"
