@@ -1,4 +1,4 @@
-name: docs_pages_workflow
+name: push_and_publish_to_gh-pages
 
 on:
   push:
@@ -19,16 +19,16 @@ jobs:
         with:
           python-version: 3.12
 
-      - name: Instalando dependencias
+      - name: Instalando dependencias de Python
         run: |
           python -m pip install -U pip
           pip install -r requirements.txt
 
-      - name: Creando los HTML
+      - name: Generando los ficheros HTML
         run: |
           make html
 
-      - name: Init new repo in build/html folder and commit generated files
+      - name: Creando repositorio y commit de los ficheros HTML generados
         run: |
           cd build/html/
           git init
@@ -39,7 +39,7 @@ jobs:
           git config --local user.name "GitHub Action"
           git commit -m 'deploy'
 
-      - name: Force push to destination branch
+      - name: Fuerza el push al directorio gh-pages
         uses: ad-m/github-push-action@v0.8.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
