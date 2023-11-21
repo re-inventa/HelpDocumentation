@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'Re-AuditIA | Ayuda2'
+project = 'Re-AuditIA | Ayuda'
 copyright = '2023, Andi Moya'
 author = 'Andi Moya'
 
@@ -34,7 +34,6 @@ language = 'es'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 #html_theme = 'alabaster'
-#html_theme = 'sphinx_rtd_theme'
 html_theme = 'sphinxawesome_theme'
 html_static_path = ['_static']
 html_css_files = ['styles.css']         # Fichero para personalizar el tema
@@ -46,7 +45,7 @@ html_theme_options = {
     "logo_dark": "logo_light.png",
     "awesome_headerlinks": False
 }
-html_title = "> Documentación"
+html_title = "> Documentación 2"
 
 # Agrega un directorio de codigo fuente para analizar
 #sys.path.insert(0, os.path.abspath('../api'))
