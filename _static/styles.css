@@ -1,0 +1,32 @@
+/* 
+###################################
+Tema : sphinx_rtd_theme 
+###################################
+*/
+/* .wy-nav-content {
+    min-height: 100vh;
+} */
+
+/*
+###################################
+Tema : sphinxawesome_theme 
+###################################
+*/
+
+#page>header>div>div>a img {
+    width: 8rem !important;
+}
+
+.caption-text {
+    font-weight: bold;
+}
+
+.headerlink {
+    opacity: 0;
+    transition: opacity 0.3s;
+    text-decoration: none !important;
+}
+
+.headerlink:hover {
+    opacity: 1;
+}
