@@ -10,6 +10,13 @@ La nueva solución cloud de re-inventa que combina IA con modelos generativos, c
 
 Permite una visión objetiva y 360° del desempeño de los agentes sin necesidad de intervención humana constante, por lo que entre los beneficios se incluyen la adhesión al estándar de calidad definido o KPIs, enfoque estratégico y formativo para los equipos de coordinación y agentes, mejorando de forma continua la satisfacción del cliente y sin que ello suponga elevados gastos económicos o de recursos.
 
+Reagentia
+---------
+
+La documentación funcional de Reagentia se publica como una guía independiente dentro de este mismo sitio.
+
+`Abrir la documentación de Reagentia <reagentia/>`_
+
 
 .. toctree::
    :maxdepth: 2

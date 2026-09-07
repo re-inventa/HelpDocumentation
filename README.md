@@ -2,6 +2,8 @@
 
 Se alojará la documentación y ayuda para usar las herramientas desarrolladas por Re-Inventa de forma abierta.
 
+La documentación existente de ReAuditIA se publica en la raíz. La guía funcional de Reagentia vive en `reagentia/`, se construye con Material for MkDocs y se publica en <https://re-inventa.github.io/HelpDocumentation/reagentia/>. La documentación técnica permanece como Markdown en los repositorios privados de aplicación e infraestructura y nunca se incorpora a este sitio.
+
 ## 🤝 Cómo Colaborar
 
 Para colaborar en la actualización e implementación de documentación en este proyecto es necesario conocer o usar un editor de Markdown para elaborar la documentación.
@@ -61,11 +63,17 @@ Ten en cuenta los limites de GitHub:
 
 Con el entorno virtual activado:
 
-- `./make.bat html` para generar los nuevos ficheros html, el resultado se pondrá en la carpeta `build/html`.
-- `./make.bat clean` para eliminar los ficheros generados y evitar que entre en conflicto con anteriores versiones.
+- `python -m sphinx -W --keep-going -b html source build/html` para generar los nuevos ficheros HTML en `build/html` y tratar cualquier aviso como error.
+
+Para construir también la guía funcional de Reagentia:
+
+```powershell
+python -m pip install -r reagentia/requirements-docs.txt
+python scripts/build_reagentia.py
+```
 
 ### Como subir los cambios 📤
 
 Simplemente con un `push origin` desde la aplicación de GitHub Desktop los cambios se subirán al repositorio y GitHub Actions entrará en acción.
 
-Procesará los ficheros HTML junto con las dependencias que se encuentran en `requirements.txt`, donde luego se exportará a la rama `gh-pages` para que lo pueda utilizar GitHub Pages.
+La Action solo construye la parte afectada: Sphinx para cambios de la documentación existente y Material for MkDocs para cambios bajo `reagentia/`. Las PR validan sin publicar; los cambios integrados actualizan únicamente su zona de `gh-pages`. Un `repository_dispatch` válido desde los repositorios de Reagentia vuelve a publicar la guía funcional ya fusionada. No se genera ningún ZIP ni artifact descargable.
