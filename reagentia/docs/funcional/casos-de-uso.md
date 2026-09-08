@@ -38,11 +38,10 @@ Una ejecución queda pendiente de entrega o termina con un error operable.
 
 1. El usuario abre el detalle desde **Runs**.
 2. Lee el estado y la acción recomendada.
-3. Usa **Reintentar despacho** si aparece disponible.
+3. Usa **Reintentar lanzamiento** si aparece disponible.
 4. Si el proceso ya terminó y necesita repetirlo con las versiones actuales, utiliza
    **Relanzar**.
 5. Comprueba que el nuevo intento o la nueva ejecución aparecen en el historial.
 
 Las acciones visibles dependen del estado y de los permisos del usuario. No debe repetirse
 el lanzamiento si la interfaz ya muestra una ejecución creada.
-

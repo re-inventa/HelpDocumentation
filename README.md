@@ -81,6 +81,16 @@ python -m mkdocs serve --config-file reagentia/mkdocs.yml --dev-addr 127.0.0.1:8
 Abre la dirección que muestra MkDocs en la terminal. La previsualización es local y no
 publica ningún contenido.
 
+Para añadir un nombre a la lista bloqueada sin escribirlo en claro en el repositorio:
+
+```powershell
+python reagentia/scripts/validate_content.py --hash-name "<nuevo-termino>"
+```
+
+Añade el digest resultante a `FORBIDDEN_NAME_DIGESTS` y un caso construido por fragmentos
+a `test_functional_docs.py`. El digest no aporta confidencialidad: evita que el nombre
+quede publicado o indexable en las fuentes y los tests demuestran su correspondencia.
+
 ### Como subir los cambios 📤
 
 Simplemente con un `push origin` desde la aplicación de GitHub Desktop los cambios se subirán al repositorio y GitHub Actions entrará en acción.

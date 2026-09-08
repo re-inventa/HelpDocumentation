@@ -2,7 +2,7 @@
 
 ## La ejecución sigue creada
 
-Espera el umbral que indique la interfaz. Si aparece **Reintentar despacho**, úsalo una vez y vuelve al detalle. No crees otro lanzamiento salvo que el sistema confirme que el anterior no existe.
+Espera el umbral que indique la interfaz. Si aparece **Reintentar lanzamiento**, úsalo una vez y vuelve al detalle. No crees otro lanzamiento salvo que el sistema confirme que el anterior no existe.
 
 ## La cancelación no termina
 

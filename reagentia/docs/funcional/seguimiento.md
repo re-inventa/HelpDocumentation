@@ -29,6 +29,6 @@ El detalle se actualiza en tiempo real cuando es posible y usa refresco periódi
 
 ## Acciones de recuperación
 
-- **Reintentar despacho** recupera una ejecución creada que no llegó a activarse; no crea una segunda ejecución.
+- **Reintentar lanzamiento** recupera una ejecución creada que no llegó a activarse; no crea una segunda ejecución.
 - **Cancelar** registra primero la intención y después solicita la detención.
 - **Relanzar** crea una ejecución nueva a partir de una anterior finalizada, conservando trazabilidad entre ambas.

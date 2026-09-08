@@ -10,6 +10,7 @@ import json
 import os
 from pathlib import Path
 import re
+import subprocess
 import sys
 import unicodedata
 
@@ -82,6 +83,50 @@ class VisibleTextParser(HTMLParser):
             self.parts.append(data)
 
 
+def is_excluded(path: Path, root: Path) -> bool:
+    return any(
+        part in EXCLUDED_DIRECTORIES or part.startswith(".venv")
+        for part in path.relative_to(root).parts
+    )
+
+
+def is_text_source(path: Path, suffixes: set[str]) -> bool:
+    return (
+        path.suffix.lower() in suffixes
+        or path.name in {"Dockerfile", "Makefile"}
+        or path.name.startswith(".env")
+    )
+
+
+def git_managed_files(root: Path) -> list[Path] | None:
+    top_level = subprocess.run(
+        ["git", "-C", str(root), "rev-parse", "--show-toplevel"],
+        capture_output=True,
+        text=True,
+    )
+    if top_level.returncode != 0:
+        return None
+    repository = Path(top_level.stdout.strip()).resolve()
+    listing = subprocess.run(
+        ["git", "-C", str(repository), "ls-files", "-z", "--cached", "--others", "--exclude-standard"],
+        capture_output=True,
+    )
+    if listing.returncode != 0:
+        return None
+    root_resolved = root.resolve()
+    result: list[Path] = []
+    for raw_path in listing.stdout.split(b"\0"):
+        if not raw_path:
+            continue
+        path = repository / os.fsdecode(raw_path)
+        try:
+            path.relative_to(root_resolved)
+        except ValueError:
+            continue
+        result.append(path)
+    return sorted(result)
+
+
 def scannable_text(path: Path, text: str, *, built: bool) -> str:
     if not built or path.suffix.lower() != ".html":
         return text
@@ -92,6 +137,20 @@ def scannable_text(path: Path, text: str, *, built: bool) -> str:
 
 def iter_text_files(root: Path, *, built: bool):
     suffixes = BUILT_TEXT_SUFFIXES if built else SOURCE_TEXT_SUFFIXES
+    managed_files = None if built else git_managed_files(root)
+    if managed_files is not None:
+        for path in managed_files:
+            if is_excluded(path, root) or not (path.is_symlink() or path.is_file()):
+                continue
+            if path.is_symlink():
+                yield path, None, "enlace simbólico no permitido"
+            elif is_text_source(path, suffixes):
+                try:
+                    yield path, path.read_text(encoding="utf-8", errors="strict"), None
+                except UnicodeDecodeError as error:
+                    yield path, None, f"no es UTF-8 válido ({error})"
+        return
+
     for current_root, directories, filenames in os.walk(root, followlinks=False):
         current = Path(current_root)
         retained_directories = []
@@ -100,20 +159,19 @@ def iter_text_files(root: Path, *, built: bool):
             if name in EXCLUDED_DIRECTORIES or name.startswith(".venv"):
                 continue
             if path.is_symlink():
-                yield path, "__SYMLINK__"
+                yield path, None, "enlace simbólico no permitido"
             else:
                 retained_directories.append(name)
         directories[:] = retained_directories
         for name in sorted(filenames):
             path = current / name
             if path.is_symlink():
-                yield path, "__SYMLINK__"
-            elif (
-                path.suffix.lower() in suffixes
-                or name in {"Dockerfile", "Makefile"}
-                or name.startswith(".env")
-            ):
-                yield path, path.read_text(encoding="utf-8", errors="strict")
+                yield path, None, "enlace simbólico no permitido"
+            elif is_text_source(path, suffixes):
+                try:
+                    yield path, path.read_text(encoding="utf-8", errors="strict"), None
+                except UnicodeDecodeError as error:
+                    yield path, None, f"no es UTF-8 válido ({error})"
 
 
 def line_number(text: str, offset: int) -> int:
@@ -128,6 +186,10 @@ def check_pattern(path: Path, text: str, pattern: re.Pattern[str], reason: str, 
 def normalized_name(value: str) -> str:
     decomposed = unicodedata.normalize("NFKD", value.casefold())
     return "".join(character for character in decomposed if character.isalnum())
+
+
+def name_digest(value: str) -> str:
+    return hashlib.sha256(normalized_name(value).encode("utf-8")).hexdigest()
 
 
 def forbidden_names(text: str):
@@ -145,7 +207,7 @@ def forbidden_names(text: str):
                 if not separator or any(character not in " _-\t\r\n" for character in separator):
                     break
                 combined += current.group(0)
-            digest = hashlib.sha256(normalized_name(combined).encode("utf-8")).hexdigest()
+            digest = name_digest(combined)
             category = FORBIDDEN_NAME_DIGESTS.get(digest)
             if category:
                 yield first.start(), category
@@ -162,10 +224,11 @@ def check_forbidden_names(path: Path, text: str, context: str, failures: list[st
 
 def validate_tree(root: Path, *, built: bool) -> list[str]:
     failures: list[str] = []
-    for path, text in iter_text_files(root, built=built):
-        if text == "__SYMLINK__":
-            failures.append(f"{path}: enlace simbólico no permitido")
+    for path, text, read_error in iter_text_files(root, built=built):
+        if read_error:
+            failures.append(f"{path}: {read_error}")
             continue
+        assert text is not None
         content = scannable_text(path, text, built=built)
         check_forbidden_names(path, content, "prohibido en la guía funcional", failures)
         for pattern, reason in (
@@ -210,11 +273,15 @@ def validate_separation() -> list[str]:
     return failures
 
 
-def validate_repository_sources(root: Path = ROOT) -> list[str]:
-    """Reject forbidden public names outside the Markdown content tree as well."""
+def validate_repository_sources(root: Path = REPOSITORY_ROOT) -> list[str]:
+    """Reject forbidden names in every maintained source of the public portal."""
     failures: list[str] = []
-    docs_root = root / "docs"
-    for path, text in iter_text_files(root, built=False):
+    docs_root = ROOT / "docs" if root == REPOSITORY_ROOT else root / "docs"
+    for path, text, read_error in iter_text_files(root, built=False):
+        if read_error:
+            failures.append(f"{path}: {read_error}")
+            continue
+        assert text is not None
         try:
             path.relative_to(docs_root)
             continue
@@ -227,10 +294,11 @@ def validate_repository_sources(root: Path = ROOT) -> list[str]:
 def validate_repository_secrets(root: Path = REPOSITORY_ROOT) -> list[str]:
     """Scan every maintained text source in the public repository for secret values."""
     failures: list[str] = []
-    for path, text in iter_text_files(root, built=False):
-        if text == "__SYMLINK__":
-            failures.append(f"{path}: enlace simbólico no permitido")
+    for path, text, read_error in iter_text_files(root, built=False):
+        if read_error:
+            failures.append(f"{path}: {read_error}")
             continue
+        assert text is not None
         for pattern, reason in (
             (BEARER_VALUE, "cabecera bearer con valor"),
             (SECRET_VALUE, "valor con forma de secreto"),
@@ -246,11 +314,16 @@ def validate_repository_secrets(root: Path = REPOSITORY_ROOT) -> list[str]:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--source", action="store_true")
-    parser.add_argument("--site", action="store_true")
+    mode = parser.add_mutually_exclusive_group(required=True)
+    mode.add_argument("--source", action="store_true")
+    mode.add_argument("--site", action="store_true")
+    mode.add_argument("--hash-name", metavar="NAME")
     args = parser.parse_args()
-    if args.source == args.site:
-        parser.error("elige exactamente --source o --site")
+    if args.hash_name is not None:
+        if not normalized_name(args.hash_name):
+            parser.error("NAME debe contener al menos una letra o un número")
+        print(name_digest(args.hash_name))
+        return 0
     target = DOCS_SOURCE if args.source else SITE
     if not target.is_dir():
         print(f"ERROR: no existe {target}", file=sys.stderr)

@@ -56,21 +56,34 @@ class FunctionalContentTests(unittest.TestCase):
             return content.validate_tree(root, built=False)
 
     def test_rejects_concrete_project_terms(self):
-        for value in (
+        values = (
             "ig" + "ap",
             "ig" + "ape",
             "ig" + "300" + "c",
             "sub" + "vención",
             "sub" + "venciones",
-        ):
+        )
+        for value in values:
             with self.subTest(value=value):
                 self.assertTrue(self.validate(value))
+                self.assertIn(content.name_digest(value), content.FORBIDDEN_NAME_DIGESTS)
 
     def test_rejects_internal_provider_name(self):
         for separator in ("", "-", "_", " "):
             with self.subTest(separator=separator):
-                self.assertTrue(self.validate("cli" + separator + "proxy"))
-        self.assertTrue(self.validate("cli" + "proxy" + "api"))
+                value = "cli" + separator + "proxy"
+                self.assertTrue(self.validate(value))
+                self.assertIn(content.name_digest(value), content.FORBIDDEN_NAME_DIGESTS)
+        api_value = "cli" + "proxy" + "api"
+        self.assertTrue(self.validate(api_value))
+        self.assertIn(content.name_digest(api_value), content.FORBIDDEN_NAME_DIGESTS)
+
+    def test_retry_action_uses_the_visible_product_label(self):
+        docs = "\n".join(
+            path.read_text(encoding="utf-8") for path in (ROOT / "docs").rglob("*.md")
+        )
+        self.assertNotIn("Reintentar despacho", docs)
+        self.assertIn("Reintentar lanzamiento", docs)
 
     def test_rejects_technical_content(self):
         self.assertTrue(self.validate("Postgre" + "SQL"))
@@ -109,6 +122,22 @@ class FunctionalContentTests(unittest.TestCase):
                 encoding="utf-8",
             )
             self.assertTrue(content.validate_repository_secrets(root))
+
+    def test_public_portal_root_is_scanned_for_forbidden_names(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "source"
+            source.mkdir()
+            source.joinpath("index.md").write_text("ig" + "ape", encoding="utf-8")
+            self.assertTrue(content.validate_repository_sources(root))
+
+    def test_invalid_utf8_is_reported_as_a_validation_failure(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            root.joinpath("invalid.yml").write_bytes(b"\xff\xfe\xfd")
+            failures = content.validate_repository_secrets(root)
+            self.assertEqual(1, len(failures))
+            self.assertIn("UTF-8", failures[0])
 
     def test_accepts_neutral_functional_content(self):
         self.assertEqual([], self.validate("Conecta el acceso LLM y lanza una ejecución."))
