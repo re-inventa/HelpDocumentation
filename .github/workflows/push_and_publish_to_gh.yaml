@@ -61,6 +61,8 @@ jobs:
 
       - name: Build and validate Reagentia functional documentation
         if: steps.changes.outputs.functional_changed == 'true'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: python scripts/build_reagentia.py --external-links
 
   publish:
@@ -147,7 +149,7 @@ jobs:
 
       - name: Build and validate Reagentia functional documentation
         if: steps.changes.outputs.functional_changed == 'true'
-        run: python scripts/build_reagentia.py --external-links
+        run: python scripts/build_reagentia.py
 
       - name: Checkout publication branch
         if: steps.changes.outputs.root_changed == 'true' || steps.changes.outputs.functional_changed == 'true'
@@ -165,7 +167,7 @@ jobs:
         run: |
           set -euo pipefail
           if [[ "${ROOT_CHANGED}" == 'true' ]]; then
-            rsync -a --delete --exclude='.git/' --exclude='reagentia/' build/html/ .publish/
+            rsync -a --delete --exclude='.git/' --exclude='reagentia/' --exclude='CNAME' build/html/ .publish/
           fi
           if [[ "${FUNCTIONAL_CHANGED}" == 'true' ]]; then
             mkdir -p .publish/reagentia

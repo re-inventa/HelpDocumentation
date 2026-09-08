@@ -7,9 +7,10 @@ La plataforma es reutilizable y configurable para distintos procesos y organizac
 ## Cómo empezar
 
 1. Consulta los [conceptos y el alcance](funcional/conceptos.md).
-2. Revisa qué puedes hacer según tus [roles y permisos](funcional/roles-permisos.md).
-3. Sigue la [guía funcional](funcional/index.md) para configurar y lanzar una ejecución.
-4. Consulta el [estado y las limitaciones](estado/index.md) antes de utilizar una capacidad nueva.
+2. Revisa los [casos de uso y ejemplos sintéticos](funcional/casos-de-uso.md).
+3. Comprueba qué puedes hacer según tus [roles y permisos](funcional/roles-permisos.md).
+4. Sigue la [guía funcional](funcional/index.md) para configurar y lanzar una ejecución.
+5. Consulta el [estado y las limitaciones](estado/index.md) antes de utilizar una capacidad nueva.
 
 ## Principios del producto
 

@@ -50,6 +50,7 @@ nav:
   - Guía funcional:
       - funcional/index.md
       - Conceptos y alcance: funcional/conceptos.md
+      - Casos de uso y ejemplos: funcional/casos-de-uso.md
       - Roles y permisos: funcional/roles-permisos.md
       - Conexión LLM: funcional/conexion-llm.md
       - Workflows, agentes y recursos: funcional/configuracion.md

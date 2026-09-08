@@ -72,6 +72,15 @@ python -m pip install -r reagentia/requirements-docs.txt
 python scripts/build_reagentia.py
 ```
 
+Para previsualizarla mientras se edita:
+
+```powershell
+python -m mkdocs serve --config-file reagentia/mkdocs.yml --dev-addr 127.0.0.1:8000
+```
+
+Abre la dirección que muestra MkDocs en la terminal. La previsualización es local y no
+publica ningún contenido.
+
 ### Como subir los cambios 📤
 
 Simplemente con un `push origin` desde la aplicación de GitHub Desktop los cambios se subirán al repositorio y GitHub Actions entrará en acción.

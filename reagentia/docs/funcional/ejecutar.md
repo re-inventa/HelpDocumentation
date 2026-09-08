@@ -12,7 +12,7 @@ Comprueba que:
 
 ## Preparar y lanzar
 
-1. Abre el workflow.
+1. Abre **Runs** y selecciona la solución y el workflow.
 2. Crea una sesión de carga.
 3. Añade los documentos solicitados.
 4. Espera a que cada archivo figure como completado.

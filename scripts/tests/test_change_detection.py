@@ -64,6 +64,19 @@ class ChangeDetectionTests(unittest.TestCase):
         self.assertIn("contents: write", workflow)
         self.assertIn("--functional --github-output", workflow)
         self.assertNotIn("upload-artifact", workflow.lower())
+        self.assertEqual(1, workflow.count("build_reagentia.py --external-links"))
+        self.assertIn("GITHUB_TOKEN: ${{ github.token }}", workflow)
+        self.assertIn("--exclude='CNAME'", workflow)
+
+    def test_sphinx_branding_assets_use_existing_static_paths(self):
+        config = (ROOT / "source/conf.py").read_text(encoding="utf-8")
+        for asset in ("logo_dark.png", "logo_light.png"):
+            self.assertIn(f'"_static/{asset}"', config)
+            self.assertTrue((ROOT / "source/_static" / asset).is_file())
+
+    def test_readme_documents_functional_preview(self):
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        self.assertIn("mkdocs serve", readme)
 
 
 if __name__ == "__main__":
