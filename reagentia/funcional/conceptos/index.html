@@ -329,6 +329,8 @@
       
         
       
+        
+      
     
     
     
@@ -486,6 +488,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#que-conserva-una-conversacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qué conserva una conversación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#limites-visibles" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -604,6 +617,34 @@
     
   
     Workflows, agentes y recursos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../asistentes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Asistentes y conversaciones
   
 
     
@@ -872,6 +913,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#que-conserva-una-conversacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qué conserva una conversación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#limites-visibles" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -925,6 +977,14 @@
 <td>Comportamiento especializado que participa en uno o varios pasos.</td>
 </tr>
 <tr>
+<td>Asistente</td>
+<td>Punto de acceso conversacional que utiliza una versión publicada de un agente.</td>
+</tr>
+<tr>
+<td>Conversación</td>
+<td>Historial de mensajes intercambiados con un asistente que puede continuarse posteriormente.</td>
+</tr>
+<tr>
 <td>Versión</td>
 <td>Fotografía inmutable de una configuración publicada.</td>
 </tr>
@@ -957,9 +1017,13 @@
 <h2 id="que-conserva-una-ejecucion">Qué conserva una ejecución<a class="headerlink" href="#que-conserva-una-ejecucion" title="Permanent link">&para;</a></h2>
 <p>Al lanzar, Reagentia fija las versiones publicadas y una copia de la configuración relevante. Los cambios posteriores no alteran una ejecución ya creada.</p>
 <p>El historial muestra quién lanzó el trabajo, cuándo ocurrió cada transición, el progreso por items y pasos, y los resultados que siguen disponibles.</p>
+<h2 id="que-conserva-una-conversacion">Qué conserva una conversación<a class="headerlink" href="#que-conserva-una-conversacion" title="Permanent link">&para;</a></h2>
+<p>Una conversación mantiene los mensajes enviados, las respuestas recibidas y el contenido parcial que ya se hubiera mostrado antes de una parada o interrupción. Está vinculada al asistente y a la organización con los que se abrió.</p>
+<p>Al continuarla, Reagentia recupera el historial guardado. Una actualización posterior del agente no sustituye silenciosamente la versión utilizada por una conversación ya existente.</p>
 <h2 id="limites-visibles">Límites visibles<a class="headerlink" href="#limites-visibles" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Una configuración en borrador no se usa para ejecutar hasta que se publica.</li>
+<li>Una conversación solo puede abrirse o continuarse con un asistente habilitado y los permisos necesarios.</li>
 <li>Un recurso que aún no está listo no debe considerarse disponible.</li>
 <li>La finalización del despacho no equivale a un resultado correcto: revisa el estado final y los outputs.</li>
 <li>La disponibilidad funcional de un documento y su borrado físico no son instantáneos ni equivalentes.</li>
