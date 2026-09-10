@@ -5,6 +5,8 @@ Los permisos se aplican dentro de la organización activa. El administrador de p
 | Acción | Administrador de plataforma | Administrador de organización | Operador | Observador |
 | --- | :---: | :---: | :---: | :---: |
 | Ver workflows, agentes y ejecuciones | Sí | Sí | Sí | Sí |
+| Ver asistentes | Sí | Sí | Sí | Sí |
+| Abrir, continuar y detener conversaciones | Sí | Sí | Sí | No |
 | Lanzar, cancelar y relanzar | Sí | Sí | Sí | No |
 | Conectar o desconectar el acceso LLM | Sí | Sí | Sí | No |
 | Editar y publicar agentes | Sí | Sí | No | No |
@@ -21,6 +23,8 @@ Los permisos se aplican dentro de la organización activa. El administrador de p
 Tener permiso no implica que una acción siempre esté disponible:
 
 - cancelar solo se ofrece mientras la ejecución puede detenerse;
+- detener una respuesta solo se ofrece mientras el asistente está respondiendo;
+- abrir o continuar una conversación exige que el asistente esté habilitado;
 - relanzar solo se ofrece para estados finales;
 - reintentar el despacho solo aparece cuando la ejecución sigue creada y no tiene trabajo activo;
 - descargar exige que exista un resultado disponible y dentro de retención;

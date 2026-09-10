@@ -54,6 +54,7 @@ nav:
       - Roles y permisos: funcional/roles-permisos.md
       - Conexión LLM: funcional/conexion-llm.md
       - Workflows, agentes y recursos: funcional/configuracion.md
+      - Asistentes y conversaciones: funcional/asistentes.md
       - Lanzar una ejecución: funcional/ejecutar.md
       - Seguimiento y resultados: funcional/seguimiento.md
       - Incidencias y recuperación: funcional/incidencias.md
