@@ -5,6 +5,7 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+import yaml
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -19,7 +20,8 @@ def load(name: str, relative: str):
     return module
 
 
-content = load("functional_content", "scripts/validate_content.py")
+content = load("reauditia_functional_content", "scripts/validate_content.py")
+routes = load("reauditia_routes", "scripts/validate_routes.py")
 
 
 class FunctionalContentTests(unittest.TestCase):
@@ -78,21 +80,46 @@ class FunctionalContentTests(unittest.TestCase):
         self.assertTrue(self.validate(api_value))
         self.assertIn(content.name_digest(api_value), content.FORBIDDEN_NAME_DIGESTS)
 
-    def test_retry_action_uses_the_visible_product_label(self):
+    def test_documents_the_current_navigation_labels(self):
         docs = "\n".join(
             path.read_text(encoding="utf-8") for path in (ROOT / "docs").rglob("*.md")
         )
-        self.assertNotIn("Reintentar despacho", docs)
-        self.assertIn("Reintentar lanzamiento", docs)
+        for label in (
+            "Subida automática",
+            "Subidas conector",
+            "Estado de los Ficheros",
+            "Impersonación",
+        ):
+            self.assertIn(label, docs)
+
+    def test_documents_current_user_manual_contract(self):
+        docs = "\n".join(
+            path.read_text(encoding="utf-8") for path in (ROOT / "docs").rglob("*.md")
+        )
+        for contract in (
+            "12 metadatos",
+            "4 a 30 caracteres",
+            "añadir nuevas comprobaciones",
+            "Normalizar resultados",
+            "Mostrar nota final en gráfico",
+            "Sin agrupación",
+            "Fuentes SharePoint",
+            "rango máximo de 90 días",
+        ):
+            self.assertIn(contract, docs)
+
+        lowered = docs.casefold()
+        self.assertNotIn("hasta tres tipos de metadatos", lowered)
+        self.assertNotIn("no puede ser modificado", lowered)
 
     def test_rejects_technical_content(self):
         self.assertTrue(self.validate("Postgre" + "SQL"))
 
     def test_rejects_references_and_links_to_other_products(self):
         for value in (
-            "Re" + "AuditIA",
-            "re-" + "auditia",
-            "https://example.invalid/re" + "auditia/",
+            "Re" + "agentia",
+            "re-" + "agentia",
+            "https://example.invalid/re" + "agentia/",
         ):
             with self.subTest(value=value):
                 self.assertTrue(self.validate(value))
@@ -149,10 +176,47 @@ class FunctionalContentTests(unittest.TestCase):
             self.assertIn("UTF-8", failures[0])
 
     def test_accepts_neutral_functional_content(self):
-        self.assertEqual([], self.validate("Conecta el acceso LLM y lanza una ejecución."))
+        self.assertEqual([], self.validate("Carga un fichero y consulta su resultado."))
 
     def test_public_tree_contains_no_technical_directory(self):
         self.assertFalse((ROOT / "docs" / "tecnica").exists())
+
+    def test_legacy_route_manifest_detects_missing_files(self):
+        with tempfile.TemporaryDirectory() as directory:
+            site = Path(directory)
+            for route in routes.LEGACY_ROUTES:
+                path = site / route
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes(b"ok")
+            self.assertEqual([], routes.missing_routes(site))
+            (site / "panel" / "inicio.html").unlink()
+            self.assertEqual(["panel/inicio.html"], routes.missing_routes(site))
+
+    def test_legacy_anchor_manifest_detects_missing_anchors(self):
+        with tempfile.TemporaryDirectory() as directory:
+            site = Path(directory)
+            for route, anchors in routes.LEGACY_ANCHORS.items():
+                path = site / route
+                path.parent.mkdir(parents=True, exist_ok=True)
+                markup = "".join(f'<span id="{anchor}"></span>' for anchor in anchors)
+                path.write_text(markup, encoding="utf-8")
+            self.assertEqual([], routes.missing_anchors(site))
+            (site / "panel" / "inicio.html").write_text("", encoding="utf-8")
+            self.assertTrue(routes.missing_anchors(site))
+
+    def test_material_config_preserves_html_urls_and_privacy_defaults(self):
+        config = yaml.safe_load((ROOT / "mkdocs.yml").read_text(encoding="utf-8"))
+        self.assertEqual("material", config["theme"]["name"])
+        self.assertFalse(config["theme"]["font"])
+        self.assertFalse(config["use_directory_urls"])
+        self.assertNotIn("analytics", config.get("extra", {}))
+
+    def test_every_legacy_route_is_represented_by_a_source(self):
+        generated = {path.relative_to(ROOT / "docs").with_suffix(".html").as_posix()
+                     for path in (ROOT / "docs").rglob("*.md")}
+        static = {path.relative_to(ROOT / "docs").as_posix()
+                  for path in (ROOT / "docs" / "_static").rglob("*") if path.is_file()}
+        self.assertTrue(routes.LEGACY_ROUTES <= generated | static)
 
 
 if __name__ == "__main__":

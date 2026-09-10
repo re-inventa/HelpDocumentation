@@ -1,0 +1,14 @@
+:root {
+  --md-primary-fg-color: #f4511e;
+  --md-accent-fg-color: #f4511e;
+}
+
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+  width: 8rem;
+  height: auto;
+}
+
+.md-typeset .grid.cards > ul > li {
+  border-radius: 0.45rem;
+}

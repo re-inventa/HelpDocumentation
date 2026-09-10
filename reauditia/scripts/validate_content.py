@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Reject internal, project-specific and sensitive public documentation."""
+"""Reject internal, customer-specific and sensitive ReAuditIA documentation."""
 
 from __future__ import annotations
 
@@ -18,7 +18,7 @@ import unicodedata
 ROOT = Path(__file__).resolve().parents[1]
 REPOSITORY_ROOT = ROOT.parent
 DOCS_SOURCE = ROOT / "docs"
-SITE = REPOSITORY_ROOT / "build" / "reagentia"
+SITE = REPOSITORY_ROOT / "build" / "reauditia"
 # The blocked names are stored only as one-way digests: the public repository must not
 # contain the names it is designed to reject, even inside its own validation code.
 FORBIDDEN_NAME_DIGESTS = {
@@ -35,7 +35,7 @@ TECHNICAL_INTERNAL = re.compile(
     r"\b(?:Next\.js|BFF|PostgreSQL|Trigger\.dev|Mastra|Key Vault|Container Apps?|Liquibase|RBAC|OIDC|Bicep|secretRef|fencing|gateway|workers?)\b",
     re.IGNORECASE,
 )
-OTHER_PRODUCT = re.compile(r"\bre[\s_-]?auditia\b", re.IGNORECASE)
+OTHER_PRODUCT = re.compile(r"\bre[\s_-]?agentia\b", re.IGNORECASE)
 UUID = re.compile(r"\b[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\b", re.IGNORECASE)
 BEARER_VALUE = re.compile(r"authorization\s*:\s*bearer\s+\S+", re.IGNORECASE)
 SECRET_VALUE = re.compile(r"\bsk-[A-Za-z0-9_-]{16,}\b")
@@ -281,7 +281,7 @@ def validate_separation() -> list[str]:
     failures: list[str] = []
     if (DOCS_SOURCE / "tecnica").exists():
         failures.append(f"{DOCS_SOURCE / 'tecnica'}: la documentación técnica no puede estar en el portal público")
-    allowed_roots = {"funcional", "estado"}
+    allowed_roots = {"_static", "api", "estado", "panel"}
     for directory in DOCS_SOURCE.iterdir():
         if directory.is_dir() and directory.name not in allowed_roots:
             failures.append(f"{directory}: directorio no permitido en la guía funcional")

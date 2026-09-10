@@ -1,98 +1,71 @@
-# 📘 Documentación de Re-Inventa
+# Documentación pública de Re-Inventa
 
-Se alojará la documentación y ayuda para usar las herramientas desarrolladas por Re-Inventa de forma abierta.
+Este repositorio mantiene dos zonas funcionales públicas e independientes:
 
-La documentación existente de ReAuditIA se publica en la raíz. La guía funcional de Reagentia vive en `reagentia/`, se construye con Material for MkDocs y se publica en <https://re-inventa.github.io/HelpDocumentation/reagentia/>. La documentación técnica permanece como Markdown en los repositorios privados de aplicación e infraestructura y nunca se incorpora a este sitio.
+- ReAuditIA: <https://re-inventa.github.io/HelpDocumentation/>
+- Reagentia: <https://re-inventa.github.io/HelpDocumentation/reagentia/>
 
-## 🤝 Cómo Colaborar
+Ambas se escriben en Markdown y se construyen con Material for MkDocs. La documentación técnica permanece en los repositorios de código y no se publica aquí.
 
-Para colaborar en la actualización e implementación de documentación en este proyecto es necesario conocer o usar un editor de Markdown para elaborar la documentación.
+## Estructura
 
-A continuación se dará una serie de instrucción que ayudará a como comenzar a colaborar en este proyecto.
+| Zona | Fuentes | Configuración | Salida local |
+| --- | --- | --- | --- |
+| ReAuditIA | `reauditia/docs/` | `reauditia/mkdocs.yml` | `build/reauditia/` |
+| Reagentia | `reagentia/docs/` | `reagentia/mkdocs.yml` | `build/reagentia/` |
 
-Si los cambios son relativamente pequeños, se pueden hacer directamente desde la GUI de GitHub, es decir, editar los ficheros directamente aquí, y posteriormente solo hacer un commit que realizará un push automaticamente. Si este es el caso, leea sólo la sección '¡Manos a la Obra! ✍️' y 'Donde agregar imagenes u otros ficheros 💻'.
-
-### Requisitos Previos 🚀
-
-1. [Instala GitHub Desktop](https://desktop.github.com/) e incia sesión con tu cuenta.
-2. Clona la rama `main` a un directorio de tu preferencia.
-3. [Instala Python](https://apps.microsoft.com/detail/python-3-12/9NCVDN91XZQP) en su versión 3.12.
-
-### Configuración del Entorno de Trabajo 🔧
-
-Vamos a crear un entorno virtual para evitar conflictos entre paquetes y versiones de los mismos.
-
-1. Crea un entorno virtual en la raiz del proyecto.
-   ```
-   python -m venv venv
-   ```
-2. Activa el entorno virtual de Python.
-   ```
-   ./venv/Scripts/activate
-   ```
-3. Instala todas las dependencias del proyecto.
-   ```
-   pip install -r requirements.txt
-   ```
-
-### ¡Manos a la Obra! ✍️
-
-En el directorio `/source` se encuentran todos los ficheros que va ha utilizar para generar la build (los ficheros HTML).
-
-Las secciones que puedes ver en la pagina web se realizan mediante carpetas en el codigo. Dentro se puede alojar tanto ficheros Markdown (`.md`) como Restructured Text (`.rst`), este último se considera más avanzado y es el que utiliza Sphinx por defecto.
-
-Cada vez que añadas o cambies de nombre un fichero o carpeta, tendrás que actualizarlo manualmente en el toctree, dentro del fichero `index.rst`, si no, el fichero será ilocalizable en el menú.
-
-### Donde agregar imagenes u otros ficheros 💻
-
-En directorio `source/_static` es utilizado para el almacenamiento de ficheros que luego se utilizará en la pagina web, ya sea imagenes, sonidos, videos...
-
-Ten en cuenta los limites de GitHub:
-
-| **Aspecto**                                | **GitHub Free**                                                                                                    | **GitHub Team**                                                         | **GitHub Enterprise**                                                     |
-| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| **Límite de Tamaño de Fichero Individual** | 2 GB                                                                                                               | 2 GB                                                                    | 5 GB                                                                      |
-| **Límite de Tamaño de Repositorio**        | No limitado explícitamente, pero se recomienda mantenerlo por debajo de 5 GB para evitar problemas de rendimiento. | No especificado                                                         | No especificado                                                           |
-| **Espacio de Almacenamiento de Paquetes**  | 500 MB                                                                                                             | 2 GB                                                                    | 50 GB                                                                     |
-| **CI/CD Minutes/Month**                    | 2,000 (Gratis para repositorios públicos)                                                                          | 3,000 (Gratis para repositorios públicos)                               | 50,000 (Gratis para repositorios públicos)                                |
-| **Precio**                                 | Gratis                                                                                                             | $4 por usuario/mes (Descuento a $3.67 por usuario/mes en el primer año) | $21 por usuario/mes (Descuento a $19.25 por usuario/mes en el primer año) |
-
-> Cabe destacar que, aunque GitHub no limita explícitamente el tamaño total de los repositorios en su plan gratuito, recomiendan mantenerlos por debajo de 1 GB para optimizar el rendimiento y advierten que superar los 5 GB podría resultar en un contacto por parte del soporte de GitHub. Además, cada fichero individual no debe superar los 2 GB en los planes gratuitos y de Team, y 5 GB en el plan Enterprise.
-
-### Como revisar los cambios 🔍
-
-Con el entorno virtual activado:
-
-- `python -m sphinx -W --keep-going -b html source build/html` para generar los nuevos ficheros HTML en `build/html` y tratar cualquier aviso como error.
-
-Para construir también la guía funcional de Reagentia:
+## Preparar el entorno
 
 ```powershell
-python -m pip install -r reagentia/requirements-docs.txt
+python -m venv .venv-docs
+.\.venv-docs\Scripts\Activate.ps1
+python -m pip install -r reauditia/requirements-docs.txt
+```
+
+Las dependencias de ambas zonas deben mantenerse alineadas. Si trabajas solo en Reagentia, también puedes instalarlas desde `reagentia/requirements-docs.txt`.
+
+## Validar y construir
+
+ReAuditIA:
+
+```powershell
+python scripts/build_reauditia.py
+```
+
+Reagentia:
+
+```powershell
 python scripts/build_reagentia.py
 ```
 
-Para previsualizarla mientras se edita:
+Para comprobar además enlaces externos, añade `--external-links`.
+
+## Previsualizar
+
+ReAuditIA:
 
 ```powershell
-python -m mkdocs serve --config-file reagentia/mkdocs.yml --dev-addr 127.0.0.1:8000
+python -m mkdocs serve --config-file reauditia/mkdocs.yml --dev-addr 127.0.0.1:8000
 ```
 
-Abre la dirección que muestra MkDocs en la terminal. La previsualización es local y no
-publica ningún contenido.
-
-Para añadir un nombre a la lista bloqueada sin escribirlo en claro en el repositorio:
+Reagentia:
 
 ```powershell
-python reagentia/scripts/validate_content.py --hash-name "<nuevo-termino>"
+python -m mkdocs serve --config-file reagentia/mkdocs.yml --dev-addr 127.0.0.1:8001
 ```
 
-Añade el digest resultante a `FORBIDDEN_NAME_DIGESTS` y un caso construido por fragmentos
-a `test_functional_docs.py`. El digest no aporta confidencialidad: evita que el nombre
-quede publicado o indexable en las fuentes y los tests demuestran su correspondencia.
+La previsualización es local y no publica contenido.
 
-### Como subir los cambios 📤
+## Publicación
 
-Simplemente con un `push origin` desde la aplicación de GitHub Desktop los cambios se subirán al repositorio y GitHub Actions entrará en acción.
+- Una PR construye y valida únicamente las zonas afectadas. No despliega ni genera ZIP o artifacts.
+- Un `push` a `main` publica únicamente las zonas afectadas en `gh-pages`.
+- Un `repository_dispatch` válido vuelve a publicar la zona funcional ya fusionada que corresponda.
+- La publicación de ReAuditIA conserva `/reagentia/`; la de Reagentia conserva la raíz y cualquier `CNAME`.
 
-La Action solo construye la parte afectada: Sphinx para cambios de la documentación existente y Material for MkDocs para cambios bajo `reagentia/`. Las PR validan sin publicar; los cambios integrados actualizan únicamente su zona de `gh-pages`. Un `repository_dispatch` válido desde los repositorios de Reagentia vuelve a publicar la guía funcional ya fusionada. No se genera ningún ZIP ni artifact descargable.
+## Reglas de contenido público
+
+- Explicar qué hace una capacidad, para qué sirve y cómo se utiliza.
+- Usar ejemplos sintéticos.
+- No publicar documentación técnica, secretos, endpoints privados, datos reales ni información específica de clientes o proyectos.
+- Mantener las rutas públicas existentes cuando se reorganice el contenido.
