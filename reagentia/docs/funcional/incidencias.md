@@ -1,5 +1,25 @@
 # Incidencias y recuperación
 
+## La conversación está recuperando la conexión
+
+Espera a que el estado deje de mostrar **Sin conexión**, **Recuperando conexión** o **Intentando recuperarla**. El chat trata de reconectarse automáticamente. Antes de repetir un mensaje, comprueba si aparece en el historial recuperado.
+
+## La conversación está conciliando el último turno
+
+La pantalla muestra el contenido durable disponible mientras comprueba el último turno. Espera a que finalice la conciliación antes de considerar completa una respuesta que estaba en curso. Cerrar y volver a abrir el navegador no elimina el historial guardado.
+
+## La respuesta se interrumpe o no se detiene
+
+El texto parcial recibido se conserva. Puedes enviar otro mensaje cuando la conversación vuelva a estar disponible.
+
+Si aparece **No se pudo confirmar la parada**, vuelve a pulsar **Detener**. Si el aviso persiste, anota la hora aproximada y el estado mostrado para solicitar soporte; no repitas el mensaje mientras siga activa la respuesta anterior.
+
+## No puedes abrir o continuar una conversación
+
+Comprueba la organización activa, que exista un asistente habilitado y que tu rol permita utilizar conversaciones. Un observador puede consultar un asistente, pero no abrir ni continuar conversaciones con la configuración inicial.
+
+Si la pantalla indica que se alcanzó el límite, no se pueden enviar más mensajes en esa conversación. El historial ya guardado permanece visible.
+
 ## La ejecución sigue creada
 
 Espera el umbral que indique la interfaz. Si aparece **Reintentar lanzamiento**, úsalo una vez y vuelve al detalle. No crees otro lanzamiento salvo que el sistema confirme que el anterior no existe.

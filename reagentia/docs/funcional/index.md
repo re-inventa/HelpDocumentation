@@ -7,9 +7,10 @@ Esta guía está dirigida a usuarios, operadores y responsables funcionales. Exp
 1. Consultar los workflows disponibles para tu organización.
 2. Revisar la configuración, los agentes y los recursos publicados.
 3. Conectar el acceso a modelos de lenguaje si tu rol lo permite.
-4. Preparar documentos y lanzar una ejecución.
-5. Seguir su avance y descargar los resultados.
-6. Cancelar, reintentar el despacho o relanzar cuando la situación lo permita.
+4. Conversar con un asistente habilitado y retomar su historial guardado.
+5. Preparar documentos y lanzar una ejecución.
+6. Seguir su avance y descargar los resultados.
+7. Cancelar, reintentar el despacho o relanzar cuando la situación lo permita.
 
 ## Recorrido recomendado
 
@@ -18,6 +19,7 @@ Esta guía está dirigida a usuarios, operadores y responsables funcionales. Exp
 - [Roles y permisos](roles-permisos.md)
 - [Conexión LLM](conexion-llm.md)
 - [Workflows, agentes y recursos](configuracion.md)
+- [Asistentes y conversaciones](asistentes.md)
 - [Lanzar una ejecución](ejecutar.md)
 - [Seguimiento y resultados](seguimiento.md)
 - [Incidencias y recuperación](incidencias.md)
