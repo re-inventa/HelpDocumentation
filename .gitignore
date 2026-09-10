@@ -1,2 +1,9 @@
 # sphinx build folder
 /build
+
+# local documentation workspaces
+/.publish
+/.venv-docs
+/.playwright-cli
+__pycache__/
+*.py[cod]

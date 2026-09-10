@@ -1,0 +1,62 @@
+site_name: Reagentia
+site_description: Guía funcional de Reagentia
+site_url: https://re-inventa.github.io/HelpDocumentation/reagentia/
+docs_dir: docs
+site_dir: ../build/reagentia
+strict: true
+
+theme:
+  name: material
+  language: es
+  font: false
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - content.code.copy
+    - content.tabs.link
+    - search.highlight
+    - search.suggest
+  palette:
+    scheme: default
+    primary: deep orange
+    accent: deep orange
+
+plugins:
+  - search:
+      lang: es
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+nav:
+  - Inicio: index.md
+  - Guía funcional:
+      - funcional/index.md
+      - Conceptos y alcance: funcional/conceptos.md
+      - Casos de uso y ejemplos: funcional/casos-de-uso.md
+      - Roles y permisos: funcional/roles-permisos.md
+      - Conexión LLM: funcional/conexion-llm.md
+      - Workflows, agentes y recursos: funcional/configuracion.md
+      - Lanzar una ejecución: funcional/ejecutar.md
+      - Seguimiento y resultados: funcional/seguimiento.md
+      - Incidencias y recuperación: funcional/incidencias.md
+  - Estado y limitaciones:
+      - estado/index.md
+      - Disponibilidad: estado/trazabilidad.md

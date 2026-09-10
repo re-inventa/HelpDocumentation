@@ -31,8 +31,8 @@ html_favicon = "_static/favicon.ico"
 
 # Configuración de sphinxawesome_theme
 html_theme_options = {
-    "logo_light": "logo_dark.png",
-    "logo_dark": "logo_light.png",
+    "logo_light": "_static/logo_dark.png",
+    "logo_dark": "_static/logo_light.png",
     "awesome_headerlinks": False
 }
 html_title = "> Documentación R2"
