@@ -97,6 +97,8 @@ class ChangeDetectionTests(unittest.TestCase):
         self.assertIn("--exclude='reagentia/'", workflow)
         self.assertIn("smoke_publication.py --zone reauditia", workflow)
         self.assertIn("smoke_publication.py --zone reagentia", workflow)
+        self.assertIn("group: help-documentation-publish", workflow)
+        self.assertIn("queue: max", workflow)
 
     def test_sphinx_is_not_part_of_the_workflow(self):
         workflow = (ROOT / ".github/workflows/push_and_publish_to_gh.yaml").read_text(
@@ -134,6 +136,12 @@ class ChangeDetectionTests(unittest.TestCase):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         self.assertIn("reauditia/mkdocs.yml", readme)
         self.assertIn("reagentia/mkdocs.yml", readme)
+
+    def test_functional_pull_request_template_requires_the_source_pr(self):
+        template = (ROOT / ".github" / "pull_request_template.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("Source-PR:", template)
 
     def test_public_smoke_covers_both_zones(self):
         self.assertIn("index.html", smoke.ROUTES["reauditia"])

@@ -13,10 +13,6 @@ on:
 permissions:
   contents: read
 
-concurrency:
-  group: help-documentation-${{ github.event.pull_request.number || github.ref || github.run_id }}
-  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
-
 jobs:
   validate-pull-request:
     if: github.event_name == 'pull_request'
@@ -24,6 +20,9 @@ jobs:
     timeout-minutes: 20
     permissions:
       contents: read
+    concurrency:
+      group: help-documentation-pr-${{ github.event.pull_request.number }}
+      cancel-in-progress: true
 
     steps:
       - name: Checkout proposed documentation
@@ -73,6 +72,10 @@ jobs:
     timeout-minutes: 25
     permissions:
       contents: write
+    concurrency:
+      group: help-documentation-publish
+      cancel-in-progress: false
+      queue: max
 
     steps:
       - name: Validate publication request

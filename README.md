@@ -59,6 +59,7 @@ La previsualización es local y no publica contenido.
 ## Publicación
 
 - Una PR construye y valida únicamente las zonas afectadas. No despliega ni genera ZIP o artifacts.
+- Una PR funcional asociada a una PR de producto debe declarar en su cuerpo `Source-PR: https://github.com/re-inventa/<repositorio>/pull/<numero>`. La línea se repite si documenta varias PR de producto.
 - Un `push` a `main` publica únicamente las zonas afectadas en `gh-pages`.
 - Un `repository_dispatch` válido vuelve a publicar la zona funcional ya fusionada que corresponda.
 - La publicación de ReAuditIA conserva `/reagentia/`; la de Reagentia conserva la raíz y cualquier `CNAME`.
