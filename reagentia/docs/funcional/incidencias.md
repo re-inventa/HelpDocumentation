@@ -20,9 +20,13 @@ Comprueba la organización activa, que exista un asistente habilitado y que tu r
 
 Si la pantalla indica que se alcanzó el límite, no se pueden enviar más mensajes en esa conversación. El historial ya guardado permanece visible.
 
-## La búsqueda reguladora no está disponible
+## Una herramienta asignada no está disponible
 
-Revisa la lista de tools del asistente. Puede indicar que la búsqueda no admite conversaciones, que su binding está desactivado o que la base o su índice no están disponibles. Una conversación iniciada sin base fijada no adquiere acceso al documento aunque se configure después. Quien puede editar agentes puede seleccionar una base publicada e indexada para conversaciones nuevas; si ya existe una selección, comprueba que la pantalla muestre su versión antes de consultar.
+Revisa la causa indicada junto a la herramienta. Su asignación al agente no basta para utilizarla: debe admitir conversaciones, estar habilitada para la organización y disponer del contexto o los recursos que exige.
+
+Si falta una configuración o un recurso, pide a una persona con los permisos correspondientes que lo revise. La lista de disponibilidad para conversaciones nuevas no implica que el cambio se aplique a una conversación existente; comprueba la configuración conservada por esa conversación.
+
+Por ejemplo, **Buscar en la base reguladora** requiere un documento autorizado, publicado e indexado. Una conversación iniciada sin ese documento fijado no adquiere acceso aunque se configure después; en ese caso hay que preparar el recurso y abrir una conversación nueva. Consulta el [ejemplo de búsqueda documental](asistentes.md#ejemplo-una-herramienta-de-busqueda-documental).
 
 ## No puedes cerrar una conversación
 
