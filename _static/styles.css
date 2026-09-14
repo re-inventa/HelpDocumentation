@@ -1,32 +1,14 @@
-/* 
-###################################
-Tema : sphinx_rtd_theme 
-###################################
-*/
-/* .wy-nav-content {
-    min-height: 100vh;
-} */
-
-/*
-###################################
-Tema : sphinxawesome_theme 
-###################################
-*/
-
-#page>header>div>div>a img {
-    width: 8rem !important;
+:root {
+  --md-primary-fg-color: #f4511e;
+  --md-accent-fg-color: #f4511e;
 }
 
-.caption-text {
-    font-weight: bold;
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+  width: 8rem;
+  height: auto;
 }
 
-.headerlink {
-    opacity: 0;
-    transition: opacity 0.3s;
-    text-decoration: none !important;
-}
-
-.headerlink:hover {
-    opacity: 1;
+.md-typeset .grid.cards > ul > li {
+  border-radius: 0.45rem;
 }
