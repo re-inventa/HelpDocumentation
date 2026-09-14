@@ -9,7 +9,7 @@ ReAuditIA adapta el menú y las acciones al rol de cada cuenta.
 
 Una opción puede estar limitada además por la organización o por la configuración del formulario.
 
-El registro crea la cuenta con rol **Supervisor**. El cambio a Administrador debe gestionarlo una persona autorizada.
+El registro crea la cuenta con rol **Supervisor**. El cambio a Administrador debe solicitarse mediante **Soporte** en el menú.
 
 !!! warning "Permiso insuficiente"
-    No intentes acceder mediante una dirección guardada si la opción no aparece en el menú. Solicita al responsable de tu organización que compruebe tu rol.
+    No intentes acceder mediante una dirección guardada si la opción no aparece en el menú. Solicita mediante **Soporte** que comprueben tu rol.

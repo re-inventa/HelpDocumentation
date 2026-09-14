@@ -10,7 +10,7 @@ Un formulario documental define los campos y comprobaciones que se obtendrán de
 
 Desde **Diseño**, un Administrador puede asociar a sus formularios los analizadores disponibles para su organización.
 
-Si no aparece el analizador necesario, solicítalo por el canal de soporte establecido. No intentes abrir una dirección directa que no aparezca en el menú.
+Si no aparece el analizador necesario, solicítalo mediante **Soporte** en el menú. No intentes abrir una dirección directa que no aparezca en el menú.
 
 ## Asistencia para instrucciones
 

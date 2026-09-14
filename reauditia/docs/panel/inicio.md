@@ -14,7 +14,7 @@ Necesitas una cuenta activa para utilizar ReAuditIA.
 
 Si el dominio está asociado a una sola organización, la cuenta se asigna automáticamente. Si lo comparten varias organizaciones, la asignación requiere una validación adicional; el correo de acceso se envía cuando termina ese proceso.
 
-Las cuentas nuevas se crean como **Supervisor**. Un usuario autorizado debe asignar el rol de Administrador cuando corresponda.
+Las cuentas nuevas se crean como **Supervisor**. El rol de Administrador debe solicitarse mediante **Soporte** en el menú cuando corresponda.
 
 !!! warning "Cuenta personal"
     Utiliza una cuenta corporativa individual. No compartas una cuenta ni su contraseña entre varias personas: los formularios, permisos y movimientos quedan asociados al usuario.

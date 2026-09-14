@@ -52,8 +52,8 @@ class FunctionalContentTests(unittest.TestCase):
             (root / "search" / "search_index.json").write_text(
                 '{"docs": []}', encoding="utf-8"
             )
-            digest = content.name_digest(forbidden)
-            with patch.dict(content.FORBIDDEN_NAME_DIGESTS, {digest: "internal"}, clear=True):
+            digest = content.text_digest(forbidden)
+            with patch.dict(content.FORBIDDEN_TEXT_DIGESTS, {digest: "internal"}, clear=True):
                 self.assertTrue(content.validate_tree(root, built=True))
 
     def validate(self, text: str) -> list[str]:
@@ -63,15 +63,29 @@ class FunctionalContentTests(unittest.TestCase):
             return content.validate_tree(root, built=False)
 
     def test_rejects_normalized_sensitive_names_without_storing_real_names(self):
-        digest = content.name_digest("privateidentifier")
+        digest = content.text_digest("privateidentifier")
         values = ("privateidentifier", "private-identifier", "private_identifier", "private identifier")
-        with patch.dict(content.FORBIDDEN_NAME_DIGESTS, {digest: "internal"}, clear=True):
+        with patch.dict(content.FORBIDDEN_TEXT_DIGESTS, {digest: "internal"}, clear=True):
             for value in values:
                 with self.subTest(value=value):
                     self.assertTrue(self.validate(value))
 
-    def test_configured_sensitive_name_digests_are_well_formed(self):
-        for digest, category in content.FORBIDDEN_NAME_DIGESTS.items():
+    def test_rejects_hashed_phrases_with_navigation_separators_and_five_words(self):
+        phrase = "private section with five words"
+        digest = content.text_digest(phrase)
+        variants = (
+            phrase,
+            "private-section_with/five>words",
+            "- Private:\n  - Section with five words: index.md",
+        )
+        with patch.dict(content.FORBIDDEN_TEXT_DIGESTS, {digest: "internal"}, clear=True):
+            for value in variants:
+                with self.subTest(value=value):
+                    self.assertTrue(self.validate(value))
+
+    def test_configured_sensitive_text_digests_are_well_formed(self):
+        self.assertGreaterEqual(content.MAX_FORBIDDEN_WORDS, 5)
+        for digest, category in content.FORBIDDEN_TEXT_DIGESTS.items():
             with self.subTest(digest=digest):
                 self.assertRegex(digest, r"^[0-9a-f]{64}$")
                 self.assertIn(category, {"project", "internal"})
@@ -86,25 +100,6 @@ class FunctionalContentTests(unittest.TestCase):
             "Estado de los Ficheros",
         ):
             self.assertIn(label, docs)
-
-    def test_rejects_internal_support_roles_and_capabilities(self):
-        for value in (
-            "Superadmin",
-            "Súper administrador",
-            "Rol 3",
-            "Administración de organizaciones",
-            "Gestionar analizadores",
-            "Gestión de analizadores",
-            "Transferir saldo",
-            "Usuarios pendientes",
-            "Asignar usuarios",
-            "Impersonación",
-            "Acceder como otro usuario",
-            "Selecciona la organización",
-            "Asignar organización",
-        ):
-            with self.subTest(value=value):
-                self.assertTrue(self.validate(value))
 
     def test_documents_current_user_manual_contract(self):
         docs = "\n".join(
@@ -156,9 +151,9 @@ class FunctionalContentTests(unittest.TestCase):
 
     def test_public_source_code_rejects_forbidden_literal(self):
         value = "privateidentifier"
-        digest = content.name_digest(value)
+        digest = content.text_digest(value)
         with tempfile.TemporaryDirectory() as directory, patch.dict(
-            content.FORBIDDEN_NAME_DIGESTS, {digest: "internal"}, clear=True
+            content.FORBIDDEN_TEXT_DIGESTS, {digest: "internal"}, clear=True
         ):
             root = Path(directory)
             scripts = root / "scripts"
@@ -177,9 +172,9 @@ class FunctionalContentTests(unittest.TestCase):
 
     def test_public_portal_root_is_scanned_for_forbidden_names(self):
         value = "privateidentifier"
-        digest = content.name_digest(value)
+        digest = content.text_digest(value)
         with tempfile.TemporaryDirectory() as directory, patch.dict(
-            content.FORBIDDEN_NAME_DIGESTS, {digest: "project"}, clear=True
+            content.FORBIDDEN_TEXT_DIGESTS, {digest: "project"}, clear=True
         ):
             root = Path(directory)
             source = root / "source"

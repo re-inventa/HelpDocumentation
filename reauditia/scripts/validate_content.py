@@ -19,32 +19,58 @@ ROOT = Path(__file__).resolve().parents[1]
 REPOSITORY_ROOT = ROOT.parent
 DOCS_SOURCE = ROOT / "docs"
 SITE = REPOSITORY_ROOT / "build" / "reauditia"
-# The blocked names are stored only as one-way digests: the public repository must not
-# contain the names it is designed to reject, even inside its own validation code.
-FORBIDDEN_NAME_DIGESTS = {
+# Blocked public text is stored only as one-way digests: the repository must not
+# publish the internal labels and actions that the validator is designed to reject.
+FORBIDDEN_TEXT_DIGESTS = {
     "1113b3efce29bef1a55c7d80e1a714ce73ef42872bc9d6e87cbad39adcb7ec58": "project",
+    "00b612d23b0e651636e842b90ac232554577e7b67b011fa61332caf22b8e7923": "internal",
+    "09254f4d1f811476ecfe22287e5fbfaf29b6b9fece86ffae518f7552df54a854": "internal",
+    "1803aabaab71b4d805c9eb42259306dc7c09eadf910185227502f93d1957e376": "internal",
+    "186cf774c97b60a1c106ef718d10970a6a06e06bef89553d9ae65d938a886eae": "internal",
+    "186d3a955901714aa6afb58daef19190193b16e3eb5fffdecc2fac6c706c4307": "internal",
+    "217f5bb873b0b2434b2bce26b06dd8e937ea0152c51f07db8df4496646cbecc3": "internal",
+    "2e6f8a1a0fb93ad35e8c399c04bb4b4873a603737b26671ae8a2a378eb74c416": "internal",
+    "2ed8042d818affdbfa12a68cff461ddb9bd68de808acab27555c2a70039c331f": "internal",
+    "3b331d01f0665d9cb2b0acc3d44a5e4d5eab8d2e4b6f72daa091f0f93daf8011": "internal",
     "4f9930f1036b91a923f30abe6699fafecd56801c3039c0f38ce7631fdc1a3afa": "internal",
+    "451cdba9bee6eebe2c9bbc1d26ef7bc50c18393d516e986daea235d6cb69902d": "internal",
+    "351eb63c16aff6647b887e5884b4ca66a610701a6ddf3d15c3e1b7d614b3a0f9": "internal",
+    "408fce1603470a9b0f24f16c01f2c48b7d9791797beb34ef291be3c312f402c9": "internal",
+    "57d45b4e1c4fdf6346f5d53d08694a38c286f150e55f10ec9c79078aff3eefc3": "internal",
     "581e01b9d3581e0365fa0940dcac403a343a23a735068c1922dacda3b8c27bcd": "project",
+    "563294f25f3829f996435746c843ab4d75f57e1a5eec19c99b024846f7e12c7f": "internal",
+    "5e0156488d29e87c2c3157a0f917b26cc7b1720fff566cb80992b761e3ca0086": "internal",
+    "6db637bb40aa8cd16ab7856740811073420fd429d99807a9c7dadbb16f05e7a9": "internal",
+    "670b5c6ab8fe708956224c94a359a1c7712e1435c804d2bc54e01a0305fdd2e0": "internal",
+    "8baa4c9cc910a063867751d3b5a943021c60e9d2414543121952b2bfe3409a96": "internal",
+    "863485e737785004ffd3fa9d0562dc9ce50c27c3bdf6d20c745353294f6e89d9": "internal",
+    "968b93d0e48ac86814a297f126cc996712bd14ecef086480320fb141a76bc053": "internal",
     "90e6d56e1aae9367d608f6210c23977fdce63bc3cb64a372aa44cd5f714fb8d9": "internal",
+    "9fcadef69262df53e398a26d26929d946d42863fc4d86e57437a0a5ac3a09f7d": "internal",
+    "a168252a7b54a37eff959851602f22b2269259b53f8a3b4c12f309fd9373cc5b": "internal",
+    "a4cefdb8fabf36fe912fb9c251feb6632fdca0784e19247e7e35d465258baec6": "internal",
+    "b1db558b671a12d25748e8c5412e34899850bd29bdb9e3758b463a63ab80ddaf": "internal",
+    "b62c9a17fa3b6373a89ba29c705eceb52d0e02f87a0e4e51ed6ee424cbdb2cd0": "internal",
+    "c259ba70ac69eb17eeaaee74dcc0b45bed30794b84b8dd15de7be626bb08d1ee": "internal",
     "c76d06397352059f79fe6dde0b76fa36ec0ecc6405fd4e3706fd6c700122077a": "project",
+    "bd2aee831c49d4b2148a72c4cf666dfa7f15c429dac342c64d953dba835c9baf": "internal",
     "c8894645eae4bf1bd66d3d58b2c697c8923878849f98717f62124be552e16838": "project",
+    "c702953b9f990d6213b77eddfcac7a090ce1478fff804869c8167a4e1827933e": "internal",
+    "cbc880da8b97585ce2ebfa2c693424661a20096c7af4c92e55f703d07aa25283": "internal",
+    "ce72c07d70d8710778d6c204a2b365a56300b17868582e55e3e0e1fccd1fb14d": "internal",
+    "d39ed8309cc433a1135eaaf152dcf2610481609db3c3e7a3daa5845b87298b4a": "internal",
     "ddb6e01645ad96a9472340d1aafb20bbf0b9eccf90f13383b43a0e2499befb11": "project",
+    "e68acc055b0f3628b5ff641831e67d77b250bdb2c100789b7dc3fbfe6b0688c6": "internal",
+    "edc1cad78787b0769ae7eaf99774ba83967e455e0c59846dec7d2cd2c01baddc": "internal",
+    "f83d78d358c72bced874b6b63afe707f11648b3a6fac5c6f9c5cdb1241ba36c1": "internal",
 }
-NAME_WORD = re.compile(r"[^\W_]+", re.UNICODE)
+TEXT_WORD = re.compile(r"[^\W_]+", re.UNICODE)
+MAX_FORBIDDEN_WORDS = 5
 TECHNICAL_INTERNAL = re.compile(
     r"\b(?:Next\.js|BFF|PostgreSQL|Trigger\.dev|Mastra|Key Vault|Container Apps?|Liquibase|RBAC|OIDC|Bicep|secretRef|fencing|gateway|workers?)\b",
     re.IGNORECASE,
 )
 OTHER_PRODUCT = re.compile(r"\bre[\s_-]?agentia\b", re.IGNORECASE)
-INTERNAL_SUPPORT_CONTENT = re.compile(
-    r"\b(?:(?:super|s[uú]per)[\s-]?admin(?:istrador)?|(?:rol|perfil)\s*3|"
-    r"impersonaci[oó]n|administr(?:ar|aci[oó]n de) organizaciones|"
-    r"(?:crear|editar|probar|gestionar) analizadores|gesti[oó]n de analizadores|"
-    r"gestionar movimientos de saldo|transferir saldo|"
-    r"usuarios pendientes|asign(?:ar|aci[oó]n de) usuarios|acceder como otro usuario|"
-    r"selecciona(?:r)? la organizaci[oó]n|asigna(?:r)? organizaci[oó]n)\b",
-    re.IGNORECASE,
-)
 UUID = re.compile(r"\b[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\b", re.IGNORECASE)
 BEARER_VALUE = re.compile(r"authorization\s*:\s*bearer\s+\S+", re.IGNORECASE)
 SECRET_VALUE = re.compile(r"\bsk-[A-Za-z0-9_-]{16,}\b")
@@ -193,20 +219,27 @@ def check_pattern(path: Path, text: str, pattern: re.Pattern[str], reason: str, 
         failures.append(f"{path}:{line_number(text, match.start())}: {reason}")
 
 
-def normalized_name(value: str) -> str:
+def normalized_text(value: str) -> str:
     decomposed = unicodedata.normalize("NFKD", value.casefold())
     return "".join(character for character in decomposed if character.isalnum())
 
 
-def name_digest(value: str) -> str:
-    return hashlib.sha256(normalized_name(value).encode("utf-8")).hexdigest()
+def text_digest(value: str) -> str:
+    return hashlib.sha256(normalized_text(value).encode("utf-8")).hexdigest()
 
 
-def forbidden_names(text: str):
-    words = list(NAME_WORD.finditer(text))
+def is_phrase_separator(value: str) -> bool:
+    return bool(value) and all(
+        character.isspace() or character in "_-:>/*`"
+        for character in value
+    )
+
+
+def forbidden_texts(text: str):
+    words = list(TEXT_WORD.finditer(text))
     for index, first in enumerate(words):
         combined = first.group(0)
-        for length in range(1, 4):
+        for length in range(1, MAX_FORBIDDEN_WORDS + 1):
             if length > 1:
                 current_index = index + length - 1
                 if current_index >= len(words):
@@ -214,21 +247,21 @@ def forbidden_names(text: str):
                 previous = words[current_index - 1]
                 current = words[current_index]
                 separator = text[previous.end():current.start()]
-                if not separator or any(character not in " _-\t\r\n" for character in separator):
+                if not is_phrase_separator(separator):
                     break
                 combined += current.group(0)
-            digest = name_digest(combined)
-            category = FORBIDDEN_NAME_DIGESTS.get(digest)
+            digest = text_digest(combined)
+            category = FORBIDDEN_TEXT_DIGESTS.get(digest)
             if category:
                 yield first.start(), category
 
 
-def check_forbidden_names(path: Path, text: str, context: str, failures: list[str]) -> None:
+def check_forbidden_texts(path: Path, text: str, context: str, failures: list[str]) -> None:
     reasons = {
         "project": f"referencia a cliente o proyecto {context}",
         "internal": f"nombre interno {context}",
     }
-    for offset, category in forbidden_names(text):
+    for offset, category in forbidden_texts(text):
         failures.append(f"{path}:{line_number(text, offset)}: {reasons[category]}")
 
 
@@ -240,19 +273,12 @@ def validate_tree(root: Path, *, built: bool) -> list[str]:
             continue
         assert text is not None
         content = scannable_text(path, text, built=built)
-        check_forbidden_names(path, content, "prohibido en la guía funcional", failures)
+        check_forbidden_texts(path, content, "prohibido en la guía funcional", failures)
         check_pattern(
             path,
             text,
             OTHER_PRODUCT,
             "referencia o enlace a otro producto",
-            failures,
-        )
-        check_pattern(
-            path,
-            content,
-            INTERNAL_SUPPORT_CONTENT,
-            "rol o tarea interna de soporte en la guía funcional",
             failures,
         )
         for pattern, reason in (
@@ -280,19 +306,12 @@ def validate_tree(root: Path, *, built: bool) -> list[str]:
             searchable = "\n".join(
                 f"{entry.get('title', '')}\n{entry.get('text', '')}" for entry in payload.get("docs", [])
             )
-            check_forbidden_names(index_path, searchable, "prohibido en el buscador", failures)
+            check_forbidden_texts(index_path, searchable, "prohibido en el buscador", failures)
             check_pattern(
                 index_path,
                 searchable,
                 OTHER_PRODUCT,
                 "referencia a otro producto en el buscador",
-                failures,
-            )
-            check_pattern(
-                index_path,
-                searchable,
-                INTERNAL_SUPPORT_CONTENT,
-                "rol o tarea interna de soporte en el buscador",
                 failures,
             )
             if TECHNICAL_INTERNAL.search(searchable):
@@ -325,7 +344,7 @@ def validate_repository_sources(root: Path = REPOSITORY_ROOT) -> list[str]:
             continue
         except ValueError:
             pass
-        check_forbidden_names(path, text, "prohibido en fuentes públicas", failures)
+        check_forbidden_texts(path, text, "prohibido en fuentes públicas", failures)
     return failures
 
 
@@ -358,9 +377,9 @@ def main() -> int:
     mode.add_argument("--hash-name", metavar="NAME")
     args = parser.parse_args()
     if args.hash_name is not None:
-        if not normalized_name(args.hash_name):
+        if not normalized_text(args.hash_name):
             parser.error("NAME debe contener al menos una letra o un número")
-        print(name_digest(args.hash_name))
+        print(text_digest(args.hash_name))
         return 0
     target = DOCS_SOURCE if args.source else SITE
     if not target.is_dir():
@@ -372,19 +391,12 @@ def main() -> int:
         failures.extend(validate_repository_sources())
         failures.extend(validate_repository_secrets())
         config = (ROOT / "mkdocs.yml").read_text(encoding="utf-8")
-        check_forbidden_names(ROOT / "mkdocs.yml", config, "prohibido en mkdocs.yml", failures)
+        check_forbidden_texts(ROOT / "mkdocs.yml", config, "prohibido en mkdocs.yml", failures)
         check_pattern(
             ROOT / "mkdocs.yml",
             config,
             TECHNICAL_INTERNAL,
             "navegación técnica en mkdocs.yml",
-            failures,
-        )
-        check_pattern(
-            ROOT / "mkdocs.yml",
-            config,
-            INTERNAL_SUPPORT_CONTENT,
-            "rol o tarea interna de soporte en mkdocs.yml",
             failures,
         )
     if failures:
