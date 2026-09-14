@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Classify root Sphinx and Reagentia functional documentation changes."""
+"""Classify ReAuditIA and Reagentia public documentation changes."""
 
 from __future__ import annotations
 
@@ -9,20 +9,22 @@ from pathlib import PurePosixPath
 import subprocess
 
 
-ROOT_PREFIXES = ("source/",)
-ROOT_FILES = {"requirements.txt", "Makefile", "make.bat"}
-FUNCTIONAL_PREFIXES = ("reagentia/",)
+REAUDITIA_PREFIXES = ("reauditia/",)
+REAGENTIA_PREFIXES = ("reagentia/",)
 SHARED_FILES = {
     ".github/workflows/push_and_publish_to_gh.yaml",
-    "scripts/build_reagentia.py",
     "scripts/detect_documentation_changes.py",
+    "scripts/validate_publication_request.py",
+    "scripts/smoke_publication.py",
 }
+REAUDITIA_FILES = {"scripts/build_reauditia.py", "scripts/validate_responsive.py", "dev.bat"}
+REAGENTIA_FILES = {"scripts/build_reagentia.py"}
 
 
 @dataclass(frozen=True)
 class Changes:
-    root: bool
-    functional: bool
+    reauditia: bool
+    reagentia: bool
 
 
 def normalize(path: str) -> str:
@@ -35,9 +37,13 @@ def normalize(path: str) -> str:
 def classify(paths: list[str]) -> Changes:
     normalized = {normalize(path) for path in paths if path.strip()}
     shared = bool(normalized & SHARED_FILES)
-    root = shared or any(path in ROOT_FILES or path.startswith(ROOT_PREFIXES) for path in normalized)
-    functional = shared or any(path.startswith(FUNCTIONAL_PREFIXES) for path in normalized)
-    return Changes(root, functional)
+    reauditia = shared or bool(normalized & REAUDITIA_FILES) or any(
+        path.startswith(REAUDITIA_PREFIXES) for path in normalized
+    )
+    reagentia = shared or bool(normalized & REAGENTIA_FILES) or any(
+        path.startswith(REAGENTIA_PREFIXES) for path in normalized
+    )
+    return Changes(reauditia, reagentia)
 
 
 def changed_files(base: str, head: str) -> list[str]:
@@ -50,12 +56,21 @@ def changed_files(base: str, head: str) -> list[str]:
     return completed.stdout.splitlines()
 
 
-def select_changes(*, all_docs: bool, functional_only: bool, base: str | None, head: str) -> Changes:
-    if sum((all_docs, functional_only, bool(base))) != 1:
-        raise ValueError("usa exactamente --all, --functional o --base")
+def select_changes(
+    *,
+    all_docs: bool,
+    reauditia_only: bool,
+    reagentia_only: bool,
+    base: str | None,
+    head: str,
+) -> Changes:
+    if sum((all_docs, reauditia_only, reagentia_only, bool(base))) != 1:
+        raise ValueError("usa exactamente --all, --reauditia, --reagentia o --base")
     if all_docs:
         return Changes(True, True)
-    if functional_only:
+    if reauditia_only:
+        return Changes(True, False)
+    if reagentia_only:
         return Changes(False, True)
     return classify(changed_files(str(base), head))
 
@@ -65,13 +80,15 @@ def main() -> int:
     parser.add_argument("--base")
     parser.add_argument("--head", default="HEAD")
     parser.add_argument("--all", action="store_true")
-    parser.add_argument("--functional", action="store_true")
+    parser.add_argument("--reauditia", action="store_true")
+    parser.add_argument("--reagentia", action="store_true")
     parser.add_argument("--github-output")
     args = parser.parse_args()
     try:
         changes = select_changes(
             all_docs=args.all,
-            functional_only=args.functional,
+            reauditia_only=args.reauditia,
+            reagentia_only=args.reagentia,
             base=args.base,
             head=args.head,
         )
@@ -79,9 +96,9 @@ def main() -> int:
         parser.error(str(error))
     if args.github_output:
         with open(args.github_output, "a", encoding="utf-8") as output:
-            output.write(f"root_changed={str(changes.root).lower()}\n")
-            output.write(f"functional_changed={str(changes.functional).lower()}\n")
-    print(f"Sphinx={changes.root}; Reagentia funcional={changes.functional}")
+            output.write(f"reauditia_changed={str(changes.reauditia).lower()}\n")
+            output.write(f"reagentia_changed={str(changes.reagentia).lower()}\n")
+    print(f"ReAuditIA={changes.reauditia}; Reagentia={changes.reagentia}")
     return 0
 
 

@@ -1,0 +1,78 @@
+site_name: ReAuditIA
+site_description: Guía funcional de ReAuditIA
+site_url: https://re-inventa.github.io/HelpDocumentation/
+docs_dir: docs
+site_dir: ../build/reauditia
+strict: true
+use_directory_urls: false
+not_in_nav: |
+  /search.md
+  /genindex.md
+  /http-routingtable.md
+
+theme:
+  name: material
+  language: es
+  font: false
+  favicon: _static/favicon.ico
+  logo: _static/logo_light.png
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - content.code.copy
+    - content.tabs.link
+    - search.highlight
+    - search.suggest
+  palette:
+    scheme: default
+    primary: deep orange
+    accent: deep orange
+
+plugins:
+  - search:
+      lang: es
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.superfences
+
+extra_css:
+  - _static/styles.css
+
+nav:
+  - Inicio: index.md
+  - Primeros pasos:
+      - Acceso: panel/inicio.md
+      - Panel principal: panel/panel.md
+      - Roles y permisos: panel/roles-permisos.md
+  - Formularios y cargas:
+      - Formularios: panel/formularios.md
+      - Diseño: panel/diseño.md
+      - Estado de los ficheros: panel/estado_audios.md
+      - Subida automática: panel/subida_automatica.md
+      - Seguimiento de conectores: panel/subidas_conector.md
+  - Resultados:
+      - Informes: panel/informes.md
+      - Cartera y consumo: panel/cartera.md
+  - Gestión documental:
+      - Documentos: panel/documentos.md
+  - Administración:
+      - Organizaciones: panel/administracion.md
+  - Integraciones:
+      - Carga de ficheros: api/upload.md
+      - Consulta de consumo: api/logs.md
+  - Ayuda:
+      - Incidencias frecuentes: panel/incidencias.md
+      - Disponibilidad: estado/trazabilidad.md

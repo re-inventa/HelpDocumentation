@@ -6,6 +6,7 @@ import sys
 import tempfile
 import unittest
 from unittest.mock import patch
+import yaml
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -20,7 +21,10 @@ def load(name: str, relative: str):
     return module
 
 
-content = load("functional_content", "scripts/validate_content.py")
+content = load("reauditia_functional_content", "scripts/validate_content.py")
+routes = load("reauditia_routes", "scripts/validate_routes.py")
+navigation = load("reauditia_navigation", "scripts/validate_navigation.py")
+links = load("reauditia_links", "scripts/validate_links.py")
 
 
 class FunctionalContentTests(unittest.TestCase):
@@ -72,21 +76,46 @@ class FunctionalContentTests(unittest.TestCase):
                 self.assertRegex(digest, r"^[0-9a-f]{64}$")
                 self.assertIn(category, {"project", "internal"})
 
-    def test_retry_action_uses_the_visible_product_label(self):
+    def test_documents_the_current_navigation_labels(self):
         docs = "\n".join(
             path.read_text(encoding="utf-8") for path in (ROOT / "docs").rglob("*.md")
         )
-        self.assertNotIn("Reintentar despacho", docs)
-        self.assertIn("Reintentar lanzamiento", docs)
+        for label in (
+            "Subida automática",
+            "Subidas conector",
+            "Estado de los Ficheros",
+            "Impersonación",
+        ):
+            self.assertIn(label, docs)
+
+    def test_documents_current_user_manual_contract(self):
+        docs = "\n".join(
+            path.read_text(encoding="utf-8") for path in (ROOT / "docs").rglob("*.md")
+        )
+        for contract in (
+            "12 metadatos",
+            "4 a 30 caracteres",
+            "añadir nuevas comprobaciones",
+            "Normalizar resultados",
+            "Mostrar nota final en gráfico",
+            "Sin agrupación",
+            "Fuentes SharePoint",
+            "rango máximo de 90 días",
+        ):
+            self.assertIn(contract, docs)
+
+        lowered = docs.casefold()
+        self.assertNotIn("hasta tres tipos de metadatos", lowered)
+        self.assertNotIn("no puede ser modificado", lowered)
 
     def test_rejects_technical_content(self):
         self.assertTrue(self.validate("Postgre" + "SQL"))
 
     def test_rejects_references_and_links_to_other_products(self):
         for value in (
-            "Re" + "AuditIA",
-            "re-" + "auditia",
-            "https://example.invalid/re" + "auditia/",
+            "Re" + "agentia",
+            "re-" + "agentia",
+            "https://example.invalid/re" + "agentia/",
         ):
             with self.subTest(value=value):
                 self.assertTrue(self.validate(value))
@@ -149,10 +178,102 @@ class FunctionalContentTests(unittest.TestCase):
             self.assertIn("UTF-8", failures[0])
 
     def test_accepts_neutral_functional_content(self):
-        self.assertEqual([], self.validate("Conecta el acceso LLM y lanza una ejecución."))
+        self.assertEqual([], self.validate("Carga un fichero y consulta su resultado."))
 
     def test_public_tree_contains_no_technical_directory(self):
         self.assertFalse((ROOT / "docs" / "tecnica").exists())
+
+    def test_legacy_route_manifest_detects_missing_files(self):
+        with tempfile.TemporaryDirectory() as directory:
+            site = Path(directory)
+            for route in routes.LEGACY_ROUTES:
+                path = site / route
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes(b"ok")
+            self.assertEqual([], routes.missing_routes(site))
+            (site / "panel" / "inicio.html").unlink()
+            self.assertEqual(["panel/inicio.html"], routes.missing_routes(site))
+
+    def test_legacy_anchor_manifest_detects_missing_anchors(self):
+        with tempfile.TemporaryDirectory() as directory:
+            site = Path(directory)
+            for route, anchors in routes.LEGACY_ANCHORS.items():
+                path = site / route
+                path.parent.mkdir(parents=True, exist_ok=True)
+                markup = "".join(f'<span id="{anchor}"></span>' for anchor in anchors)
+                path.write_text(markup, encoding="utf-8")
+            self.assertEqual([], routes.missing_anchors(site))
+            (site / "panel" / "inicio.html").write_text("", encoding="utf-8")
+            self.assertTrue(routes.missing_anchors(site))
+
+    def test_retired_sphinx_resources_are_detected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            site = Path(directory)
+            examples = (".buildinfo", "_sources/index.rst.txt", "_static/theme.test.css")
+            for relative in examples:
+                path = site / relative
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text("retired", encoding="utf-8")
+            self.assertEqual(sorted(examples), routes.retired_resources(site))
+
+    def test_navigation_accepts_exact_hidden_compatibility_pages(self):
+        config = {"nav": [{"Inicio": "index.md"}], "not_in_nav": "/legacy.md\n"}
+        failures = navigation.navigation_failures(config, {"index.md", "legacy.md"})
+        self.assertFalse(any(failures.values()))
+
+    def test_navigation_rejects_orphan_overlap_and_nonexistent_entries(self):
+        orphan = navigation.navigation_failures({"nav": ["index.md"]}, {"index.md", "orphan.md"})
+        self.assertEqual(["orphan.md"], orphan["missing"])
+        overlap = navigation.navigation_failures(
+            {"nav": ["index.md"], "not_in_nav": "/index.md\n/missing.md"}, {"index.md"}
+        )
+        self.assertEqual(["index.md"], overlap["overlap"])
+        self.assertEqual(["missing.md"], overlap["nonexistent"])
+
+    def test_internal_link_and_anchor_validation(self):
+        with tempfile.TemporaryDirectory() as directory:
+            site = Path(directory)
+            nested = site / "nested"
+            nested.mkdir()
+            (site / "index.html").write_text(
+                '<a href="nested/page.html#target">válido</a>', encoding="utf-8"
+            )
+            (nested / "page.html").write_text('<h1 id="target">Destino</h1>', encoding="utf-8")
+            failures, external = links.validate_site(site)
+            self.assertEqual([], failures)
+            self.assertEqual(set(), external)
+
+    def test_broken_link_and_anchor_are_reported(self):
+        with tempfile.TemporaryDirectory() as directory:
+            site = Path(directory)
+            (site / "index.html").write_text(
+                '<a href="missing.html">ruta</a><a href="#missing">ancla</a>', encoding="utf-8"
+            )
+            failures, _external = links.validate_site(site)
+            self.assertEqual(2, len(failures))
+
+    def test_material_config_preserves_html_urls_and_privacy_defaults(self):
+        config = yaml.safe_load((ROOT / "mkdocs.yml").read_text(encoding="utf-8"))
+        self.assertEqual("material", config["theme"]["name"])
+        self.assertFalse(config["theme"]["font"])
+        self.assertFalse(config["use_directory_urls"])
+        self.assertNotIn("analytics", config.get("extra", {}))
+        self.assertEqual(
+            {"/search.md", "/genindex.md", "/http-routingtable.md"},
+            set(config["not_in_nav"].splitlines()),
+        )
+
+    def test_every_legacy_route_is_represented_by_a_source(self):
+        generated = {path.relative_to(ROOT / "docs").with_suffix(".html").as_posix()
+                     for path in (ROOT / "docs").rglob("*.md")}
+        static = {path.relative_to(ROOT / "docs").as_posix()
+                  for path in (ROOT / "docs" / "_static").rglob("*") if path.is_file()}
+        self.assertTrue(routes.LEGACY_ROUTES <= generated | static)
+
+    def test_current_build_contains_no_retired_sphinx_resources(self):
+        site = ROOT.parent / "build" / "reauditia"
+        if site.is_dir():
+            self.assertEqual([], routes.retired_resources(site))
 
 
 if __name__ == "__main__":
