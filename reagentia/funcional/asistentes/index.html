@@ -595,10 +595,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#abrir-o-continuar-una-conversacion" class="md-nav__link">
+  <a href="#iniciar-y-elegir-conversaciones" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Abrir o continuar una conversación
+        Iniciar y elegir conversaciones
       
     </span>
   </a>
@@ -621,6 +621,17 @@
     <span class="md-ellipsis">
       
         Detener una respuesta
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cerrar-una-conversacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cerrar una conversación
       
     </span>
   </a>
@@ -891,10 +902,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#abrir-o-continuar-una-conversacion" class="md-nav__link">
+  <a href="#iniciar-y-elegir-conversaciones" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Abrir o continuar una conversación
+        Iniciar y elegir conversaciones
       
     </span>
   </a>
@@ -917,6 +928,17 @@
     <span class="md-ellipsis">
       
         Detener una respuesta
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cerrar-una-conversacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cerrar una conversación
       
     </span>
   </a>
@@ -974,23 +996,25 @@
 
 
 <h1 id="asistentes-y-conversaciones">Asistentes y conversaciones<a class="headerlink" href="#asistentes-y-conversaciones" title="Permanent link">&para;</a></h1>
-<p>La sección <strong>Asistentes</strong> permite conversar dentro de Reagentia con un asistente habilitado para la organización activa. Una conversación mantiene su propio historial y puede retomarse después de cerrar el navegador.</p>
+<p>La sección <strong>Asistentes</strong> permite mantener varias conversaciones independientes con un mismo asistente habilitado para la organización activa. Cada conversación conserva su propio historial y puede retomarse después de cerrar el navegador.</p>
 <p>Un asistente no es una configuración editable desde esta pantalla. Utiliza una versión publicada de un agente y ofrece un punto de acceso conversacional para las personas autorizadas.</p>
 <div class="admonition note">
 <p class="admonition-title">Disponibilidad</p>
 <p>La sección muestra únicamente los asistentes habilitados para la organización activa. La pantalla y los permisos efectivos determinan si puedes consultar un asistente, abrir una conversación o continuarla.</p>
 </div>
-<h2 id="abrir-o-continuar-una-conversacion">Abrir o continuar una conversación<a class="headerlink" href="#abrir-o-continuar-una-conversacion" title="Permanent link">&para;</a></h2>
+<h2 id="iniciar-y-elegir-conversaciones">Iniciar y elegir conversaciones<a class="headerlink" href="#iniciar-y-elegir-conversaciones" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Accede a <strong>Asistentes</strong> con la organización correcta seleccionada.</li>
 <li>Revisa el nombre y la descripción del asistente mostrado.</li>
-<li>Pulsa <strong>Abrir conversación</strong> para empezar o <strong>Continuar conversación</strong> para recuperar la conversación activa.</li>
+<li>Pulsa <strong>Nueva conversación</strong> para empezar otra, aunque ya tengas una activa. La nueva aparece en el listado sin modificar las anteriores.</li>
+<li>Para continuar una existente, selecciónala en el listado por su fecha y estado. Usa <strong>Ver conversaciones anteriores</strong> para recorrer las más antiguas.</li>
 <li>Escribe el mensaje y pulsa <strong>Enviar mensaje</strong>. También puedes pulsar <code>Intro</code>; utiliza <code>Mayús+Intro</code> para añadir una línea nueva.</li>
 <li>Consulta el estado situado bajo el historial mientras se prepara y recibe la respuesta.</li>
 </ol>
 <p>Los estados más habituales son <strong>Enviando</strong>, <strong>Mensaje guardado. Preparando respuesta</strong>, <strong>Recibiendo respuesta</strong> y <strong>Respuesta finalizada</strong>. El contenido aparece de forma progresiva durante la generación.</p>
 <h2 id="que-se-conserva">Qué se conserva<a class="headerlink" href="#que-se-conserva" title="Permanent link">&para;</a></h2>
-<p>El historial se guarda asociado a la conversación y a la organización. Cerrar la pestaña o el navegador no elimina los mensajes: al volver, utiliza <strong>Continuar conversación</strong> para cargar el contenido guardado.</p>
+<p>El historial se guarda asociado a cada conversación y a la organización. Cerrar la pestaña o el navegador no elimina los mensajes: al volver, selecciona la conversación que quieras recuperar. Al cambiar entre conversaciones, se muestra el historial y el estado de la elegida, sin mezclar las respuestas de otras.</p>
+<p>Una conversación nueva utiliza la configuración publicada del asistente disponible al iniciarla. Las conversaciones anteriores conservan la configuración con la que se abrieron.</p>
 <p>Si la pantalla indica que está conciliando el último turno, muestra mientras tanto el contenido durable disponible. Espera a que termine la recuperación antes de interpretar como definitiva una respuesta que estuviera en curso.</p>
 <p>No compartas en una conversación claves, credenciales ni otros secretos. Los mensajes forman parte del historial funcional y pueden permanecer disponibles al retomar la conversación.</p>
 <h2 id="detener-una-respuesta">Detener una respuesta<a class="headerlink" href="#detener-una-respuesta" title="Permanent link">&para;</a></h2>
@@ -1001,12 +1025,15 @@
 <li>Si no se pudo confirmar la parada, vuelve a pulsar <strong>Detener</strong> como indica la pantalla.</li>
 </ul>
 <p>Después de una respuesta detenida o interrumpida puedes enviar otro mensaje y continuar la misma conversación.</p>
+<h2 id="cerrar-una-conversacion">Cerrar una conversación<a class="headerlink" href="#cerrar-una-conversacion" title="Permanent link">&para;</a></h2>
+<p>Selecciona una conversación activa y pulsa <strong>Cerrar conversación</strong> cuando hayas terminado. Esa conversación pasa a <strong>Cerrada</strong> en el listado. Puedes abrirla después para leer el historial, pero no admite mensajes nuevos. Las demás conversaciones siguen disponibles.</p>
+<p>Si hay una respuesta en curso, espera a que termine o detenla antes de volver a intentar el cierre. Cerrar una conversación no borra sus mensajes.</p>
 <h2 id="recuperacion-de-conexion">Recuperación de conexión<a class="headerlink" href="#recuperacion-de-conexion" title="Permanent link">&para;</a></h2>
 <p>Si se pierde la conexión, el chat intenta recuperarse automáticamente al volver a estar disponible. Durante ese proceso puede mostrar <strong>Sin conexión</strong>, <strong>Recuperando conexión</strong> o <strong>Intentando recuperarla</strong>.</p>
 <p>El contenido parcial recibido se conserva cuando una respuesta se interrumpe. Evita repetir inmediatamente el mismo mensaje: espera a que el estado se estabilice y comprueba primero el historial recuperado.</p>
 <h2 id="permisos-y-limites-visibles">Permisos y límites visibles<a class="headerlink" href="#permisos-y-limites-visibles" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Un rol con permiso de consulta puede ver el asistente, aunque no tenga permiso para abrir o continuar conversaciones.</li>
+<li>Un rol con permiso de consulta puede ver el asistente, aunque no tenga permiso para listar, iniciar, continuar o cerrar conversaciones.</li>
 <li>Si no hay asistentes habilitados, la pantalla lo indica y no permite iniciar una conversación.</li>
 <li>Cuando se alcanza el límite de una conversación, el envío queda deshabilitado y el historial existente permanece visible.</li>
 <li>El campo de mensaje aplica un límite de longitud; si no admite más texto, resume la consulta o divídela en varios mensajes.</li>
