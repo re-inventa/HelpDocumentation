@@ -5,7 +5,7 @@ El apartado **Diseño** permite a los perfiles autorizados crear formularios e i
 ## Crear un formulario de auditoría
 
 1. Abre **Diseño > Crear un Formulario de Auditoría**.
-2. Selecciona la organización cuando aparezca y el supervisor que utilizará el formulario.
+2. Selecciona el supervisor que utilizará el formulario.
 3. Escribe un nombre de 4 a 30 caracteres, con letras minúsculas, números y guiones. Debe empezar y terminar por letra o número y no debe contener guiones consecutivos.
 4. Pasa a la columna de seleccionados las comprobaciones que necesites. Puedes buscarlas, consultar su descripción y moverlas de una en una o en bloque.
 5. Configura los metadatos y el resto de opciones aplicables.
@@ -26,7 +26,7 @@ Ejemplo: crea el metadato `Canal`, añade `Entrada` y `Salida` y ciérralo para 
 
 ## Editar un formulario de auditoría
 
-Un Administrador o Superadmin puede abrir un formulario existente y, cuando la edición esté habilitada:
+Un Administrador puede abrir un formulario existente y, cuando la edición esté habilitada:
 
 - añadir nuevas comprobaciones;
 - activar o desactivar comprobaciones existentes;
@@ -38,7 +38,7 @@ No hace falta crear otro formulario solo para añadir una comprobación. Antes d
 ## Crear un formulario de gestión documental
 
 1. Abre **Diseño > Crear un Formulario de Gestión Documental**.
-2. Asigna organización y supervisor.
+2. Asigna el supervisor.
 3. Indica un nombre y configura los campos solicitados.
 4. Revisa el resumen antes de confirmar.
 
@@ -48,7 +48,7 @@ Las opciones documentales dependen de las capacidades habilitadas. Si necesitas 
 
 1. Abre **Diseño > Crear un Informe**.
 2. Crea un informe o selecciona uno existente para modificarlo.
-3. Selecciona la organización cuando aparezca, el supervisor y uno de sus formularios.
+3. Selecciona el supervisor y uno de sus formularios.
 4. Añade categorías y, si necesitas un nivel intermedio, subcategorías.
 5. Añade las comprobaciones del formulario a la categoría o subcategoría correspondiente.
 6. Define los parámetros y guarda el informe.

@@ -84,9 +84,27 @@ class FunctionalContentTests(unittest.TestCase):
             "Subida automática",
             "Subidas conector",
             "Estado de los Ficheros",
-            "Impersonación",
         ):
             self.assertIn(label, docs)
+
+    def test_rejects_internal_support_roles_and_capabilities(self):
+        for value in (
+            "Superadmin",
+            "Súper administrador",
+            "Rol 3",
+            "Administración de organizaciones",
+            "Gestionar analizadores",
+            "Gestión de analizadores",
+            "Transferir saldo",
+            "Usuarios pendientes",
+            "Asignar usuarios",
+            "Impersonación",
+            "Acceder como otro usuario",
+            "Selecciona la organización",
+            "Asignar organización",
+        ):
+            with self.subTest(value=value):
+                self.assertTrue(self.validate(value))
 
     def test_documents_current_user_manual_contract(self):
         docs = "\n".join(

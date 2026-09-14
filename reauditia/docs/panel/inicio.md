@@ -12,7 +12,7 @@ Necesitas una cuenta activa para utilizar ReAuditIA.
 4. Pulsa **Registrarse** y confirma el correo recibido.
 5. Vuelve a la pantalla de acceso e inicia sesión.
 
-Si el dominio está asociado a una sola organización, la cuenta se asigna automáticamente. Si lo comparten varias organizaciones, la cuenta queda pendiente hasta que un administrador la asigne; el correo de acceso se envía después.
+Si el dominio está asociado a una sola organización, la cuenta se asigna automáticamente. Si lo comparten varias organizaciones, la asignación requiere una validación adicional; el correo de acceso se envía cuando termina ese proceso.
 
 Las cuentas nuevas se crean como **Supervisor**. Un usuario autorizado debe asignar el rol de Administrador cuando corresponda.
 

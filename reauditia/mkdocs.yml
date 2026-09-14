@@ -68,8 +68,6 @@ nav:
       - Cartera y consumo: panel/cartera.md
   - Gestión documental:
       - Documentos: panel/documentos.md
-  - Administración:
-      - Organizaciones: panel/administracion.md
   - Integraciones:
       - Carga de ficheros: api/upload.md
       - Consulta de consumo: api/logs.md

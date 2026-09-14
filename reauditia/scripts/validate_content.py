@@ -36,6 +36,15 @@ TECHNICAL_INTERNAL = re.compile(
     re.IGNORECASE,
 )
 OTHER_PRODUCT = re.compile(r"\bre[\s_-]?agentia\b", re.IGNORECASE)
+INTERNAL_SUPPORT_CONTENT = re.compile(
+    r"\b(?:(?:super|s[uú]per)[\s-]?admin(?:istrador)?|(?:rol|perfil)\s*3|"
+    r"impersonaci[oó]n|administr(?:ar|aci[oó]n de) organizaciones|"
+    r"(?:crear|editar|probar|gestionar) analizadores|gesti[oó]n de analizadores|"
+    r"gestionar movimientos de saldo|transferir saldo|"
+    r"usuarios pendientes|asign(?:ar|aci[oó]n de) usuarios|acceder como otro usuario|"
+    r"selecciona(?:r)? la organizaci[oó]n|asigna(?:r)? organizaci[oó]n)\b",
+    re.IGNORECASE,
+)
 UUID = re.compile(r"\b[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\b", re.IGNORECASE)
 BEARER_VALUE = re.compile(r"authorization\s*:\s*bearer\s+\S+", re.IGNORECASE)
 SECRET_VALUE = re.compile(r"\bsk-[A-Za-z0-9_-]{16,}\b")
@@ -239,6 +248,13 @@ def validate_tree(root: Path, *, built: bool) -> list[str]:
             "referencia o enlace a otro producto",
             failures,
         )
+        check_pattern(
+            path,
+            content,
+            INTERNAL_SUPPORT_CONTENT,
+            "rol o tarea interna de soporte en la guía funcional",
+            failures,
+        )
         for pattern, reason in (
             (TECHNICAL_INTERNAL, "detalle técnico prohibido en la guía funcional"),
             (BEARER_VALUE, "cabecera bearer con valor"),
@@ -270,6 +286,13 @@ def validate_tree(root: Path, *, built: bool) -> list[str]:
                 searchable,
                 OTHER_PRODUCT,
                 "referencia a otro producto en el buscador",
+                failures,
+            )
+            check_pattern(
+                index_path,
+                searchable,
+                INTERNAL_SUPPORT_CONTENT,
+                "rol o tarea interna de soporte en el buscador",
                 failures,
             )
             if TECHNICAL_INTERNAL.search(searchable):
@@ -355,6 +378,13 @@ def main() -> int:
             config,
             TECHNICAL_INTERNAL,
             "navegación técnica en mkdocs.yml",
+            failures,
+        )
+        check_pattern(
+            ROOT / "mkdocs.yml",
+            config,
+            INTERNAL_SUPPORT_CONTENT,
+            "rol o tarea interna de soporte en mkdocs.yml",
             failures,
         )
     if failures:

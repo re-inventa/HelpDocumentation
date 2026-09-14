@@ -8,19 +8,9 @@ Un formulario documental define los campos y comprobaciones que se obtendrán de
 
 ## Analizadores
 
-El Superadmin gestiona los analizadores desde **Procesamiento de documentos > Analyzers**: puede crearlos, editarlos, probarlos y asignarlos a una organización. El Administrador no ve este menú; desde **Diseño** puede asociar a sus formularios los analizadores que ya estén disponibles para su organización.
+Desde **Diseño**, un Administrador puede asociar a sus formularios los analizadores disponibles para su organización.
 
-Si no aparece un analizador necesario, solicítalo al Superadmin. No intentes abrir una dirección directa que no aparezca en el menú.
-
-Flujo recomendado:
-
-1. Define el objetivo y los campos que deben obtenerse.
-2. Configura categorías solo si distintos tipos de documento necesitan tratamientos diferentes.
-3. Prueba con un fichero sintético o autorizado.
-4. Revisa el resultado antes de asignar el analizador a un formulario.
-5. Comprueba después un procesamiento completo desde el formulario.
-
-No utilices datos reales en una prueba de configuración si no están autorizados para ese fin.
+Si no aparece el analizador necesario, solicítalo por el canal de soporte establecido. No intentes abrir una dirección directa que no aparezca en el menú.
 
 ## Asistencia para instrucciones
 
