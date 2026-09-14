@@ -182,12 +182,12 @@ jobs:
           set -euo pipefail
           if [[ "${REAUDITIA_CHANGED}" == 'true' ]]; then
             printf '%s\n' "${PUBLISHED_SHA}" > build/reauditia/publication-sha.txt
-            rsync -a --delete --exclude='.git/' --exclude='reagentia/' --exclude='CNAME' build/reauditia/ .publish/
+            rsync -a --checksum --delete --exclude='.git/' --exclude='reagentia/' --exclude='CNAME' build/reauditia/ .publish/
           fi
           if [[ "${REAGENTIA_CHANGED}" == 'true' ]]; then
             printf '%s\n' "${PUBLISHED_SHA}" > build/reagentia/publication-sha.txt
             mkdir -p .publish/reagentia
-            rsync -a --delete build/reagentia/ .publish/reagentia/
+            rsync -a --checksum --delete build/reagentia/ .publish/reagentia/
           fi
           touch .publish/.nojekyll
           cd .publish
