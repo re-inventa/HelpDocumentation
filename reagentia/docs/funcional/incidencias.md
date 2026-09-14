@@ -20,6 +20,10 @@ Comprueba la organización activa, que exista un asistente habilitado y que tu r
 
 Si la pantalla indica que se alcanzó el límite, no se pueden enviar más mensajes en esa conversación. El historial ya guardado permanece visible.
 
+## La búsqueda reguladora no está disponible
+
+Revisa la lista de tools del asistente. Puede indicar que la búsqueda no admite conversaciones, que su binding está desactivado o que la base o su índice no están disponibles. Una conversación iniciada sin base fijada no adquiere acceso al documento aunque se configure después. Quien puede editar agentes puede seleccionar una base publicada e indexada para conversaciones nuevas; si ya existe una selección, comprueba que la pantalla muestre su versión antes de consultar.
+
 ## No puedes cerrar una conversación
 
 Si el asistente está respondiendo, espera a que termine o pulsa **Detener respuesta** y vuelve a intentar **Cerrar conversación**. Una conversación cerrada permanece en el listado para consulta, pero ya no acepta mensajes. Crear otra no altera ese historial.

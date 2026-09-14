@@ -28,7 +28,9 @@ Antes de publicar comprueba que:
 
 ## Tools
 
-Las tools amplían lo que puede hacer un agente. Su gestión está reservada a administradores. Vincular una tool no sustituye sus propios permisos ni las validaciones del workflow.
+Las tools amplían lo que puede hacer un agente. Su gestión está reservada a administradores. Cada versión de tool indica si funciona en workflows, conversaciones o ambos. Asignarla a un agente no garantiza que esté disponible en todas las superficies: también deben estar activos el binding y los recursos que exige.
+
+En **Asistentes**, quien puede editar agentes elige la base reguladora publicada autorizada para conversaciones nuevas. La búsqueda solo estará disponible cuando esa versión tenga un índice listo. El cambio no modifica conversaciones ya iniciadas.
 
 ## Recursos
 

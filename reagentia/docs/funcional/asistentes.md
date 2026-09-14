@@ -2,7 +2,7 @@
 
 La sección **Asistentes** permite mantener varias conversaciones independientes con un mismo asistente habilitado para la organización activa. Cada conversación conserva su propio historial y puede retomarse después de cerrar el navegador.
 
-Un asistente no es una configuración editable desde esta pantalla. Utiliza una versión publicada de un agente y ofrece un punto de acceso conversacional para las personas autorizadas.
+El asistente utiliza una versión publicada de un agente. Si tu rol permite editar agentes, puedes elegir desde esta pantalla qué base reguladora publicada se autoriza para sus conversaciones nuevas.
 
 !!! note "Disponibilidad"
     La sección muestra únicamente los asistentes habilitados para la organización activa. La pantalla y los permisos efectivos determinan si puedes consultar un asistente, abrir una conversación o continuarla.
@@ -11,10 +11,11 @@ Un asistente no es una configuración editable desde esta pantalla. Utiliza una 
 
 1. Accede a **Asistentes** con la organización correcta seleccionada.
 2. Revisa el nombre y la descripción del asistente mostrado.
-3. Pulsa **Nueva conversación** para empezar otra, aunque ya tengas una activa. La nueva aparece en el listado sin modificar las anteriores.
-4. Para continuar una existente, selecciónala en el listado por su fecha y estado. Usa **Ver conversaciones anteriores** para recorrer las más antiguas.
-5. Escribe el mensaje y pulsa **Enviar mensaje**. También puedes pulsar `Intro`; utiliza `Mayús+Intro` para añadir una línea nueva.
-6. Consulta el estado situado bajo el historial mientras se prepara y recibe la respuesta.
+3. Consulta **Tools asignadas y disponibilidad para conversaciones nuevas**. Una tool puede figurar como asignada y no estar disponible para conversar: la pantalla indica si solo admite workflows, si el binding está desactivado o si falta la base o el índice.
+4. Pulsa **Nueva conversación** para empezar otra, aunque ya tengas una activa. La nueva aparece en el listado sin modificar las anteriores.
+5. Para continuar una existente, selecciónala en el listado por su fecha y estado. Usa **Ver conversaciones anteriores** para recorrer las más antiguas.
+6. Escribe el mensaje y pulsa **Enviar mensaje**. También puedes pulsar `Intro`; utiliza `Mayús+Intro` para añadir una línea nueva.
+7. Consulta el estado situado bajo el historial mientras se prepara y recibe la respuesta.
 
 Los estados más habituales son **Enviando**, **Mensaje guardado. Preparando respuesta**, **Recibiendo respuesta** y **Respuesta finalizada**. El contenido aparece de forma progresiva durante la generación.
 
@@ -22,7 +23,15 @@ Los estados más habituales son **Enviando**, **Mensaje guardado. Preparando res
 
 El historial se guarda asociado a cada conversación y a la organización. Cerrar la pestaña o el navegador no elimina los mensajes: al volver, selecciona la conversación que quieras recuperar. Al cambiar entre conversaciones, se muestra el historial y el estado de la elegida, sin mezclar las respuestas de otras.
 
-Una conversación nueva utiliza la configuración publicada del asistente disponible al iniciarla. Las conversaciones anteriores conservan la configuración con la que se abrieron.
+Una conversación nueva fija la versión publicada del agente, la configuración efectiva de sus tools y, si existe, la versión de la base reguladora autorizada e indexada. Las conversaciones anteriores conservan esas versiones: publicar otra versión de agente o documento no cambia su alcance. Una conversación creada sin base no obtiene acceso a ella más tarde.
+
+## Consulta de la base reguladora
+
+Si tu rol permite editar agentes, usa **Base reguladora autorizada para este asistente** y pulsa **Guardar base** antes de abrir una conversación nueva. La lista muestra bases publicadas de tu organización e indica si falta el índice. Elegir una base sin índice no habilita aún la búsqueda. **Sin base reguladora** desactiva la consulta documental para las conversaciones nuevas.
+
+Cuando se crea la conversación, la pantalla muestra el nombre y la versión del documento fijado, o **Sin base reguladora fijada**. Si la tool de búsqueda está disponible, puedes preguntar por un requisito concreto. Las evidencias muestran la versión, la sección cuando se reconoce y las páginas del fragmento. Puedes contrastarlas con el documento original; el asistente no incorpora el PDF completo a la conversación.
+
+Si la búsqueda figura como no disponible, revisa la causa en la lista de tools. El asistente puede seguir respondiendo sin búsqueda documental, pero no debes interpretar una respuesta sin evidencias como una consulta al documento.
 
 Si la pantalla indica que está conciliando el último turno, muestra mientras tanto el contenido durable disponible. Espera a que termine la recuperación antes de interpretar como definitiva una respuesta que estuviera en curso.
 
