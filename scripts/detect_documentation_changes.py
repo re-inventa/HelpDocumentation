@@ -14,9 +14,10 @@ REAGENTIA_PREFIXES = ("reagentia/",)
 SHARED_FILES = {
     ".github/workflows/push_and_publish_to_gh.yaml",
     "scripts/detect_documentation_changes.py",
+    "scripts/validate_publication_request.py",
     "scripts/smoke_publication.py",
 }
-REAUDITIA_FILES = {"scripts/build_reauditia.py", "dev.bat"}
+REAUDITIA_FILES = {"scripts/build_reauditia.py", "scripts/validate_responsive.py", "dev.bat"}
 REAGENTIA_FILES = {"scripts/build_reagentia.py"}
 
 

@@ -6,22 +6,31 @@ from __future__ import annotations
 import argparse
 import time
 from urllib.error import HTTPError, URLError
-from urllib.parse import urljoin
+from urllib.parse import quote, urljoin, urlsplit, urlunsplit
 from urllib.request import Request, urlopen
 
 
 BASE_URL = "https://re-inventa.github.io/HelpDocumentation/"
+DEFAULT_ATTEMPTS = 72
+DEFAULT_DELAY = 5.0
 ROUTES = {
     "reauditia": (
-        "index.html",
-        "panel/inicio.html",
-        "panel/formularios.html",
-        "panel/estado_audios.html",
-        "panel/informes.html",
-        "api/upload.html",
+        "_static/favicon.ico",
+        "_static/logo_dark.png",
+        "_static/logo_light.png",
+        "_static/styles.css",
         "api/logs.html",
+        "api/upload.html",
         "genindex.html",
         "http-routingtable.html",
+        "index.html",
+        "panel/cartera.html",
+        "panel/diseño.html",
+        "panel/estado_audios.html",
+        "panel/formularios.html",
+        "panel/informes.html",
+        "panel/inicio.html",
+        "panel/panel.html",
         "search.html",
     ),
     "reagentia": (
@@ -36,8 +45,15 @@ MARKERS = {
 }
 
 
+def public_url(path: str) -> str:
+    parsed = urlsplit(urljoin(BASE_URL, path))
+    return urlunsplit(
+        (parsed.scheme, parsed.netloc, quote(parsed.path, safe="/%"), parsed.query, parsed.fragment)
+    )
+
+
 def read_url(path: str, timeout: int = 20) -> tuple[int, bytes]:
-    request = Request(urljoin(BASE_URL, path), headers={"User-Agent": "help-documentation-smoke/1"})
+    request = Request(public_url(path), headers={"User-Agent": "help-documentation-smoke/1"})
     with urlopen(request, timeout=timeout) as response:
         return response.status, response.read()
 
@@ -78,8 +94,8 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--zone", choices=sorted(ROUTES), required=True)
     parser.add_argument("--expected-sha", required=True)
-    parser.add_argument("--attempts", type=int, default=24)
-    parser.add_argument("--delay", type=float, default=5)
+    parser.add_argument("--attempts", type=int, default=DEFAULT_ATTEMPTS)
+    parser.add_argument("--delay", type=float, default=DEFAULT_DELAY)
     args = parser.parse_args()
     if len(args.expected_sha) != 40 or any(character not in "0123456789abcdef" for character in args.expected_sha):
         parser.error("--expected-sha debe ser un SHA hexadecimal de 40 caracteres")

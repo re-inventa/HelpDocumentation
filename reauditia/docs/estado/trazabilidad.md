@@ -8,7 +8,8 @@ La opción visible en ReAuditIA es la referencia funcional para saber si una cap
 | Consultar resultados | Informes | Rol Supervisor y datos finalizados |
 | Diseñar formularios e informes | Diseño | Rol Administrador o Superadmin |
 | Configurar subidas automáticas | Subida automática | Rol Administrador o Superadmin |
-| Gestionar documentos | Diseño y Procesamiento de documentos | Capacidad documental y permiso correspondiente |
+| Asociar analizadores a formularios | Diseño | Rol Administrador o Superadmin y analizador disponible para la organización |
+| Gestionar analizadores | Procesamiento de documentos > Analyzers | Rol Superadmin |
 | Administrar organizaciones | Administración | Rol Superadmin |
 | Acceder como otro usuario | Impersonación | Cuenta de soporte expresamente autorizada |
 

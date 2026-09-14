@@ -48,6 +48,27 @@ LEGACY_ANCHORS = {
     "http-routingtable.html": {"cap-/api"},
     "search.html": {"fallback", "search-results"},
 }
+RETIRED_EXACT = {".buildinfo", "objects.inv", "searchindex.js"}
+RETIRED_PREFIXES = (".doctrees/", "_sources/")
+RETIRED_STATIC_NAMES = {
+    "base-stemmer.js",
+    "basic.css",
+    "docsearch_config.js",
+    "doctools.js",
+    "documentation_options.js",
+    "file.png",
+    "language_data.js",
+    "manifest.json",
+    "minus.png",
+    "plus.png",
+    "pygments.css",
+    "searchtools.js",
+    "spanish-stemmer.js",
+    "sphinx_highlight.js",
+    "translations.js",
+}
+RETIRED_STATIC_PREFIXES = ("awesome-sphinx-design.", "docsearch.", "theme.")
+RETIRED_STATIC_SUFFIXES = (".woff", ".woff2")
 
 
 class AnchorParser(HTMLParser):
@@ -77,17 +98,38 @@ def missing_anchors(site: Path = SITE) -> list[str]:
     return failures
 
 
+def retired_resources(site: Path = SITE) -> list[str]:
+    failures: list[str] = []
+    for path in site.rglob("*"):
+        if not path.is_file():
+            continue
+        relative = path.relative_to(site).as_posix()
+        static_name = path.name if relative.startswith("_static/") else ""
+        if (
+            relative in RETIRED_EXACT
+            or relative.startswith(RETIRED_PREFIXES)
+            or static_name in RETIRED_STATIC_NAMES
+            or static_name.startswith(RETIRED_STATIC_PREFIXES)
+            or static_name.endswith(RETIRED_STATIC_SUFFIXES)
+        ):
+            failures.append(relative)
+    return sorted(failures)
+
+
 def main() -> int:
     if not SITE.is_dir():
         print("ERROR: construye el sitio antes de validar rutas", file=sys.stderr)
         return 2
     missing = missing_routes()
     anchors = missing_anchors()
-    if missing or anchors:
+    retired = retired_resources()
+    if missing or anchors or retired:
         if missing:
             print("Rutas públicas ausentes: " + ", ".join(missing), file=sys.stderr)
         if anchors:
             print("Anclas públicas ausentes: " + ", ".join(anchors), file=sys.stderr)
+        if retired:
+            print("Recursos Sphinx retirados que han reaparecido: " + ", ".join(retired), file=sys.stderr)
         return 1
     print(
         f"Rutas públicas conservadas: {len(LEGACY_ROUTES)}; "

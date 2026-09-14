@@ -40,6 +40,8 @@ python scripts/build_reagentia.py
 
 Para comprobar además enlaces externos, añade `--external-links`.
 
+Para ejecutar también la comprobación real en navegador de escritorio y móvil, instala `reauditia/requirements-responsive.txt` y añade `--responsive`.
+
 ## Previsualizar
 
 ReAuditIA:
@@ -60,9 +62,11 @@ La previsualización es local y no publica contenido.
 
 - Una PR construye y valida únicamente las zonas afectadas. No despliega ni genera ZIP o artifacts.
 - Una PR funcional asociada a una PR de producto debe declarar en su cuerpo `Source-PR: https://github.com/re-inventa/<repositorio>/pull/<numero>`. La línea se repite si documenta varias PR de producto.
+- Una PR exclusiva del portal, sin PR de producto asociada, debe declarar `Source-PR: none`.
 - Un `push` a `main` publica únicamente las zonas afectadas en `gh-pages`.
 - Un `repository_dispatch` válido vuelve a publicar la zona funcional ya fusionada que corresponda.
 - La publicación de ReAuditIA conserva `/reagentia/`; la de Reagentia conserva la raíz y cualquier `CNAME`.
+- La issue del portal se referencia con `Refs` y solo se cierra después de que el smoke público confirme la publicación.
 
 ## Reglas de contenido público
 
@@ -70,3 +74,15 @@ La previsualización es local y no publica contenido.
 - Usar ejemplos sintéticos.
 - No publicar documentación técnica, secretos, endpoints privados, datos reales ni información específica de clientes o proyectos.
 - Mantener las rutas públicas existentes cuando se reorganice el contenido.
+
+## Compatibilidad con la publicación anterior
+
+Las rutas, anclas y recursos públicos que deben seguir funcionando se controlan en `reauditia/scripts/validate_routes.py`. Se retiran de forma intencionada los recursos internos generados por Sphinx, como `_sources/`, `.doctrees/`, `.buildinfo`, `objects.inv`, `searchindex.js` y sus ficheros de tema; no forman parte del contrato público.
+
+Si hay que bloquear un nuevo nombre interno o de cliente, genera su huella con:
+
+```powershell
+python reauditia/scripts/validate_content.py --hash-name "<nuevo-término>"
+```
+
+Añade únicamente la huella al mapa correspondiente. No guardes el término literal ni lo reconstruyas por fragmentos en el repositorio. La huella sirve para comparar nombres normalizados; no cifra ni protege un dato confidencial.

@@ -22,6 +22,7 @@ def run(*command: str, cwd: Path = ROOT) -> None:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--external-links", action="store_true")
+    parser.add_argument("--responsive", action="store_true")
     args = parser.parse_args()
 
     required = (
@@ -43,6 +44,8 @@ def main() -> int:
     if args.external_links:
         link_command.append("--external")
     run(*link_command)
+    if args.responsive:
+        run(sys.executable, "scripts/validate_responsive.py")
     print(f"Guía funcional construida en {ROOT / 'build' / 'reauditia'}")
     return 0
 

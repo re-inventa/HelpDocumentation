@@ -20,9 +20,7 @@ Utiliza una cuenta técnica con el acceso mínimo a las carpetas necesarias. Al 
 3. Pulsa **Conectar con Microsoft**, inicia sesión y acepta el acceso solicitado.
 4. Comprueba el estado de la fuente. Puede aparecer como pendiente, conectada, caducada, revocada o con error.
 
-Si la autorización caduca o se revoca, utiliza la acción de reconexión de la tabla.
-
-No compartas credenciales en nombres, descripciones o capturas. Si una autorización caduca o se revoca, vuelve a conectar la fuente desde la propia pantalla.
+Si la autorización caduca o se revoca, utiliza la acción de reconexión de la tabla. No compartas credenciales en nombres, descripciones o capturas.
 
 ## 3. Crear una regla
 
@@ -39,7 +37,7 @@ No compartas credenciales en nombres, descripciones o capturas. Si una autorizac
 - **Borrar tras subir** elimina el fichero de la fuente después de una entrega correcta. Actívalo únicamente si la organización ha autorizado expresamente el borrado en origen.
 - **Control de duración** descarta audios que queden fuera del mínimo o máximo configurado. El valor 0 deja ese límite sin aplicar.
 - **Muestreo aleatorio** limita las grabaciones elegidas por directorio. Puede seguir probando candidatos hasta completar la cuota y limitar la muestra a los últimos 1-365 días.
-- **Lookback de descarga** omite directorios SFTP más antiguos que el número indicado, entre 1 y 365 días. Vacío significa sin límite.
+- **Antigüedad máxima de descarga** omite directorios SFTP más antiguos que el número indicado, entre 1 y 365 días. Vacío significa sin límite.
 - **Máximo de audios por conversación** descarta un grupo completo si supera el tope. Solo aparece en estrategias que agrupan.
 - **Filtros de origen** permiten filtrar elementos de SharePoint por una propiedad, usando igualdad o una lista de valores.
 
@@ -48,7 +46,7 @@ No compartas credenciales en nombres, descripciones o capturas. Si una autorizac
 - **Sin agrupación**: cada fichero se procesa por separado.
 - **Teléfono**: agrupa los fragmentos que comparten el teléfono según el convenio del nombre.
 - **Teléfono e identificador de llamada**: combina ambos datos para formar el grupo.
-- **Expresión regular**: extrae del nombre los grupos definidos por una regla. Comprueba siempre el patrón con un nombre real antes de guardar.
+- **Expresión regular**: extrae del nombre los grupos definidos por una regla. Comprueba siempre el patrón con un nombre de fichero representativo antes de guardar.
 
 ## 5. Completar los metadatos
 

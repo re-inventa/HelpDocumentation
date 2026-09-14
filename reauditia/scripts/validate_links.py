@@ -38,9 +38,9 @@ class LinkParser(HTMLParser):
             self.links.append(values["src"])
 
 
-def parse_pages():
+def parse_pages(site: Path = SITE):
     result = {}
-    for path in SITE.rglob("*.html"):
+    for path in site.rglob("*.html"):
         parser = LinkParser()
         parser.feed(path.read_text(encoding="utf-8"))
         result[path.resolve()] = parser
@@ -80,12 +80,12 @@ def strip_site_prefix(path: str, base_path: str) -> str:
     return path[len(base_path):] if path.startswith(prefix) else path
 
 
-def resolve_internal(source: Path, link: str) -> tuple[Path, str]:
+def resolve_internal(source: Path, link: str, site: Path = SITE) -> tuple[Path, str]:
     parsed = urlparse(link)
     path_part = strip_site_prefix(unquote(parsed.path), configured_base_path())
     if not path_part:
         return source.resolve(), unquote(parsed.fragment)
-    target = SITE / path_part.lstrip("/") if path_part.startswith("/") else source.parent / path_part
+    target = site / path_part.lstrip("/") if path_part.startswith("/") else source.parent / path_part
     if path_part.endswith("/") or not target.suffix:
         target = target / "index.html"
     return target.resolve(), unquote(parsed.fragment)
@@ -122,15 +122,13 @@ def validate_external(url: str, token: str | None) -> str | None:
     return last_error or "error desconocido"
 
 
-def main() -> int:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--external", action="store_true")
-    args = parser.parse_args()
-    if not SITE.is_dir():
-        print("ERROR: construye el sitio antes de validar enlaces", file=sys.stderr)
-        return 2
-
-    pages = parse_pages()
+def validate_site(
+    site: Path = SITE,
+    *,
+    external_enabled: bool = False,
+    token: str | None = None,
+) -> tuple[list[str], set[str]]:
+    pages = parse_pages(site)
     failures: list[str] = []
     external: set[str] = set()
     for source, parsed_page in list(pages.items()):
@@ -141,9 +139,9 @@ def main() -> int:
             if parsed.scheme in {"http", "https"} and not is_configured_site_link(link):
                 external.add(link)
                 continue
-            target, fragment = resolve_internal(source, link)
+            target, fragment = resolve_internal(source, link, site)
             if not target.exists():
-                failures.append(f"{source.relative_to(SITE)} -> {link}: destino inexistente")
+                failures.append(f"{source.relative_to(site)} -> {link}: destino inexistente")
                 continue
             if fragment and target.suffix == ".html":
                 target_parser = pages.get(target)
@@ -152,14 +150,29 @@ def main() -> int:
                     target_parser.feed(target.read_text(encoding="utf-8"))
                     pages[target] = target_parser
                 if fragment not in target_parser.anchors:
-                    failures.append(f"{source.relative_to(SITE)} -> {link}: ancla inexistente")
+                    failures.append(f"{source.relative_to(site)} -> {link}: ancla inexistente")
 
-    if args.external:
-        token = os.environ.get("GITHUB_TOKEN")
+    if external_enabled:
         for url in sorted(external):
             error = validate_external(url, token)
             if error:
                 failures.append(f"{url}: {error}")
+    return failures, external
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--external", action="store_true")
+    args = parser.parse_args()
+    if not SITE.is_dir():
+        print("ERROR: construye el sitio antes de validar enlaces", file=sys.stderr)
+        return 2
+
+    failures, external = validate_site(
+        SITE,
+        external_enabled=args.external,
+        token=os.environ.get("GITHUB_TOKEN"),
+    )
 
     if failures:
         print("\n".join(failures), file=sys.stderr)

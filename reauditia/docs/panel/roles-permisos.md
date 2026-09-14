@@ -5,8 +5,8 @@ ReAuditIA adapta el menú y las acciones al rol de cada cuenta.
 | Rol | Uso principal | Acciones habituales |
 | --- | --- | --- |
 | Supervisor | Revisar el trabajo asignado | Abrir formularios, cargar ficheros, consultar resultados e informes |
-| Administrador | Configurar el trabajo de su organización | Crear y editar formularios, informes y reglas de subida automática |
-| Superadmin | Gestionar el conjunto de la plataforma | Administrar organizaciones y las capacidades reservadas de procesamiento documental |
+| Administrador | Configurar el trabajo de su organización | Crear y editar formularios, informes y reglas de subida automática; asociar a formularios los analizadores disponibles para su organización |
+| Superadmin | Gestionar el conjunto de la plataforma | Administrar organizaciones y gestionar analizadores desde **Procesamiento de documentos > Analyzers** |
 
 Una opción puede estar limitada además por la organización o por la configuración del formulario.
 

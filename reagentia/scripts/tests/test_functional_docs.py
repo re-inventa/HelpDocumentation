@@ -5,6 +5,7 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -38,7 +39,7 @@ class FunctionalContentTests(unittest.TestCase):
             self.assertEqual([], content.validate_tree(root, built=True))
 
     def test_generated_metadata_is_scanned(self):
-        forbidden = "ig" + "ape"
+        forbidden = "privateidentifier"
         html = f'<html><head><meta name="description" content="{forbidden}"></head></html>'
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -47,7 +48,9 @@ class FunctionalContentTests(unittest.TestCase):
             (root / "search" / "search_index.json").write_text(
                 '{"docs": []}', encoding="utf-8"
             )
-            self.assertTrue(content.validate_tree(root, built=True))
+            digest = content.name_digest(forbidden)
+            with patch.dict(content.FORBIDDEN_NAME_DIGESTS, {digest: "internal"}, clear=True):
+                self.assertTrue(content.validate_tree(root, built=True))
 
     def validate(self, text: str) -> list[str]:
         with tempfile.TemporaryDirectory() as directory:
@@ -55,28 +58,19 @@ class FunctionalContentTests(unittest.TestCase):
             (root / "index.md").write_text(text, encoding="utf-8")
             return content.validate_tree(root, built=False)
 
-    def test_rejects_concrete_project_terms(self):
-        values = (
-            "ig" + "ap",
-            "ig" + "ape",
-            "ig" + "300" + "c",
-            "sub" + "vención",
-            "sub" + "venciones",
-        )
-        for value in values:
-            with self.subTest(value=value):
-                self.assertTrue(self.validate(value))
-                self.assertIn(content.name_digest(value), content.FORBIDDEN_NAME_DIGESTS)
+    def test_rejects_normalized_sensitive_names_without_storing_real_names(self):
+        digest = content.name_digest("privateidentifier")
+        values = ("privateidentifier", "private-identifier", "private_identifier", "private identifier")
+        with patch.dict(content.FORBIDDEN_NAME_DIGESTS, {digest: "internal"}, clear=True):
+            for value in values:
+                with self.subTest(value=value):
+                    self.assertTrue(self.validate(value))
 
-    def test_rejects_internal_provider_name(self):
-        for separator in ("", "-", "_", " "):
-            with self.subTest(separator=separator):
-                value = "cli" + separator + "proxy"
-                self.assertTrue(self.validate(value))
-                self.assertIn(content.name_digest(value), content.FORBIDDEN_NAME_DIGESTS)
-        api_value = "cli" + "proxy" + "api"
-        self.assertTrue(self.validate(api_value))
-        self.assertIn(content.name_digest(api_value), content.FORBIDDEN_NAME_DIGESTS)
+    def test_configured_sensitive_name_digests_are_well_formed(self):
+        for digest, category in content.FORBIDDEN_NAME_DIGESTS.items():
+            with self.subTest(digest=digest):
+                self.assertRegex(digest, r"^[0-9a-f]{64}$")
+                self.assertIn(category, {"project", "internal"})
 
     def test_retry_action_uses_the_visible_product_label(self):
         docs = "\n".join(
@@ -114,13 +108,15 @@ class FunctionalContentTests(unittest.TestCase):
                 self.assertTrue(self.validate(example))
 
     def test_public_source_code_rejects_forbidden_literal(self):
-        with tempfile.TemporaryDirectory() as directory:
+        value = "privateidentifier"
+        digest = content.name_digest(value)
+        with tempfile.TemporaryDirectory() as directory, patch.dict(
+            content.FORBIDDEN_NAME_DIGESTS, {digest: "internal"}, clear=True
+        ):
             root = Path(directory)
             scripts = root / "scripts"
             scripts.mkdir()
-            scripts.joinpath("unsafe.py").write_text(
-                'VALUE = "' + "cli" + "proxy" + '"', encoding="utf-8"
-            )
+            scripts.joinpath("unsafe.py").write_text(f'VALUE = "{value}"', encoding="utf-8")
             self.assertTrue(content.validate_repository_sources(root))
 
     def test_public_repository_rejects_secret_outside_functional_tree(self):
@@ -133,11 +129,15 @@ class FunctionalContentTests(unittest.TestCase):
             self.assertTrue(content.validate_repository_secrets(root))
 
     def test_public_portal_root_is_scanned_for_forbidden_names(self):
-        with tempfile.TemporaryDirectory() as directory:
+        value = "privateidentifier"
+        digest = content.name_digest(value)
+        with tempfile.TemporaryDirectory() as directory, patch.dict(
+            content.FORBIDDEN_NAME_DIGESTS, {digest: "project"}, clear=True
+        ):
             root = Path(directory)
             source = root / "source"
             source.mkdir()
-            source.joinpath("index.md").write_text("ig" + "ape", encoding="utf-8")
+            source.joinpath("index.md").write_text(value, encoding="utf-8")
             self.assertTrue(content.validate_repository_sources(root))
 
     def test_invalid_utf8_is_reported_as_a_validation_failure(self):

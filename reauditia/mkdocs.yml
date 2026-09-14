@@ -5,6 +5,10 @@ docs_dir: docs
 site_dir: ../build/reauditia
 strict: true
 use_directory_urls: false
+not_in_nav: |
+  /search.md
+  /genindex.md
+  /http-routingtable.md
 
 theme:
   name: material
@@ -72,6 +76,3 @@ nav:
   - Ayuda:
       - Incidencias frecuentes: panel/incidencias.md
       - Disponibilidad: estado/trazabilidad.md
-      - Buscar: search.md
-      - Índice histórico: genindex.md
-      - Rutas de integración: http-routingtable.md
