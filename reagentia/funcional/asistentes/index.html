@@ -617,6 +617,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#consulta-de-la-base-reguladora" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consulta de la base reguladora
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#detener-una-respuesta" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -924,6 +935,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#consulta-de-la-base-reguladora" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consulta de la base reguladora
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#detener-una-respuesta" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -997,7 +1019,7 @@
 
 <h1 id="asistentes-y-conversaciones">Asistentes y conversaciones<a class="headerlink" href="#asistentes-y-conversaciones" title="Permanent link">&para;</a></h1>
 <p>La sección <strong>Asistentes</strong> permite mantener varias conversaciones independientes con un mismo asistente habilitado para la organización activa. Cada conversación conserva su propio historial y puede retomarse después de cerrar el navegador.</p>
-<p>Un asistente no es una configuración editable desde esta pantalla. Utiliza una versión publicada de un agente y ofrece un punto de acceso conversacional para las personas autorizadas.</p>
+<p>El asistente utiliza una versión publicada de un agente. Si tu rol permite editar agentes, puedes elegir desde esta pantalla qué base reguladora publicada se autoriza para sus conversaciones nuevas.</p>
 <div class="admonition note">
 <p class="admonition-title">Disponibilidad</p>
 <p>La sección muestra únicamente los asistentes habilitados para la organización activa. La pantalla y los permisos efectivos determinan si puedes consultar un asistente, abrir una conversación o continuarla.</p>
@@ -1006,6 +1028,7 @@
 <ol>
 <li>Accede a <strong>Asistentes</strong> con la organización correcta seleccionada.</li>
 <li>Revisa el nombre y la descripción del asistente mostrado.</li>
+<li>Consulta <strong>Tools asignadas y disponibilidad para conversaciones nuevas</strong>. Una tool puede figurar como asignada y no estar disponible para conversar: la pantalla indica si solo admite workflows, si el binding está desactivado o si falta la base o el índice.</li>
 <li>Pulsa <strong>Nueva conversación</strong> para empezar otra, aunque ya tengas una activa. La nueva aparece en el listado sin modificar las anteriores.</li>
 <li>Para continuar una existente, selecciónala en el listado por su fecha y estado. Usa <strong>Ver conversaciones anteriores</strong> para recorrer las más antiguas.</li>
 <li>Escribe el mensaje y pulsa <strong>Enviar mensaje</strong>. También puedes pulsar <code>Intro</code>; utiliza <code>Mayús+Intro</code> para añadir una línea nueva.</li>
@@ -1014,7 +1037,11 @@
 <p>Los estados más habituales son <strong>Enviando</strong>, <strong>Mensaje guardado. Preparando respuesta</strong>, <strong>Recibiendo respuesta</strong> y <strong>Respuesta finalizada</strong>. El contenido aparece de forma progresiva durante la generación.</p>
 <h2 id="que-se-conserva">Qué se conserva<a class="headerlink" href="#que-se-conserva" title="Permanent link">&para;</a></h2>
 <p>El historial se guarda asociado a cada conversación y a la organización. Cerrar la pestaña o el navegador no elimina los mensajes: al volver, selecciona la conversación que quieras recuperar. Al cambiar entre conversaciones, se muestra el historial y el estado de la elegida, sin mezclar las respuestas de otras.</p>
-<p>Una conversación nueva utiliza la configuración publicada del asistente disponible al iniciarla. Las conversaciones anteriores conservan la configuración con la que se abrieron.</p>
+<p>Una conversación nueva fija la versión publicada del agente, la configuración efectiva de sus tools y, si existe, la versión de la base reguladora autorizada e indexada. Las conversaciones anteriores conservan esas versiones: publicar otra versión de agente o documento no cambia su alcance. Una conversación creada sin base no obtiene acceso a ella más tarde.</p>
+<h2 id="consulta-de-la-base-reguladora">Consulta de la base reguladora<a class="headerlink" href="#consulta-de-la-base-reguladora" title="Permanent link">&para;</a></h2>
+<p>Si tu rol permite editar agentes, usa <strong>Base reguladora autorizada para este asistente</strong> y pulsa <strong>Guardar base</strong> antes de abrir una conversación nueva. La lista muestra bases publicadas de tu organización e indica si falta el índice. Elegir una base sin índice no habilita aún la búsqueda. <strong>Sin base reguladora</strong> desactiva la consulta documental para las conversaciones nuevas.</p>
+<p>Cuando se crea la conversación, la pantalla muestra el nombre y la versión del documento fijado, o <strong>Sin base reguladora fijada</strong>. Si la tool de búsqueda está disponible, puedes preguntar por un requisito concreto. Las evidencias muestran la versión, la sección cuando se reconoce y las páginas del fragmento. Puedes contrastarlas con el documento original; el asistente no incorpora el PDF completo a la conversación.</p>
+<p>Si la búsqueda figura como no disponible, revisa la causa en la lista de tools. El asistente puede seguir respondiendo sin búsqueda documental, pero no debes interpretar una respuesta sin evidencias como una consulta al documento.</p>
 <p>Si la pantalla indica que está conciliando el último turno, muestra mientras tanto el contenido durable disponible. Espera a que termine la recuperación antes de interpretar como definitiva una respuesta que estuviera en curso.</p>
 <p>No compartas en una conversación claves, credenciales ni otros secretos. Los mensajes forman parte del historial funcional y pueden permanecer disponibles al retomar la conversación.</p>
 <h2 id="detener-una-respuesta">Detener una respuesta<a class="headerlink" href="#detener-una-respuesta" title="Permanent link">&para;</a></h2>
