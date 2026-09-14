@@ -20,6 +20,10 @@ Comprueba la organización activa, que exista un asistente habilitado y que tu r
 
 Si la pantalla indica que se alcanzó el límite, no se pueden enviar más mensajes en esa conversación. El historial ya guardado permanece visible.
 
+## No puedes cerrar una conversación
+
+Si el asistente está respondiendo, espera a que termine o pulsa **Detener respuesta** y vuelve a intentar **Cerrar conversación**. Una conversación cerrada permanece en el listado para consulta, pero ya no acepta mensajes. Crear otra no altera ese historial.
+
 ## La ejecución sigue creada
 
 Espera el umbral que indique la interfaz. Si aparece **Reintentar lanzamiento**, úsalo una vez y vuelve al detalle. No crees otro lanzamiento salvo que el sistema confirme que el anterior no existe.
