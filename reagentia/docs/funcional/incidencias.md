@@ -22,11 +22,10 @@ Una herramienta fallida no implica que se haya perdido el historial. Conserva la
 
 ## El asistente no puede continuar por el contexto disponible
 
-El historial visible permanece guardado aunque el asistente necesite trabajar con una representación resumida o acotada de la conversación. Si la pantalla indica que la entrada o el contexto no permiten continuar, prueba una de estas opciones:
+El historial visible permanece guardado aunque el asistente necesite trabajar con una representación resumida o acotada de la conversación.
 
-1. Acorta el mensaje actual o divídelo en consultas más concretas.
-2. Inicia una conversación nueva si ya no necesitas continuar el mismo tema.
-3. Si el aviso señala un problema de configuración del agente, solicita a una persona administradora que lo revise.
+- Si aparece **Esta conversación ha alcanzado su límite de contexto. Inicia otra conversación para continuar.**, abre una conversación nueva. El aviso significa que la conversación actual ya no puede continuar con la información que cabe incluso después de usar una representación resumida o acotada del historial.
+- Si aparece **El modelo del asistente no tiene un perfil de contexto válido. Contacta con un administrador.**, pide a una persona administradora que revise la configuración del agente antes de volver a intentarlo.
 
 No repitas indefinidamente el mismo mensaje. Una conversación nueva comienza sin los mensajes, resúmenes ni resultados de herramientas de la anterior.
 

@@ -57,11 +57,13 @@ Los estados posibles son:
 
 - **En curso**: todavía hay una herramienta trabajando.
 - **Completada**: todas las ejecuciones finalizaron correctamente.
-- **Resultado parcial**: existe información útil, pero no todas las ejecuciones terminaron por completo.
-- **Fallida**: una o varias ejecuciones no pudieron producir el resultado esperado.
-- **Cancelada**: la actividad se detuvo antes de terminar.
+- **Resultado parcial**: las ejecuciones terminaron con estados diferentes; algunas pueden haber aportado información y otras no.
+- **Fallida**: ninguna ejecución pudo completarse correctamente.
+- **Cancelada**: todas las ejecuciones se detuvieron antes de terminar, por ejemplo al usar **Detener respuesta**.
 
-Selecciona el encabezado para desplegar la sección y consulta cada ejecución por separado. Puedes hacerlo con el ratón o mediante teclado, situando el foco en el encabezado y pulsando `Intro` o `Espacio`. Los detalles pueden incluir una descripción breve, datos seguros, referencias y fuentes. Si no se puede determinar un recuento exacto, la interfaz no muestra un total inventado.
+Selecciona el encabezado para desplegar la sección y consulta cada ejecución por separado. Puedes hacerlo con el ratón o mediante teclado, situando el foco en el encabezado y pulsando `Intro` o `Espacio`. Los detalles pueden incluir una descripción breve, datos principales, referencias y fuentes. Si no se puede determinar un recuento exacto, la interfaz no muestra el total de resultados.
+
+Si aparece **Los detalles no están disponibles para esta versión del contrato.**, la respuesta puede conservar el estado de la ejecución sin mostrar su contenido detallado. No presupongas que el bloque está vacío ni que la herramienta no se ejecutó; utiliza la respuesta del asistente y el estado mostrado como información disponible.
 
 El bloque presenta únicamente información preparada para su consulta. No sustituye el historial guardado ni muestra automáticamente todos los datos internos producidos por una herramienta.
 
@@ -111,7 +113,8 @@ El contenido parcial recibido se conserva cuando una respuesta se interrumpe. Ev
 - Si no hay asistentes habilitados, la pantalla lo indica y no permite iniciar una conversación.
 - Cuando se alcanza el límite de una conversación, el envío queda deshabilitado y el historial existente permanece visible.
 - El campo de mensaje aplica un límite de longitud; si no admite más texto, resume la consulta o divídela en varios mensajes.
-- Si el asistente indica que no puede continuar con el contexto disponible, acorta la entrada o inicia una conversación nueva. Si señala un problema de configuración, solicita a una persona administradora que revise el agente.
+- Si aparece **Esta conversación ha alcanzado su límite de contexto. Inicia otra conversación para continuar.**, abre una conversación nueva; la conversación actual ya no puede continuar incluso usando una representación resumida o acotada del historial.
+- Si aparece **El modelo del asistente no tiene un perfil de contexto válido. Contacta con un administrador.**, solicita a una persona administradora que revise la configuración del agente.
 
 Consulta [Roles y permisos](roles-permisos.md) para conocer la configuración inicial y [Incidencias y recuperación](incidencias.md) si la conversación no puede continuar.
 
