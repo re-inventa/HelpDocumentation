@@ -625,7 +625,18 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Herramientas y requisitos de uso">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consultar-la-actividad-de-herramientas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consultar la actividad de herramientas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Consultar la actividad de herramientas">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -971,7 +982,18 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Herramientas y requisitos de uso">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consultar-la-actividad-de-herramientas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consultar la actividad de herramientas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Consultar la actividad de herramientas">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1093,6 +1115,8 @@
 <p>Los estados más habituales son <strong>Enviando</strong>, <strong>Mensaje guardado. Preparando respuesta</strong>, <strong>Recibiendo respuesta</strong> y <strong>Respuesta finalizada</strong>. El contenido aparece de forma progresiva durante la generación.</p>
 <h2 id="que-se-conserva">Qué se conserva<a class="headerlink" href="#que-se-conserva" title="Permanent link">&para;</a></h2>
 <p>El historial se guarda asociado a cada conversación y a la organización. Cerrar la pestaña o el navegador no elimina los mensajes: al volver, selecciona la conversación que quieras recuperar. Al cambiar entre conversaciones, se muestra el historial y el estado de la elegida, sin mezclar las respuestas de otras.</p>
+<p>Cuando una conversación crece, el asistente puede utilizar una representación resumida o acotada de la información anterior para preparar nuevas respuestas. Este ajuste no borra ni modifica el historial visible: puedes seguir consultando los mensajes, respuestas y detalles de herramientas guardados.</p>
+<p>Los turnos recientes y las referencias necesarias se mantienen disponibles para continuar el tema. Si necesitas separar asuntos o empezar sin el contexto de la conversación actual, abre una conversación nueva. La conversación nueva no hereda mensajes, resúmenes ni resultados de herramientas de las anteriores.</p>
 <p>Una conversación nueva conserva la versión publicada del agente y la configuración de herramientas con la que se inició. Publicar otra versión del agente no actualiza las conversaciones existentes. Cuando una herramienta utiliza un recurso cuya versión queda fijada en la conversación, las publicaciones posteriores de ese recurso tampoco sustituyen la versión elegida.</p>
 <p>Conservar esa configuración no garantiza que una herramienta siga disponible: su activación y los requisitos necesarios para ejecutarla se comprueban también al utilizarla.</p>
 <h2 id="herramientas-y-requisitos-de-uso">Herramientas y requisitos de uso<a class="headerlink" href="#herramientas-y-requisitos-de-uso" title="Permanent link">&para;</a></h2>
@@ -1104,6 +1128,24 @@
 </ul>
 <p>No todas las herramientas necesitan los mismos recursos. Por ejemplo, consultar la hora no requiere un documento; una herramienta de búsqueda documental sí necesita una fuente autorizada y preparada para consultar. La pantalla indica la causa cuando un requisito impide utilizar una herramienta.</p>
 <p>Si falta una configuración o un recurso, una persona con los permisos correspondientes debe completarlo. Revisa a qué conversaciones se aplica el cambio: la disponibilidad indicada para conversaciones nuevas no amplía por sí sola las capacidades de una conversación ya creada.</p>
+<h2 id="consultar-la-actividad-de-herramientas">Consultar la actividad de herramientas<a class="headerlink" href="#consultar-la-actividad-de-herramientas" title="Permanent link">&para;</a></h2>
+<p>El asistente puede ejecutar ninguna, una o varias herramientas antes de completar una respuesta. No existe un número fijo de ejecuciones: depende de la pregunta y de las herramientas disponibles.</p>
+<p>Cuando se utiliza alguna, la respuesta reúne su actividad en un único bloque compacto. El encabezado muestra, cuando están disponibles, el número de ejecuciones, el número de resultados y el estado conjunto. Por ejemplo:</p>
+<blockquote>
+<p><strong>Herramientas · 3 ejecuciones · 11 resultados · Completada</strong></p>
+</blockquote>
+<p>La respuesta del asistente sigue siendo el contenido principal. El bloque permanece contraído de forma predeterminada para que los resultados extensos no desplacen la respuesta. Mientras continúa el trabajo, el encabezado actualiza su estado sin exigir que abras cada ejecución.</p>
+<p>Los estados posibles son:</p>
+<ul>
+<li><strong>En curso</strong>: todavía hay una herramienta trabajando.</li>
+<li><strong>Completada</strong>: todas las ejecuciones finalizaron correctamente.</li>
+<li><strong>Resultado parcial</strong>: las ejecuciones terminaron con estados diferentes; algunas pueden haber aportado información y otras no.</li>
+<li><strong>Fallida</strong>: ninguna ejecución pudo completarse correctamente.</li>
+<li><strong>Cancelada</strong>: todas las ejecuciones se detuvieron antes de terminar, por ejemplo al usar <strong>Detener respuesta</strong>.</li>
+</ul>
+<p>Selecciona el encabezado para desplegar la sección y consulta cada ejecución por separado. Puedes hacerlo con el ratón o mediante teclado, situando el foco en el encabezado y pulsando <code>Intro</code> o <code>Espacio</code>. Los detalles pueden incluir una descripción breve, datos principales, referencias y fuentes. Si no se puede determinar un recuento exacto, la interfaz no muestra el total de resultados.</p>
+<p>Si aparece <strong>Los detalles no están disponibles para esta versión del contrato.</strong>, la respuesta puede conservar el estado de la ejecución sin mostrar su contenido detallado. No presupongas que el bloque está vacío ni que la herramienta no se ejecutó; utiliza la respuesta del asistente y el estado mostrado como información disponible.</p>
+<p>El bloque presenta únicamente información preparada para su consulta. No sustituye el historial guardado ni muestra automáticamente todos los datos internos producidos por una herramienta.</p>
 <h3 id="ejemplo-una-herramienta-de-busqueda-documental">Ejemplo: una herramienta de búsqueda documental<a class="headerlink" href="#ejemplo-una-herramienta-de-busqueda-documental" title="Permanent link">&para;</a></h3>
 <p>La herramienta <strong>Buscar en la base reguladora</strong> ilustra este comportamiento. Requiere una base publicada de la organización y un índice preparado para consultar su contenido. Este requisito pertenece a esa herramienta.</p>
 <p>Si tu rol permite editar agentes, usa <strong>Base reguladora autorizada para este asistente</strong> y pulsa <strong>Guardar base</strong> antes de abrir una conversación nueva. La lista muestra bases publicadas de tu organización e indica si falta el índice. Elegir una base sin índice no habilita aún la búsqueda. <strong>Sin base reguladora</strong> desactiva la consulta documental para las conversaciones nuevas.</p>
@@ -1133,6 +1175,8 @@
 <li>Si no hay asistentes habilitados, la pantalla lo indica y no permite iniciar una conversación.</li>
 <li>Cuando se alcanza el límite de una conversación, el envío queda deshabilitado y el historial existente permanece visible.</li>
 <li>El campo de mensaje aplica un límite de longitud; si no admite más texto, resume la consulta o divídela en varios mensajes.</li>
+<li>Si aparece <strong>Esta conversación ha alcanzado su límite de contexto. Inicia otra conversación para continuar.</strong>, abre una conversación nueva; la conversación actual ya no puede continuar incluso usando una representación resumida o acotada del historial.</li>
+<li>Si aparece <strong>El modelo del asistente no tiene un perfil de contexto válido. Contacta con un administrador.</strong>, solicita a una persona administradora que revise la configuración del agente.</li>
 </ul>
 <p>Consulta <a href="../roles-permisos/">Roles y permisos</a> para conocer la configuración inicial y <a href="../incidencias/">Incidencias y recuperación</a> si la conversación no puede continuar.</p>
 <h2 id="alcance-actual">Alcance actual<a class="headerlink" href="#alcance-actual" title="Permanent link">&para;</a></h2>
