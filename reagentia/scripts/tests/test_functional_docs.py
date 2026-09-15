@@ -79,6 +79,39 @@ class FunctionalContentTests(unittest.TestCase):
         self.assertNotIn("Reintentar despacho", docs)
         self.assertIn("Reintentar lanzamiento", docs)
 
+    def test_assistant_guide_documents_compact_tool_activity(self):
+        guide = (ROOT / "docs" / "funcional" / "asistentes.md").read_text(encoding="utf-8")
+        for expected in (
+            "## Consultar la actividad de herramientas",
+            "Herramientas · 3 ejecuciones · 11 resultados · Completada",
+            "**En curso**",
+            "**Resultado parcial**",
+            "**Fallida**",
+            "**Cancelada**",
+            "`Intro` o `Espacio`",
+            "referencias y fuentes",
+        ):
+            with self.subTest(expected=expected):
+                self.assertIn(expected, guide)
+        self.assertIn("No existe un número fijo de ejecuciones", guide)
+        self.assertIn("no muestra un total inventado", guide)
+
+    def test_assistant_guide_preserves_history_while_bounding_context(self):
+        guide = (ROOT / "docs" / "funcional" / "asistentes.md").read_text(encoding="utf-8")
+        incidents = (ROOT / "docs" / "funcional" / "incidencias.md").read_text(encoding="utf-8")
+        self.assertIn("no borra ni modifica el historial visible", guide)
+        self.assertIn(
+            "no hereda mensajes, resúmenes ni resultados de herramientas",
+            guide,
+        )
+        self.assertIn(
+            "## El asistente no puede continuar por el contexto disponible",
+            incidents,
+        )
+        self.assertIn("Acorta el mensaje actual", incidents)
+        self.assertIn("Inicia una conversación nueva", incidents)
+        self.assertIn("problema de configuración del agente", incidents)
+
     def test_rejects_technical_content(self):
         self.assertTrue(self.validate("Postgre" + "SQL"))
 
