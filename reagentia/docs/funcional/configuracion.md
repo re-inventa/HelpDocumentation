@@ -28,9 +28,16 @@ Antes de publicar comprueba que:
 
 ## Tools
 
-Las tools amplían lo que puede hacer un agente. Su gestión está reservada a administradores. Cada versión de tool indica si funciona en workflows, conversaciones o ambos. Asignarla a un agente no garantiza que esté disponible en todas las superficies: también deben estar activos el binding y los recursos que exige.
+Las herramientas, llamadas **tools** en la interfaz, amplían lo que puede hacer un agente. Su gestión está reservada a administradores. Cada versión indica si funciona en workflows, conversaciones o ambos, y qué contexto o recursos necesita.
 
-En **Asistentes**, quien puede editar agentes elige la base reguladora publicada autorizada para conversaciones nuevas. La búsqueda solo estará disponible cuando esa versión tenga un índice listo. El cambio no modifica conversaciones ya iniciadas.
+Para utilizar una herramienta deben cumplirse todas estas condiciones:
+
+- Está asignada a la versión del agente utilizada.
+- Es compatible con el workflow o la conversación donde se quiere usar.
+- Está habilitada para la organización.
+- Dispone del contexto y de los recursos que exige, con la autorización y el estado necesarios.
+
+En **Asistentes** puedes consultar la disponibilidad para conversaciones nuevas y la causa de cualquier requisito pendiente. La configuración necesaria depende de cada herramienta. Como ejemplo, la búsqueda documental requiere una fuente autorizada y preparada para consultar; otras herramientas pueden funcionar sin documentos. Consulta [Herramientas y requisitos de uso](asistentes.md#herramientas-y-requisitos-de-uso) para ver el comportamiento y un ejemplo de configuración.
 
 ## Recursos
 
