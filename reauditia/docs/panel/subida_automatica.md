@@ -44,9 +44,9 @@ Si la autorización caduca o se revoca, utiliza la acción de reconexión de la 
 ## 4. Elegir la estrategia de audio
 
 - **Sin agrupación**: cada fichero se procesa por separado.
-- **Teléfono**: agrupa los fragmentos que comparten el teléfono según el convenio del nombre.
-- **Teléfono e identificador de llamada**: combina ambos datos para formar el grupo.
-- **Expresión regular**: extrae del nombre los grupos definidos por una regla. Comprueba siempre el patrón con un nombre de fichero representativo antes de guardar.
+- **Teléfono**: agrupa los fragmentos que comparten el teléfono según el convenio del nombre. Es una opción heredada y no se recomienda para configuraciones nuevas.
+- **TeléfonoIdLlamada**: combina el teléfono y el identificador de llamada para formar el grupo. También es una opción heredada y no se recomienda para configuraciones nuevas.
+- **Expresión regular (RegEx)**: extrae del nombre los grupos definidos por una regla. Es la opción recomendada cuando los ficheros siguen una nomenclatura acordada. Comprueba siempre el patrón con un nombre de fichero representativo antes de guardar.
 
 ## 5. Completar los metadatos
 
@@ -58,7 +58,36 @@ Cada metadato configurado en el formulario puede recibir:
 
 Si el formulario limita el metadato a una lista cerrada, utiliza uno de sus valores. Un fallo de extracción impide subir el fichero y aparecerá en el seguimiento.
 
-## 6. Evitar duplicados y cargas excesivas
+## 6. Editar metadatos en lote
+
+La edición en lote permite aplicar el mismo cambio de metadatos a varias reglas sin abrirlas una por una. Solo admite reglas que cumplan las tres condiciones siguientes:
+
+- son reglas SFTP, no reglas SharePoint;
+- extraen el mismo conjunto de metadatos;
+- aplican las expresiones al mismo ámbito: **Solo nombre** o **Ruta completa**.
+
+Para actualizar las reglas:
+
+1. En **Subida automática**, marca las reglas SFTP que quieras cambiar. La casilla de la cabecera selecciona todas las reglas SFTP de la tabla; las reglas SharePoint no se pueden incluir.
+2. Comprueba el número de reglas seleccionadas y pulsa **Editar RegEx de metadatos en lote**.
+3. Revisa la lista de reglas afectadas, identificadas por fuente, ruta y formulario.
+4. Elige si las expresiones se aplican a **Solo nombre** o a **Ruta completa**.
+5. Marca únicamente los metadatos que quieras actualizar. Los que no marques conservan el valor de cada regla.
+6. Para cada metadato marcado, escribe el valor y utiliza **Regex** para alternar entre **Valor estático** y **Expresión regular**.
+7. Si también quieres sustituir la expresión y los grupos de la estrategia de audio, marca **Incluir estrategia de agrupación (RegEx)**.
+8. Pulsa **Aplicar a N reglas**. La pantalla limpia la selección, actualiza la tabla e indica cuántas reglas se modificaron. Si una falla, el aviso identifica su ruta.
+
+La ventana no permite aplicar el cambio si detecta alguno de estos casos:
+
+- no hay reglas seleccionadas;
+- la selección incluye una regla SharePoint;
+- las reglas no extraen el mismo conjunto de metadatos;
+- las reglas no tienen metadatos configurados;
+- las reglas no comparten el mismo ámbito de aplicación.
+
+Después de aplicar el cambio, abre una de las reglas editadas y comprueba con un nombre de fichero real que la expresión extrae el valor esperado.
+
+## 7. Evitar duplicados y cargas excesivas
 
 - Antes de activar una regla para todo el origen, pruébala con una carpeta acotada y pocos ficheros.
 - Utiliza una ruta lo más concreta posible.

@@ -101,7 +101,7 @@ class FunctionalContentTests(unittest.TestCase):
         ):
             self.assertIn(label, docs)
 
-    def test_documents_current_user_manual_contract(self):
+    def test_documents_reviewed_user_manual_contract(self):
         docs = "\n".join(
             path.read_text(encoding="utf-8") for path in (ROOT / "docs").rglob("*.md")
         )
@@ -109,6 +109,11 @@ class FunctionalContentTests(unittest.TestCase):
             "12 metadatos",
             "4 a 30 caracteres",
             "añadir nuevas comprobaciones",
+            "cuenta corporativa genérica",
+            "Editar RegEx de metadatos en lote",
+            "Incluir estrategia de agrupación (RegEx)",
+            "opción heredada",
+            "opción recomendada",
             "Normalizar resultados",
             "Mostrar nota final en gráfico",
             "Sin agrupación",
@@ -118,8 +123,31 @@ class FunctionalContentTests(unittest.TestCase):
             self.assertIn(contract, docs)
 
         lowered = docs.casefold()
-        self.assertNotIn("hasta tres tipos de metadatos", lowered)
-        self.assertNotIn("no puede ser modificado", lowered)
+        self.assertNotIn("3 metadatos", lowered)
+
+    def test_reviewed_manual_20260915_contract_matches_validated_behavior(self):
+        access = (ROOT / "docs" / "panel" / "inicio.md").read_text(encoding="utf-8")
+        design = (ROOT / "docs" / "panel" / "diseño.md").read_text(encoding="utf-8")
+        automatic = (ROOT / "docs" / "panel" / "subida_automatica.md").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn("https://reauditia.re-inventa.es/login", access)
+        self.assertIn("cuenta corporativa genérica", access)
+        self.assertIn("saldo disponible y los formularios creados", access)
+        self.assertIn("mediante **Soporte** en el menú", access)
+
+        self.assertIn("hasta **12 metadatos**", design)
+        self.assertIn("añadir nuevas comprobaciones", design)
+        self.assertIn("activar o desactivar comprobaciones existentes", design)
+        self.assertIn("No hace falta crear otro formulario", design)
+        self.assertNotIn("3 metadatos", design)
+        self.assertNotIn("no se pueden añadir ni eliminar", design)
+
+        self.assertIn("Editar RegEx de metadatos en lote", automatic)
+        self.assertIn("Incluir estrategia de agrupación (RegEx)", automatic)
+        self.assertIn("opción heredada", automatic)
+        self.assertIn("opción recomendada", automatic)
 
     def test_rejects_technical_content(self):
         self.assertTrue(self.validate("Postgre" + "SQL"))
