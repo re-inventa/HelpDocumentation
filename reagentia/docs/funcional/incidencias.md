@@ -14,6 +14,21 @@ El texto parcial recibido se conserva. Puedes enviar otro mensaje cuando la conv
 
 Si aparece **No se pudo confirmar la parada**, vuelve a pulsar **Detener**. Si el aviso persiste, anota la hora aproximada y el estado mostrado para solicitar soporte; no repitas el mensaje mientras siga activa la respuesta anterior.
 
+## La actividad de herramientas no termina correctamente
+
+Consulta el estado del bloque **Herramientas**. Si muestra **En curso**, espera a que finalice la respuesta antes de enviar otro mensaje. Si muestra **Resultado parcial**, **Fallida** o **Cancelada**, despliega el bloque para identificar qué ejecución produjo información y cuál no terminó.
+
+Una herramienta fallida no implica que se haya perdido el historial. Conserva la conversación y vuelve a formular la consulta cuando la respuesta haya alcanzado un estado final. Si el fallo se repite, anota la hora aproximada, el nombre visible de la herramienta y el estado mostrado, sin copiar documentos ni datos sensibles.
+
+## El asistente no puede continuar por el contexto disponible
+
+El historial visible permanece guardado aunque el asistente necesite trabajar con una representación resumida o acotada de la conversación.
+
+- Si aparece **Esta conversación ha alcanzado su límite de contexto. Inicia otra conversación para continuar.**, abre una conversación nueva. El aviso significa que la conversación actual ya no puede continuar con la información que cabe incluso después de usar una representación resumida o acotada del historial.
+- Si aparece **El modelo del asistente no tiene un perfil de contexto válido. Contacta con un administrador.**, pide a una persona administradora que revise la configuración del agente antes de volver a intentarlo.
+
+No repitas indefinidamente el mismo mensaje. Una conversación nueva comienza sin los mensajes, resúmenes ni resultados de herramientas de la anterior.
+
 ## No puedes abrir o continuar una conversación
 
 Comprueba la organización activa, que exista un asistente habilitado y que tu rol permita utilizar conversaciones. Un observador puede consultar un asistente, pero no abrir ni continuar conversaciones con la configuración inicial.
