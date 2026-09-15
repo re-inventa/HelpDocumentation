@@ -952,8 +952,15 @@
 <li>no hay secretos ni datos reales en las instrucciones.</li>
 </ul>
 <h2 id="tools">Tools<a class="headerlink" href="#tools" title="Permanent link">&para;</a></h2>
-<p>Las tools amplían lo que puede hacer un agente. Su gestión está reservada a administradores. Cada versión de tool indica si funciona en workflows, conversaciones o ambos. Asignarla a un agente no garantiza que esté disponible en todas las superficies: también deben estar activos el binding y los recursos que exige.</p>
-<p>En <strong>Asistentes</strong>, quien puede editar agentes elige la base reguladora publicada autorizada para conversaciones nuevas. La búsqueda solo estará disponible cuando esa versión tenga un índice listo. El cambio no modifica conversaciones ya iniciadas.</p>
+<p>Las herramientas, llamadas <strong>tools</strong> en la interfaz, amplían lo que puede hacer un agente. Su gestión está reservada a administradores. Cada versión indica si funciona en workflows, conversaciones o ambos, y qué contexto o recursos necesita.</p>
+<p>Para utilizar una herramienta deben cumplirse todas estas condiciones:</p>
+<ul>
+<li>Está asignada a la versión del agente utilizada.</li>
+<li>Es compatible con el workflow o la conversación donde se quiere usar.</li>
+<li>Está habilitada para la organización.</li>
+<li>Dispone del contexto y de los recursos que exige, con la autorización y el estado necesarios.</li>
+</ul>
+<p>En <strong>Asistentes</strong> puedes consultar la disponibilidad para conversaciones nuevas y la causa de cualquier requisito pendiente. La configuración necesaria depende de cada herramienta. Como ejemplo, la búsqueda documental requiere una fuente autorizada y preparada para consultar; otras herramientas pueden funcionar sin documentos. Consulta <a href="../asistentes/#herramientas-y-requisitos-de-uso">Herramientas y requisitos de uso</a> para ver el comportamiento y un ejemplo de configuración.</p>
 <h2 id="recursos">Recursos<a class="headerlink" href="#recursos" title="Permanent link">&para;</a></h2>
 <p>Los recursos son documentos de referencia versionados. La interfaz distingue la carga, el procesamiento y la versión publicada.</p>
 <p>No lances una ejecución que dependa de un recurso hasta que la interfaz confirme que está preparado. Una carga correcta solo acredita que el archivo llegó; no que su procesamiento haya terminado.</p>
