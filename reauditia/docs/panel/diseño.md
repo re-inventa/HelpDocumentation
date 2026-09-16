@@ -33,7 +33,7 @@ Un Administrador puede abrir un formulario existente y, cuando la edición esté
 - cambiar los transcriptores y sus opciones disponibles;
 - modificar la configuración que muestre el formulario.
 
-No hace falta crear otro formulario solo para añadir una comprobación. Antes de editar, revisa el impacto sobre cargas futuras y sobre el informe asociado.
+No hace falta crear otro formulario solo para añadir una comprobación. Antes de editar, revisa el impacto sobre las cargas futuras y sobre el informe asociado.
 
 ## Crear un formulario de gestión documental
 
