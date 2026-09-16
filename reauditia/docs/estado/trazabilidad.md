@@ -6,11 +6,8 @@ La opción visible en ReAuditIA es la referencia funcional para saber si una cap
 | --- | --- | --- |
 | Cargar y revisar ficheros | Formularios | Tener acceso al formulario |
 | Consultar resultados | Informes | Rol Supervisor y datos finalizados |
-| Diseñar formularios e informes | Diseño | Rol Administrador o Superadmin |
-| Configurar subidas automáticas | Subida automática | Rol Administrador o Superadmin |
-| Asociar analizadores a formularios | Diseño | Rol Administrador o Superadmin y analizador disponible para la organización |
-| Gestionar analizadores | Procesamiento de documentos > Analyzers | Rol Superadmin |
-| Administrar organizaciones | Administración | Rol Superadmin |
-| Acceder como otro usuario | Impersonación | Cuenta de soporte expresamente autorizada |
+| Diseñar formularios e informes | Diseño | Rol Administrador |
+| Configurar subidas automáticas | Subida automática | Rol Administrador |
+| Asociar analizadores a formularios | Diseño | Rol Administrador y analizador disponible para la organización |
 
 Una capacidad puede existir en el producto y no estar activa para todas las organizaciones. Esta guía no presenta como disponible una opción que no aparezca en la cuenta del usuario.

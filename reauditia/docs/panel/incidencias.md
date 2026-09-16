@@ -9,7 +9,7 @@
 
 ## No veo una opción del menú
 
-La navegación depende del rol y de las capacidades habilitadas. Consulta [Roles y permisos](roles-permisos.md) y contacta con el responsable de tu organización si necesitas otro acceso.
+La navegación depende del rol y de las capacidades habilitadas. Consulta [Roles y permisos](roles-permisos.md) y solicita el cambio mediante **Soporte** en el menú si necesitas otro acceso.
 
 ## Un fichero no termina
 
