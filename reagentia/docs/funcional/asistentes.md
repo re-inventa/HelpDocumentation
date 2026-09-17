@@ -120,4 +120,8 @@ Consulta [Roles y permisos](roles-permisos.md) para conocer la configuración in
 
 ## Alcance actual
 
-Esta guía describe el chat autenticado dentro de Reagentia. No implica que el asistente esté disponible como chat público, widget empotrado o canal externo.
+Esta guía describe el chat autenticado dentro de Reagentia. Un asistente solo queda
+disponible fuera de la plataforma cuando una persona con el permiso específico configura
+y habilita un canal independiente. La primera fase de ese recorrido se describe en
+[Chat web público en pruebas controladas](chat-web-publico.md); todavía no incluye widget
+empotrado ni plugin para gestores de contenido.

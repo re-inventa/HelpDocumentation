@@ -136,6 +136,23 @@ class FunctionalContentTests(unittest.TestCase):
         self.assertIn("incluso después de usar una representación resumida", incidents)
         self.assertNotIn("Acorta el mensaje actual", incidents)
 
+    def test_public_chat_guide_describes_only_the_controlled_first_phase(self):
+        guide = (ROOT / "docs" / "funcional" / "chat-web-publico.md").read_text(encoding="utf-8")
+        for expected in (
+            "# Chat web público en pruebas controladas",
+            "2 minutos",
+            "30 minutos",
+            "no amplía ese plazo",
+            "conversación original",
+            "**Acceso revocado**",
+            "protección contra automatización",
+            "asistente automatizado",
+        ):
+            with self.subTest(expected=expected):
+                self.assertIn(expected, guide)
+        self.assertIn("todavía no incluye un plugin", guide)
+        self.assertNotIn("CLI" + "Proxy", guide)
+
     def test_rejects_technical_content(self):
         self.assertTrue(self.validate("Postgre" + "SQL"))
 
