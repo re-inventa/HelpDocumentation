@@ -155,6 +155,13 @@ class FunctionalContentTests(unittest.TestCase):
         ):
             with self.subTest(expected=expected):
                 self.assertIn(expected, guide)
+        for expected in (
+            "El estado del canal y el acceso público son controles distintos",
+            "Deshabilitar solo el acceso público mantiene activo el canal",
+            "Volver a habilitar el acceso público no reactiva un canal",
+        ):
+            with self.subTest(expected=expected):
+                self.assertIn(expected, normalized_guide)
         self.assertIn("todavía no incluye un plugin", guide)
         self.assertIn("ni una pantalla de configuración", guide)
         self.assertIn("Un asistente solo queda", assistants)

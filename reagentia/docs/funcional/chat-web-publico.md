@@ -15,6 +15,7 @@ para tráfico público general.
 Una persona con permiso para gestionar canales públicos define:
 
 - el asistente y el canal que se utilizarán;
+- si el canal está activo y si su acceso público está habilitado para la prueba controlada;
 - los sitios previstos para la futura inserción;
 - las referencias de límites y conservación que utilizarán las fases posteriores;
 - una integración identificada para el sistema que entrega el acceso al visitante.
@@ -29,9 +30,15 @@ documentación. Una integración que la utilice debe conservarla exclusivamente 
 servidor. Rotarla impide que la credencial anterior solicite nuevos inicios; los códigos ya
 emitidos pueden utilizarse hasta que venza su plazo original de 2 minutos.
 
-Revocar la integración o deshabilitar el canal impide nuevos inicios, mensajes y
-renovaciones. Una respuesta que ya se está mostrando puede terminar de aparecer, pero esto
-no restablece la sesión ni permite continuar la conversación.
+El estado del canal y el acceso público son controles distintos. Deshabilitar solo el acceso
+público mantiene activo el canal para otros usos presentes o futuros, pero impide preparar o
+abrir nuevos accesos públicos y bloquea los mensajes y renovaciones de sus sesiones. Al
+deshabilitar el canal se detiene además su ciclo de vida completo. Volver a habilitar el
+acceso público no reactiva un canal que siga deshabilitado.
+
+Revocar la integración produce el mismo cierre para los accesos asociados. Una respuesta
+que ya se está mostrando puede terminar de aparecer, pero esto no restablece la sesión ni
+permite continuar la conversación.
 
 ## Abrir una conversación como visitante
 
