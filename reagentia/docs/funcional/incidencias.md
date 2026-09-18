@@ -11,8 +11,8 @@ Una sesión caduca 30 minutos después de su primera apertura. Recargar o enviar
 reinicia el plazo. Si se borran los datos del sitio, se cierra la pestaña o se cambia de
 navegador, la sesión puede dejar de ser recuperable.
 
-Los mensajes **Sesión pública no válida o caducada**, **Código de inicio no válido,
-caducado o revocado** o **Chat no disponible** también pueden indicar que la persona
+Los mensajes **Sesión pública no válida o caducada.**, **Código de inicio no válido,
+caducado o revocado.** o **Chat no disponible.** también pueden indicar que la persona
 responsable deshabilitó el canal o revocó su integración. Solicita un acceso nuevo por el
 canal de contacto del sitio; un enlace anterior no restablece un acceso retirado.
 

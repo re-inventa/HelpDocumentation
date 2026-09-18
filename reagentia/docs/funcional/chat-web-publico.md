@@ -16,19 +16,22 @@ Una persona con permiso para gestionar canales públicos define:
 
 - el asistente y el canal que se utilizarán;
 - los sitios previstos para la futura inserción;
-- el perfil de límites y la política de conservación aplicables;
+- las referencias de límites y conservación que utilizarán las fases posteriores;
 - una integración identificada para el sistema que entrega el acceso al visitante.
 
 En esta fase, la lista de sitios queda registrada como parte de la configuración, pero el
 acceso inicial depende de la integración autorizada. No debe interpretarse como una garantía
 de que solo esos sitios puedan presentar o reenviar un enlace.
 
-La credencial de la integración se guarda directamente en el gestor de secretos configurado
-y no se muestra en el navegador al crearla o rotarla. El servidor del sitio debe leerla con
-su propia identidad; no debe incluirla en páginas, scripts del navegador, capturas ni
-documentación. Rotarla impide que la anterior inicie conversaciones nuevas. Revocar la
-integración o deshabilitar el canal impide nuevos inicios y corta el acceso de sus sesiones
-activas.
+La credencial de la integración se genera y custodia fuera del navegador. No se muestra al
+crearla o rotarla ni debe incluirse en páginas, scripts del navegador, capturas o
+documentación. Una integración que la utilice debe conservarla exclusivamente en su
+servidor. Rotarla impide que la credencial anterior solicite nuevos inicios; los códigos ya
+emitidos pueden utilizarse hasta que venza su plazo original de 2 minutos.
+
+Revocar la integración o deshabilitar el canal impide nuevos inicios, mensajes y
+renovaciones. Una respuesta que ya se está mostrando puede terminar de aparecer, pero esto
+no restablece la sesión ni permite continuar la conversación.
 
 ## Abrir una conversación como visitante
 
@@ -59,17 +62,15 @@ Cerrar la pestaña, borrar los datos del sitio o abrir el enlace en otro navegad
 impedir la recuperación. Esta fase no ofrece una cuenta de visitante ni otro mecanismo para
 trasladar la conversación entre dispositivos.
 
-## Caducidad, revocación y límites
+## Caducidad, revocación e indisponibilidad
 
-- **Código caducado o revocado**: solicita un enlace nuevo al sitio que ofrece el chat.
-- **Sesión pública no válida o caducada**: la conversación ya no admite lectura, renovación
+- **Código de inicio no válido, caducado o revocado.** Solicita un enlace nuevo al sitio que
+  ofrece el chat.
+- **Sesión pública no válida o caducada.** La conversación ya no admite lectura, renovación
   ni mensajes desde esa sesión; solicita un nuevo inicio si el canal sigue disponible.
 - **Acceso revocado**: el responsable puede haber retirado la integración o deshabilitado el
   canal. No intentes eludirlo con un enlace anterior.
-- **Límite alcanzado**: el historial disponible no se amplía y no se admiten más mensajes en
-  esa prueba. Los límites definitivos y la alternativa de contacto se incorporarán en una
-  fase posterior.
-- **Chat no disponible**: vuelve a intentarlo más tarde o utiliza el canal de contacto que
+- **Chat no disponible.** Vuelve a intentarlo más tarde o utiliza el canal de contacto que
   el sitio responsable indique fuera del chat.
 
 Los controles actuales reducen el alcance de la prueba, pero no garantizan por sí solos que
