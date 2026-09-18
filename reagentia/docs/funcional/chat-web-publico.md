@@ -36,9 +36,10 @@ abrir nuevos accesos públicos y bloquea los mensajes y renovaciones de sus sesi
 deshabilitar el canal se detiene además su ciclo de vida completo. Volver a habilitar el
 acceso público no reactiva un canal que siga deshabilitado.
 
-Revocar la integración produce el mismo cierre para los accesos asociados. Una respuesta
-que ya se está mostrando puede terminar de aparecer, pero esto no restablece la sesión ni
-permite continuar la conversación.
+Revocar la integración produce el mismo cierre para los accesos asociados. Al deshabilitar
+el acceso público, deshabilitar el canal o revocar la integración, una respuesta que ya se
+está mostrando puede terminar de aparecer, pero esto no restablece la sesión ni permite
+continuar la conversación.
 
 ## Abrir una conversación como visitante
 
@@ -75,8 +76,8 @@ trasladar la conversación entre dispositivos.
   ofrece el chat.
 - **Sesión pública no válida o caducada.** La conversación ya no admite lectura, renovación
   ni mensajes desde esa sesión; solicita un nuevo inicio si el canal sigue disponible.
-- **Acceso revocado**: el responsable puede haber retirado la integración o deshabilitado el
-  canal. No intentes eludirlo con un enlace anterior.
+- **Acceso revocado**: el responsable puede haber retirado la integración, deshabilitado el
+  acceso público o deshabilitado el canal. No intentes eludirlo con un enlace anterior.
 - **Chat no disponible.** Vuelve a intentarlo más tarde o utiliza el canal de contacto que
   el sitio responsable indique fuera del chat.
 
