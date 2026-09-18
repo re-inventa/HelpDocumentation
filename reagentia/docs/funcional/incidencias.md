@@ -1,5 +1,25 @@
 # Incidencias y recuperación
 
+## Chat web público
+
+Si un enlace de chat público no se abre, comprueba primero si han pasado más de 2 minutos
+desde que se generó. En ese caso solicita otro al sitio responsable. Si la apertura quedó
+interrumpida, vuelve a intentarlo desde la misma pestaña: el navegador puede recuperar la
+misma conversación sin ampliar su caducidad.
+
+Una sesión caduca 30 minutos después de su primera apertura. Recargar o enviar mensajes no
+reinicia el plazo. Si se borran los datos del sitio, se cierra la pestaña o se cambia de
+navegador, la sesión puede dejar de ser recuperable.
+
+Los mensajes **Sesión pública no válida o caducada.**, **Código de inicio no válido,
+caducado o revocado.** o **Chat no disponible.** también pueden indicar que la persona
+responsable deshabilitó el canal o revocó su integración. Solicita un acceso nuevo por el
+canal de contacto del sitio; un enlace anterior no restablece un acceso retirado.
+
+Si la pantalla indica que la apertura está en curso o no pudo confirmarla, espera unos
+instantes y repite el mismo inicio desde la misma pestaña antes de pedir otro código.
+Esta fase de prueba todavía no define una alternativa de contacto dentro del propio chat.
+
 ## La conversación está recuperando la conexión
 
 Espera a que el estado deje de mostrar **Sin conexión**, **Recuperando conexión** o **Intentando recuperarla**. El chat trata de reconectarse automáticamente. Antes de repetir un mensaje, comprueba si aparece en el historial recuperado.

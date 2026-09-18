@@ -10,6 +10,7 @@ Los permisos se aplican dentro de la organización activa. El administrador de p
 | Lanzar, cancelar y relanzar | Sí | Sí | Sí | No |
 | Conectar o desconectar el acceso LLM | Sí | Sí | Sí | No |
 | Editar y publicar agentes | Sí | Sí | No | No |
+| Configurar y revocar canales públicos de asistentes | Sí | Sí | No | No |
 | Configurar y publicar workflows | Sí | Sí | No | No |
 | Gestionar tools, miembros y auditoría | Sí | Sí | No | No |
 | Eliminar artifacts antes de su vencimiento | Sí | Sí | No | No |

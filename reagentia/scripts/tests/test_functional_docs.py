@@ -136,6 +136,46 @@ class FunctionalContentTests(unittest.TestCase):
         self.assertIn("incluso después de usar una representación resumida", incidents)
         self.assertNotIn("Acorta el mensaje actual", incidents)
 
+    def test_public_chat_guide_describes_only_the_controlled_first_phase(self):
+        guide = (ROOT / "docs" / "funcional" / "chat-web-publico.md").read_text(encoding="utf-8")
+        assistants = (ROOT / "docs" / "funcional" / "asistentes.md").read_text(encoding="utf-8")
+        incidents = (ROOT / "docs" / "funcional" / "incidencias.md").read_text(encoding="utf-8")
+        normalized_guide = " ".join(guide.split())
+        normalized_incidents = " ".join(incidents.split())
+        for expected in (
+            "# Chat web público en pruebas controladas",
+            "2 minutos",
+            "30 minutos",
+            "no amplía ese plazo",
+            "conversación original",
+            "**Chat público**",
+            "**Acceso revocado**",
+            "protección contra automatización",
+            "asistente automatizado",
+        ):
+            with self.subTest(expected=expected):
+                self.assertIn(expected, guide)
+        self.assertIn("todavía no incluye un plugin", guide)
+        self.assertIn("ni una pantalla de configuración", guide)
+        self.assertIn("Un asistente solo queda", assistants)
+        self.assertIn("disponible fuera de la plataforma", assistants)
+        for message in (
+            "Sesión pública no válida o caducada.",
+            "Código de inicio no válido, caducado o revocado.",
+            "Chat no disponible.",
+        ):
+            with self.subTest(message=message):
+                self.assertIn(message, normalized_incidents)
+        for opening_message in (
+            "La apertura está en curso. Vuelve a intentarlo.",
+            "No se pudo confirmar la apertura. Reintenta el mismo inicio.",
+        ):
+            with self.subTest(opening_message=opening_message):
+                self.assertIn(opening_message, normalized_guide)
+        self.assertNotIn("**Límite alcanzado**", guide)
+        self.assertNotIn("gestor de secretos", guide)
+        self.assertNotIn("CLI" + "Proxy", guide)
+
     def test_rejects_technical_content(self):
         self.assertTrue(self.validate("Postgre" + "SQL"))
 
