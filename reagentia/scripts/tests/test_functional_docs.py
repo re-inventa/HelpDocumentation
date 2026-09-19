@@ -171,6 +171,7 @@ class FunctionalContentTests(unittest.TestCase):
         ):
             with self.subTest(message=message):
                 self.assertIn(message, normalized_incidents)
+        self.assertIn("deshabilitó el acceso público", normalized_incidents)
         for opening_message in (
             "La apertura está en curso. Vuelve a intentarlo.",
             "No se pudo confirmar la apertura. Reintenta el mismo inicio.",
