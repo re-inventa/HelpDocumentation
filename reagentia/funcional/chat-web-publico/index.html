@@ -996,6 +996,7 @@ aún la protección contra automatización necesaria para abrir el canal al púb
 <p>Una persona con permiso para gestionar canales públicos define:</p>
 <ul>
 <li>el asistente y el canal que se utilizarán;</li>
+<li>si el canal está activo y si su acceso público está habilitado para la prueba controlada;</li>
 <li>los sitios previstos para la futura inserción;</li>
 <li>las referencias de límites y conservación que utilizarán las fases posteriores;</li>
 <li>una integración identificada para el sistema que entrega el acceso al visitante.</li>
@@ -1008,9 +1009,15 @@ crearla o rotarla ni debe incluirse en páginas, scripts del navegador, capturas
 documentación. Una integración que la utilice debe conservarla exclusivamente en su
 servidor. Rotarla impide que la credencial anterior solicite nuevos inicios; los códigos ya
 emitidos pueden utilizarse hasta que venza su plazo original de 2 minutos.</p>
-<p>Revocar la integración o deshabilitar el canal impide nuevos inicios, mensajes y
-renovaciones. Una respuesta que ya se está mostrando puede terminar de aparecer, pero esto
-no restablece la sesión ni permite continuar la conversación.</p>
+<p>El estado del canal y el acceso público son controles distintos. Deshabilitar solo el acceso
+público mantiene activo el canal para otros usos presentes o futuros, pero impide preparar o
+abrir nuevos accesos públicos y bloquea los mensajes y renovaciones de sus sesiones. Al
+deshabilitar el canal se detiene además su ciclo de vida completo. Volver a habilitar el
+acceso público no reactiva un canal que siga deshabilitado.</p>
+<p>Revocar la integración produce el mismo cierre para los accesos asociados. Al deshabilitar
+el acceso público, deshabilitar el canal o revocar la integración, una respuesta que ya se
+está mostrando puede terminar de aparecer, pero esto no restablece la sesión ni permite
+continuar la conversación.</p>
 <h2 id="abrir-una-conversacion-como-visitante">Abrir una conversación como visitante<a class="headerlink" href="#abrir-una-conversacion-como-visitante" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Accede al enlace temporal proporcionado por el sitio autorizado. También puedes
@@ -1041,8 +1048,8 @@ trasladar la conversación entre dispositivos.</p>
   ofrece el chat.</li>
 <li><strong>Sesión pública no válida o caducada.</strong> La conversación ya no admite lectura, renovación
   ni mensajes desde esa sesión; solicita un nuevo inicio si el canal sigue disponible.</li>
-<li><strong>Acceso revocado</strong>: el responsable puede haber retirado la integración o deshabilitado el
-  canal. No intentes eludirlo con un enlace anterior.</li>
+<li><strong>Acceso revocado</strong>: el responsable puede haber retirado la integración, deshabilitado el
+  acceso público o deshabilitado el canal. No intentes eludirlo con un enlace anterior.</li>
 <li><strong>Chat no disponible.</strong> Vuelve a intentarlo más tarde o utiliza el canal de contacto que
   el sitio responsable indique fuera del chat.</li>
 </ul>
