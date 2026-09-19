@@ -152,11 +152,16 @@ class FunctionalContentTests(unittest.TestCase):
             "**Acceso revocado**",
             "protección contra automatización",
             "asistente automatizado",
+            "El estado del canal y el acceso público son controles distintos",
+            "Deshabilitar solo el acceso público mantiene activo el canal",
+            "Volver a habilitar el acceso público no reactiva un canal",
+            "Al deshabilitar el acceso público, deshabilitar el canal o revocar la integración",
+            "puede haber retirado la integración, deshabilitado el acceso público",
         ):
             with self.subTest(expected=expected):
-                self.assertIn(expected, guide)
-        self.assertIn("todavía no incluye un plugin", guide)
-        self.assertIn("ni una pantalla de configuración", guide)
+                self.assertIn(expected, normalized_guide)
+        self.assertIn("todavía no incluye un plugin", normalized_guide)
+        self.assertIn("ni una pantalla de configuración", normalized_guide)
         self.assertIn("Un asistente solo queda", assistants)
         self.assertIn("disponible fuera de la plataforma", assistants)
         for message in (
@@ -166,15 +171,16 @@ class FunctionalContentTests(unittest.TestCase):
         ):
             with self.subTest(message=message):
                 self.assertIn(message, normalized_incidents)
+        self.assertIn("deshabilitó el acceso público", normalized_incidents)
         for opening_message in (
             "La apertura está en curso. Vuelve a intentarlo.",
             "No se pudo confirmar la apertura. Reintenta el mismo inicio.",
         ):
             with self.subTest(opening_message=opening_message):
                 self.assertIn(opening_message, normalized_guide)
-        self.assertNotIn("**Límite alcanzado**", guide)
-        self.assertNotIn("gestor de secretos", guide)
-        self.assertNotIn("CLI" + "Proxy", guide)
+        self.assertNotIn("**Límite alcanzado**", normalized_guide)
+        self.assertNotIn("gestor de secretos", normalized_guide)
+        self.assertNotIn("CLI" + "Proxy", normalized_guide)
 
     def test_rejects_technical_content(self):
         self.assertTrue(self.validate("Postgre" + "SQL"))

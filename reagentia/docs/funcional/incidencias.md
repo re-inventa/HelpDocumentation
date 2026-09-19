@@ -13,8 +13,9 @@ navegador, la sesión puede dejar de ser recuperable.
 
 Los mensajes **Sesión pública no válida o caducada.**, **Código de inicio no válido,
 caducado o revocado.** o **Chat no disponible.** también pueden indicar que la persona
-responsable deshabilitó el canal o revocó su integración. Solicita un acceso nuevo por el
-canal de contacto del sitio; un enlace anterior no restablece un acceso retirado.
+responsable deshabilitó el acceso público, deshabilitó el canal o revocó su integración.
+Solicita un acceso nuevo por el canal de contacto del sitio; un enlace anterior no restablece
+un acceso retirado.
 
 Si la pantalla indica que la apertura está en curso o no pudo confirmarla, espera unos
 instantes y repite el mismo inicio desde la misma pestaña antes de pedir otro código.
