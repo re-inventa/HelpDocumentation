@@ -157,6 +157,13 @@ class FunctionalContentTests(unittest.TestCase):
             "Volver a habilitar el acceso público no reactiva un canal",
             "Al deshabilitar el acceso público, deshabilitar el canal o revocar la integración",
             "puede haber retirado la integración, deshabilitado el acceso público",
+            "## Límites de uso de la prueba",
+            "20 mensajes por sesión",
+            "6 mensajes en 60 segundos",
+            "hasta 5 respuestas en curso",
+            "solo una por conversación",
+            "Se ha alcanzado un límite de uso del canal.",
+            "Hay otra respuesta en curso o se alcanzó la concurrencia del canal.",
         ):
             with self.subTest(expected=expected):
                 self.assertIn(expected, normalized_guide)
@@ -172,6 +179,9 @@ class FunctionalContentTests(unittest.TestCase):
             with self.subTest(message=message):
                 self.assertIn(message, normalized_incidents)
         self.assertIn("deshabilitó el acceso público", normalized_incidents)
+        self.assertIn("máximo de 20 mensajes de la sesión", normalized_incidents)
+        self.assertIn("ritmo de 6 mensajes en 60 segundos", normalized_incidents)
+        self.assertIn("cada canal hasta 5", normalized_incidents)
         for opening_message in (
             "La apertura está en curso. Vuelve a intentarlo.",
             "No se pudo confirmar la apertura. Reintenta el mismo inicio.",

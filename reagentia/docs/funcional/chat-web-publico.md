@@ -17,7 +17,7 @@ Una persona con permiso para gestionar canales públicos define:
 - el asistente y el canal que se utilizarán;
 - si el canal está activo y si su acceso público está habilitado para la prueba controlada;
 - los sitios previstos para la futura inserción;
-- las referencias de límites y conservación que utilizarán las fases posteriores;
+- el perfil de límites de uso y la referencia de conservación;
 - una integración identificada para el sistema que entrega el acceso al visitante.
 
 En esta fase, la lista de sitios queda registrada como parte de la configuración, pero el
@@ -54,6 +54,25 @@ continuar la conversación.
 La sesión dura 30 minutos desde la primera apertura. Enviar mensajes, recargar o recuperar
 la conexión no amplía ese plazo.
 
+## Límites de uso de la prueba
+
+El perfil actual admite como máximo 20 mensajes por sesión y 6 mensajes en 60 segundos.
+Puede haber hasta 5 respuestas en curso a la vez en un mismo canal, pero solo una por
+conversación. Los mensajes ya intentados siguen contando para el límite de la sesión aunque
+una ejecución se interrumpa o se libere su consumo reservado.
+
+El uso del chat también está sujeto a un presupuesto diario controlado. Su valoración
+interna no es un precio mostrado a la persona visitante. Cuando se agota un límite de
+mensajes, ritmo o presupuesto aparece **Se ha alcanzado un límite de uso del canal.** Espera
+a que termine la ventana temporal o utiliza la alternativa de contacto publicada por el
+sitio. Alcanzar el límite total de la sesión requiere iniciar otra cuando el sitio vuelva a
+ofrecer acceso.
+
+Si ya hay una respuesta activa en la conversación o el canal alcanzó su concurrencia,
+aparece **Hay otra respuesta en curso o se alcanzó la concurrencia del canal.** Espera a
+que finalice la respuesta y vuelve a intentarlo. Repetir inmediatamente el envío no amplía
+los límites ni abre una segunda respuesta para la misma conversación.
+
 ## Recarga y recuperación
 
 El navegador guarda en la pestaña los datos temporales necesarios para recuperar la misma
@@ -80,6 +99,10 @@ trasladar la conversación entre dispositivos.
   acceso público o deshabilitado el canal. No intentes eludirlo con un enlace anterior.
 - **Chat no disponible.** Vuelve a intentarlo más tarde o utiliza el canal de contacto que
   el sitio responsable indique fuera del chat.
+- **Se ha alcanzado un límite de uso del canal.** Espera antes de reintentar o utiliza la
+  alternativa de contacto del sitio si necesitas continuar.
+- **Hay otra respuesta en curso o se alcanzó la concurrencia del canal.** Espera a que la
+  respuesta activa termine antes de enviar otra consulta.
 
 Los controles actuales reducen el alcance de la prueba, pero no garantizan por sí solos que
 una web pública quede protegida frente a automatización o abuso.

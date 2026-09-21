@@ -21,6 +21,16 @@ Si la pantalla indica que la apertura está en curso o no pudo confirmarla, espe
 instantes y repite el mismo inicio desde la misma pestaña antes de pedir otro código.
 Esta fase de prueba todavía no define una alternativa de contacto dentro del propio chat.
 
+Si aparece **Se ha alcanzado un límite de uso del canal.**, puede haberse alcanzado el
+máximo de 20 mensajes de la sesión, el ritmo de 6 mensajes en 60 segundos o el presupuesto
+diario controlado. Espera antes de reintentar. Si la sesión agotó sus mensajes, solicita un
+nuevo acceso cuando esté disponible; si el aviso continúa, usa el contacto alternativo que
+el sitio publique fuera del chat.
+
+Si aparece **Hay otra respuesta en curso o se alcanzó la concurrencia del canal.**, espera
+a que termine la respuesta actual. Cada conversación admite una respuesta en curso y cada
+canal hasta 5. No repitas el mensaje mientras siga activa la respuesta anterior.
+
 ## La conversación está recuperando la conexión
 
 Espera a que el estado deje de mostrar **Sin conexión**, **Recuperando conexión** o **Intentando recuperarla**. El chat trata de reconectarse automáticamente. Antes de repetir un mensaje, comprueba si aparece en el historial recuperado.
