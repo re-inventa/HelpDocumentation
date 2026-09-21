@@ -22,3 +22,15 @@ Los nombres exactos pueden variar según el tipo de procesamiento, pero los esta
 - Si hay error, conserva el nombre del fichero, la hora aproximada y el mensaje mostrado para facilitar la asistencia.
 
 No vuelvas a cargar inmediatamente un fichero que sigue procesándose: podrías crear un duplicado.
+
+## Audios unidos durante la carga
+
+Una unión manual aparece en el seguimiento como un único fichero con el nombre
+elegido antes de la subida. La preparación y la unión ocurren primero en el
+navegador; esta pantalla solo muestra el procesamiento posterior una vez que el
+archivo combinado ha sido aceptado.
+
+Comprueba que aparece una única entrada y que su formulario y metadatos son los
+esperados. Un estado de error puede corresponder a la transcripción, a una
+evaluación concreta o a metadatos obligatorios ausentes, aunque la unión y la
+subida hayan terminado correctamente.
