@@ -10,15 +10,20 @@ para tráfico público general.
     flotante ni una pantalla de configuración para responsables del sitio. Tampoco incorpora
     aún la protección contra automatización necesaria para abrir el canal al público.
 
+    El canal y su acceso público deben permanecer deshabilitados hasta que el ciclo completo
+    de respuestas y liberación de límites esté desplegado y validado. Mientras tanto no se
+    deben emitir enlaces ni iniciar conversaciones de prueba.
+
 ## Preparar el canal
 
-Una persona con permiso para gestionar canales públicos define:
+Una persona con permiso para gestionar canales públicos puede dejar preparada la
+configuración, pero todavía no debe habilitarla. Define:
 
 - el asistente y el canal que se utilizarán;
-- si el canal está activo y si su acceso público está habilitado para la prueba controlada;
+- el estado del canal y del acceso público, que deben permanecer deshabilitados;
 - los sitios previstos para la futura inserción;
 - el perfil de límites de uso y la referencia de conservación;
-- una integración identificada para el sistema que entrega el acceso al visitante.
+- la integración que se creará cuando la prueba pueda habilitarse.
 
 En esta fase, la lista de sitios queda registrada como parte de la configuración, pero el
 acceso inicial depende de la integración autorizada. No debe interpretarse como una garantía
@@ -56,7 +61,8 @@ la conexión no amplía ese plazo.
 
 ## Límites de uso de la prueba
 
-El perfil actual admite como máximo 20 mensajes por sesión y 6 mensajes en 60 segundos.
+Cuando la prueba esté habilitada después de completar su validación, el perfil admitirá como
+máximo 20 mensajes por sesión y 6 mensajes en 60 segundos.
 Puede haber hasta 5 respuestas en curso a la vez en un mismo canal, pero solo una por
 conversación. Los mensajes ya intentados siguen contando para el límite de la sesión aunque
 una ejecución se interrumpa o se libere su consumo reservado.
