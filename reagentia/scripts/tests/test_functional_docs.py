@@ -188,6 +188,7 @@ class FunctionalContentTests(unittest.TestCase):
         ):
             with self.subTest(opening_message=opening_message):
                 self.assertIn(opening_message, normalized_guide)
+        self.assertNotIn("**Límite alcanzado**", normalized_guide)
         self.assertNotIn("gestor de secretos", normalized_guide)
         self.assertNotIn("CLI" + "Proxy", normalized_guide)
 

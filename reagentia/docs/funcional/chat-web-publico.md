@@ -61,11 +61,12 @@ Puede haber hasta 5 respuestas en curso a la vez en un mismo canal, pero solo un
 conversación. Los mensajes ya intentados siguen contando para el límite de la sesión aunque
 una ejecución se interrumpa o se libere su consumo reservado.
 
-El canal también dispone de un presupuesto diario controlado. Su valoración interna no es
-un precio mostrado a la persona visitante. Cuando se agota un límite de mensajes, ritmo o
-presupuesto aparece **Se ha alcanzado un límite de uso del canal.** Espera a que termine la
-ventana temporal o utiliza la alternativa de contacto publicada por el sitio. Alcanzar el
-límite total de la sesión requiere iniciar otra cuando el sitio vuelva a ofrecer acceso.
+El uso del chat también está sujeto a un presupuesto diario controlado. Su valoración
+interna no es un precio mostrado a la persona visitante. Cuando se agota un límite de
+mensajes, ritmo o presupuesto aparece **Se ha alcanzado un límite de uso del canal.** Espera
+a que termine la ventana temporal o utiliza la alternativa de contacto publicada por el
+sitio. Alcanzar el límite total de la sesión requiere iniciar otra cuando el sitio vuelva a
+ofrecer acceso.
 
 Si ya hay una respuesta activa en la conversación o el canal alcanzó su concurrencia,
 aparece **Hay otra respuesta en curso o se alcanzó la concurrencia del canal.** Espera a
