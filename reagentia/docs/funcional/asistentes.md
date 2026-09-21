@@ -124,4 +124,6 @@ Esta guía describe el chat autenticado dentro de Reagentia. Un asistente solo q
 disponible fuera de la plataforma cuando una persona con el permiso específico configura
 y habilita un canal independiente. La primera fase de ese recorrido se describe en
 [Chat web público en pruebas controladas](chat-web-publico.md); todavía no incluye widget
-empotrado ni plugin para gestores de contenido.
+empotrado ni plugin para gestores de contenido. Ese canal aplica sus propios límites de
+mensajes, ritmo, presupuesto y respuestas simultáneas, independientes de los permisos del
+chat autenticado.
