@@ -695,6 +695,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#unir-varios-audios-en-una-sola-carga" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unir varios audios en una sola carga
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configuracion-disponible" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1347,6 +1358,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#unir-varios-audios-en-una-sola-carga" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unir varios audios en una sola carga
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configuracion-disponible" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1403,6 +1425,41 @@
 <li>Abre <strong>Tareas Background &gt; Estado de los Ficheros</strong> para seguir el procesamiento.</li>
 </ol>
 <p>No cierres la ventana mientras la propia pantalla indique que la carga local sigue en curso. Una carga aceptada todavía puede necesitar procesamiento posterior.</p>
+<h2 id="unir-varios-audios-en-una-sola-carga">Unir varios audios en una sola carga<a class="headerlink" href="#unir-varios-audios-en-una-sola-carga" title="Permanent link">&para;</a></h2>
+<p>En los formularios de audio puedes activar <strong>Unir en un único audio</strong> para
+evaluar varios segmentos consecutivos como una sola conversación.</p>
+<ol>
+<li>Completa todos los metadatos obligatorios del formulario.</li>
+<li>Activa <strong>Unir en un único audio</strong> y selecciona al menos dos segmentos MP3 o
+   WAV PCM.</li>
+<li>Ordena los segmentos tal como deben escucharse. El resultado respeta el
+   orden mostrado, no el orden en que el selector devolvió los archivos.</li>
+<li>Revisa la duración, el tamaño agregado y el nombre del resultado.</li>
+<li>Inicia la carga y mantén abierta la página hasta que termine la preparación
+   local y la subida.</li>
+</ol>
+<p>La aplicación prepara el audio en tu equipo y sube únicamente el archivo
+combinado. Los originales no se suben como parte de esa operación. Si quieres
+procesarlos por separado, conserva el modo de carga individual.</p>
+<p>Mientras se prepara el resultado puedes usar <strong>Cancelar preparación</strong>. La
+aplicación detiene la unión y no inicia la subida; después puedes revisar el
+grupo y comenzar de nuevo.</p>
+<p>Los límites comprobados para una operación son:</p>
+<ul>
+<li>hasta 80 minutos en total;</li>
+<li>entre 2 y 32 segmentos y hasta 1 GiB de entrada agregada;</li>
+<li>MP3 o WAV PCM, con uno o dos canales y frecuencias entre 8 y 96 kHz.</li>
+</ul>
+<p>La preparación de 80 minutos se ha validado en Chromium de escritorio. Otros
+navegadores y dispositivos pueden disponer de menos memoria; si la aplicación
+rechaza la operación, reduce el grupo o utiliza la carga individual.</p>
+<p>El resultado preparado solo se conserva temporalmente en la sesión abierta.
+Un fallo de subida permite reintentarlo sin repetir la unión mientras el
+resultado siga disponible. Si cierras o recargas la página, tendrás que volver
+a seleccionar y preparar los segmentos.</p>
+<p>Esta unión es una operación manual realizada desde el formulario. No sustituye
+la agrupación automática que pueda realizar una regla de origen; consulta
+<a href="subidas_conector.html">Subidas conector</a> para seguir esas cargas.</p>
 <h2 id="configuracion-disponible">Configuración disponible<a class="headerlink" href="#configuracion-disponible" title="Permanent link">&para;</a></h2>
 <p>Los usuarios autorizados pueden ver opciones adicionales, como el método de procesamiento, las instrucciones del formulario, los metadatos, el destino de resultados o las bases de conocimiento asociadas. Modifica únicamente los campos cuyo efecto conozcas y guarda antes de salir.</p>
 <h2 id="eliminar-un-formulario">Eliminar un formulario<a class="headerlink" href="#eliminar-un-formulario" title="Permanent link">&para;</a></h2>
