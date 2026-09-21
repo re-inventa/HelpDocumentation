@@ -27,15 +27,15 @@ La navegación depende del rol y de las capacidades habilitadas. Consulta [Roles
 
 ## No puedo unir o subir varios audios
 
-- Comprueba que todos los archivos son MP3 o WAV y que el grupo no supera 80
-  minutos, 32 segmentos ni 1 GiB.
+- Comprueba que el grupo contiene entre 2 y 32 archivos MP3 o WAV PCM y que no
+  supera 80 minutos ni 1 GiB.
 - Revisa el orden y completa todos los metadatos obligatorios antes de iniciar
   la preparación.
 - Mantén abierta la página durante la unión y la subida. Cerrar o recargar la
   página elimina el resultado temporal.
-- Si falla únicamente la subida, usa **Reintentar** antes de modificar los
-  archivos, el orden o el nombre. La aplicación reutilizará el resultado que ya
-  estaba preparado mientras siga disponible.
+- Si falla únicamente la subida, usa **Reintentar subida sin volver a unir**
+  antes de modificar los archivos, el orden o el nombre. La aplicación
+  reutilizará el resultado que ya estaba preparado mientras siga disponible.
 - Si aparece un error de memoria o de compatibilidad, divide el grupo o utiliza
   la carga individual. Para grupos cercanos al límite, usa preferentemente un
   navegador Chromium de escritorio actualizado.
