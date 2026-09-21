@@ -164,6 +164,8 @@ class FunctionalContentTests(unittest.TestCase):
             "solo una por conversación",
             "Se ha alcanzado un límite de uso del canal.",
             "Hay otra respuesta en curso o se alcanzó la concurrencia del canal.",
+            "deben permanecer deshabilitados",
+            "no se deben emitir enlaces ni iniciar conversaciones de prueba",
         ):
             with self.subTest(expected=expected):
                 self.assertIn(expected, normalized_guide)
