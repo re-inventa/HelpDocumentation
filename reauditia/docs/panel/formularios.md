@@ -19,6 +19,47 @@ Un formulario define qué comprobaciones se aplican a los ficheros y cómo se pr
 
 No cierres la ventana mientras la propia pantalla indique que la carga local sigue en curso. Una carga aceptada todavía puede necesitar procesamiento posterior.
 
+## Unir varios audios en una sola carga
+
+En los formularios de audio puedes activar **Unir en un único audio** para
+evaluar varios segmentos consecutivos como una sola conversación.
+
+1. Completa todos los metadatos obligatorios del formulario.
+2. Activa **Unir en un único audio** y selecciona al menos dos segmentos MP3 o
+   WAV PCM.
+3. Ordena los segmentos tal como deben escucharse. El resultado respeta el
+   orden mostrado, no el orden en que el selector devolvió los archivos.
+4. Revisa la duración, el tamaño agregado y el nombre del resultado.
+5. Inicia la carga y mantén abierta la página hasta que termine la preparación
+   local y la subida.
+
+La aplicación prepara el audio en tu equipo y sube únicamente el archivo
+combinado. Los originales no se suben como parte de esa operación. Si quieres
+procesarlos por separado, conserva el modo de carga individual.
+
+Mientras se prepara el resultado puedes usar **Cancelar preparación**. La
+aplicación detiene la unión y no inicia la subida; después puedes revisar el
+grupo y comenzar de nuevo.
+
+Los límites comprobados para una operación son:
+
+- hasta 80 minutos en total;
+- entre 2 y 32 segmentos y hasta 1 GiB de entrada agregada;
+- MP3 o WAV PCM, con uno o dos canales y frecuencias entre 8 y 96 kHz.
+
+La preparación de 80 minutos se ha validado en Chromium de escritorio. Otros
+navegadores y dispositivos pueden disponer de menos memoria; si la aplicación
+rechaza la operación, reduce el grupo o utiliza la carga individual.
+
+El resultado preparado solo se conserva temporalmente en la sesión abierta.
+Un fallo de subida permite reintentarlo sin repetir la unión mientras el
+resultado siga disponible. Si cierras o recargas la página, tendrás que volver
+a seleccionar y preparar los segmentos.
+
+Esta unión es una operación manual realizada desde el formulario. No sustituye
+la agrupación automática que pueda realizar una regla de origen; consulta
+[Subidas conector](subidas_conector.md) para seguir esas cargas.
+
 ## Configuración disponible
 
 Los usuarios autorizados pueden ver opciones adicionales, como el método de procesamiento, las instrucciones del formulario, los metadatos, el destino de resultados o las bases de conocimiento asociadas. Modifica únicamente los campos cuyo efecto conozcas y guarda antes de salir.
