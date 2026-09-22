@@ -31,6 +31,9 @@ La navegación depende del rol y de las capacidades habilitadas. Consulta [Roles
   supera 80 minutos ni 1 GiB.
 - Revisa el orden y completa todos los metadatos obligatorios antes de iniciar
   la preparación.
+- Escribe un nombre base en **Nombre del audio resultante**. Si está vacío o
+  solo contiene espacios, la aplicación mantiene bloqueada la operación y
+  muestra la corrección junto al campo. No añadas `.mp3` al nombre.
 - Mantén abierta la página durante la unión y la subida. Cerrar o recargar la
   página elimina el resultado temporal.
 - Si falla únicamente la subida, usa **Reintentar subida sin volver a unir**
@@ -39,6 +42,9 @@ La navegación depende del rol y de las capacidades habilitadas. Consulta [Roles
 - Si aparece un error de memoria o de compatibilidad, divide el grupo o utiliza
   la carga individual. Para grupos cercanos al límite, usa preferentemente un
   navegador Chromium de escritorio actualizado.
+- Si la subida terminó correctamente y quieres continuar en el mismo
+  formulario, usa **Realizar otra subida**. Después podrás iniciar otra unión o
+  cambiar a **Subir archivos por separado** sin recargar la página.
 
 Si el fichero combinado aparece en [Estado de los
 ficheros](estado_audios.md) pero faltan algunas evaluaciones, conserva el nombre,
