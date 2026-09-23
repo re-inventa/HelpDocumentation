@@ -158,8 +158,7 @@ class FunctionalContentTests(unittest.TestCase):
         )
 
         self.assertIn("El campo comienza vacío", forms)
-        self.assertIn("la aplicación incorpora la", forms)
-        self.assertIn("extensión automáticamente", forms)
+        self.assertIn("no debes añadir `.mp3`", forms)
         self.assertIn("**Realizar otra subida**", forms)
         self.assertIn("**Subir archivos por separado**", forms)
         self.assertIn("solo contiene espacios", incidents)
