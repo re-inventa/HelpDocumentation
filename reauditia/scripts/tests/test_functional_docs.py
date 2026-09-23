@@ -149,6 +149,21 @@ class FunctionalContentTests(unittest.TestCase):
         self.assertIn("opción heredada", automatic)
         self.assertIn("opción recomendada", automatic)
 
+    def test_audio_concat_consecutive_upload_contract_is_documented(self):
+        forms = (ROOT / "docs" / "panel" / "formularios.md").read_text(
+            encoding="utf-8"
+        )
+        incidents = (ROOT / "docs" / "panel" / "incidencias.md").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn("El campo comienza vacío", forms)
+        self.assertIn("no debes añadir `.mp3`", forms)
+        self.assertIn("**Realizar otra subida**", forms)
+        self.assertIn("**Subir archivos por separado**", forms)
+        self.assertIn("solo contiene espacios", incidents)
+        self.assertIn("**Reintentar subida sin volver a unir**", incidents)
+
     def test_rejects_technical_content(self):
         self.assertTrue(self.validate("Postgre" + "SQL"))
 

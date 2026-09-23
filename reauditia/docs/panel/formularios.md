@@ -29,7 +29,10 @@ evaluar varios segmentos consecutivos como una sola conversación.
    WAV PCM.
 3. Ordena los segmentos tal como deben escucharse. El resultado respeta el
    orden mostrado, no el orden en que el selector devolvió los archivos.
-4. Revisa la duración, el tamaño agregado y el nombre del resultado.
+4. Revisa la duración y el tamaño agregado. Escribe un nombre base
+   significativo en **Nombre del audio resultante**. El campo comienza vacío,
+   es obligatorio y no debes añadir `.mp3`: la aplicación incorpora la
+   extensión automáticamente.
 5. Inicia la carga y mantén abierta la página hasta que termine la preparación
    local y la subida.
 
@@ -55,6 +58,13 @@ El resultado preparado solo se conserva temporalmente en la sesión abierta.
 Un fallo de subida permite reintentarlo sin repetir la unión mientras el
 resultado siga disponible. Si cierras o recargas la página, tendrás que volver
 a seleccionar y preparar los segmentos.
+
+Después de un envío correcto, pulsa **Realizar otra subida** para retirar los
+segmentos, el progreso y el resultado temporal de la operación anterior. El
+nombre vuelve a quedar vacío y puedes preparar otra unión o seleccionar
+**Subir archivos por separado**, sin recargar ni abandonar el formulario. Este
+reinicio no se realiza automáticamente cuando falla la subida, para que siga
+disponible **Reintentar subida sin volver a unir**.
 
 Esta unión es una operación manual realizada desde el formulario. No sustituye
 la agrupación automática que pueda realizar una regla de origen; consulta
