@@ -21,6 +21,18 @@ Si la pantalla indica que la apertura está en curso o no pudo confirmarla, espe
 instantes y repite el mismo inicio desde la misma pestaña antes de pedir otro código.
 Esta fase de prueba todavía no define una alternativa de contacto dentro del propio chat.
 
+Si aparece **No se pudo verificar el inicio; reintenta la misma petición.** o **La
+verificación del inicio está en curso; reintenta la misma petición.**, mantén la misma
+página y repite la acción. Una repetición idéntica recupera el mismo código y no crea otra
+apertura. Si aparece **No se pudo verificar el inicio.**, completa otra comprobación
+Turnstile y solicita un inicio nuevo.
+
+El mensaje **El token Turnstile ya fue utilizado por otro inicio.** indica que el sitio
+intentó reutilizar una comprobación anterior. Reinicia la comprobación; no reutilices un
+código ni un enlace anterior. Si aparece **Se ha alcanzado el límite temporal de
+aperturas.**, espera antes de solicitar otro acceso. El límite permite como máximo 10
+códigos para el mismo visitante y canal en cualquier periodo de 60 minutos.
+
 Si aparece **Se ha alcanzado un límite de uso del canal.**, puede haberse alcanzado el
 máximo de 20 mensajes de la sesión, el ritmo de 6 mensajes en 60 segundos o el presupuesto
 diario controlado. Espera antes de reintentar. Si la sesión agotó sus mensajes, solicita un
