@@ -12,14 +12,29 @@ reinicia el plazo. Si se borran los datos del sitio, se cierra la pestaña o se 
 navegador, la sesión puede dejar de ser recuperable.
 
 Los mensajes **Sesión pública no válida o caducada.**, **Código de inicio no válido,
-caducado o revocado.** o **Chat no disponible.** también pueden indicar que la persona
-responsable deshabilitó el acceso público, deshabilitó el canal o revocó su integración.
-Solicita un acceso nuevo por el canal de contacto del sitio; un enlace anterior no restablece
-un acceso retirado.
+caducado o revocado.**, **Inicio no disponible.** o **Chat no disponible.** también pueden
+indicar que la persona responsable deshabilitó el acceso público, deshabilitó el canal o
+revocó su integración. Solicita un acceso nuevo por el canal de contacto del sitio; un
+enlace anterior no restablece un acceso retirado.
 
 Si la pantalla indica que la apertura está en curso o no pudo confirmarla, espera unos
 instantes y repite el mismo inicio desde la misma pestaña antes de pedir otro código.
 Esta fase de prueba todavía no define una alternativa de contacto dentro del propio chat.
+
+Si aparece **No se pudo verificar el inicio; reintenta la misma petición.**, **La
+verificación del inicio está en curso; reintenta la misma petición.** o **La verificación
+del inicio está en curso.**, mantén la misma página y repite enseguida la acción. Mientras
+el código siga vigente, una repetición idéntica recupera el mismo código y no crea otra
+apertura. Si aparece **No se pudo verificar el inicio.**, completa otra comprobación
+Turnstile y solicita un inicio nuevo. Si el rechazo se repite, pide al responsable del sitio
+que revise la configuración de los sitios autorizados.
+
+El mensaje **El token Turnstile ya fue utilizado por otro inicio.** indica que el sitio
+intentó reutilizar una comprobación anterior. Reinicia la comprobación; no reutilices un
+código ni un enlace anterior. Si aparece **Se ha alcanzado el límite temporal de
+aperturas.**, espera antes de solicitar otro acceso. El límite permite como máximo 10
+códigos para el mismo canal desde una misma conexión en cualquier periodo de 60 minutos.
+Varias personas que comparten esa conexión pueden consumir el mismo cupo.
 
 Si aparece **Se ha alcanzado un límite de uso del canal.**, puede haberse alcanzado el
 máximo de 20 mensajes de la sesión, el ritmo de 6 mensajes en 60 segundos o el presupuesto

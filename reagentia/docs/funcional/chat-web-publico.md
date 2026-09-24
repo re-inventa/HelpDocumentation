@@ -8,7 +8,9 @@ para tráfico público general.
 !!! warning "Disponibilidad limitada"
     Esta fase todavía no incluye un plugin para WordPress o Elementor, shortcode, burbuja
     flotante ni una pantalla de configuración para responsables del sitio. Tampoco incorpora
-    aún la protección contra automatización necesaria para abrir el canal al público.
+    aún todas las protecciones necesarias para abrir el canal al público. El inicio preparado
+    incluye protección contra automatización mediante una comprobación, pero no habilita por
+    sí solo el servicio.
 
     El canal y su acceso público deben permanecer deshabilitados hasta que el ciclo completo
     de respuestas y liberación de límites esté desplegado y validado. Mientras tanto no se
@@ -45,6 +47,30 @@ Revocar la integración produce el mismo cierre para los accesos asociados. Al d
 el acceso público, deshabilitar el canal o revocar la integración, una respuesta que ya se
 está mostrando puede terminar de aparecer, pero esto no restablece la sesión ni permite
 continuar la conversación.
+
+## Comprobación del inicio
+
+Cuando la prueba esté habilitada, la persona visitante completa una comprobación Turnstile
+antes de recibir el código de inicio. El resultado solo se acepta para el sitio configurado
+por la organización. Esta protección reduce los inicios automatizados, pero no garantiza
+que una web pública quede libre de abuso.
+
+Si una interrupción impide recibir la respuesta, el sitio puede repetir enseguida
+exactamente el mismo inicio mientras el código siga vigente. Esa repetición recupera el
+mismo código y no crea otra apertura. El sitio no debe combinar datos de intentos distintos
+ni reutilizar una comprobación Turnstile para iniciar otra conversación.
+
+Desde una misma conexión se pueden obtener como máximo 10 códigos para un mismo canal en
+cualquier periodo de 60 minutos. Varias personas que comparten esa conexión pueden consumir
+el mismo cupo. Al alcanzar el límite aparece **Se ha alcanzado el límite temporal de
+aperturas.** Espera a que avance la ventana antes de volver a solicitar acceso.
+
+Los errores temporales muestran **No se pudo verificar el inicio; reintenta la misma
+petición.** o **La verificación del inicio está en curso; reintenta la misma petición.**
+También puede aparecer la variante **La verificación del inicio está en curso.** Mantén la
+misma página y repite la acción. Si aparece **No se pudo verificar el inicio.**, completa de
+nuevo la comprobación y solicita otro inicio al sitio responsable. Si el rechazo se repite,
+el responsable debe revisar la configuración de los sitios autorizados.
 
 ## Abrir una conversación como visitante
 
