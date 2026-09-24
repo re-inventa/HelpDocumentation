@@ -55,19 +55,22 @@ antes de recibir el código de inicio. El resultado solo se acepta para el sitio
 por la organización. Esta protección reduce los inicios automatizados, pero no garantiza
 que una web pública quede libre de abuso.
 
-Si una interrupción impide recibir la respuesta, el sitio puede repetir exactamente el
-mismo inicio. Una repetición idéntica recupera el mismo código y no crea otra apertura. El
-sitio no debe combinar datos de intentos distintos ni reutilizar una comprobación Turnstile
-para iniciar otra conversación.
+Si una interrupción impide recibir la respuesta, el sitio puede repetir enseguida
+exactamente el mismo inicio mientras el código siga vigente. Esa repetición recupera el
+mismo código y no crea otra apertura. El sitio no debe combinar datos de intentos distintos
+ni reutilizar una comprobación Turnstile para iniciar otra conversación.
 
-Cada visitante puede obtener como máximo 10 códigos para un mismo canal en cualquier
-periodo de 60 minutos. Al alcanzar ese límite aparece **Se ha alcanzado el límite temporal
-de aperturas.** Espera a que avance la ventana antes de volver a solicitar acceso.
+Desde una misma conexión se pueden obtener como máximo 10 códigos para un mismo canal en
+cualquier periodo de 60 minutos. Varias personas que comparten esa conexión pueden consumir
+el mismo cupo. Al alcanzar el límite aparece **Se ha alcanzado el límite temporal de
+aperturas.** Espera a que avance la ventana antes de volver a solicitar acceso.
 
 Los errores temporales muestran **No se pudo verificar el inicio; reintenta la misma
 petición.** o **La verificación del inicio está en curso; reintenta la misma petición.**
-Mantén la misma página y repite la acción. Si aparece **No se pudo verificar el inicio.**,
-completa de nuevo la comprobación y solicita otro inicio al sitio responsable.
+También puede aparecer la variante **La verificación del inicio está en curso.** Mantén la
+misma página y repite la acción. Si aparece **No se pudo verificar el inicio.**, completa de
+nuevo la comprobación y solicita otro inicio al sitio responsable. Si el rechazo se repite,
+el responsable debe revisar la configuración de los sitios autorizados.
 
 ## Abrir una conversación como visitante
 

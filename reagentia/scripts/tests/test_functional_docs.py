@@ -158,12 +158,17 @@ class FunctionalContentTests(unittest.TestCase):
             "Al deshabilitar el acceso público, deshabilitar el canal o revocar la integración",
             "puede haber retirado la integración, deshabilitado el acceso público",
             "## Comprobación del inicio",
-            "Una repetición idéntica recupera el mismo código y no crea otra apertura",
+            "mientras el código siga vigente",
+            "Esa repetición recupera el mismo código y no crea otra apertura",
+            "Desde una misma conexión",
+            "Varias personas que comparten esa conexión pueden consumir el mismo cupo",
             "como máximo 10 códigos",
             "Se ha alcanzado el límite temporal de aperturas.",
             "No se pudo verificar el inicio; reintenta la misma petición.",
             "La verificación del inicio está en curso; reintenta la misma petición.",
+            "La verificación del inicio está en curso.",
             "No se pudo verificar el inicio.",
+            "debe revisar la configuración de los sitios autorizados",
             "## Límites de uso de la prueba",
             "20 mensajes por sesión",
             "6 mensajes en 60 segundos",
@@ -183,10 +188,12 @@ class FunctionalContentTests(unittest.TestCase):
         for message in (
             "Sesión pública no válida o caducada.",
             "Código de inicio no válido, caducado o revocado.",
+            "Inicio no disponible.",
             "Chat no disponible.",
             "El token Turnstile ya fue utilizado por otro inicio.",
             "Se ha alcanzado el límite temporal de aperturas.",
             "No se pudo verificar el inicio; reintenta la misma petición.",
+            "La verificación del inicio está en curso.",
         ):
             with self.subTest(message=message):
                 self.assertIn(message, normalized_incidents)
