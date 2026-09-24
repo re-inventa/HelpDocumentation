@@ -1211,13 +1211,26 @@ misma conversación sin ampliar su caducidad.</p>
 reinicia el plazo. Si se borran los datos del sitio, se cierra la pestaña o se cambia de
 navegador, la sesión puede dejar de ser recuperable.</p>
 <p>Los mensajes <strong>Sesión pública no válida o caducada.</strong>, <strong>Código de inicio no válido,
-caducado o revocado.</strong> o <strong>Chat no disponible.</strong> también pueden indicar que la persona
-responsable deshabilitó el acceso público, deshabilitó el canal o revocó su integración.
-Solicita un acceso nuevo por el canal de contacto del sitio; un enlace anterior no restablece
-un acceso retirado.</p>
+caducado o revocado.</strong>, <strong>Inicio no disponible.</strong> o <strong>Chat no disponible.</strong> también pueden
+indicar que la persona responsable deshabilitó el acceso público, deshabilitó el canal o
+revocó su integración. Solicita un acceso nuevo por el canal de contacto del sitio; un
+enlace anterior no restablece un acceso retirado.</p>
 <p>Si la pantalla indica que la apertura está en curso o no pudo confirmarla, espera unos
 instantes y repite el mismo inicio desde la misma pestaña antes de pedir otro código.
 Esta fase de prueba todavía no define una alternativa de contacto dentro del propio chat.</p>
+<p>Si aparece <strong>No se pudo verificar el inicio; reintenta la misma petición.</strong>, <strong>La
+verificación del inicio está en curso; reintenta la misma petición.</strong> o <strong>La verificación
+del inicio está en curso.</strong>, mantén la misma página y repite enseguida la acción. Mientras
+el código siga vigente, una repetición idéntica recupera el mismo código y no crea otra
+apertura. Si aparece <strong>No se pudo verificar el inicio.</strong>, completa otra comprobación
+Turnstile y solicita un inicio nuevo. Si el rechazo se repite, pide al responsable del sitio
+que revise la configuración de los sitios autorizados.</p>
+<p>El mensaje <strong>El token Turnstile ya fue utilizado por otro inicio.</strong> indica que el sitio
+intentó reutilizar una comprobación anterior. Reinicia la comprobación; no reutilices un
+código ni un enlace anterior. Si aparece <strong>Se ha alcanzado el límite temporal de
+aperturas.</strong>, espera antes de solicitar otro acceso. El límite permite como máximo 10
+códigos para el mismo canal desde una misma conexión en cualquier periodo de 60 minutos.
+Varias personas que comparten esa conexión pueden consumir el mismo cupo.</p>
 <p>Si aparece <strong>Se ha alcanzado un límite de uso del canal.</strong>, puede haberse alcanzado el
 máximo de 20 mensajes de la sesión, el ritmo de 6 mensajes en 60 segundos o el presupuesto
 diario controlado. Espera antes de reintentar. Si la sesión agotó sus mensajes, solicita un

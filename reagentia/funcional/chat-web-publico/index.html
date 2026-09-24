@@ -636,6 +636,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#comprobacion-del-inicio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comprobación del inicio
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#abrir-una-conversacion-como-visitante" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -932,6 +943,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#comprobacion-del-inicio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comprobación del inicio
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#abrir-una-conversacion-como-visitante" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1012,7 +1034,9 @@ para tráfico público general.</p>
 <p class="admonition-title">Disponibilidad limitada</p>
 <p>Esta fase todavía no incluye un plugin para WordPress o Elementor, shortcode, burbuja
 flotante ni una pantalla de configuración para responsables del sitio. Tampoco incorpora
-aún la protección contra automatización necesaria para abrir el canal al público.</p>
+aún todas las protecciones necesarias para abrir el canal al público. El inicio preparado
+incluye protección contra automatización mediante una comprobación, pero no habilita por
+sí solo el servicio.</p>
 <p>El canal y su acceso público deben permanecer deshabilitados hasta que el ciclo completo
 de respuestas y liberación de límites esté desplegado y validado. Mientras tanto no se
 deben emitir enlaces ni iniciar conversaciones de prueba.</p>
@@ -1044,6 +1068,25 @@ acceso público no reactiva un canal que siga deshabilitado.</p>
 el acceso público, deshabilitar el canal o revocar la integración, una respuesta que ya se
 está mostrando puede terminar de aparecer, pero esto no restablece la sesión ni permite
 continuar la conversación.</p>
+<h2 id="comprobacion-del-inicio">Comprobación del inicio<a class="headerlink" href="#comprobacion-del-inicio" title="Permanent link">&para;</a></h2>
+<p>Cuando la prueba esté habilitada, la persona visitante completa una comprobación Turnstile
+antes de recibir el código de inicio. El resultado solo se acepta para el sitio configurado
+por la organización. Esta protección reduce los inicios automatizados, pero no garantiza
+que una web pública quede libre de abuso.</p>
+<p>Si una interrupción impide recibir la respuesta, el sitio puede repetir enseguida
+exactamente el mismo inicio mientras el código siga vigente. Esa repetición recupera el
+mismo código y no crea otra apertura. El sitio no debe combinar datos de intentos distintos
+ni reutilizar una comprobación Turnstile para iniciar otra conversación.</p>
+<p>Desde una misma conexión se pueden obtener como máximo 10 códigos para un mismo canal en
+cualquier periodo de 60 minutos. Varias personas que comparten esa conexión pueden consumir
+el mismo cupo. Al alcanzar el límite aparece <strong>Se ha alcanzado el límite temporal de
+aperturas.</strong> Espera a que avance la ventana antes de volver a solicitar acceso.</p>
+<p>Los errores temporales muestran <strong>No se pudo verificar el inicio; reintenta la misma
+petición.</strong> o <strong>La verificación del inicio está en curso; reintenta la misma petición.</strong>
+También puede aparecer la variante <strong>La verificación del inicio está en curso.</strong> Mantén la
+misma página y repite la acción. Si aparece <strong>No se pudo verificar el inicio.</strong>, completa de
+nuevo la comprobación y solicita otro inicio al sitio responsable. Si el rechazo se repite,
+el responsable debe revisar la configuración de los sitios autorizados.</p>
 <h2 id="abrir-una-conversacion-como-visitante">Abrir una conversación como visitante<a class="headerlink" href="#abrir-una-conversacion-como-visitante" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Accede al enlace temporal proporcionado por el sitio autorizado. También puedes
