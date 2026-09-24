@@ -38,9 +38,9 @@ Varias personas que comparten esa conexión pueden consumir el mismo cupo.
 
 Si aparece **Se ha alcanzado un límite de uso del canal.**, puede haberse alcanzado el
 máximo de 20 mensajes de la sesión, el ritmo de 6 mensajes en 60 segundos o el presupuesto
-diario controlado. Espera antes de reintentar. Si la sesión agotó sus mensajes, solicita un
-nuevo acceso cuando esté disponible; si el aviso continúa, usa el contacto alternativo que
-el sitio publique fuera del chat.
+de la conversación o del día. Espera antes de reintentar. Si la sesión agotó sus mensajes,
+solicita un nuevo acceso cuando esté disponible; si el aviso continúa, usa el contacto
+alternativo que el sitio publique fuera del chat.
 
 Si aparece **Hay otra respuesta en curso o se alcanzó la concurrencia del canal.**, espera
 a que termine la respuesta actual. Cada conversación admite una respuesta en curso y cada
