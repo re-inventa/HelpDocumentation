@@ -13,7 +13,7 @@ para tráfico público general.
     sí solo el servicio.
 
     El canal y su acceso público deben permanecer deshabilitados hasta que el ciclo completo
-    de respuestas y liberación de límites esté desplegado y validado. Mientras tanto no se
+    de respuestas y control de límites esté desplegado y validado. Mientras tanto no se
     deben emitir enlaces ni iniciar conversaciones de prueba.
 
 ## Preparar el canal
@@ -91,14 +91,17 @@ Cuando la prueba esté habilitada después de completar su validación, el perfi
 máximo 20 mensajes por sesión y 6 mensajes en 60 segundos.
 Puede haber hasta 5 respuestas en curso a la vez en un mismo canal, pero solo una por
 conversación. Los mensajes ya intentados siguen contando para el límite de la sesión aunque
-una ejecución se interrumpa o se libere su consumo reservado.
+una ejecución se interrumpa o termine sin generar consumo.
 
-El uso del chat también está sujeto a un presupuesto diario controlado. Su valoración
-interna no es un precio mostrado a la persona visitante. Cuando se agota un límite de
-mensajes, ritmo o presupuesto aparece **Se ha alcanzado un límite de uso del canal.** Espera
-a que termine la ventana temporal o utiliza la alternativa de contacto publicada por el
-sitio. Alcanzar el límite total de la sesión requiere iniciar otra cuando el sitio vuelva a
-ofrecer acceso.
+El uso del chat también está sujeto a un presupuesto por conversación y a un presupuesto
+diario controlado, compartido por las conversaciones del chat ofrecido por la organización.
+El consumo ya registrado se comprueba al enviar cada mensaje: una
+respuesta en curso puede alcanzar el presupuesto, y los mensajes siguientes quedarán
+bloqueados. Su valoración interna no es un precio mostrado a la persona visitante. Cuando
+se agota un límite de mensajes, ritmo o presupuesto aparece
+**Se ha alcanzado un límite de uso del canal.** Espera a que termine la ventana temporal o
+utiliza la alternativa de contacto publicada por el sitio. Alcanzar el límite total de la
+sesión requiere iniciar otra cuando el sitio vuelva a ofrecer acceso.
 
 Si ya hay una respuesta activa en la conversación o el canal alcanzó su concurrencia,
 aparece **Hay otra respuesta en curso o se alcanzó la concurrencia del canal.** Espera a
