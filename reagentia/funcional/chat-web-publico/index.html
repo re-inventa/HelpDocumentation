@@ -1038,7 +1038,7 @@ aún todas las protecciones necesarias para abrir el canal al público. El inici
 incluye protección contra automatización mediante una comprobación, pero no habilita por
 sí solo el servicio.</p>
 <p>El canal y su acceso público deben permanecer deshabilitados hasta que el ciclo completo
-de respuestas y liberación de límites esté desplegado y validado. Mientras tanto no se
+de respuestas y control de límites esté desplegado y validado. Mientras tanto no se
 deben emitir enlaces ni iniciar conversaciones de prueba.</p>
 </div>
 <h2 id="preparar-el-canal">Preparar el canal<a class="headerlink" href="#preparar-el-canal" title="Permanent link">&para;</a></h2>
@@ -1104,13 +1104,16 @@ la conexión no amplía ese plazo.</p>
 máximo 20 mensajes por sesión y 6 mensajes en 60 segundos.
 Puede haber hasta 5 respuestas en curso a la vez en un mismo canal, pero solo una por
 conversación. Los mensajes ya intentados siguen contando para el límite de la sesión aunque
-una ejecución se interrumpa o se libere su consumo reservado.</p>
-<p>El uso del chat también está sujeto a un presupuesto diario controlado. Su valoración
-interna no es un precio mostrado a la persona visitante. Cuando se agota un límite de
-mensajes, ritmo o presupuesto aparece <strong>Se ha alcanzado un límite de uso del canal.</strong> Espera
-a que termine la ventana temporal o utiliza la alternativa de contacto publicada por el
-sitio. Alcanzar el límite total de la sesión requiere iniciar otra cuando el sitio vuelva a
-ofrecer acceso.</p>
+una ejecución se interrumpa o termine sin generar consumo.</p>
+<p>El uso del chat también está sujeto a un presupuesto por conversación y a un presupuesto
+diario controlado, compartido por las conversaciones del chat ofrecido por la organización.
+El consumo ya registrado se comprueba al enviar cada mensaje: una
+respuesta en curso puede alcanzar el presupuesto, y los mensajes siguientes quedarán
+bloqueados. Su valoración interna no es un precio mostrado a la persona visitante. Cuando
+se agota un límite de mensajes, ritmo o presupuesto aparece
+<strong>Se ha alcanzado un límite de uso del canal.</strong> Espera a que termine la ventana temporal o
+utiliza la alternativa de contacto publicada por el sitio. Alcanzar el límite total de la
+sesión requiere iniciar otra cuando el sitio vuelva a ofrecer acceso.</p>
 <p>Si ya hay una respuesta activa en la conversación o el canal alcanzó su concurrencia,
 aparece <strong>Hay otra respuesta en curso o se alcanzó la concurrencia del canal.</strong> Espera a
 que finalice la respuesta y vuelve a intentarlo. Repetir inmediatamente el envío no amplía
