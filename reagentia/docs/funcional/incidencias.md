@@ -38,13 +38,21 @@ Varias personas que comparten esa conexión pueden consumir el mismo cupo.
 
 Si aparece **Se ha alcanzado un límite de uso del canal.**, puede haberse alcanzado el
 máximo de 20 mensajes de la sesión, el ritmo de 6 mensajes en 60 segundos o el presupuesto
-de la conversación o del día. Espera antes de reintentar. Si la sesión agotó sus mensajes,
-solicita un nuevo acceso cuando esté disponible; si el aviso continúa, usa el contacto
-alternativo que el sitio publique fuera del chat.
+de la conversación o del día. El presupuesto diario se comparte con otras conversaciones
+del chat ofrecido por la organización. Espera antes de reintentar. Si la sesión agotó sus
+mensajes, solicita un nuevo acceso cuando esté disponible; si el aviso continúa, usa el
+contacto alternativo que el sitio publique fuera del chat.
 
 Si aparece **Hay otra respuesta en curso o se alcanzó la concurrencia del canal.**, espera
 a que termine la respuesta actual. Cada conversación admite una respuesta en curso y cada
 canal hasta 5. No repitas el mensaje mientras siga activa la respuesta anterior.
+
+Si aparece **No se pudo enviar el mensaje. Crea un nuevo envío para reintentarlo.**, el
+intento fue rechazado: envía el texto otra vez como un mensaje nuevo cuando el chat vuelva a
+estar disponible. Si aparece **No se pudo confirmar el envío. Puedes volver a intentarlo.**,
+comprueba primero el historial desde la misma pestaña. La confirmación puede llegar después;
+si el mensaje no aparece tras recuperar la conexión, vuelve a intentarlo en esa
+conversación.
 
 ## La conversación está recuperando la conexión
 

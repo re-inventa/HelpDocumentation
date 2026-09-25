@@ -94,7 +94,8 @@ conversación. Los mensajes ya intentados siguen contando para el límite de la 
 una ejecución se interrumpa o termine sin generar consumo.
 
 El uso del chat también está sujeto a un presupuesto por conversación y a un presupuesto
-diario controlado. El consumo ya registrado se comprueba al enviar cada mensaje: una
+diario controlado, compartido por las conversaciones del chat ofrecido por la organización.
+El consumo ya registrado se comprueba al enviar cada mensaje: una
 respuesta en curso puede alcanzar el presupuesto, y los mensajes siguientes quedarán
 bloqueados. Su valoración interna no es un precio mostrado a la persona visitante. Cuando
 se agota un límite de mensajes, ritmo o presupuesto aparece
