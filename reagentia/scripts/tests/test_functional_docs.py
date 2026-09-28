@@ -182,7 +182,14 @@ class FunctionalContentTests(unittest.TestCase):
             with self.subTest(expected=expected):
                 self.assertIn(expected, normalized_guide)
         self.assertIn("todavía no incluye un plugin", normalized_guide)
-        self.assertIn("ni una pantalla de configuración", normalized_guide)
+        self.assertIn("Asistentes → Configurar canal público", normalized_guide)
+        self.assertIn("**Deshabilitar canal**", normalized_guide)
+        self.assertIn("**Revocar**", normalized_guide)
+        self.assertIn("No existe una acción de borrado físico", normalized_guide)
+        self.assertIn("La conservación automática todavía no está implementada", normalized_guide)
+        self.assertIn("**una sola vez**", normalized_guide)
+        self.assertIn("rótala para obtener una nueva", normalized_guide)
+        self.assertIn("Una versión anterior nunca puede recuperarse", normalized_incidents)
         self.assertIn("Un asistente solo queda", assistants)
         self.assertIn("disponible fuera de la plataforma", assistants)
         for message in (

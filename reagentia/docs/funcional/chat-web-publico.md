@@ -6,9 +6,9 @@ habilitarse expresamente y no supone que el chat esté disponible para cualquier
 para tráfico público general.
 
 !!! warning "Disponibilidad limitada"
-    Esta fase todavía no incluye un plugin para WordPress o Elementor, shortcode, burbuja
-    flotante ni una pantalla de configuración para responsables del sitio. Tampoco incorpora
-    aún todas las protecciones necesarias para abrir el canal al público. El inicio preparado
+    Esta fase todavía no incluye un plugin para WordPress o Elementor, shortcode ni burbuja
+    flotante. Ya existe una pantalla de administración del canal, pero la fase todavía no
+    incorpora todas las protecciones necesarias para abrir el canal al público. El inicio preparado
     incluye protección contra automatización mediante una comprobación, pero no habilita por
     sí solo el servicio.
 
@@ -18,23 +18,66 @@ para tráfico público general.
 
 ## Preparar el canal
 
-Una persona con permiso para gestionar canales públicos puede dejar preparada la
-configuración, pero todavía no debe habilitarla. Define:
+Una persona con permiso para gestionar canales públicos puede abrir **Asistentes →
+Configurar canal público** y seleccionar un asistente de su organización. Puede dejar
+preparada la configuración; el acceso general debe seguir cerrado. Define:
 
 - el asistente y el canal que se utilizarán;
-- el estado del canal y del acceso público, que deben permanecer deshabilitados;
+- el estado del canal y del acceso público, que deben permanecer deshabilitados fuera de
+  una ventana de prueba autorizada;
 - los sitios previstos para la futura inserción;
-- el perfil de límites de uso y la referencia de conservación;
+- el perfil de límites disponible para la prueba; la conservación automática aún está
+  pendiente;
 - la integración que se creará cuando la prueba pueda habilitarse.
+
+En la pantalla se muestran el estado del canal, el modo de acceso, los orígenes
+permitidos, el perfil de límites disponible, el estado de la conservación y el
+inventario de integraciones. Cada integración muestra su nombre, clave identificadora, estado,
+versión y una pista de credencial. La pista ayuda a identificar qué credencial está
+provisionada; no permite recuperar su valor.
+
+Para modificar el canal, elige **Activo** o **Deshabilitado** y el modo de acceso.
+Introduce cada origen en una línea, como `https://chat.example.invalid`, sin ruta.
+Solo se admite HTTP para pruebas locales en localhost, `127.0.0.1` o `[::1]`. La
+pantalla ofrece un único
+perfil de límites para esta prueba: 20 mensajes por sesión, 6 por minuto, hasta 5
+respuestas simultáneas por canal y un presupuesto diario. Si aparece **Perfil actual no
+disponible para selección**, el canal conserva una referencia anterior: selecciona el
+perfil disponible para preparar una prueba nueva o consulta a la persona responsable si
+no esperabas esa configuración. La conservación automática todavía no está
+implementada; la referencia visible no permite elegir otra política ni garantiza
+una eliminación programada. Pulsa **Guardar canal**. El estado **Activo** junto con
+**Prueba controlada**
+solo debe usarse durante una ventana de prueba autorizada y exige marcar su
+confirmación en la pantalla. **Deshabilitar canal** permite cerrar esa ventana.
+
+Cuando el canal guardado esté activo en modo de prueba controlada, vuelve a marcar la
+confirmación de la ventana autorizada antes de crear una integración con una clave y un
+nombre: la confirmación se desmarca al guardar el canal, cambiar de asistente o canal,
+o crear una integración correctamente.
+Al crearla, la pantalla muestra la credencial
+nueva **una sola vez** y permite copiarla. Guárdala en el servidor que hará las peticiones;
+el alta no instala ni configura ese componente. **Rotar** solicita confirmación,
+sustituye la credencial para nuevos inicios y muestra la nueva versión una sola vez para
+su provisión segura.
+**Revocar** solicita confirmación y retira el acceso de la integración. Su registro
+permanece visible para auditoría y no puede reactivarse. No existe una acción de
+borrado físico. Si hace falta otro acceso, crea una integración nueva.
 
 En esta fase, la lista de sitios queda registrada como parte de la configuración, pero el
 acceso inicial depende de la integración autorizada. No debe interpretarse como una garantía
 de que solo esos sitios puedan presentar o reenviar un enlace.
 
-La credencial de la integración se genera y custodia fuera del navegador. No se muestra al
-crearla o rotarla ni debe incluirse en páginas, scripts del navegador, capturas o
-documentación. Una integración que la utilice debe conservarla exclusivamente en su
-servidor. Rotarla impide que la credencial anterior solicite nuevos inicios; los códigos ya
+La credencial recién creada o rotada solo aparece durante esa operación administrativa.
+Al cerrar el aviso o abandonar la página desaparece y no puede consultarse de nuevo en el
+inventario. No debe incluirse en páginas, scripts del navegador, capturas o documentación.
+Si la copias, puede permanecer en el portapapeles después de cerrar el aviso: pégala en
+su destino seguro y limpia el portapapeles al terminar.
+Si se pierde, actualiza el estado: si la integración existe, rótala para obtener una nueva;
+si el alta no llegó a completarse, vuelve a crearla. Las integraciones anteriores también
+requieren rotación para obtener un valor que se pueda provisionar. Una integración que la
+utilice debe conservarla exclusivamente en su servidor. Rotarla impide que la
+credencial anterior solicite nuevos inicios; los códigos ya
 emitidos pueden utilizarse hasta que venza su plazo original de 2 minutos.
 
 El estado del canal y el acceso público son controles distintos. Deshabilitar solo el acceso
