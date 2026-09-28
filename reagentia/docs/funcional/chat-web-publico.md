@@ -38,7 +38,8 @@ provisionada; no permite recuperar su valor.
 
 Para modificar el canal, elige **Activo** o **Deshabilitado** y el modo de acceso.
 Introduce cada origen en una línea, como `https://chat.example.invalid`, sin ruta.
-Solo se admite HTTP para pruebas locales en localhost. La pantalla ofrece un único
+Solo se admite HTTP para pruebas locales en localhost, `127.0.0.1` o `[::1]`. La
+pantalla ofrece un único
 perfil de límites para esta prueba: 20 mensajes por sesión, 6 por minuto, hasta 5
 respuestas simultáneas por canal y un presupuesto diario. Si aparece **Perfil actual no
 disponible para selección**, el canal conserva una referencia anterior: selecciona el
@@ -52,11 +53,13 @@ confirmación en la pantalla. **Deshabilitar canal** permite cerrar esa ventana.
 
 Cuando el canal guardado esté activo en modo de prueba controlada, vuelve a marcar la
 confirmación de la ventana autorizada antes de crear una integración con una clave y un
-nombre: la confirmación se desmarca al guardar el canal o cambiar de asistente o canal.
+nombre: la confirmación se desmarca al guardar el canal, cambiar de asistente o canal,
+o crear una integración correctamente.
 Al crearla, la pantalla muestra la credencial
 nueva **una sola vez** y permite copiarla. Guárdala en el servidor que hará las peticiones;
-el alta no instala ni configura ese componente. **Rotar** sustituye la credencial para
-nuevos inicios y muestra la nueva versión una sola vez para su provisión segura.
+el alta no instala ni configura ese componente. **Rotar** solicita confirmación,
+sustituye la credencial para nuevos inicios y muestra la nueva versión una sola vez para
+su provisión segura.
 **Revocar** solicita confirmación y retira el acceso de la integración. Su registro
 permanece visible para auditoría y no puede reactivarse. No existe una acción de
 borrado físico. Si hace falta otro acceso, crea una integración nueva.
