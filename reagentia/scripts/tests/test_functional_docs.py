@@ -186,6 +186,7 @@ class FunctionalContentTests(unittest.TestCase):
         self.assertIn("**Deshabilitar canal**", normalized_guide)
         self.assertIn("**Revocar**", normalized_guide)
         self.assertIn("No existe una acción de borrado físico", normalized_guide)
+        self.assertIn("La conservación automática todavía no está implementada", normalized_guide)
         self.assertIn("**una sola vez**", normalized_guide)
         self.assertIn("rótala para obtener una nueva", normalized_guide)
         self.assertIn("Una versión anterior nunca puede recuperarse", normalized_incidents)

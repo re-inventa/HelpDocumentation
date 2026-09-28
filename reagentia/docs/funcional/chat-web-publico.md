@@ -25,20 +25,24 @@ preparada la configuración; el acceso general debe seguir cerrado. Define:
 - el asistente y el canal que se utilizarán;
 - el estado del canal y del acceso público, que deben permanecer deshabilitados;
 - los sitios previstos para la futura inserción;
-- el perfil de límites de uso y la referencia de conservación;
+- el perfil de límites disponible para la prueba; la conservación automática aún está
+  pendiente;
 - la integración que se creará cuando la prueba pueda habilitarse.
 
 En la pantalla se muestran el estado del canal, el modo de acceso, los orígenes
-permitidos, las referencias de perfil de límites y conservación y el inventario de
-integraciones. Cada integración muestra su nombre, clave identificadora, estado,
+permitidos, el perfil de límites disponible, el estado de la conservación y el
+inventario de integraciones. Cada integración muestra su nombre, clave identificadora, estado,
 versión y una pista de credencial. La pista sirve para reconocer la versión
 administrativa; no permite recuperar la credencial.
 
 Para modificar el canal, elige **Activo** o **Deshabilitado** y el modo de acceso.
 Introduce cada origen en una línea, como `https://chat.example.invalid`, sin ruta.
-Solo se admite HTTP para pruebas locales en localhost. Revisa las referencias de
-perfil de límites y conservación y pulsa **Guardar canal**. Los límites efectivos
-proceden del perfil de límites. El estado **Activo** junto con **Prueba controlada**
+Solo se admite HTTP para pruebas locales en localhost. La pantalla ofrece un único
+perfil de límites para esta prueba: 20 mensajes por sesión, 6 por minuto y hasta 5
+respuestas simultáneas por canal. La conservación automática todavía no está
+implementada; la referencia visible no permite elegir otra política ni garantiza
+una eliminación programada. Pulsa **Guardar canal**. El estado **Activo** junto con
+**Prueba controlada**
 solo debe usarse durante una ventana de prueba autorizada y exige marcar su
 confirmación en la pantalla. **Deshabilitar canal** permite cerrar esa ventana.
 
