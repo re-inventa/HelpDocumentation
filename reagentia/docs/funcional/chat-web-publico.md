@@ -7,7 +7,7 @@ para tráfico público general.
 
 !!! warning "Disponibilidad limitada"
     Esta fase todavía no incluye un plugin para WordPress o Elementor, shortcode, burbuja
-    flotante ni una pantalla de configuración para responsables del sitio. Tampoco incorpora
+    flotante. Ya existe una pantalla de administración del canal, pero todavía no incorpora
     aún todas las protecciones necesarias para abrir el canal al público. El inicio preparado
     incluye protección contra automatización mediante una comprobación, pero no habilita por
     sí solo el servicio.
@@ -18,14 +18,38 @@ para tráfico público general.
 
 ## Preparar el canal
 
-Una persona con permiso para gestionar canales públicos puede dejar preparada la
-configuración, pero todavía no debe habilitarla. Define:
+Una persona con permiso para gestionar canales públicos puede abrir **Asistentes →
+Configurar canal público** y seleccionar un asistente de su organización. Puede dejar
+preparada la configuración; el acceso general debe seguir cerrado. Define:
 
 - el asistente y el canal que se utilizarán;
 - el estado del canal y del acceso público, que deben permanecer deshabilitados;
 - los sitios previstos para la futura inserción;
 - el perfil de límites de uso y la referencia de conservación;
 - la integración que se creará cuando la prueba pueda habilitarse.
+
+En la pantalla se muestran el estado del canal, el modo de acceso, los orígenes
+permitidos, las referencias de perfil de límites y conservación y el inventario de
+integraciones. Cada integración muestra su nombre, clave identificadora, estado,
+versión y una pista de credencial. La pista sirve para reconocer la versión
+administrativa; no permite recuperar la credencial.
+
+Para modificar el canal, elige **Activo** o **Deshabilitado** y el modo de acceso.
+Introduce cada origen en una línea, como `https://chat.example.invalid`, sin ruta.
+Solo se admite HTTP para pruebas locales en localhost. Revisa las referencias de
+perfil de límites y conservación y pulsa **Guardar canal**. Los límites efectivos
+proceden del perfil de límites. El estado **Activo** junto con **Prueba controlada**
+solo debe usarse durante una ventana de prueba autorizada y exige marcar su
+confirmación en la pantalla. **Deshabilitar canal** permite cerrar esa ventana.
+
+Cuando el canal guardado esté activo en modo de prueba controlada, se puede crear
+una integración con una clave y un nombre. El alta no instala ni configura el
+componente que la consumirá: una persona responsable debe coordinar la provisión
+segura al servidor externo. **Rotar** sustituye la credencial para nuevos inicios;
+el consumidor debe recibir la nueva versión por el procedimiento seguro acordado.
+**Revocar** solicita confirmación y retira el acceso de la integración. Su registro
+permanece visible para auditoría y no puede reactivarse. No existe una acción de
+borrado físico. Si hace falta otro acceso, crea una integración nueva.
 
 En esta fase, la lista de sitios queda registrada como parte de la configuración, pero el
 acceso inicial depende de la integración autorizada. No debe interpretarse como una garantía

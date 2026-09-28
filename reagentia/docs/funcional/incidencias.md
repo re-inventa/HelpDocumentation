@@ -2,6 +2,17 @@
 
 ## Chat web público
 
+Si la pantalla de administración rechaza un origen, revisa que sea una URL HTTPS
+completa sin ruta, por ejemplo `https://chat.example.invalid`, y que se haya
+introducido uno por línea. HTTP solo sirve para pruebas locales en localhost. Si
+la creación de una integración indica que el canal no está listo, comprueba que
+el estado guardado sea **Activo** y el modo **Prueba controlada**, dentro de una
+ventana autorizada. Un error de permisos requiere que la persona responsable
+revise tu rol; un conflicto puede indicar una clave ya utilizada o una integración
+revocada. Si falla la custodia al crear o rotar, consulta el estado actualizado
+antes de volver a intentarlo y solicita apoyo operativo. La pantalla no muestra
+credenciales ni permite recuperar una versión anterior.
+
 Si un enlace de chat público no se abre, comprueba primero si han pasado más de 2 minutos
 desde que se generó. En ese caso solicita otro al sitio responsable. Si la apertura quedó
 interrumpida, vuelve a intentarlo desde la misma pestaña: el navegador puede recuperar la
