@@ -4,7 +4,8 @@
 
 Si la pantalla de administración rechaza un origen, revisa que sea una URL HTTPS
 completa sin ruta, por ejemplo `https://chat.example.invalid`, y que se haya
-introducido uno por línea. HTTP solo sirve para pruebas locales en localhost. Si
+introducido uno por línea. HTTP solo sirve para pruebas locales en localhost. La
+**Prueba controlada** exige al menos un origen y se admiten como máximo 50. Si
 la creación de una integración indica que el canal no está listo, comprueba que
 el estado guardado sea **Activo** y el modo **Prueba controlada**, dentro de una
 ventana autorizada. Un error de permisos requiere que la persona responsable
