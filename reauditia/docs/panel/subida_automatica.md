@@ -34,7 +34,7 @@ Solo una fuente **Conectado** puede utilizarse en una regla. Si la autorización
 
 ### Opciones de la regla
 
-- **Borrar tras subir** solo tiene efecto con fuentes SharePoint. Elimina el fichero de origen después de una entrega correcta. Un fallo al borrarlo no deshace la entrega ya aceptada. Antes de activarlo, prueba un ciclo completo y compruébalo en **Tareas Background > Subidas conector**.
+- **Borrar tras subir** solo tiene efecto con fuentes SharePoint. Actívalo únicamente si la organización ha autorizado expresamente el borrado en origen. Elimina el fichero de origen después de una entrega correcta. Un fallo al borrarlo no deshace la entrega ya aceptada. Antes de activarlo, prueba un ciclo completo y compruébalo en **Tareas Background > Subidas conector**.
 - **Control de duración** descarta audios que queden fuera del mínimo o máximo configurado. El valor 0 deja ese límite sin aplicar.
 - **Muestreo aleatorio** limita las grabaciones elegidas por directorio. Puede seguir probando candidatos hasta completar la cuota y limitar la muestra a los últimos 1-365 días.
 - **Antigüedad máxima de descarga** omite directorios SFTP más antiguos que el número indicado, entre 1 y 365 días. Vacío significa sin límite. No se aplica a SharePoint.

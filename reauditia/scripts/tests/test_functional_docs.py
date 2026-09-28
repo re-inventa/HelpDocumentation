@@ -184,6 +184,7 @@ class FunctionalContentTests(unittest.TestCase):
             "relativa a la fuente",
             "deben cumplirse todas",
             "solo tiene efecto con fuentes SharePoint",
+            "autorizado expresamente el borrado en origen",
             "No se aplica a SharePoint",
             "`.zip`",
         ):
