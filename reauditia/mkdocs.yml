@@ -69,8 +69,11 @@ nav:
   - Gestión documental:
       - Documentos: panel/documentos.md
   - Integraciones:
-      - Carga de ficheros: api/upload.md
+      - Carga directa de ficheros: api/upload.md
+      - Callback de resultados: api/callback.md
       - Consulta de consumo: api/logs.md
+  - Insights:
+      - Data Lake para BI: insights/datalake.md
   - Ayuda:
       - Incidencias frecuentes: panel/incidencias.md
       - Disponibilidad: estado/trazabilidad.md

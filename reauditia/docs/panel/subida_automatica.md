@@ -16,17 +16,17 @@ Utiliza una cuenta técnica con el acceso mínimo a las carpetas necesarias. Al 
 ## 2. Crear una fuente SharePoint
 
 1. Abre **Subida automática > Fuentes SharePoint**.
-2. Escribe un nombre y una dirección `https://` del sitio o carpeta.
+2. Escribe un nombre y una dirección `https://` del sitio, biblioteca o carpeta. También puedes utilizar un enlace compartido de SharePoint.
 3. Pulsa **Conectar con Microsoft**, inicia sesión y acepta el acceso solicitado.
-4. Comprueba el estado de la fuente. Puede aparecer como pendiente, conectada, caducada, revocada o con error.
+4. Comprueba el estado de la fuente: **Pendiente de conectar**, **Conectado**, **Token caducado**, **Revocado** o **Error**.
 
-Si la autorización caduca o se revoca, utiliza la acción de reconexión de la tabla. No compartas credenciales en nombres, descripciones o capturas.
+Solo una fuente **Conectado** puede utilizarse en una regla. Si la autorización caduca o se revoca, utiliza la acción de reconexión de la tabla y completa de nuevo el acceso con Microsoft 365. No compartas credenciales en nombres, descripciones o capturas.
 
 ## 3. Crear una regla
 
 1. Selecciona la fuente.
 2. Elige el formulario de destino.
-3. Indica la ruta que deba revisarse; debe comenzar por `/`.
+3. Indica la ruta que deba revisarse; debe comenzar por `/`. En SharePoint es relativa a la fuente seleccionada y `/` representa exactamente su raíz.
 4. Decide si la regla queda activa y si debe buscar en subcarpetas.
 5. Fija el inicio y programa la revisión mediante **Intervalo** o **Cron (UTC)**. Debes usar solo uno de los dos.
 6. Selecciona la estrategia de audio y configura únicamente los límites, filtros y metadatos que necesites.
@@ -34,12 +34,19 @@ Si la autorización caduca o se revoca, utiliza la acción de reconexión de la 
 
 ### Opciones de la regla
 
-- **Borrar tras subir** elimina el fichero de la fuente después de una entrega correcta. Actívalo únicamente si la organización ha autorizado expresamente el borrado en origen.
+- **Borrar tras subir** solo tiene efecto con fuentes SharePoint. Elimina el fichero de origen después de una entrega correcta. Un fallo al borrarlo no deshace la entrega ya aceptada. Antes de activarlo, prueba un ciclo completo y compruébalo en **Tareas Background > Subidas conector**.
 - **Control de duración** descarta audios que queden fuera del mínimo o máximo configurado. El valor 0 deja ese límite sin aplicar.
 - **Muestreo aleatorio** limita las grabaciones elegidas por directorio. Puede seguir probando candidatos hasta completar la cuota y limitar la muestra a los últimos 1-365 días.
-- **Antigüedad máxima de descarga** omite directorios SFTP más antiguos que el número indicado, entre 1 y 365 días. Vacío significa sin límite.
+- **Antigüedad máxima de descarga** omite directorios SFTP más antiguos que el número indicado, entre 1 y 365 días. Vacío significa sin límite. No se aplica a SharePoint.
 - **Máximo de audios por conversación** descarta un grupo completo si supera el tope. Solo aparece en estrategias que agrupan.
-- **Filtros de origen** permiten filtrar elementos de SharePoint por una propiedad, usando igualdad o una lista de valores.
+- **Filtros de origen** permiten filtrar elementos de SharePoint por una propiedad. Se admite igualdad o inclusión en una lista separada por comas. Si añades varias condiciones, deben cumplirse todas.
+
+### Formatos de SharePoint
+
+- Los formularios de audio admiten `.mp3` y `.wav`.
+- Los formularios documentales admiten `.pdf`, `.docx`, `.doc`, `.xlsx`, `.xls`, `.pptx`, `.ppt`, `.txt`, `.csv`, `.rtf`, `.odt`, `.ods`, `.odp`, `.png`, `.jpg`, `.jpeg`, `.tif`, `.tiff`, `.zip`, `.7z` y `.rar`.
+
+Cada documento se procesa de forma independiente. En formularios documentales no se aplican agrupaciones de audio ni controles de duración.
 
 ## 4. Elegir la estrategia de audio
 
@@ -99,3 +106,9 @@ Después de aplicar el cambio, abre una de las reglas editadas y comprueba con u
 ## Ejemplo
 
 Una organización recibe cada día grabaciones en una carpeta separada. El administrador crea una fuente, limita la regla a esa carpeta, selecciona el formulario de calidad, utiliza `Canal` como metadato fijo y programa una revisión diaria. Después valida la primera ejecución en **Subidas conector**.
+
+## Continuar
+
+- Revisa cada ejecución en [Subidas conector](subidas_conector.md).
+- Comprueba el procesamiento posterior en [Estado de los ficheros](estado_audios.md).
+- Si necesitas enviar ficheros desde una aplicación propia, consulta [Carga directa](../api/upload.md).

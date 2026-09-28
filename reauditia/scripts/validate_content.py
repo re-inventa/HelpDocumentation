@@ -323,7 +323,7 @@ def validate_separation() -> list[str]:
     failures: list[str] = []
     if (DOCS_SOURCE / "tecnica").exists():
         failures.append(f"{DOCS_SOURCE / 'tecnica'}: la documentación técnica no puede estar en el portal público")
-    allowed_roots = {"_static", "api", "estado", "panel"}
+    allowed_roots = {"_static", "api", "estado", "insights", "panel"}
     for directory in DOCS_SOURCE.iterdir():
         if directory.is_dir() and directory.name not in allowed_roots:
             failures.append(f"{directory}: directorio no permitido en la guía funcional")

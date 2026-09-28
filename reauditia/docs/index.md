@@ -26,6 +26,14 @@ Esta guía explica **qué hace cada apartado, para qué sirve y cómo utilizarlo
 
     [Formularios y cargas](panel/formularios.md)
 
+-   **Configurar una ficha de evaluación**
+
+    ---
+
+    Define formularios, comprobaciones, metadatos e informes para adaptar la evaluación.
+
+    [Diseño de fichas](panel/diseño.md)
+
 -   **Consultar resultados**
 
     ---
@@ -42,6 +50,14 @@ Esta guía explica **qué hace cada apartado, para qué sirve y cómo utilizarlo
 
     [Incidencias frecuentes](panel/incidencias.md)
 
+-   **Conectar otros sistemas**
+
+    ---
+
+    Automatiza cargas, recibe resultados por callback o consulta datos preparados para BI.
+
+    [Integraciones](api/upload.md) · [Data Lake](insights/datalake.md)
+
 </div>
 
 ## Flujo habitual
@@ -51,3 +67,13 @@ Esta guía explica **qué hace cada apartado, para qué sirve y cómo utilizarlo
 3. Carga los ficheros manualmente o utiliza una regla de subida automática si tu perfil dispone de ella.
 4. Revisa **Tareas Background > Estado de los Ficheros** hasta que finalice el procesamiento.
 5. Consulta el formulario o los apartados de informes para revisar los resultados.
+
+## Accesos directos
+
+- [Crear una cuenta e iniciar sesión](panel/inicio.md)
+- [Diseñar formularios y fichas de evaluación](panel/diseño.md)
+- [Configurar fuentes y reglas automáticas](panel/subida_automatica.md)
+- [Revisar las ejecuciones de los conectores](panel/subidas_conector.md)
+- [Cargar ficheros mediante una integración](api/upload.md)
+- [Recibir resultados mediante callback](api/callback.md)
+- [Consumir datos desde Data Lake](insights/datalake.md)
