@@ -43,10 +43,10 @@ solo debe usarse durante una ventana de prueba autorizada y exige marcar su
 confirmación en la pantalla. **Deshabilitar canal** permite cerrar esa ventana.
 
 Cuando el canal guardado esté activo en modo de prueba controlada, se puede crear
-una integración con una clave y un nombre. El alta no instala ni configura el
-componente que la consumirá: una persona responsable debe coordinar la provisión
-segura al servidor externo. **Rotar** sustituye la credencial para nuevos inicios;
-el consumidor debe recibir la nueva versión por el procedimiento seguro acordado.
+una integración con una clave y un nombre. Al crearla, la pantalla muestra la credencial
+nueva **una sola vez** y permite copiarla. Guárdala en el servidor que hará las peticiones;
+el alta no instala ni configura ese componente. **Rotar** sustituye la credencial para
+nuevos inicios y muestra la nueva versión una sola vez para su provisión segura.
 **Revocar** solicita confirmación y retira el acceso de la integración. Su registro
 permanece visible para auditoría y no puede reactivarse. No existe una acción de
 borrado físico. Si hace falta otro acceso, crea una integración nueva.
@@ -55,10 +55,14 @@ En esta fase, la lista de sitios queda registrada como parte de la configuració
 acceso inicial depende de la integración autorizada. No debe interpretarse como una garantía
 de que solo esos sitios puedan presentar o reenviar un enlace.
 
-La credencial de la integración se genera y custodia fuera del navegador. No se muestra al
-crearla o rotarla ni debe incluirse en páginas, scripts del navegador, capturas o
-documentación. Una integración que la utilice debe conservarla exclusivamente en su
-servidor. Rotarla impide que la credencial anterior solicite nuevos inicios; los códigos ya
+La credencial recién creada o rotada solo aparece durante esa operación administrativa.
+Al cerrar el aviso o abandonar la página desaparece y no puede consultarse de nuevo en el
+inventario. No debe incluirse en páginas, scripts del navegador, capturas o documentación.
+Si se pierde, actualiza el estado: si la integración existe, rótala para obtener una nueva;
+si el alta no llegó a completarse, vuelve a crearla. Las integraciones anteriores también
+requieren rotación para obtener un valor que se pueda provisionar. Una integración que la
+utilice debe conservarla exclusivamente en su servidor. Rotarla impide que la
+credencial anterior solicite nuevos inicios; los códigos ya
 emitidos pueden utilizarse hasta que venza su plazo original de 2 minutos.
 
 El estado del canal y el acceso público son controles distintos. Deshabilitar solo el acceso

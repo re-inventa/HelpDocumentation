@@ -10,8 +10,10 @@ el estado guardado sea **Activo** y el modo **Prueba controlada**, dentro de una
 ventana autorizada. Un error de permisos requiere que la persona responsable
 revise tu rol; un conflicto puede indicar una clave ya utilizada o una integración
 revocada. Si falla la custodia al crear o rotar, consulta el estado actualizado
-antes de volver a intentarlo y solicita apoyo operativo. La pantalla no muestra
-credenciales ni permite recuperar una versión anterior.
+antes de volver a intentarlo y solicita apoyo operativo. La credencial nueva aparece
+una sola vez tras crear o rotar. Si se cierra el aviso o se pierde la respuesta,
+actualiza el estado: rota una integración existente para recibir otra credencial, o
+repite el alta si no aparece. Una versión anterior nunca puede recuperarse.
 
 Si un enlace de chat público no se abre, comprueba primero si han pasado más de 2 minutos
 desde que se generó. En ese caso solicita otro al sitio responsable. Si la apertura quedó
