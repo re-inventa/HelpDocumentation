@@ -93,6 +93,7 @@ SOURCE_TEXT_SUFFIXES = {
 }
 BUILT_TEXT_SUFFIXES = {".html", ".json", ".xml", ".txt", ".svg"}
 EXCLUDED_DIRECTORIES = {".git", "build", "node_modules", "venv"}
+LOCAL_WORKSPACE_ROOTS = {".playwright-cli", ".venv", ".venv-docs", "venv"}
 
 
 class VisibleTextParser(HTMLParser):
@@ -369,6 +370,22 @@ def validate_repository_secrets(root: Path = REPOSITORY_ROOT) -> list[str]:
     return failures
 
 
+def validate_repository_layout(root: Path = REPOSITORY_ROOT) -> list[str]:
+    """Reject local environments and browser workspaces from the public tree."""
+    managed_files = git_managed_files(root)
+    if managed_files is None:
+        return []
+    tracked_roots = {
+        path.relative_to(root.resolve()).parts[0]
+        for path in managed_files
+        if path.relative_to(root.resolve()).parts
+    }
+    return [
+        f"{root / name}: entorno local no permitido en el repositorio público"
+        for name in sorted(tracked_roots & LOCAL_WORKSPACE_ROOTS)
+    ]
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     mode = parser.add_mutually_exclusive_group(required=True)
@@ -388,6 +405,7 @@ def main() -> int:
     failures = validate_tree(target, built=args.site)
     if args.source:
         failures.extend(validate_separation())
+        failures.extend(validate_repository_layout())
         failures.extend(validate_repository_sources())
         failures.extend(validate_repository_secrets())
         config = (ROOT / "mkdocs.yml").read_text(encoding="utf-8")

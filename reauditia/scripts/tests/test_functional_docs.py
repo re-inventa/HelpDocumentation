@@ -289,6 +289,15 @@ class FunctionalContentTests(unittest.TestCase):
             )
             self.assertTrue(content.validate_repository_secrets(root))
 
+    def test_public_repository_rejects_local_virtualenv(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            tracked = root / "venv" / "pyvenv.cfg"
+            with patch.object(content, "git_managed_files", return_value=[tracked]):
+                failures = content.validate_repository_layout(root)
+            self.assertEqual(1, len(failures))
+            self.assertIn("entorno local", failures[0])
+
     def test_public_portal_root_is_scanned_for_forbidden_names(self):
         value = "privateidentifier"
         digest = content.text_digest(value)

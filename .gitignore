@@ -4,6 +4,7 @@
 # local documentation workspaces
 /.publish
 /.venv-docs
+/venv/
 /.playwright-cli
 __pycache__/
 *.py[cod]
