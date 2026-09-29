@@ -22,9 +22,11 @@ Pide los permisos mínimos de **lectura** y **listado**. Si necesitas restringir
 
 ## Organización de los datos
 
+Dentro del contenedor hay una carpeta con el identificador de tu organización. Todas las rutas de la tabla son relativas a esa carpeta. Por ejemplo, si el identificador entregado es `EmpresaEjemplo`, primero debes entrar en `EmpresaEjemplo/` y, desde ahí, acceder a `scorecards/` o `formularios/`.
+
 Las rutas se dividen por fecha con `year`, `month` y `day`. El consumidor debe leer todos los ficheros Parquet de las particiones que necesite y no depender de un nombre de fichero concreto.
 
-| Información | Ruta relativa |
+| Información | Ruta relativa a la carpeta de la organización |
 | --- | --- |
 | Fichas de evaluación | `scorecards/{ficha}/year=YYYY/month=MM/day=DD/` |
 | Formularios de audio | `formularios/general/{formulario}/year=YYYY/month=MM/day=DD/` |
@@ -57,11 +59,12 @@ El esquema depende de la configuración. Para anticipar las columnas, abre el fo
 ## Conectar Power BI
 
 1. Abre **Obtener datos > Azure > Azure Data Lake Storage Gen2**.
-2. Introduce el endpoint hasta el contenedor de tu organización, sin añadir una ruta de fichero concreta.
+2. Introduce el endpoint y el contenedor entregados por Soporte, sin añadir una ruta de fichero concreta.
 3. Selecciona **Firma de acceso compartido (SAS)** y pega únicamente el token entregado.
-4. En el navegador de datos, entra en `scorecards` o `formularios` y selecciona las rutas necesarias.
-5. Combina los ficheros Parquet de las particiones y revisa los tipos de columna antes de publicar el informe.
-6. Configura la actualización después de comprobar manualmente que la consulta devuelve datos.
+4. En el navegador de datos, entra primero en la carpeta cuyo nombre coincide con el identificador de tu organización.
+5. Desde esa carpeta, entra en `scorecards` o `formularios` y selecciona las rutas necesarias.
+6. Combina los ficheros Parquet de las particiones y revisa los tipos de columna antes de publicar el informe.
+7. Configura la actualización después de comprobar manualmente que la consulta devuelve datos.
 
 Si el endpoint personalizado no funciona con el conector, utiliza el endpoint alternativo entregado por Soporte. No construyas una dirección diferente por tu cuenta.
 
@@ -69,11 +72,11 @@ Si el endpoint personalizado no funciona con el conector, utiliza el endpoint al
 
 1. Guarda el token SAS en el almacén seguro del espacio de trabajo; no lo escribas en el notebook.
 2. Configura la conexión con el endpoint y el contenedor entregados.
-3. Comprueba primero que puedes listar la raíz de tu organización.
-4. Lee los Parquet de la ruta necesaria de forma recursiva para incluir sus particiones.
+3. Comprueba primero que puedes listar el contenedor y entra en la carpeta cuyo nombre coincide con el identificador de tu organización.
+4. Toma esa carpeta como raíz y lee los Parquet de la ruta necesaria de forma recursiva para incluir sus particiones.
 5. Filtra por `year`, `month` y `day` y valida el esquema antes de crear una tabla o vista estable.
 
-Ejemplo de ruta sintética:
+Ejemplo de ruta sintética relativa a la carpeta `EmpresaEjemplo/` de la organización:
 
 ```text
 formularios/FormularioEjemplo/items/category=Pedidos/field=Lineas/year=2026/month=09/day=28/
