@@ -177,7 +177,7 @@ trasladar la conversación entre dispositivos.
 - **La sesión ha caducado.** La conversación ya no admite nuevas operaciones desde esa
   sesión; solicita un nuevo inicio si el canal sigue disponible.
 - **El acceso a esta conversación ha sido revocado.** El responsable retiró el acceso a
-  esa sesión. No intentes reutilizar un enlace anterior.
+  esa sesión o a la integración que la habilitó. No intentes reutilizar un enlace anterior.
 - **El canal no está disponible.** El responsable deshabilitó el canal o su acceso
   público. Usa el contacto alternativo que ofrezca el sitio.
 - **Sesión pública no válida.** Comprueba que estás en la pestaña original; si la

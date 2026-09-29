@@ -27,7 +27,8 @@ reinicia el plazo. Si se borran los datos del sitio, se cierra la pestaña o se 
 navegador, la sesión puede dejar de ser recuperable.
 
 **La sesión ha caducado.** indica que terminó su plazo. **El acceso a esta conversación
-ha sido revocado.** indica que se retiró esa sesión. **El canal no está disponible.**
+ha sido revocado.** indica que se retiró el acceso de esa sesión o de la integración que
+la habilitó. **El canal no está disponible.**
 indica que se deshabilitó el canal o su acceso público. **Sesión pública no válida.**
 puede aparecer si se perdió el acceso guardado en la pestaña. Los códigos de inicio
 inválidos y **Inicio no disponible.** siguen requiriendo un nuevo acceso del sitio.
