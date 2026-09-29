@@ -128,3 +128,6 @@ está en **Asistentes → Configurar canal público** para roles autorizados; to
 empotrado ni plugin para gestores de contenido. Ese canal aplica sus propios límites de
 mensajes, ritmo, presupuesto y respuestas simultáneas, independientes de los permisos del
 chat autenticado.
+Deshabilitar el canal público bloquea nuevas operaciones de sus sesiones, aunque
+una respuesta ya iniciada puede terminar y consumir recursos. La administración
+del canal no cambia las conversaciones del chat autenticado.
