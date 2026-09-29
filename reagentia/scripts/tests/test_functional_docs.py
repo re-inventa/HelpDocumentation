@@ -149,14 +149,15 @@ class FunctionalContentTests(unittest.TestCase):
             "no amplía ese plazo",
             "conversación original",
             "**Chat público**",
-            "**Acceso revocado**",
+            "**El acceso a esta conversación ha sido revocado.**",
             "protección contra automatización",
             "asistente automatizado",
             "El estado del canal y el acceso público son controles distintos",
             "Deshabilitar solo el acceso público mantiene activo el canal",
             "Volver a habilitar el acceso público no reactiva un canal",
             "Al deshabilitar el acceso público, deshabilitar el canal o revocar la integración",
-            "puede haber retirado la integración, deshabilitado el acceso público",
+            "una respuesta que ya se había iniciado puede terminar de generarse",
+            "Esa respuesta puede consumir recursos dentro de los límites configurados",
             "## Comprobación del inicio",
             "mientras el código siga vigente",
             "Esa repetición recupera el mismo código y no crea otra apertura",
@@ -193,8 +194,10 @@ class FunctionalContentTests(unittest.TestCase):
         self.assertIn("Un asistente solo queda", assistants)
         self.assertIn("disponible fuera de la plataforma", assistants)
         for message in (
-            "Sesión pública no válida o caducada.",
-            "Código de inicio no válido, caducado o revocado.",
+            "La sesión ha caducado.",
+            "El acceso a esta conversación ha sido revocado.",
+            "El canal no está disponible.",
+            "Sesión pública no válida.",
             "Inicio no disponible.",
             "Chat no disponible.",
             "El token Turnstile ya fue utilizado por otro inicio.",
@@ -204,7 +207,7 @@ class FunctionalContentTests(unittest.TestCase):
         ):
             with self.subTest(message=message):
                 self.assertIn(message, normalized_incidents)
-        self.assertIn("deshabilitó el acceso público", normalized_incidents)
+        self.assertIn("se deshabilitó el canal o su acceso público", normalized_incidents)
         self.assertIn("máximo de 20 mensajes de la sesión", normalized_incidents)
         self.assertIn("ritmo de 6 mensajes en 60 segundos", normalized_incidents)
         self.assertIn("cada canal hasta 5", normalized_incidents)
