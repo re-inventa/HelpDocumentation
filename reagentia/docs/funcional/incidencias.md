@@ -26,11 +26,20 @@ Una sesión caduca 30 minutos después de su primera apertura. Recargar o enviar
 reinicia el plazo. Si se borran los datos del sitio, se cierra la pestaña o se cambia de
 navegador, la sesión puede dejar de ser recuperable.
 
-Los mensajes **Sesión pública no válida o caducada.**, **Código de inicio no válido,
-caducado o revocado.**, **Inicio no disponible.** o **Chat no disponible.** también pueden
-indicar que la persona responsable deshabilitó el acceso público, deshabilitó el canal o
-revocó su integración. Solicita un acceso nuevo por el canal de contacto del sitio; un
-enlace anterior no restablece un acceso retirado.
+**La sesión ha caducado.** indica que terminó su plazo. **El acceso a esta conversación
+ha sido revocado.** indica que se retiró el acceso de esa sesión o de la integración que
+la habilitó. **El canal no está disponible.**
+indica que se deshabilitó el canal o su acceso público. **Sesión pública no válida.**
+puede aparecer si se perdió el acceso guardado en la pestaña. Los códigos de inicio
+inválidos y **Inicio no disponible.** siguen requiriendo un nuevo acceso del sitio.
+**Chat no disponible.** señala una indisponibilidad temporal. Si el acceso se retiró,
+un enlace anterior no lo restablece; usa el contacto alternativo del sitio.
+
+Al deshabilitar el canal o revocar una integración, no se aceptan nuevos mensajes ni
+renovaciones en las sesiones afectadas. Una respuesta que ya había comenzado puede
+terminar y mostrarse después, con consumo dentro de los límites configurados. Espera a
+que se cierre antes de interpretar su contenido como definitivo. La desactivación no
+elimina automáticamente el historial ni retira texto que ya se mostró.
 
 Si la pantalla indica que la apertura está en curso o no pudo confirmarla, espera unos
 instantes y repite el mismo inicio desde la misma pestaña antes de pedir otro código.

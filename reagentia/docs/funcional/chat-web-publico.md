@@ -88,8 +88,11 @@ acceso público no reactiva un canal que siga deshabilitado.
 
 Revocar la integración produce el mismo cierre para los accesos asociados. Al deshabilitar
 el acceso público, deshabilitar el canal o revocar la integración, una respuesta que ya se
-está mostrando puede terminar de aparecer, pero esto no restablece la sesión ni permite
-continuar la conversación.
+había iniciado puede terminar de generarse y aparecer después de la confirmación. Esa
+respuesta puede consumir recursos dentro de los límites configurados. No se admiten nuevos
+mensajes ni renovaciones de lectura en las sesiones afectadas. La confirmación de
+desactivación indica que el acceso quedó bloqueado; no indica que todas las respuestas
+en curso hayan terminado. Esto no restablece la sesión ni permite continuarla.
 
 ## Comprobación del inicio
 
@@ -171,10 +174,14 @@ trasladar la conversación entre dispositivos.
 
 - **Código de inicio no válido, caducado o revocado.** Solicita un enlace nuevo al sitio que
   ofrece el chat.
-- **Sesión pública no válida o caducada.** La conversación ya no admite lectura, renovación
-  ni mensajes desde esa sesión; solicita un nuevo inicio si el canal sigue disponible.
-- **Acceso revocado**: el responsable puede haber retirado la integración, deshabilitado el
-  acceso público o deshabilitado el canal. No intentes eludirlo con un enlace anterior.
+- **La sesión ha caducado.** La conversación ya no admite nuevas operaciones desde esa
+  sesión; solicita un nuevo inicio si el canal sigue disponible.
+- **El acceso a esta conversación ha sido revocado.** El responsable retiró el acceso a
+  esa sesión o a la integración que la habilitó. No intentes reutilizar un enlace anterior.
+- **El canal no está disponible.** El responsable deshabilitó el canal o su acceso
+  público. Usa el contacto alternativo que ofrezca el sitio.
+- **Sesión pública no válida.** Comprueba que estás en la pestaña original; si la
+  sesión se perdió, solicita un nuevo inicio cuando el canal esté disponible.
 - **Chat no disponible.** Vuelve a intentarlo más tarde o utiliza el canal de contacto que
   el sitio responsable indique fuera del chat.
 - **Se ha alcanzado un límite de uso del canal.** Espera antes de reintentar o utiliza la
@@ -191,6 +198,8 @@ El chat muestra una respuesta generada por un asistente automatizado. Comprueba 
 información importante antes de actuar y no introduzcas contraseñas, claves, datos bancarios
 ni otra información sensible. La política de conservación y eliminación del historial se
 documentará cuando esa capacidad esté implementada y verificada.
+Deshabilitar el canal o perder el acceso no elimina automáticamente el historial ya
+conservado ni retira información que el navegador haya mostrado antes.
 
 Consulta [Incidencias y recuperación](incidencias.md#chat-web-publico) si no puedes abrir o
 recuperar la sesión.
