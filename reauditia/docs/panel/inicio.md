@@ -16,7 +16,7 @@ Si el dominio está asociado a una sola organización, la cuenta se asigna autom
 
 Las cuentas nuevas se crean como **Supervisor**. Si necesitas el rol de Administrador, solicita el cambio mediante **Soporte** en el menú.
 
-Si una sola persona va a realizar las auditorías, puede utilizar su cuenta corporativa individual. Si trabaja un equipo de auditores, puede utilizarse una cuenta corporativa genérica del departamento para que las personas autorizadas accedan con el mismo usuario.
+Si una sola persona va a realizar las auditorías, puede utilizar su cuenta corporativa individual. Si trabaja un equipo de auditores, se recomienda una **cuenta corporativa genérica del departamento** para que las personas autorizadas accedan con el mismo usuario.
 
 El saldo disponible y los formularios creados quedan asociados a la cuenta utilizada. Elige el correo antes de empezar a configurar el servicio.
 
@@ -27,6 +27,25 @@ Si no recibes el mensaje de confirmación cuando corresponde, revisa la carpeta 
 1. Abre **Iniciar sesión**.
 2. Escribe tu correo y contraseña.
 3. Pulsa **Entrar**.
+
+## Confirmar el acceso con el código recibido
+
+Después de validar las credenciales, ReAuditIA puede enviar un código de seis dígitos al correo de la cuenta:
+
+1. Abre el mensaje más reciente recibido para ese acceso.
+2. Introduce sus seis dígitos en la pantalla de verificación.
+3. Confirma el código para terminar el inicio de sesión.
+
+Si no llega, revisa el correo no deseado y pulsa **Reenviar código** una sola vez. Utiliza siempre el último código recibido.
+
+| Mensaje | Qué hacer |
+| --- | --- |
+| Código incorrecto | Comprueba los seis dígitos y vuelve a introducir el último código recibido |
+| Código caducado | Pulsa **Reenviar código** y utiliza el nuevo |
+| Demasiados códigos solicitados | Espera antes de solicitar otro y no abras varias pestañas |
+| Usuario bloqueado | Deja de intentarlo y contacta con **Soporte** desde un canal autorizado |
+
+Si la pantalla vuelve a pedir el correo y la contraseña, introdúcelos de nuevo para iniciar una verificación nueva.
 
 Tras el acceso se muestra el panel y un menú adaptado a tu rol. Que una opción no aparezca normalmente significa que tu perfil no tiene permiso o que la capacidad no está habilitada para tu organización.
 

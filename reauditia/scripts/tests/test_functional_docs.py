@@ -164,6 +164,86 @@ class FunctionalContentTests(unittest.TestCase):
         self.assertIn("solo contiene espacios", incidents)
         self.assertIn("**Reintentar subida sin volver a unir**", incidents)
 
+    def test_issue_33_access_processing_and_sharepoint_contract_is_documented(self):
+        access = (ROOT / "docs" / "panel" / "inicio.md").read_text(encoding="utf-8")
+        states = (ROOT / "docs" / "panel" / "estado_audios.md").read_text(
+            encoding="utf-8"
+        )
+        automatic = (ROOT / "docs" / "panel" / "subida_automatica.md").read_text(
+            encoding="utf-8"
+        )
+
+        for contract in ("código de seis dígitos", "**Reenviar código**", "Usuario bloqueado"):
+            self.assertIn(contract, access)
+        for contract in ("En proceso", "Completado", "transcribe", "análisis"):
+            self.assertIn(contract, states)
+        for contract in (
+            "Pendiente de conectar",
+            "Token caducado",
+            "Solo una fuente **Conectado**",
+            "relativa a la fuente",
+            "deben cumplirse todas",
+            "solo tiene efecto con fuentes SharePoint",
+            "autorizado expresamente el borrado en origen",
+            "No se aplica a SharePoint",
+            "`.zip`",
+        ):
+            self.assertIn(contract, automatic)
+
+    def test_issue_33_upload_callback_and_datalake_contract_is_documented(self):
+        upload = (ROOT / "docs" / "api" / "upload.md").read_text(encoding="utf-8")
+        callback = (ROOT / "docs" / "api" / "callback.md").read_text(encoding="utf-8")
+        datalake = (ROOT / "docs" / "insights" / "datalake.md").read_text(
+            encoding="utf-8"
+        )
+
+        for contract in (
+            "URL SAS",
+            "antes** de `?`",
+            "Authorization: SharedKey",
+            "`PUT`",
+            "201 Created",
+            "Estado de los ficheros",
+        ):
+            self.assertIn(contract, upload)
+        for contract in (
+            "`transcription`",
+            "`transcriptions`",
+            "`audio_file`",
+            "`metadata`",
+            "`audit`",
+            "10 segundos",
+            "hasta tres reintentos",
+        ):
+            self.assertIn(contract, callback)
+        for contract in (
+            "formato Parquet",
+            "incorporación es diaria",
+            "**lectura** y **listado**",
+            "carpeta con el identificador de tu organización",
+            "Ruta relativa a la carpeta de la organización",
+            "entra primero en la carpeta cuyo nombre coincide con el identificador de tu organización",
+            "ruta sintética relativa a la carpeta `EmpresaEjemplo/`",
+            "formularios/{formulario}/facts/",
+            "formularios/{formulario}/details/category={categoria}/",
+            "formularios/{formulario}/items/category={categoria}/field={campo}/",
+            "nombre del formulario",
+            "`document_id`",
+            "`array_index`",
+            "24 horas",
+            "Power BI",
+            "Databricks",
+        ):
+            self.assertIn(contract, datalake)
+
+        self.assertNotIn("<form_id>", datalake)
+
+    def test_issue_33_pages_are_in_navigation(self):
+        config = yaml.safe_load((ROOT / "mkdocs.yml").read_text(encoding="utf-8"))
+        pages = set(navigation.flatten_nav(config["nav"]))
+        self.assertIn("api/callback.md", pages)
+        self.assertIn("insights/datalake.md", pages)
+
     def test_rejects_technical_content(self):
         self.assertTrue(self.validate("Postgre" + "SQL"))
 
@@ -212,6 +292,15 @@ class FunctionalContentTests(unittest.TestCase):
                 encoding="utf-8",
             )
             self.assertTrue(content.validate_repository_secrets(root))
+
+    def test_public_repository_rejects_local_virtualenv(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            tracked = root / "venv" / "pyvenv.cfg"
+            with patch.object(content, "git_managed_files", return_value=[tracked]):
+                failures = content.validate_repository_layout(root)
+            self.assertEqual(1, len(failures))
+            self.assertIn("entorno local", failures[0])
 
     def test_public_portal_root_is_scanned_for_forbidden_names(self):
         value = "privateidentifier"

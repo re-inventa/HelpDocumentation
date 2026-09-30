@@ -202,7 +202,10 @@ class ChangeDetectionTests(unittest.TestCase):
                 self.assertTrue(source_pr.validate(body))
 
     def test_public_smoke_covers_both_zones(self):
-        self.assertEqual(reauditia_routes.LEGACY_ROUTES, set(smoke.ROUTES["reauditia"]))
+        reauditia_smoke_routes = set(smoke.ROUTES["reauditia"])
+        self.assertLessEqual(reauditia_routes.LEGACY_ROUTES, reauditia_smoke_routes)
+        self.assertIn("api/callback.html", reauditia_smoke_routes)
+        self.assertIn("insights/datalake.html", reauditia_smoke_routes)
         self.assertIn("reagentia/", smoke.ROUTES["reagentia"])
         self.assertEqual("publication-sha.txt", smoke.MARKERS["reauditia"])
         self.assertEqual("reagentia/publication-sha.txt", smoke.MARKERS["reagentia"])
