@@ -26,8 +26,7 @@ preparada la configuración; el acceso general debe seguir cerrado. Define:
 - el estado del canal y del acceso público, que deben permanecer deshabilitados fuera de
   una ventana de prueba autorizada;
 - los sitios previstos para la futura inserción;
-- el perfil de límites disponible para la prueba; la conservación automática aún está
-  pendiente;
+- el perfil de límites y la política de conservación previstos para la prueba;
 - la integración que se creará cuando la prueba pueda habilitarse.
 
 En la pantalla se muestran el estado del canal, el modo de acceso, los orígenes
@@ -44,9 +43,10 @@ perfil de límites para esta prueba: 20 mensajes por sesión, 6 por minuto, hast
 respuestas simultáneas por canal y un presupuesto diario. Si aparece **Perfil actual no
 disponible para selección**, el canal conserva una referencia anterior: selecciona el
 perfil disponible para preparar una prueba nueva o consulta a la persona responsable si
-no esperabas esa configuración. La conservación automática todavía no está
-implementada; la referencia visible no permite elegir otra política ni garantiza
-una eliminación programada. Pulsa **Guardar canal**. El estado **Activo** junto con
+no esperabas esa configuración. La pantalla muestra la política prevista de 30 días
+desde la caducidad de la sesión. Su ejecución en un entorno depende de que se hayan
+aplicado la actualización y las comprobaciones operativas correspondientes; la
+pantalla no permite elegir otra política. Pulsa **Guardar canal**. El estado **Activo** junto con
 **Prueba controlada**
 solo debe usarse durante una ventana de prueba autorizada y exige marcar su
 confirmación en la pantalla. **Deshabilitar canal** permite cerrar esa ventana.
@@ -196,10 +196,31 @@ una web pública quede protegida frente a automatización o abuso.
 
 El chat muestra una respuesta generada por un asistente automatizado. Comprueba la
 información importante antes de actuar y no introduzcas contraseñas, claves, datos bancarios
-ni otra información sensible. La política de conservación y eliminación del historial se
-documentará cuando esa capacidad esté implementada y verificada.
+ni otra información sensible.
 Deshabilitar el canal o perder el acceso no elimina automáticamente el historial ya
 conservado ni retira información que el navegador haya mostrado antes.
+
+## Conservación de conversaciones
+
+La sesión permite acceder al chat durante 30 minutos desde su apertura. Recargar,
+renovar la lectura, revocar el acceso o reintentar una petición no cambia esa fecha.
+Una vez caducada, conservar datos durante más tiempo no permite volver a entrar en la
+conversación con la misma sesión.
+
+La política prevista para el almacenamiento principal elimina juntos los mensajes,
+resúmenes, resultados y datos individuales de la conversación a partir de 30 días
+después de esa caducidad. El proceso se programa diariamente; puede tardar más si hay
+una respuesta o una comprobación de consumo pendiente, si falla la ejecución o si
+hay una incidencia operativa. La eliminación no ocurre necesariamente a una hora
+exacta. Esta política debe comprobarse en el entorno antes de presentarse como
+activa para sus visitantes.
+
+El proveedor que ejecuta el chat conserva algunas copias temporales durante un plazo
+aproximado de 28 a 30 días desde que se escriben. Otros registros técnicos y copias
+de respaldo no tienen un plazo máximo de eliminación garantizado. Los respaldos
+propios siguen su política separada; al restaurarlos se debe volver a aplicar la
+limpieza vencida antes de permitir el acceso. Eliminar el historial del
+almacenamiento principal no elimina simultáneamente todas esas copias.
 
 Consulta [Incidencias y recuperación](incidencias.md#chat-web-publico) si no puedes abrir o
 recuperar la sesión.
