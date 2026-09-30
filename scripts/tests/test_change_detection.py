@@ -98,6 +98,19 @@ class ChangeDetectionTests(unittest.TestCase):
         self.assertTrue(result.reauditia)
         self.assertTrue(result.reagentia)
 
+    def test_portal_and_publication_changes_build_both(self):
+        for path in (
+            "portal/index.html",
+            "portal/404.html",
+            "scripts/build_portal_root.py",
+            "scripts/prepare_publication.py",
+            "docs/custom-domain-runbook.md",
+        ):
+            with self.subTest(path=path):
+                result = changes.classify([path])
+                self.assertTrue(result.reauditia)
+                self.assertTrue(result.reagentia)
+
     def test_workflow_separates_validation_from_publication(self):
         workflow = (ROOT / ".github/workflows/push_and_publish_to_gh.yaml").read_text(
             encoding="utf-8"
@@ -111,12 +124,16 @@ class ChangeDetectionTests(unittest.TestCase):
         self.assertIn("build_reagentia.py --external-links", workflow)
         self.assertIn("validate_source_pr.py", workflow)
         self.assertIn("validate_publication_request.py", workflow)
-        self.assertIn("--exclude='CNAME'", workflow)
-        self.assertIn("--exclude='reagentia/'", workflow)
+        self.assertIn("build_portal_root.py", workflow)
+        self.assertIn("prepare_publication.py", workflow)
+        self.assertIn(".publish/CNAME", workflow)
+        self.assertIn("docs.re-inventa.es", workflow)
+        self.assertIn("--base-url", workflow)
         self.assertIn("smoke_publication.py --zone reauditia", workflow)
         self.assertIn("smoke_publication.py --zone reagentia", workflow)
         self.assertIn("group: help-documentation-publish", workflow)
-        self.assertIn("queue: max", workflow)
+        self.assertIn("cancel-in-progress: false", workflow)
+        self.assertNotIn("queue: max", workflow)
         self.assertIn('git commit -m "deploy ${PUBLISHED_SHA}"', workflow)
 
     def test_sphinx_is_not_part_of_the_workflow(self):
@@ -203,14 +220,26 @@ class ChangeDetectionTests(unittest.TestCase):
 
     def test_public_smoke_covers_both_zones(self):
         reauditia_smoke_routes = set(smoke.ROUTES["reauditia"])
-        self.assertLessEqual(reauditia_routes.LEGACY_ROUTES, reauditia_smoke_routes)
-        self.assertIn("api/callback.html", reauditia_smoke_routes)
-        self.assertIn("insights/datalake.html", reauditia_smoke_routes)
+        expected_reauditia = {f"reauditia/{route}" for route in reauditia_routes.LEGACY_ROUTES}
+        self.assertLessEqual(expected_reauditia, reauditia_smoke_routes)
+        self.assertIn("reauditia/api/callback.html", reauditia_smoke_routes)
+        self.assertIn("reauditia/insights/datalake.html", reauditia_smoke_routes)
         self.assertIn("reagentia/", smoke.ROUTES["reagentia"])
-        self.assertEqual("publication-sha.txt", smoke.MARKERS["reauditia"])
+        self.assertEqual("reauditia/publication-sha.txt", smoke.MARKERS["reauditia"])
         self.assertEqual("reagentia/publication-sha.txt", smoke.MARKERS["reagentia"])
         self.assertGreaterEqual(smoke.DEFAULT_ATTEMPTS * smoke.DEFAULT_DELAY, 300)
-        self.assertIn("panel/dise%C3%B1o.html", smoke.public_url("panel/diseño.html"))
+        self.assertEqual(("", "index.html"), smoke.COMMON_ROUTES)
+        self.assertEqual(
+            "https://docs.re-inventa.es/reauditia/panel/dise%C3%B1o.html",
+            smoke.public_url("reauditia/panel/diseño.html"),
+        )
+        self.assertEqual(
+            "https://re-inventa.github.io/HelpDocumentation/reagentia/",
+            smoke.public_url("reagentia/", smoke.LEGACY_BASE_URL),
+        )
+        self.assertEqual(
+            "../reauditia/panel/inicio.html", smoke.LEGACY_REDIRECTS["panel/inicio.html"]
+        )
 
 
 if __name__ == "__main__":

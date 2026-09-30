@@ -68,6 +68,10 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         run: python scripts/build_reauditia.py --external-links --responsive
 
+      - name: Build neutral portal root and legacy redirects
+        if: steps.changes.outputs.reauditia_changed == 'true'
+        run: python scripts/build_portal_root.py
+
       - name: Build and validate Reagentia functional documentation
         if: steps.changes.outputs.reagentia_changed == 'true'
         env:
@@ -83,7 +87,6 @@ jobs:
     concurrency:
       group: help-documentation-publish
       cancel-in-progress: false
-      queue: max
 
     steps:
       - name: Checkout HelpDocumentation main
@@ -160,6 +163,10 @@ jobs:
         if: steps.changes.outputs.reauditia_changed == 'true'
         run: python scripts/build_reauditia.py
 
+      - name: Build neutral portal root and legacy redirects
+        if: steps.changes.outputs.reauditia_changed == 'true'
+        run: python scripts/build_portal_root.py
+
       - name: Build and validate Reagentia functional documentation
         if: steps.changes.outputs.reagentia_changed == 'true'
         run: python scripts/build_reagentia.py
@@ -171,6 +178,20 @@ jobs:
           ref: gh-pages
           path: .publish
 
+      - name: Determine active public base URL
+        if: steps.changes.outputs.reauditia_changed == 'true' || steps.changes.outputs.reagentia_changed == 'true'
+        id: public-url
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -f .publish/CNAME ]]; then
+            domain="$(tr -d '\r\n' < .publish/CNAME)"
+            [[ "${domain}" == 'docs.re-inventa.es' ]]
+            echo "base_url=https://${domain}/" >> "${GITHUB_OUTPUT}"
+          else
+            echo 'base_url=https://re-inventa.github.io/HelpDocumentation/' >> "${GITHUB_OUTPUT}"
+          fi
+
       - name: Publish changed documentation to gh-pages
         if: steps.changes.outputs.reauditia_changed == 'true' || steps.changes.outputs.reagentia_changed == 'true'
         env:
@@ -180,16 +201,17 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          args=(
+            --publish-dir .publish
+            --published-sha "${PUBLISHED_SHA}"
+          )
           if [[ "${REAUDITIA_CHANGED}" == 'true' ]]; then
-            printf '%s\n' "${PUBLISHED_SHA}" > build/reauditia/publication-sha.txt
-            rsync -a --checksum --delete --exclude='.git/' --exclude='reagentia/' --exclude='CNAME' build/reauditia/ .publish/
+            args+=(--reauditia)
           fi
           if [[ "${REAGENTIA_CHANGED}" == 'true' ]]; then
-            printf '%s\n' "${PUBLISHED_SHA}" > build/reagentia/publication-sha.txt
-            mkdir -p .publish/reagentia
-            rsync -a --checksum --delete build/reagentia/ .publish/reagentia/
+            args+=(--reagentia)
           fi
-          touch .publish/.nojekyll
+          python scripts/prepare_publication.py "${args[@]}"
           cd .publish
           git config user.email 'action@github.com'
           git config user.name 'GitHub Action'
@@ -207,12 +229,13 @@ jobs:
           REAUDITIA_CHANGED: ${{ steps.changes.outputs.reauditia_changed }}
           REAGENTIA_CHANGED: ${{ steps.changes.outputs.reagentia_changed }}
           PUBLISHED_SHA: ${{ steps.documentation.outputs.sha }}
+          PUBLIC_BASE_URL: ${{ steps.public-url.outputs.base_url }}
         shell: bash
         run: |
           set -euo pipefail
           if [[ "${REAUDITIA_CHANGED}" == 'true' ]]; then
-            python scripts/smoke_publication.py --zone reauditia --expected-sha "${PUBLISHED_SHA}"
+            python scripts/smoke_publication.py --zone reauditia --expected-sha "${PUBLISHED_SHA}" --base-url "${PUBLIC_BASE_URL}"
           fi
           if [[ "${REAGENTIA_CHANGED}" == 'true' ]]; then
-            python scripts/smoke_publication.py --zone reagentia --expected-sha "${PUBLISHED_SHA}"
+            python scripts/smoke_publication.py --zone reagentia --expected-sha "${PUBLISHED_SHA}" --base-url "${PUBLIC_BASE_URL}"
           fi

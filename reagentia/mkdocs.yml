@@ -1,6 +1,6 @@
 site_name: Reagentia
 site_description: Guía funcional de Reagentia
-site_url: https://re-inventa.github.io/HelpDocumentation/reagentia/
+site_url: https://docs.re-inventa.es/reagentia/
 docs_dir: docs
 site_dir: ../build/reagentia
 strict: true

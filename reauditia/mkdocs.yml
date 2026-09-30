@@ -1,6 +1,6 @@
 site_name: ReAuditIA
 site_description: Guía funcional de ReAuditIA
-site_url: https://re-inventa.github.io/HelpDocumentation/
+site_url: https://docs.re-inventa.es/reauditia/
 docs_dir: docs
 site_dir: ../build/reauditia
 strict: true
