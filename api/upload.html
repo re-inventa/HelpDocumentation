@@ -16,7 +16,7 @@
         <link rel="prev" href="../panel/documentos.html">
       
       
-        <link rel="next" href="logs.html">
+        <link rel="next" href="callback.html">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Carga de ficheros - ReAuditIA</title>
+        <title>Carga directa de ficheros - ReAuditIA</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#carga-de-ficheros-mediante-integracion" class="md-skip">
+        <a href="#carga-directa-de-ficheros" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -105,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Carga de ficheros
+              Carga directa de ficheros
             
           </span>
         </div>
@@ -298,6 +298,28 @@
     
   
   Integraciones
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../insights/datalake.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Insights
 
         </a>
       </li>
@@ -975,6 +997,8 @@
       
         
       
+        
+      
     
     
     
@@ -1046,7 +1070,7 @@
   <span class="md-ellipsis">
     
   
-    Carga de ficheros
+    Carga directa de ficheros
   
 
     
@@ -1064,7 +1088,7 @@
   <span class="md-ellipsis">
     
   
-    Carga de ficheros
+    Carga directa de ficheros
   
 
     
@@ -1090,10 +1114,54 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#comprobacion-funcional" class="md-nav__link">
+  <a href="#obtener-o-revocar-el-acceso" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Comprobación funcional
+        Obtener o revocar el acceso
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#construir-la-direccion-del-fichero" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Construir la dirección del fichero
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enviar-el-fichero" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enviar el fichero
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interpretar-la-respuesta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interpretar la respuesta
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comprobar-el-procesamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comprobar el procesamiento
       
     </span>
   </a>
@@ -1104,6 +1172,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="callback.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Callback de resultados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1155,8 +1251,6 @@
       
         
       
-        
-      
     
     
     
@@ -1180,7 +1274,7 @@
   <span class="md-ellipsis">
     
   
-    Ayuda
+    Insights
   
 
     
@@ -1193,6 +1287,99 @@
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Insights
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../insights/datalake.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Lake para BI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ayuda
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1292,10 +1479,54 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#comprobacion-funcional" class="md-nav__link">
+  <a href="#obtener-o-revocar-el-acceso" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Comprobación funcional
+        Obtener o revocar el acceso
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#construir-la-direccion-del-fichero" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Construir la dirección del fichero
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enviar-el-fichero" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enviar el fichero
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interpretar-la-respuesta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interpretar la respuesta
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comprobar-el-procesamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comprobar el procesamiento
       
     </span>
   </a>
@@ -1319,20 +1550,97 @@
 
 
 
-<h1 id="carga-de-ficheros-mediante-integracion">Carga de ficheros mediante integración<a class="headerlink" href="#carga-de-ficheros-mediante-integracion" title="Permanent link">&para;</a></h1>
+<h1 id="carga-directa-de-ficheros">Carga directa de ficheros<a class="headerlink" href="#carga-directa-de-ficheros" title="Permanent link">&para;</a></h1>
 <p><span id="upload"></span>
 <span id="post--api-upload (Ejemplo)"></span></p>
-<p>La forma habitual de cargar ficheros es utilizar un formulario o una regla de <a href="../panel/subida_automatica.html">subida automática</a>.</p>
-<p>Si tu organización dispone de una integración propia, utiliza únicamente las instrucciones y credenciales entregadas para esa integración. No reutilices datos de acceso entre entornos ni los incluyas en capturas, incidencias o documentación compartida.</p>
-<h2 id="comprobacion-funcional">Comprobación funcional<a class="headerlink" href="#comprobacion-funcional" title="Permanent link">&para;</a></h2>
-<p>Tras enviar un fichero:</p>
+<p>La carga directa permite que una aplicación entregue ficheros a un formulario sin utilizar la pantalla de subida ni una regla automática. Cada acceso está asociado a un formulario y utiliza una URL SAS con fecha de caducidad.</p>
+<h2 id="obtener-o-revocar-el-acceso">Obtener o revocar el acceso<a class="headerlink" href="#obtener-o-revocar-el-acceso" title="Permanent link">&para;</a></h2>
+<p>Si tu perfil permite configurar el formulario:</p>
 <ol>
-<li>Confirma que la integración lo ha aceptado.</li>
-<li>Localízalo en <a href="../panel/estado_audios.html">Estado de los ficheros</a>.</li>
-<li>Espera a que alcance un estado final.</li>
-<li>Consulta el formulario o informe correspondiente.</li>
+<li>Abre el formulario y localiza el apartado <strong>Token SAS</strong>.</li>
+<li>Crea un acceso con un nombre que identifique la integración y selecciona su caducidad.</li>
+<li>Copia la URL completa cuando se muestre y guárdala en el almacén seguro de la aplicación que realizará las cargas.</li>
+<li>Para renovar el acceso, crea uno nuevo, cambia la integración y comprueba una carga antes de revocar el anterior.</li>
+<li>Para cancelar un acceso, elimínalo desde la misma tabla.</li>
 </ol>
-<p>Esta guía pública no expone direcciones privadas ni mecanismos internos de autenticación.</p>
+<p>Si el apartado no aparece, solicita a <strong>Soporte</strong> un acceso para el formulario e indica la finalidad, la caducidad necesaria y el entorno. No envíes la URL SAS por correo ni la incluyas en capturas o incidencias.</p>
+<h2 id="construir-la-direccion-del-fichero">Construir la dirección del fichero<a class="headerlink" href="#construir-la-direccion-del-fichero" title="Permanent link">&para;</a></h2>
+<p>La URL entregada contiene una dirección base y parámetros de autorización después de <code>?</code>. Para subir un fichero:</p>
+<ol>
+<li>Conserva todos los parámetros recibidos.</li>
+<li>Añade la carpeta y el nombre del fichero <strong>antes</strong> de <code>?</code>.</li>
+<li>Codifica los espacios y caracteres especiales del nombre.</li>
+</ol>
+<p>Ejemplo sintético:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>URL entregada:
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>https://storage.example.invalid/formulario?{PARAMETROS_SAS}
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>Fichero de destino:
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>https://storage.example.invalid/formulario/20260928/llamada-001.wav?{PARAMETROS_SAS}
+</code></pre></div>
+<p>La URL SAS ya contiene la autorización. No envíes una cabecera <code>Authorization: SharedKey</code> ni trates la firma como una contraseña separada.</p>
+<h2 id="enviar-el-fichero">Enviar el fichero<a class="headerlink" href="#enviar-el-fichero" title="Permanent link">&para;</a></h2>
+<p>Realiza una petición <code>PUT</code> con el contenido binario:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>curl<span class="w"> </span>--request<span class="w"> </span>PUT<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="s1">'https://storage.example.invalid/formulario/20260928/llamada-001.wav?{PARAMETROS_SAS}'</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>--header<span class="w"> </span><span class="s1">'x-ms-blob-type: BlockBlob'</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span>--header<span class="w"> </span><span class="s1">'Content-Type: audio/wav'</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span>--header<span class="w"> </span><span class="s1">'x-ms-meta-canal: telefono'</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span>--data-binary<span class="w"> </span><span class="s1">'@llamada-001.wav'</span>
+</code></pre></div>
+<ul>
+<li><code>x-ms-blob-type: BlockBlob</code> identifica el tipo de carga esperado.</li>
+<li><code>Content-Type</code> debe corresponder al fichero, por ejemplo <code>audio/wav</code>, <code>audio/mpeg</code> o <code>application/pdf</code>.</li>
+<li>Cada metadato se envía como <code>x-ms-meta-&lt;nombre&gt;</code>. El nombre debe coincidir con el configurado en el formulario.</li>
+<li>El cuerpo debe contener el fichero, no una representación en texto.</li>
+</ul>
+<p>El ejemplo no incluye una firma válida y no puede utilizarse para acceder a ningún dato.</p>
+<h2 id="interpretar-la-respuesta">Interpretar la respuesta<a class="headerlink" href="#interpretar-la-respuesta" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Resultado</th>
+<th>Significado</th>
+<th>Acción recomendada</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>201 Created</code></td>
+<td>El fichero fue aceptado</td>
+<td>Comprueba su aparición en <strong>Estado de los Ficheros</strong></td>
+</tr>
+<tr>
+<td><code>400 Bad Request</code></td>
+<td>La ruta, una cabecera o un metadato no es válido</td>
+<td>Revisa la dirección, el tipo de fichero y los metadatos</td>
+</tr>
+<tr>
+<td><code>403 Forbidden</code></td>
+<td>La URL ha caducado, fue revocada o no permite la operación</td>
+<td>Sustituye el acceso por uno vigente</td>
+</tr>
+<tr>
+<td><code>404 Not Found</code></td>
+<td>El destino no corresponde al formulario o la dirección está incompleta</td>
+<td>Vuelve a copiar la URL base y reconstruye la ruta</td>
+</tr>
+<tr>
+<td><code>409 Conflict</code></td>
+<td>El destino mantiene un estado incompatible con la carga</td>
+<td>Evita cargas simultáneas sobre la misma ruta; si persiste, utiliza otro nombre y contacta con Soporte</td>
+</tr>
+</tbody>
+</table>
+<p>Que la petición sea aceptada no significa que el análisis haya terminado.</p>
+<h2 id="comprobar-el-procesamiento">Comprobar el procesamiento<a class="headerlink" href="#comprobar-el-procesamiento" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Abre <a href="../panel/estado_audios.html">Estado de los ficheros</a>.</li>
+<li>Busca el nombre enviado y comprueba el formulario y la hora.</li>
+<li>Espera a <strong>Completado</strong> o revisa el mensaje si termina en <strong>Error</strong>.</li>
+<li>Si has configurado un <a href="callback.html">callback</a>, confirma también la recepción del resultado.</li>
+</ol>
+<p>No repitas la carga mientras el fichero siga <strong>En proceso</strong>.</p>
 
 
 
