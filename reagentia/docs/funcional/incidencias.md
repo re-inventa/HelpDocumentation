@@ -41,9 +41,15 @@ terminar y mostrarse después, con consumo dentro de los límites configurados. 
 que se cierre antes de interpretar su contenido como definitivo. La desactivación no
 elimina automáticamente el historial ni retira texto que ya se mostró.
 
+Si el asistente insertado indica que el almacenamiento de la pestaña está bloqueado,
+puedes continuar en esa página, pero la recarga impedirá recuperar la sesión. No se
+abrirá otra conversación automáticamente: solicita un inicio nuevo al sitio si lo
+necesitas. Si se agota un límite o el servicio no está disponible, utiliza el contacto
+alternativo publicado por el sitio.
+
 Si la pantalla indica que la apertura está en curso o no pudo confirmarla, espera unos
 instantes y repite el mismo inicio desde la misma pestaña antes de pedir otro código.
-Esta fase de prueba todavía no define una alternativa de contacto dentro del propio chat.
+El asistente insertado recuerda que puedes utilizar el contacto alternativo del sitio.
 
 Si aparece **No se pudo verificar el inicio; reintenta la misma petición.**, **La
 verificación del inicio está en curso; reintenta la misma petición.** o **La verificación

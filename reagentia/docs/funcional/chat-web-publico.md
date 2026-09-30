@@ -6,15 +6,14 @@ habilitarse expresamente y no supone que el chat esté disponible para cualquier
 para tráfico público general.
 
 !!! warning "Disponibilidad limitada"
-    Esta fase todavía no incluye un plugin para WordPress o Elementor, shortcode ni burbuja
-    flotante. Ya existe una pantalla de administración del canal, pero la fase todavía no
-    incorpora todas las protecciones necesarias para abrir el canal al público. El inicio preparado
-    incluye protección contra automatización mediante una comprobación, pero no habilita por
-    sí solo el servicio.
+    El asistente insertado en una página se está validando en un sitio de prueba.
+    Todavía no hay plugin para WordPress o Elementor, shortcode ni burbuja flotante.
+    La existencia del asistente insertable y de la pantalla de administración no abre
+    el servicio al tráfico público general. La comprobación inicial reduce abusos,
+    pero no garantiza que una web pública quede libre de ellos.
 
-    El canal y su acceso público deben permanecer deshabilitados hasta que el ciclo completo
-    de respuestas y control de límites esté desplegado y validado. Mientras tanto no se
-    deben emitir enlaces ni iniciar conversaciones de prueba.
+    El canal y su acceso público permanecen deshabilitados fuera de ventanas de prueba
+    controladas y autorizadas. La disponibilidad general requiere la aceptación final.
 
 ## Preparar el canal
 
@@ -120,12 +119,12 @@ el responsable debe revisar la configuración de los sitios autorizados.
 
 ## Abrir una conversación como visitante
 
-1. Accede al enlace temporal proporcionado por el sitio autorizado. También puedes
-   introducir el código en la pantalla **Chat público**.
-2. El código debe utilizarse en los 2 minutos siguientes a su emisión.
-3. La pantalla abre una única conversación y muestra hasta cuándo estará activa la sesión.
-4. Escribe el mensaje y pulsa **Enviar mensaje**. La respuesta aparece progresivamente.
-5. Mientras responde, puedes pulsar **Detener respuesta**. El texto ya recibido permanece
+1. En el sitio autorizado durante una prueba, completa la comprobación de inicio y
+   pulsa **Iniciar conversación**. El sitio entrega un acceso temporal al asistente
+   insertado; no hace falta copiar un enlace ni un código.
+2. El asistente abre una única conversación y muestra cuándo caduca la sesión.
+3. Escribe el mensaje y pulsa **Enviar mensaje**. La respuesta aparece progresivamente.
+4. Mientras responde, puedes pulsar **Detener respuesta**. El texto ya recibido permanece
    visible.
 
 La sesión dura 30 minutos desde la primera apertura. Enviar mensajes, recargar o recuperar
@@ -160,6 +159,12 @@ El navegador guarda en la pestaña los datos temporales necesarios para recupera
 conversación. Si la apertura o una respuesta se interrumpe, recarga la página o repite la
 misma apertura desde esa pestaña. La recuperación mantiene la conversación original; no
 crea otra ni reinicia su caducidad.
+
+El asistente insertado separa los datos de cada chat y sitio. Si el navegador bloquea el
+almacenamiento de la pestaña, puedes conversar mientras mantengas la página abierta,
+pero verás un aviso de que no podrás recuperar esa sesión tras recargar. Otra pestaña o
+dispositivo no hereda la conversación. El asistente no inicia por su cuenta una nueva
+conversación cuando la anterior caduca o falla: solicita un inicio nuevo al sitio.
 
 Si otra petición está terminando la apertura, puede aparecer **La apertura está en curso.
 Vuelve a intentarlo.** Espera unos instantes y repite la acción. Si aparece **No se pudo
@@ -196,8 +201,14 @@ una web pública quede protegida frente a automatización o abuso.
 
 El chat muestra una respuesta generada por un asistente automatizado. Comprueba la
 información importante antes de actuar y no introduzcas contraseñas, claves, datos bancarios
-ni otra información sensible. La política de conservación y eliminación del historial se
-documentará cuando esa capacidad esté implementada y verificada.
+ni otra información sensible. La sesión de acceso dura 30 minutos; conservar datos
+durante más tiempo no permite volver a la conversación tras caducar. Se ha acordado
+una limpieza del almacenamiento principal configurable, inicialmente 30 días desde
+la caducidad original de la sesión, para contenido y metadatos individuales. Su
+implementación y periodicidad aún deben verificarse. Las copias operativas y los
+respaldos de proveedores siguen sus propias políticas; algunas categorías no tienen
+un plazo máximo de eliminación garantizado. No se promete un borrado global a los
+30 días.
 Deshabilitar el canal o perder el acceso no elimina automáticamente el historial ya
 conservado ni retira información que el navegador haya mostrado antes.
 

@@ -136,7 +136,7 @@ class FunctionalContentTests(unittest.TestCase):
         self.assertIn("incluso después de usar una representación resumida", incidents)
         self.assertNotIn("Acorta el mensaje actual", incidents)
 
-    def test_public_chat_guide_describes_only_the_controlled_first_phase(self):
+    def test_public_chat_guide_describes_the_controlled_widget(self):
         guide = (ROOT / "docs" / "funcional" / "chat-web-publico.md").read_text(encoding="utf-8")
         assistants = (ROOT / "docs" / "funcional" / "asistentes.md").read_text(encoding="utf-8")
         incidents = (ROOT / "docs" / "funcional" / "incidencias.md").read_text(encoding="utf-8")
@@ -148,9 +148,9 @@ class FunctionalContentTests(unittest.TestCase):
             "30 minutos",
             "no amplía ese plazo",
             "conversación original",
-            "**Chat público**",
+            "**Iniciar conversación**",
             "**El acceso a esta conversación ha sido revocado.**",
-            "protección contra automatización",
+            "comprobación inicial reduce abusos",
             "asistente automatizado",
             "El estado del canal y el acceso público son controles distintos",
             "Deshabilitar solo el acceso público mantiene activo el canal",
@@ -178,11 +178,14 @@ class FunctionalContentTests(unittest.TestCase):
             "Se ha alcanzado un límite de uso del canal.",
             "Hay otra respuesta en curso o se alcanzó la concurrencia del canal.",
             "deben permanecer deshabilitados",
-            "no se deben emitir enlaces ni iniciar conversaciones de prueba",
+            "ventanas de prueba controladas y autorizadas",
+            "almacenamiento de la pestaña",
+            "inicialmente 30 días desde la caducidad original",
+            "no tienen un plazo máximo de eliminación garantizado",
         ):
             with self.subTest(expected=expected):
                 self.assertIn(expected, normalized_guide)
-        self.assertIn("todavía no incluye un plugin", normalized_guide)
+        self.assertIn("Todavía no hay plugin", normalized_guide)
         self.assertIn("Asistentes → Configurar canal público", normalized_guide)
         self.assertIn("**Deshabilitar canal**", normalized_guide)
         self.assertIn("**Revocar**", normalized_guide)
