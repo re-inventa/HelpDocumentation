@@ -69,11 +69,14 @@ en 60 segundos; espera antes de reintentar. **Se ha alcanzado el límite de mens
 indica que se agotaron los 20 mensajes de la sesión y requiere un inicio nuevo cuando
 esté disponible. **Se ha alcanzado el presupuesto de uso del chat.** indica que se
 agotó el presupuesto de la conversación o el diario compartido. Si el aviso persiste,
-usa el contacto alternativo del sitio.
+usa el contacto alternativo del sitio. Durante la apertura también puede aparecer
+**Se ha alcanzado el límite de mensajes de la sesión.**
 
 Si aparece **Hay otra respuesta en curso o se alcanzó la concurrencia del canal.**, espera
 a que termine la respuesta actual. Cada conversación admite una respuesta en curso y cada
-canal hasta 5. No repitas el mensaje mientras siga activa la respuesta anterior.
+canal hasta 5. Durante la apertura, el aviso puede decir **Hay otra respuesta en curso o
+se alcanzó el límite de respuestas simultáneas.** No repitas el mensaje mientras siga
+activa la respuesta anterior.
 
 Si aparece **No se pudo enviar el mensaje. Crea un nuevo envío para reintentarlo.**, el
 intento fue rechazado: envía el texto otra vez como un mensaje nuevo cuando el chat vuelva a

@@ -174,8 +174,10 @@ class FunctionalContentTests(unittest.TestCase):
             "solo una por conversación",
             "Se ha alcanzado el límite temporal de uso.",
             "Se ha alcanzado el límite de mensajes.",
+            "Se ha alcanzado el límite de mensajes de la sesión.",
             "Se ha alcanzado el presupuesto de uso del chat.",
             "Hay otra respuesta en curso o se alcanzó la concurrencia del canal.",
+            "Hay otra respuesta en curso o se alcanzó el límite de respuestas simultáneas.",
             "deben permanecer deshabilitados",
             "ventanas de prueba controladas y autorizadas",
             "almacenamiento de la pestaña",
@@ -208,7 +210,9 @@ class FunctionalContentTests(unittest.TestCase):
             "No se pudo verificar el inicio. Completa de nuevo la comprobación en el sitio.",
             "Se ha alcanzado el límite temporal de uso.",
             "Se ha alcanzado el límite de mensajes.",
+            "Se ha alcanzado el límite de mensajes de la sesión.",
             "Se ha alcanzado el presupuesto de uso del chat.",
+            "Hay otra respuesta en curso o se alcanzó el límite de respuestas simultáneas.",
         ):
             with self.subTest(message=message):
                 self.assertIn(message, normalized_incidents)

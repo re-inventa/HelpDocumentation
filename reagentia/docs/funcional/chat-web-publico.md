@@ -146,12 +146,15 @@ El asistente distingue **Se ha alcanzado el límite temporal de uso.** para el r
 **Se ha alcanzado el presupuesto de uso del chat.** para el presupuesto. Espera a que
 termine la ventana temporal o utiliza la alternativa de contacto publicada por el sitio.
 Alcanzar el límite total de la sesión requiere iniciar otra cuando el sitio vuelva a
-ofrecer acceso.
+ofrecer acceso. Durante la apertura, el aviso de mensajes puede usar la variante
+**Se ha alcanzado el límite de mensajes de la sesión.**
 
 Si ya hay una respuesta activa en la conversación o el canal alcanzó su concurrencia,
 aparece **Hay otra respuesta en curso o se alcanzó la concurrencia del canal.** Espera a
 que finalice la respuesta y vuelve a intentarlo. Repetir inmediatamente el envío no amplía
-los límites ni abre una segunda respuesta para la misma conversación.
+los límites ni abre una segunda respuesta para la misma conversación. Durante la apertura,
+el aviso usa **Hay otra respuesta en curso o se alcanzó el límite de respuestas
+simultáneas.**
 
 ## Recarga y recuperación
 
