@@ -25,6 +25,9 @@ misma conversación sin ampliar su caducidad.
 Una sesión caduca 30 minutos después de su primera apertura. Recargar o enviar mensajes no
 reinicia el plazo. Si se borran los datos del sitio, se cierra la pestaña o se cambia de
 navegador, la sesión puede dejar de ser recuperable.
+La conservación posterior del historial no amplía ese acceso. La
+[política de conservación](chat-web-publico.md#conservacion-de-conversaciones)
+distingue el almacenamiento principal de las copias del proveedor y los respaldos.
 
 **La sesión ha caducado.** indica que terminó su plazo. **El acceso a esta conversación
 ha sido revocado.** indica que se retiró el acceso de esa sesión o de la integración que
