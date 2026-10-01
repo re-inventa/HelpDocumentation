@@ -23,6 +23,10 @@ Los estados más habituales son **Enviando**, **Mensaje guardado. Preparando res
 
 El historial se guarda asociado a cada conversación y a la organización. Cerrar la pestaña o el navegador no elimina los mensajes: al volver, selecciona la conversación que quieras recuperar. Al cambiar entre conversaciones, se muestra el historial y el estado de la elegida, sin mezclar las respuestas de otras.
 
+El [chat web público](chat-web-publico.md#conservacion-de-conversaciones) tiene
+un plazo de acceso y una política de conservación propios. La limpieza prevista
+para ese canal no cambia el historial de estas conversaciones internas.
+
 Cuando una conversación crece, el asistente puede utilizar una representación resumida o acotada de la información anterior para preparar nuevas respuestas. Este ajuste no borra ni modifica el historial visible: puedes seguir consultando los mensajes, respuestas y detalles de herramientas guardados.
 
 Los turnos recientes y las referencias necesarias se mantienen disponibles para continuar el tema. Si necesitas separar asuntos o empezar sin el contexto de la conversación actual, abre una conversación nueva. La conversación nueva no hereda mensajes, resúmenes ni resultados de herramientas de las anteriores.

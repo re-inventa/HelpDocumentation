@@ -17,23 +17,28 @@ una sola vez tras crear o rotar. Si se cierra el aviso o se pierde la respuesta,
 actualiza el estado: rota una integración existente para recibir otra credencial, o
 repite el alta si no aparece. Una versión anterior nunca puede recuperarse.
 
-Si un enlace de chat público no se abre, comprueba primero si han pasado más de 2 minutos
-desde que se generó. En ese caso solicita otro al sitio responsable. Si la apertura quedó
-interrumpida, vuelve a intentarlo desde la misma pestaña: el navegador puede recuperar la
-misma conversación sin ampliar su caducidad.
+Si el asistente insertado muestra **Reintentar apertura**, úsalo desde la misma
+pestaña. Si el intento ya no puede completarse, utiliza **Solicitar nuevo inicio**
+y completa la comprobación que ofrezca el sitio. Si el asistente ni siquiera carga,
+recarga la página o usa el contacto alternativo del sitio. El código que gestiona
+la integración caduca a los 2 minutos, pero no se muestra a la persona visitante
+ni requiere copiar un enlace. El navegador puede recuperar la misma conversación
+sin ampliar su caducidad.
 
 Una sesión caduca 30 minutos después de su primera apertura. Recargar o enviar mensajes no
 reinicia el plazo. Si se borran los datos del sitio, se cierra la pestaña o se cambia de
 navegador, la sesión puede dejar de ser recuperable.
+La conservación posterior del historial no amplía ese acceso. La
+[política de conservación](chat-web-publico.md#conservacion-de-conversaciones)
+distingue el almacenamiento principal de las copias del proveedor y los respaldos.
 
-**La sesión ha caducado.** indica que terminó su plazo. **El acceso a esta conversación
-ha sido revocado.** indica que se retiró el acceso de esa sesión o de la integración que
-la habilitó. **El canal no está disponible.**
-indica que se deshabilitó el canal o su acceso público. **Sesión pública no válida.**
-puede aparecer si se perdió el acceso guardado en la pestaña. Los códigos de inicio
-inválidos y **Inicio no disponible.** siguen requiriendo un nuevo acceso del sitio.
-**Chat no disponible.** señala una indisponibilidad temporal. Si el acceso se retiró,
-un enlace anterior no lo restablece; usa el contacto alternativo del sitio.
+**La sesión ha caducado. Solicita un nuevo inicio al sitio.** indica que terminó su
+plazo. **El acceso a esta conversación ha sido revocado.** indica que se retiró el
+acceso de la sesión o de su integración. **El canal no está disponible.** indica que
+se deshabilitó el canal o su acceso público. **La sesión no es válida. Solicita un
+nuevo inicio al sitio.** puede aparecer si se perdió el acceso guardado en la
+pestaña. **El chat no está disponible temporalmente.** señala una indisponibilidad
+temporal. Si el acceso se retiró, utiliza el contacto alternativo del sitio.
 
 Al deshabilitar el canal o revocar una integración, no se aceptan nuevos mensajes ni
 renovaciones en las sesiones afectadas. Una respuesta que ya había comenzado puede
@@ -47,31 +52,24 @@ abrirá otra conversación automáticamente: solicita un inicio nuevo al sitio s
 necesitas. Si se agota un límite o el servicio no está disponible, utiliza el contacto
 alternativo publicado por el sitio.
 
-Si la pantalla indica que la apertura está en curso o no pudo confirmarla, espera unos
-instantes y repite el mismo inicio desde la misma pestaña antes de pedir otro código.
-El asistente insertado recuerda que puedes utilizar el contacto alternativo del sitio.
+Si aparece **No se pudo confirmar la conversación. Reintenta desde esta pestaña o
+utiliza el contacto alternativo.**, usa primero **Reintentar apertura** desde la misma
+pestaña. El asistente conserva el intento pendiente. **Solicitar nuevo inicio** pide
+otra comprobación al sitio cuando el intento anterior ya no sirve.
 
-Si aparece **No se pudo verificar el inicio; reintenta la misma petición.**, **La
-verificación del inicio está en curso; reintenta la misma petición.** o **La verificación
-del inicio está en curso.**, mantén la misma página y repite enseguida la acción. Mientras
-el código siga vigente, una repetición idéntica recupera el mismo código y no crea otra
-apertura. Si aparece **No se pudo verificar el inicio.**, completa otra comprobación
-Turnstile y solicita un inicio nuevo. Si el rechazo se repite, pide al responsable del sitio
-que revise la configuración de los sitios autorizados.
+Si aparece **No se pudo verificar el inicio. Completa de nuevo la comprobación en el
+sitio.**, repite la comprobación Turnstile. Si el rechazo se repite, pide al
+responsable del sitio que revise la configuración. La integración debe gestionar
+por su cuenta los reintentos técnicos del inicio sin pedir al visitante un código.
+Desde una misma conexión se pueden obtener como máximo 10 inicios para un canal en
+60 minutos; varias personas que comparten esa conexión pueden consumir el cupo.
 
-El mensaje **El token Turnstile ya fue utilizado por otro inicio.** indica que el sitio
-intentó reutilizar una comprobación anterior. Reinicia la comprobación; no reutilices un
-código ni un enlace anterior. Si aparece **Se ha alcanzado el límite temporal de
-aperturas.**, espera antes de solicitar otro acceso. El límite permite como máximo 10
-códigos para el mismo canal desde una misma conexión en cualquier periodo de 60 minutos.
-Varias personas que comparten esa conexión pueden consumir el mismo cupo.
-
-Si aparece **Se ha alcanzado un límite de uso del canal.**, puede haberse alcanzado el
-máximo de 20 mensajes de la sesión, el ritmo de 6 mensajes en 60 segundos o el presupuesto
-de la conversación o del día. El presupuesto diario se comparte con otras conversaciones
-del chat ofrecido por la organización. Espera antes de reintentar. Si la sesión agotó sus
-mensajes, solicita un nuevo acceso cuando esté disponible; si el aviso continúa, usa el
-contacto alternativo que el sitio publique fuera del chat.
+**Se ha alcanzado el límite temporal de uso.** corresponde al ritmo de 6 mensajes
+en 60 segundos; espera antes de reintentar. **Se ha alcanzado el límite de mensajes.**
+indica que se agotaron los 20 mensajes de la sesión y requiere un inicio nuevo cuando
+esté disponible. **Se ha alcanzado el presupuesto de uso del chat.** indica que se
+agotó el presupuesto de la conversación o el diario compartido. Si el aviso persiste,
+usa el contacto alternativo del sitio.
 
 Si aparece **Hay otra respuesta en curso o se alcanzó la concurrencia del canal.**, espera
 a que termine la respuesta actual. Cada conversación admite una respuesta en curso y cada
@@ -79,10 +77,9 @@ canal hasta 5. No repitas el mensaje mientras siga activa la respuesta anterior.
 
 Si aparece **No se pudo enviar el mensaje. Crea un nuevo envío para reintentarlo.**, el
 intento fue rechazado: envía el texto otra vez como un mensaje nuevo cuando el chat vuelva a
-estar disponible. Si aparece **No se pudo confirmar el envío. Puedes volver a intentarlo.**,
-comprueba primero el historial desde la misma pestaña. La confirmación puede llegar después;
-si el mensaje no aparece tras recuperar la conexión, vuelve a intentarlo en esa
-conversación.
+estar disponible. Si aparece **Comprueba el historial y reintenta el mismo mensaje desde
+esta pestaña.**, revisa primero el historial. La confirmación puede llegar después; si
+el mensaje no aparece tras recuperar la conexión, vuelve a intentarlo en esa conversación.
 
 ## La conversación está recuperando la conexión
 

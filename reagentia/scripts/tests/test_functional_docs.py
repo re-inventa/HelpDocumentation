@@ -148,7 +148,7 @@ class FunctionalContentTests(unittest.TestCase):
             "30 minutos",
             "no amplía ese plazo",
             "conversación original",
-            "**Iniciar conversación**",
+            "Su etiqueta depende del sitio",
             "**El acceso a esta conversación ha sido revocado.**",
             "comprobación inicial reduce abusos",
             "asistente automatizado",
@@ -164,23 +164,24 @@ class FunctionalContentTests(unittest.TestCase):
             "Desde una misma conexión",
             "Varias personas que comparten esa conexión pueden consumir el mismo cupo",
             "como máximo 10 códigos",
-            "Se ha alcanzado el límite temporal de aperturas.",
-            "No se pudo verificar el inicio; reintenta la misma petición.",
-            "La verificación del inicio está en curso; reintenta la misma petición.",
-            "La verificación del inicio está en curso.",
-            "No se pudo verificar el inicio.",
-            "debe revisar la configuración de los sitios autorizados",
+            "Completa la comprobación de inicio en el sitio.",
+            "No se pudo verificar el inicio. Completa de nuevo la comprobación en el sitio.",
+            "la persona visitante no necesita copiar ni reutilizar códigos",
             "## Límites de uso de la prueba",
             "20 mensajes por sesión",
             "6 mensajes en 60 segundos",
             "hasta 5 respuestas en curso",
             "solo una por conversación",
-            "Se ha alcanzado un límite de uso del canal.",
+            "Se ha alcanzado el límite temporal de uso.",
+            "Se ha alcanzado el límite de mensajes.",
+            "Se ha alcanzado el presupuesto de uso del chat.",
             "Hay otra respuesta en curso o se alcanzó la concurrencia del canal.",
             "deben permanecer deshabilitados",
             "ventanas de prueba controladas y autorizadas",
             "almacenamiento de la pestaña",
-            "inicialmente 30 días desde la caducidad original",
+            "matriz de navegadores",
+            "lector de pantalla",
+            "30 días después de esa caducidad",
             "no tienen un plazo máximo de eliminación garantizado",
         ):
             with self.subTest(expected=expected):
@@ -190,36 +191,45 @@ class FunctionalContentTests(unittest.TestCase):
         self.assertIn("**Deshabilitar canal**", normalized_guide)
         self.assertIn("**Revocar**", normalized_guide)
         self.assertIn("No existe una acción de borrado físico", normalized_guide)
-        self.assertIn("La conservación automática todavía no está implementada", normalized_guide)
+        self.assertIn("30 días después de esa caducidad", normalized_guide)
+        self.assertIn("Esta política debe comprobarse en el entorno", normalized_guide)
+        self.assertIn("no elimina simultáneamente todas esas copias", normalized_guide)
         self.assertIn("**una sola vez**", normalized_guide)
         self.assertIn("rótala para obtener una nueva", normalized_guide)
         self.assertIn("Una versión anterior nunca puede recuperarse", normalized_incidents)
         self.assertIn("Un asistente solo queda", assistants)
         self.assertIn("disponible fuera de la plataforma", assistants)
         for message in (
-            "La sesión ha caducado.",
+            "La sesión ha caducado. Solicita un nuevo inicio al sitio.",
             "El acceso a esta conversación ha sido revocado.",
             "El canal no está disponible.",
-            "Sesión pública no válida.",
-            "Inicio no disponible.",
-            "Chat no disponible.",
-            "El token Turnstile ya fue utilizado por otro inicio.",
-            "Se ha alcanzado el límite temporal de aperturas.",
-            "No se pudo verificar el inicio; reintenta la misma petición.",
-            "La verificación del inicio está en curso.",
+            "La sesión no es válida. Solicita un nuevo inicio al sitio.",
+            "El chat no está disponible temporalmente.",
+            "No se pudo verificar el inicio. Completa de nuevo la comprobación en el sitio.",
+            "Se ha alcanzado el límite temporal de uso.",
+            "Se ha alcanzado el límite de mensajes.",
+            "Se ha alcanzado el presupuesto de uso del chat.",
         ):
             with self.subTest(message=message):
                 self.assertIn(message, normalized_incidents)
         self.assertIn("se deshabilitó el canal o su acceso público", normalized_incidents)
-        self.assertIn("máximo de 20 mensajes de la sesión", normalized_incidents)
-        self.assertIn("ritmo de 6 mensajes en 60 segundos", normalized_incidents)
+        self.assertIn("20 mensajes de la sesión", normalized_incidents)
+        self.assertIn("6 mensajes en 60 segundos", normalized_guide)
         self.assertIn("cada canal hasta 5", normalized_incidents)
         for opening_message in (
-            "La apertura está en curso. Vuelve a intentarlo.",
-            "No se pudo confirmar la apertura. Reintenta el mismo inicio.",
+            "No se pudo confirmar la conversación. Reintenta desde esta pestaña o utiliza el contacto alternativo.",
+            "**Reintentar apertura**",
+            "**Solicitar nuevo inicio**",
         ):
             with self.subTest(opening_message=opening_message):
                 self.assertIn(opening_message, normalized_guide)
+                self.assertIn(opening_message, normalized_incidents)
+        self.assertNotIn("**Iniciar conversación**", normalized_guide)
+        self.assertNotIn("Si un enlace de chat público no se abre", normalized_incidents)
+        self.assertNotIn("Solicita un enlace nuevo", normalized_guide)
+        self.assertNotIn("antes de pedir otro código", normalized_incidents)
+        self.assertNotIn("No se pudo confirmar la apertura.", normalized_guide)
+        self.assertNotIn("Se ha alcanzado un límite de uso del canal.", normalized_guide)
         self.assertNotIn("**Límite alcanzado**", normalized_guide)
         self.assertNotIn("gestor de secretos", normalized_guide)
         self.assertNotIn("CLI" + "Proxy", normalized_guide)

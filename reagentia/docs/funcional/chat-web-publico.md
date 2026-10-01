@@ -14,6 +14,8 @@ para tráfico público general.
 
     El canal y su acceso público permanecen deshabilitados fuera de ventanas de prueba
     controladas y autorizadas. La disponibilidad general requiere la aceptación final.
+    La matriz de navegadores y las comprobaciones de teclado, foco, lector de pantalla
+    y diseño móvil siguen pendientes antes de esa apertura.
 
 ## Preparar el canal
 
@@ -25,8 +27,7 @@ preparada la configuración; el acceso general debe seguir cerrado. Define:
 - el estado del canal y del acceso público, que deben permanecer deshabilitados fuera de
   una ventana de prueba autorizada;
 - los sitios previstos para la futura inserción;
-- el perfil de límites disponible para la prueba; la conservación automática aún está
-  pendiente;
+- el perfil de límites y la política de conservación previstos para la prueba;
 - la integración que se creará cuando la prueba pueda habilitarse.
 
 En la pantalla se muestran el estado del canal, el modo de acceso, los orígenes
@@ -43,9 +44,10 @@ perfil de límites para esta prueba: 20 mensajes por sesión, 6 por minuto, hast
 respuestas simultáneas por canal y un presupuesto diario. Si aparece **Perfil actual no
 disponible para selección**, el canal conserva una referencia anterior: selecciona el
 perfil disponible para preparar una prueba nueva o consulta a la persona responsable si
-no esperabas esa configuración. La conservación automática todavía no está
-implementada; la referencia visible no permite elegir otra política ni garantiza
-una eliminación programada. Pulsa **Guardar canal**. El estado **Activo** junto con
+no esperabas esa configuración. La pantalla muestra la política prevista de 30 días
+desde la caducidad de la sesión. Su ejecución en un entorno depende de que se hayan
+aplicado la actualización y las comprobaciones operativas correspondientes; la
+pantalla no permite elegir otra política. Pulsa **Guardar canal**. El estado **Activo** junto con
 **Prueba controlada**
 solo debe usarse durante una ventana de prueba autorizada y exige marcar su
 confirmación en la pantalla. **Deshabilitar canal** permite cerrar esa ventana.
@@ -65,7 +67,7 @@ borrado físico. Si hace falta otro acceso, crea una integración nueva.
 
 En esta fase, la lista de sitios queda registrada como parte de la configuración, pero el
 acceso inicial depende de la integración autorizada. No debe interpretarse como una garantía
-de que solo esos sitios puedan presentar o reenviar un enlace.
+de que solo esos sitios puedan solicitar o entregar un inicio.
 
 La credencial recién creada o rotada solo aparece durante esa operación administrativa.
 Al cerrar el aviso o abandonar la página desaparece y no puede consultarse de nuevo en el
@@ -96,32 +98,28 @@ en curso hayan terminado. Esto no restablece la sesión ni permite continuarla.
 ## Comprobación del inicio
 
 Cuando la prueba esté habilitada, la persona visitante completa una comprobación Turnstile
-antes de recibir el código de inicio. El resultado solo se acepta para el sitio configurado
-por la organización. Esta protección reduce los inicios automatizados, pero no garantiza
-que una web pública quede libre de abuso.
+en el sitio autorizado. El asistente insertado muestra **Completa la comprobación de inicio
+en el sitio.** mientras espera. Si se rechaza, muestra **No se pudo verificar el inicio.
+Completa de nuevo la comprobación en el sitio.** Esta protección reduce los inicios
+automatizados, pero no garantiza que una web pública quede libre de abuso.
 
-Si una interrupción impide recibir la respuesta, el sitio puede repetir enseguida
-exactamente el mismo inicio mientras el código siga vigente. Esa repetición recupera el
+El sitio gestiona el código de inicio sin mostrarlo a la persona visitante. Dura 2 minutos.
+Si una interrupción impide recibir la respuesta, la integración del sitio puede repetir
+exactamente la misma petición mientras el código siga vigente. Esa repetición recupera el
 mismo código y no crea otra apertura. El sitio no debe combinar datos de intentos distintos
 ni reutilizar una comprobación Turnstile para iniciar otra conversación.
 
 Desde una misma conexión se pueden obtener como máximo 10 códigos para un mismo canal en
 cualquier periodo de 60 minutos. Varias personas que comparten esa conexión pueden consumir
-el mismo cupo. Al alcanzar el límite aparece **Se ha alcanzado el límite temporal de
-aperturas.** Espera a que avance la ventana antes de volver a solicitar acceso.
-
-Los errores temporales muestran **No se pudo verificar el inicio; reintenta la misma
-petición.** o **La verificación del inicio está en curso; reintenta la misma petición.**
-También puede aparecer la variante **La verificación del inicio está en curso.** Mantén la
-misma página y repite la acción. Si aparece **No se pudo verificar el inicio.**, completa de
-nuevo la comprobación y solicita otro inicio al sitio responsable. Si el rechazo se repite,
-el responsable debe revisar la configuración de los sitios autorizados.
+el mismo cupo. Al alcanzarlo, el sitio debe pedir que se espere antes de solicitar otro
+inicio o indicar su contacto alternativo. Las respuestas técnicas de reintento del inicio
+pertenecen a la integración; la persona visitante no necesita copiar ni reutilizar códigos.
 
 ## Abrir una conversación como visitante
 
-1. En el sitio autorizado durante una prueba, completa la comprobación de inicio y
-   pulsa **Iniciar conversación**. El sitio entrega un acceso temporal al asistente
-   insertado; no hace falta copiar un enlace ni un código.
+1. En el sitio autorizado durante una prueba, completa la comprobación y utiliza la
+   acción de inicio que ofrezca el sitio. Su etiqueta depende del sitio. Este entrega
+   el acceso temporal al asistente insertado sin pedirte copiar un enlace ni un código.
 2. El asistente abre una única conversación y muestra cuándo caduca la sesión.
 3. Escribe el mensaje y pulsa **Enviar mensaje**. La respuesta aparece progresivamente.
 4. Mientras responde, puedes pulsar **Detener respuesta**. El texto ya recibido permanece
@@ -142,11 +140,13 @@ El uso del chat también está sujeto a un presupuesto por conversación y a un 
 diario controlado, compartido por las conversaciones del chat ofrecido por la organización.
 El consumo ya registrado se comprueba al enviar cada mensaje: una
 respuesta en curso puede alcanzar el presupuesto, y los mensajes siguientes quedarán
-bloqueados. Su valoración interna no es un precio mostrado a la persona visitante. Cuando
-se agota un límite de mensajes, ritmo o presupuesto aparece
-**Se ha alcanzado un límite de uso del canal.** Espera a que termine la ventana temporal o
-utiliza la alternativa de contacto publicada por el sitio. Alcanzar el límite total de la
-sesión requiere iniciar otra cuando el sitio vuelva a ofrecer acceso.
+bloqueados. Su valoración interna no es un precio mostrado a la persona visitante.
+El asistente distingue **Se ha alcanzado el límite temporal de uso.** para el ritmo,
+**Se ha alcanzado el límite de mensajes.** para la sesión y
+**Se ha alcanzado el presupuesto de uso del chat.** para el presupuesto. Espera a que
+termine la ventana temporal o utiliza la alternativa de contacto publicada por el sitio.
+Alcanzar el límite total de la sesión requiere iniciar otra cuando el sitio vuelva a
+ofrecer acceso.
 
 Si ya hay una respuesta activa en la conversación o el canal alcanzó su concurrencia,
 aparece **Hay otra respuesta en curso o se alcanzó la concurrencia del canal.** Espera a
@@ -166,31 +166,28 @@ pero verás un aviso de que no podrás recuperar esa sesión tras recargar. Otra
 dispositivo no hereda la conversación. El asistente no inicia por su cuenta una nueva
 conversación cuando la anterior caduca o falla: solicita un inicio nuevo al sitio.
 
-Si otra petición está terminando la apertura, puede aparecer **La apertura está en curso.
-Vuelve a intentarlo.** Espera unos instantes y repite la acción. Si aparece **No se pudo
-confirmar la apertura. Reintenta el mismo inicio.**, no solicites inmediatamente otro código:
-prueba primero de nuevo desde la misma pestaña.
+Si la apertura no se confirma, el asistente puede mostrar **No se pudo confirmar la
+conversación. Reintenta desde esta pestaña o utiliza el contacto alternativo.** Usa
+**Reintentar apertura** para repetir el mismo intento. Si ya no puede completarse,
+**Solicitar nuevo inicio** pide otra comprobación al sitio. Ante un resultado incierto,
+prueba primero la apertura pendiente para evitar crear otra conversación.
 
-Cerrar la pestaña, borrar los datos del sitio o abrir el enlace en otro navegador puede
+Cerrar la pestaña, borrar los datos del sitio o abrir el asistente en otro navegador puede
 impedir la recuperación. Esta fase no ofrece una cuenta de visitante ni otro mecanismo para
 trasladar la conversación entre dispositivos.
 
 ## Caducidad, revocación e indisponibilidad
 
-- **Código de inicio no válido, caducado o revocado.** Solicita un enlace nuevo al sitio que
-  ofrece el chat.
-- **La sesión ha caducado.** La conversación ya no admite nuevas operaciones desde esa
-  sesión; solicita un nuevo inicio si el canal sigue disponible.
+- **La sesión ha caducado. Solicita un nuevo inicio al sitio.** La conversación ya no
+  admite nuevas operaciones desde esa sesión.
 - **El acceso a esta conversación ha sido revocado.** El responsable retiró el acceso a
-  esa sesión o a la integración que la habilitó. No intentes reutilizar un enlace anterior.
+  esa sesión o a la integración que la habilitó. Solicita ayuda al sitio.
 - **El canal no está disponible.** El responsable deshabilitó el canal o su acceso
   público. Usa el contacto alternativo que ofrezca el sitio.
-- **Sesión pública no válida.** Comprueba que estás en la pestaña original; si la
-  sesión se perdió, solicita un nuevo inicio cuando el canal esté disponible.
-- **Chat no disponible.** Vuelve a intentarlo más tarde o utiliza el canal de contacto que
-  el sitio responsable indique fuera del chat.
-- **Se ha alcanzado un límite de uso del canal.** Espera antes de reintentar o utiliza la
-  alternativa de contacto del sitio si necesitas continuar.
+- **La sesión no es válida. Solicita un nuevo inicio al sitio.** Comprueba que estás
+  en la pestaña original antes de solicitarlo.
+- **El chat no está disponible temporalmente.** Vuelve a intentarlo más tarde o utiliza
+  el contacto alternativo del sitio.
 - **Hay otra respuesta en curso o se alcanzó la concurrencia del canal.** Espera a que la
   respuesta activa termine antes de enviar otra consulta.
 
@@ -201,16 +198,31 @@ una web pública quede protegida frente a automatización o abuso.
 
 El chat muestra una respuesta generada por un asistente automatizado. Comprueba la
 información importante antes de actuar y no introduzcas contraseñas, claves, datos bancarios
-ni otra información sensible. La sesión de acceso dura 30 minutos; conservar datos
-durante más tiempo no permite volver a la conversación tras caducar. Se ha acordado
-una limpieza del almacenamiento principal configurable, inicialmente 30 días desde
-la caducidad original de la sesión, para contenido y metadatos individuales. Su
-implementación y periodicidad aún deben verificarse. Las copias operativas y los
-respaldos de proveedores siguen sus propias políticas; algunas categorías no tienen
-un plazo máximo de eliminación garantizado. No se promete un borrado global a los
-30 días.
+ni otra información sensible.
 Deshabilitar el canal o perder el acceso no elimina automáticamente el historial ya
 conservado ni retira información que el navegador haya mostrado antes.
+
+## Conservación de conversaciones
+
+La sesión permite acceder al chat durante 30 minutos desde su apertura. Recargar,
+renovar la lectura, revocar el acceso o reintentar una petición no cambia esa fecha.
+Una vez caducada, conservar datos durante más tiempo no permite volver a entrar en la
+conversación con la misma sesión.
+
+La política prevista para el almacenamiento principal elimina juntos los mensajes,
+resúmenes, resultados y datos individuales de la conversación a partir de 30 días
+después de esa caducidad. El proceso se programa diariamente; puede tardar más si hay
+una respuesta o una comprobación de consumo pendiente, si falla la ejecución o si
+hay una incidencia operativa. La eliminación no ocurre necesariamente a una hora
+exacta. Esta política debe comprobarse en el entorno antes de presentarse como
+activa para sus visitantes.
+
+El proveedor que ejecuta el chat conserva algunas copias temporales durante un plazo
+aproximado de 28 a 30 días desde que se escriben. Otros registros técnicos y copias
+de respaldo no tienen un plazo máximo de eliminación garantizado. Los respaldos
+propios siguen su política separada; al restaurarlos se debe volver a aplicar la
+limpieza vencida antes de permitir el acceso. Eliminar el historial del
+almacenamiento principal no elimina simultáneamente todas esas copias.
 
 Consulta [Incidencias y recuperación](incidencias.md#chat-web-publico) si no puedes abrir o
 recuperar la sesión.
