@@ -1217,60 +1217,78 @@ antes de volver a intentarlo y solicita apoyo operativo. La credencial nueva apa
 una sola vez tras crear o rotar. Si se cierra el aviso o se pierde la respuesta,
 actualiza el estado: rota una integración existente para recibir otra credencial, o
 repite el alta si no aparece. Una versión anterior nunca puede recuperarse.</p>
-<p>Si un enlace de chat público no se abre, comprueba primero si han pasado más de 2 minutos
-desde que se generó. En ese caso solicita otro al sitio responsable. Si la apertura quedó
-interrumpida, vuelve a intentarlo desde la misma pestaña: el navegador puede recuperar la
-misma conversación sin ampliar su caducidad.</p>
+<p>Si el asistente insertado muestra <strong>Reintentar apertura</strong>, úsalo desde la misma
+pestaña. Si el intento ya no puede completarse, utiliza <strong>Solicitar nuevo inicio</strong>
+y completa la comprobación que ofrezca el sitio. Si el asistente ni siquiera carga,
+recarga la página o usa el contacto alternativo del sitio. El código que gestiona
+la integración caduca a los 2 minutos, pero no se muestra a la persona visitante
+ni requiere copiar un enlace. El navegador puede recuperar la misma conversación
+sin ampliar su caducidad.</p>
 <p>Una sesión caduca 30 minutos después de su primera apertura. Recargar o enviar mensajes no
 reinicia el plazo. Si se borran los datos del sitio, se cierra la pestaña o se cambia de
 navegador, la sesión puede dejar de ser recuperable.
 La conservación posterior del historial no amplía ese acceso. La
 <a href="../chat-web-publico/#conservacion-de-conversaciones">política de conservación</a>
 distingue el almacenamiento principal de las copias del proveedor y los respaldos.</p>
-<p><strong>La sesión ha caducado.</strong> indica que terminó su plazo. <strong>El acceso a esta conversación
-ha sido revocado.</strong> indica que se retiró el acceso de esa sesión o de la integración que
-la habilitó. <strong>El canal no está disponible.</strong>
-indica que se deshabilitó el canal o su acceso público. <strong>Sesión pública no válida.</strong>
-puede aparecer si se perdió el acceso guardado en la pestaña. Los códigos de inicio
-inválidos y <strong>Inicio no disponible.</strong> siguen requiriendo un nuevo acceso del sitio.
-<strong>Chat no disponible.</strong> señala una indisponibilidad temporal. Si el acceso se retiró,
-un enlace anterior no lo restablece; usa el contacto alternativo del sitio.</p>
+<p><strong>La sesión ha caducado. Solicita un nuevo inicio al sitio.</strong> indica que terminó su
+plazo. <strong>El acceso a esta conversación ha sido revocado.</strong> indica que se retiró el
+acceso de la sesión o de su integración. <strong>El canal no está disponible.</strong> indica que
+se deshabilitó el canal o su acceso público. <strong>La sesión no es válida. Solicita un
+nuevo inicio al sitio.</strong> puede aparecer si se perdió el acceso guardado en la
+pestaña. <strong>El chat no está disponible temporalmente.</strong> señala una indisponibilidad
+temporal. Dentro de una conversación abierta el aviso de sesión puede abreviarse a
+<strong>La sesión no es válida.</strong>, y al enviar un mensaje puede aparecer <strong>El servicio de
+chat no está disponible temporalmente.</strong> Si el acceso se retiró, utiliza el contacto
+alternativo del sitio.</p>
+<p><strong>El canal no está disponible en este sitio.</strong> puede indicar que el asistente se
+abrió sin su página anfitriona o que la prueba no está habilitada allí. Vuelve al
+sitio que ofrece el chat; si el aviso persiste, usa su contacto alternativo.</p>
 <p>Al deshabilitar el canal o revocar una integración, no se aceptan nuevos mensajes ni
 renovaciones en las sesiones afectadas. Una respuesta que ya había comenzado puede
 terminar y mostrarse después, con consumo dentro de los límites configurados. Espera a
 que se cierre antes de interpretar su contenido como definitivo. La desactivación no
 elimina automáticamente el historial ni retira texto que ya se mostró.</p>
-<p>Si la pantalla indica que la apertura está en curso o no pudo confirmarla, espera unos
-instantes y repite el mismo inicio desde la misma pestaña antes de pedir otro código.
-Esta fase de prueba todavía no define una alternativa de contacto dentro del propio chat.</p>
-<p>Si aparece <strong>No se pudo verificar el inicio; reintenta la misma petición.</strong>, <strong>La
-verificación del inicio está en curso; reintenta la misma petición.</strong> o <strong>La verificación
-del inicio está en curso.</strong>, mantén la misma página y repite enseguida la acción. Mientras
-el código siga vigente, una repetición idéntica recupera el mismo código y no crea otra
-apertura. Si aparece <strong>No se pudo verificar el inicio.</strong>, completa otra comprobación
-Turnstile y solicita un inicio nuevo. Si el rechazo se repite, pide al responsable del sitio
-que revise la configuración de los sitios autorizados.</p>
-<p>El mensaje <strong>El token Turnstile ya fue utilizado por otro inicio.</strong> indica que el sitio
-intentó reutilizar una comprobación anterior. Reinicia la comprobación; no reutilices un
-código ni un enlace anterior. Si aparece <strong>Se ha alcanzado el límite temporal de
-aperturas.</strong>, espera antes de solicitar otro acceso. El límite permite como máximo 10
-códigos para el mismo canal desde una misma conexión en cualquier periodo de 60 minutos.
-Varias personas que comparten esa conexión pueden consumir el mismo cupo.</p>
-<p>Si aparece <strong>Se ha alcanzado un límite de uso del canal.</strong>, puede haberse alcanzado el
-máximo de 20 mensajes de la sesión, el ritmo de 6 mensajes en 60 segundos o el presupuesto
-de la conversación o del día. El presupuesto diario se comparte con otras conversaciones
-del chat ofrecido por la organización. Espera antes de reintentar. Si la sesión agotó sus
-mensajes, solicita un nuevo acceso cuando esté disponible; si el aviso continúa, usa el
-contacto alternativo que el sitio publique fuera del chat.</p>
+<p>Si el asistente insertado indica que el almacenamiento de la pestaña está bloqueado,
+puedes continuar en esa página, pero la recarga impedirá recuperar la sesión. No se
+abrirá otra conversación automáticamente: solicita un inicio nuevo al sitio si lo
+necesitas. Si se agota un límite o el servicio no está disponible, utiliza el contacto
+alternativo publicado por el sitio.</p>
+<p>Si aparece <strong>No se pudo confirmar la conversación. Reintenta desde esta pestaña o
+utiliza el contacto alternativo.</strong>, usa primero <strong>Reintentar apertura</strong> desde la misma
+pestaña. El asistente conserva el intento pendiente. <strong>Solicitar nuevo inicio</strong> pide
+otra comprobación al sitio cuando el intento anterior ya no sirve.</p>
+<p>Si aparece <strong>No se pudo verificar el inicio. Completa de nuevo la comprobación en el
+sitio.</strong>, repite la comprobación Turnstile. Si el rechazo se repite, pide al
+responsable del sitio que revise la configuración. La integración debe gestionar
+por su cuenta los reintentos técnicos del inicio sin pedir al visitante un código.
+Desde una misma conexión se pueden obtener como máximo 10 inicios para un canal en
+60 minutos; varias personas que comparten esa conexión pueden consumir el cupo.
+Las respuestas técnicas de la petición de inicio, incluidas <strong>Inicio no disponible.</strong>
+y <strong>El token Turnstile ya fue utilizado por otro inicio.</strong>, corresponden al servidor
+del sitio. La especificación técnica de integración del canal documenta la petición,
+su idempotencia y las condiciones para repetir el mismo intento; no son mensajes
+que deba buscar la persona visitante en el asistente insertado.</p>
+<p><strong>Se ha alcanzado el límite temporal de uso.</strong> corresponde al ritmo de 6 mensajes
+en 60 segundos; espera antes de reintentar. <strong>Se ha alcanzado el límite de mensajes.</strong>
+indica que se agotaron los 20 mensajes de la sesión y requiere un inicio nuevo cuando
+esté disponible. <strong>Se ha alcanzado el presupuesto de uso del chat.</strong> indica que se
+agotó el presupuesto de la conversación o el diario compartido. Si el aviso persiste,
+usa el contacto alternativo del sitio. Durante la apertura también puede aparecer
+<strong>Se ha alcanzado el límite de mensajes de la sesión.</strong></p>
 <p>Si aparece <strong>Hay otra respuesta en curso o se alcanzó la concurrencia del canal.</strong>, espera
 a que termine la respuesta actual. Cada conversación admite una respuesta en curso y cada
-canal hasta 5. No repitas el mensaje mientras siga activa la respuesta anterior.</p>
+canal hasta 5. Durante la apertura, el aviso puede decir <strong>Hay otra respuesta en curso o
+se alcanzó el límite de respuestas simultáneas.</strong> No repitas el mensaje mientras siga
+activa la respuesta anterior.</p>
 <p>Si aparece <strong>No se pudo enviar el mensaje. Crea un nuevo envío para reintentarlo.</strong>, el
 intento fue rechazado: envía el texto otra vez como un mensaje nuevo cuando el chat vuelva a
-estar disponible. Si aparece <strong>No se pudo confirmar el envío. Puedes volver a intentarlo.</strong>,
-comprueba primero el historial desde la misma pestaña. La confirmación puede llegar después;
-si el mensaje no aparece tras recuperar la conexión, vuelve a intentarlo en esa
-conversación.</p>
+estar disponible. Si aparece <strong>Comprueba el historial y reintenta el mismo mensaje desde
+esta pestaña.</strong>, revisa primero el historial. La confirmación puede llegar después; si
+el mensaje no aparece tras recuperar la conexión, vuelve a intentarlo en esa conversación.
+Si aparece <strong>Hay un envío sin confirmar. Reintenta primero el mismo mensaje o recarga la
+conversación.</strong>, conserva ese texto y comprueba el historial antes de enviar otro.
+<strong>No se pudo renovar la lectura. Vuelve a intentarlo más tarde.</strong> indica que no se
+pudo recuperar el acceso temporal a la respuesta; mantén la pestaña y reintenta después.</p>
 <h2 id="la-conversacion-esta-recuperando-la-conexion">La conversación está recuperando la conexión<a class="headerlink" href="#la-conversacion-esta-recuperando-la-conexion" title="Permanent link">&para;</a></h2>
 <p>Espera a que el estado deje de mostrar <strong>Sin conexión</strong>, <strong>Recuperando conexión</strong> o <strong>Intentando recuperarla</strong>. El chat trata de reconectarse automáticamente. Antes de repetir un mensaje, comprueba si aparece en el historial recuperado.</p>
 <h2 id="la-conversacion-esta-conciliando-el-ultimo-turno">La conversación está conciliando el último turno<a class="headerlink" href="#la-conversacion-esta-conciliando-el-ultimo-turno" title="Permanent link">&para;</a></h2>
