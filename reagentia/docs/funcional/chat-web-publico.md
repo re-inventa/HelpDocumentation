@@ -6,15 +6,16 @@ habilitarse expresamente y no supone que el chat esté disponible para cualquier
 para tráfico público general.
 
 !!! warning "Disponibilidad limitada"
-    Esta fase todavía no incluye un plugin para WordPress o Elementor, shortcode ni burbuja
-    flotante. Ya existe una pantalla de administración del canal, pero la fase todavía no
-    incorpora todas las protecciones necesarias para abrir el canal al público. El inicio preparado
-    incluye protección contra automatización mediante una comprobación, pero no habilita por
-    sí solo el servicio.
+    El asistente insertado en una página se está validando en un sitio de prueba.
+    Todavía no hay plugin para WordPress o Elementor, shortcode ni burbuja flotante.
+    La existencia del asistente insertable y de la pantalla de administración no abre
+    el servicio al tráfico público general. La comprobación inicial reduce abusos,
+    pero no garantiza que una web pública quede libre de ellos.
 
-    El canal y su acceso público deben permanecer deshabilitados hasta que el ciclo completo
-    de respuestas y control de límites esté desplegado y validado. Mientras tanto no se
-    deben emitir enlaces ni iniciar conversaciones de prueba.
+    El canal y su acceso público permanecen deshabilitados fuera de ventanas de prueba
+    controladas y autorizadas. La disponibilidad general requiere la aceptación final.
+    La matriz de navegadores y las comprobaciones de teclado, foco, lector de pantalla
+    y diseño móvil siguen pendientes antes de esa apertura.
 
 ## Preparar el canal
 
@@ -66,7 +67,7 @@ borrado físico. Si hace falta otro acceso, crea una integración nueva.
 
 En esta fase, la lista de sitios queda registrada como parte de la configuración, pero el
 acceso inicial depende de la integración autorizada. No debe interpretarse como una garantía
-de que solo esos sitios puedan presentar o reenviar un enlace.
+de que solo esos sitios puedan solicitar o entregar un inicio.
 
 La credencial recién creada o rotada solo aparece durante esa operación administrativa.
 Al cerrar el aviso o abandonar la página desaparece y no puede consultarse de nuevo en el
@@ -97,39 +98,52 @@ en curso hayan terminado. Esto no restablece la sesión ni permite continuarla.
 ## Comprobación del inicio
 
 Cuando la prueba esté habilitada, la persona visitante completa una comprobación Turnstile
-antes de recibir el código de inicio. El resultado solo se acepta para el sitio configurado
-por la organización. Esta protección reduce los inicios automatizados, pero no garantiza
-que una web pública quede libre de abuso.
+en el sitio autorizado. El asistente insertado muestra **Completa la comprobación de inicio
+en el sitio.** mientras espera. Si se rechaza, muestra **No se pudo verificar el inicio.
+Completa de nuevo la comprobación en el sitio.** Esta protección reduce los inicios
+automatizados, pero no garantiza que una web pública quede libre de abuso.
 
-Si una interrupción impide recibir la respuesta, el sitio puede repetir enseguida
-exactamente el mismo inicio mientras el código siga vigente. Esa repetición recupera el
+El sitio gestiona el código de inicio sin mostrarlo a la persona visitante. Dura 2 minutos.
+Si una interrupción impide recibir la respuesta, la integración del sitio puede repetir
+exactamente la misma petición mientras el código siga vigente. Esa repetición recupera el
 mismo código y no crea otra apertura. El sitio no debe combinar datos de intentos distintos
 ni reutilizar una comprobación Turnstile para iniciar otra conversación.
 
 Desde una misma conexión se pueden obtener como máximo 10 códigos para un mismo canal en
 cualquier periodo de 60 minutos. Varias personas que comparten esa conexión pueden consumir
-el mismo cupo. Al alcanzar el límite aparece **Se ha alcanzado el límite temporal de
-aperturas.** Espera a que avance la ventana antes de volver a solicitar acceso.
+el mismo cupo. Al alcanzarlo, el sitio debe pedir que se espere antes de solicitar otro
+inicio o indicar su contacto alternativo. Las respuestas técnicas de reintento del inicio
+pertenecen a la integración; la persona visitante no necesita copiar ni reutilizar códigos.
 
-Los errores temporales muestran **No se pudo verificar el inicio; reintenta la misma
-petición.** o **La verificación del inicio está en curso; reintenta la misma petición.**
-También puede aparecer la variante **La verificación del inicio está en curso.** Mantén la
-misma página y repite la acción. Si aparece **No se pudo verificar el inicio.**, completa de
-nuevo la comprobación y solicita otro inicio al sitio responsable. Si el rechazo se repite,
-el responsable debe revisar la configuración de los sitios autorizados.
+La petición de inicio del sitio puede responder **Inicio no disponible.** o
+**El token Turnstile ya fue utilizado por otro inicio.** También puede señalar que la
+verificación está en curso o que no pudo confirmarse. Esos mensajes llegan a la
+integración, no son el catálogo de avisos visibles del asistente insertado. La
+especificación técnica de integración del canal documenta la petición, su idempotencia
+y las condiciones de reintento; el sitio debe conservar el mismo intento cuando el
+resultado sea incierto.
 
 ## Abrir una conversación como visitante
 
-1. Accede al enlace temporal proporcionado por el sitio autorizado. También puedes
-   introducir el código en la pantalla **Chat público**.
-2. El código debe utilizarse en los 2 minutos siguientes a su emisión.
-3. La pantalla abre una única conversación y muestra hasta cuándo estará activa la sesión.
-4. Escribe el mensaje y pulsa **Enviar mensaje**. La respuesta aparece progresivamente.
-5. Mientras responde, puedes pulsar **Detener respuesta**. El texto ya recibido permanece
+1. En el sitio autorizado durante una prueba, completa la comprobación y utiliza la
+   acción de inicio que ofrezca el sitio. Su etiqueta depende del sitio. Este entrega
+   el acceso temporal al asistente insertado sin pedirte copiar un enlace ni un código.
+2. El asistente abre una única conversación y muestra cuándo caduca la sesión.
+3. Escribe el mensaje y pulsa **Enviar mensaje**. La respuesta aparece progresivamente.
+4. Mientras responde, puedes pulsar **Detener respuesta**. El texto ya recibido permanece
    visible.
 
 La sesión dura 30 minutos desde la primera apertura. Enviar mensajes, recargar o recuperar
 la conexión no amplía ese plazo.
+
+### Pantalla autónoma de pruebas
+
+En un entorno de prueba controlada puede estar disponible una pantalla separada
+**Chat público**, con el campo **Código de inicio** y la acción **Abrir sesión**.
+Solo se utiliza cuando la integración autorizada entrega expresamente un código
+temporal para esta prueba; el código caduca a los 2 minutos. Esta pantalla no forma
+parte del recorrido del asistente insertado ni abre el servicio al público general.
+Si no recibiste un código para una prueba concreta, inicia desde el sitio autorizado.
 
 ## Límites de uso de la prueba
 
@@ -143,16 +157,21 @@ El uso del chat también está sujeto a un presupuesto por conversación y a un 
 diario controlado, compartido por las conversaciones del chat ofrecido por la organización.
 El consumo ya registrado se comprueba al enviar cada mensaje: una
 respuesta en curso puede alcanzar el presupuesto, y los mensajes siguientes quedarán
-bloqueados. Su valoración interna no es un precio mostrado a la persona visitante. Cuando
-se agota un límite de mensajes, ritmo o presupuesto aparece
-**Se ha alcanzado un límite de uso del canal.** Espera a que termine la ventana temporal o
-utiliza la alternativa de contacto publicada por el sitio. Alcanzar el límite total de la
-sesión requiere iniciar otra cuando el sitio vuelva a ofrecer acceso.
+bloqueados. Su valoración interna no es un precio mostrado a la persona visitante.
+El asistente distingue **Se ha alcanzado el límite temporal de uso.** para el ritmo,
+**Se ha alcanzado el límite de mensajes.** para la sesión y
+**Se ha alcanzado el presupuesto de uso del chat.** para el presupuesto. Espera a que
+termine la ventana temporal o utiliza la alternativa de contacto publicada por el sitio.
+Alcanzar el límite total de la sesión requiere iniciar otra cuando el sitio vuelva a
+ofrecer acceso. Durante la apertura, el aviso de mensajes puede usar la variante
+**Se ha alcanzado el límite de mensajes de la sesión.**
 
 Si ya hay una respuesta activa en la conversación o el canal alcanzó su concurrencia,
 aparece **Hay otra respuesta en curso o se alcanzó la concurrencia del canal.** Espera a
 que finalice la respuesta y vuelve a intentarlo. Repetir inmediatamente el envío no amplía
-los límites ni abre una segunda respuesta para la misma conversación.
+los límites ni abre una segunda respuesta para la misma conversación. Durante la apertura,
+el aviso usa **Hay otra respuesta en curso o se alcanzó el límite de respuestas
+simultáneas.**
 
 ## Recarga y recuperación
 
@@ -161,31 +180,39 @@ conversación. Si la apertura o una respuesta se interrumpe, recarga la página 
 misma apertura desde esa pestaña. La recuperación mantiene la conversación original; no
 crea otra ni reinicia su caducidad.
 
-Si otra petición está terminando la apertura, puede aparecer **La apertura está en curso.
-Vuelve a intentarlo.** Espera unos instantes y repite la acción. Si aparece **No se pudo
-confirmar la apertura. Reintenta el mismo inicio.**, no solicites inmediatamente otro código:
-prueba primero de nuevo desde la misma pestaña.
+El asistente insertado separa los datos de cada chat y sitio. Si el navegador bloquea el
+almacenamiento de la pestaña, puedes conversar mientras mantengas la página abierta,
+pero verás un aviso de que no podrás recuperar esa sesión tras recargar. Otra pestaña o
+dispositivo no hereda la conversación. El asistente no inicia por su cuenta una nueva
+conversación cuando la anterior caduca o falla: solicita un inicio nuevo al sitio.
 
-Cerrar la pestaña, borrar los datos del sitio o abrir el enlace en otro navegador puede
+Si la apertura no se confirma, el asistente puede mostrar **No se pudo confirmar la
+conversación. Reintenta desde esta pestaña o utiliza el contacto alternativo.** Usa
+**Reintentar apertura** para repetir el mismo intento. Si ya no puede completarse,
+**Solicitar nuevo inicio** pide otra comprobación al sitio. Ante un resultado incierto,
+prueba primero la apertura pendiente para evitar crear otra conversación.
+
+Cerrar la pestaña, borrar los datos del sitio o abrir el asistente en otro navegador puede
 impedir la recuperación. Esta fase no ofrece una cuenta de visitante ni otro mecanismo para
 trasladar la conversación entre dispositivos.
 
 ## Caducidad, revocación e indisponibilidad
 
-- **Código de inicio no válido, caducado o revocado.** Solicita un enlace nuevo al sitio que
-  ofrece el chat.
-- **La sesión ha caducado.** La conversación ya no admite nuevas operaciones desde esa
-  sesión; solicita un nuevo inicio si el canal sigue disponible.
+- **La sesión ha caducado. Solicita un nuevo inicio al sitio.** La conversación ya no
+  admite nuevas operaciones desde esa sesión.
 - **El acceso a esta conversación ha sido revocado.** El responsable retiró el acceso a
-  esa sesión o a la integración que la habilitó. No intentes reutilizar un enlace anterior.
+  esa sesión o a la integración que la habilitó. Solicita ayuda al sitio.
 - **El canal no está disponible.** El responsable deshabilitó el canal o su acceso
   público. Usa el contacto alternativo que ofrezca el sitio.
-- **Sesión pública no válida.** Comprueba que estás en la pestaña original; si la
-  sesión se perdió, solicita un nuevo inicio cuando el canal esté disponible.
-- **Chat no disponible.** Vuelve a intentarlo más tarde o utiliza el canal de contacto que
-  el sitio responsable indique fuera del chat.
-- **Se ha alcanzado un límite de uso del canal.** Espera antes de reintentar o utiliza la
-  alternativa de contacto del sitio si necesitas continuar.
+- **La sesión no es válida. Solicita un nuevo inicio al sitio.** Comprueba que estás
+  en la pestaña original antes de solicitarlo. Dentro de una conversación ya abierta,
+  el aviso puede abreviarse a **La sesión no es válida.**
+- **El chat no está disponible temporalmente.** Vuelve a intentarlo más tarde o utiliza
+  el contacto alternativo del sitio. Al enviar un mensaje puede aparecer
+  **El servicio de chat no está disponible temporalmente.**
+- **El canal no está disponible en este sitio.** Comprueba que abriste el asistente desde
+  el sitio autorizado y dentro de una prueba habilitada; si persiste, utiliza su
+  contacto alternativo.
 - **Hay otra respuesta en curso o se alcanzó la concurrencia del canal.** Espera a que la
   respuesta activa termine antes de enviar otra consulta.
 

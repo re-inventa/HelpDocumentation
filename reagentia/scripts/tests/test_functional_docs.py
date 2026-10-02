@@ -136,11 +136,12 @@ class FunctionalContentTests(unittest.TestCase):
         self.assertIn("incluso después de usar una representación resumida", incidents)
         self.assertNotIn("Acorta el mensaje actual", incidents)
 
-    def test_public_chat_guide_describes_only_the_controlled_first_phase(self):
+    def test_public_chat_guide_describes_the_controlled_widget(self):
         guide = (ROOT / "docs" / "funcional" / "chat-web-publico.md").read_text(encoding="utf-8")
         assistants = (ROOT / "docs" / "funcional" / "asistentes.md").read_text(encoding="utf-8")
         incidents = (ROOT / "docs" / "funcional" / "incidencias.md").read_text(encoding="utf-8")
         normalized_guide = " ".join(guide.split())
+        normalized_assistants = " ".join(assistants.split())
         normalized_incidents = " ".join(incidents.split())
         for expected in (
             "# Chat web público en pruebas controladas",
@@ -148,9 +149,9 @@ class FunctionalContentTests(unittest.TestCase):
             "30 minutos",
             "no amplía ese plazo",
             "conversación original",
-            "**Chat público**",
+            "Su etiqueta depende del sitio",
             "**El acceso a esta conversación ha sido revocado.**",
-            "protección contra automatización",
+            "comprobación inicial reduce abusos",
             "asistente automatizado",
             "El estado del canal y el acceso público son controles distintos",
             "Deshabilitar solo el acceso público mantiene activo el canal",
@@ -164,25 +165,37 @@ class FunctionalContentTests(unittest.TestCase):
             "Desde una misma conexión",
             "Varias personas que comparten esa conexión pueden consumir el mismo cupo",
             "como máximo 10 códigos",
-            "Se ha alcanzado el límite temporal de aperturas.",
-            "No se pudo verificar el inicio; reintenta la misma petición.",
-            "La verificación del inicio está en curso; reintenta la misma petición.",
-            "La verificación del inicio está en curso.",
-            "No se pudo verificar el inicio.",
-            "debe revisar la configuración de los sitios autorizados",
+            "Completa la comprobación de inicio en el sitio.",
+            "No se pudo verificar el inicio. Completa de nuevo la comprobación en el sitio.",
+            "la persona visitante no necesita copiar ni reutilizar códigos",
+            "especificación técnica de integración del canal",
+            "### Pantalla autónoma de pruebas",
+            "**Código de inicio**",
             "## Límites de uso de la prueba",
             "20 mensajes por sesión",
             "6 mensajes en 60 segundos",
             "hasta 5 respuestas en curso",
             "solo una por conversación",
-            "Se ha alcanzado un límite de uso del canal.",
+            "Se ha alcanzado el límite temporal de uso.",
+            "Se ha alcanzado el límite de mensajes.",
+            "Se ha alcanzado el límite de mensajes de la sesión.",
+            "Se ha alcanzado el presupuesto de uso del chat.",
             "Hay otra respuesta en curso o se alcanzó la concurrencia del canal.",
+            "Hay otra respuesta en curso o se alcanzó el límite de respuestas simultáneas.",
+            "La sesión no es válida.",
+            "El servicio de chat no está disponible temporalmente.",
+            "El canal no está disponible en este sitio.",
             "deben permanecer deshabilitados",
-            "no se deben emitir enlaces ni iniciar conversaciones de prueba",
+            "ventanas de prueba controladas y autorizadas",
+            "almacenamiento de la pestaña",
+            "matriz de navegadores",
+            "lector de pantalla",
+            "30 días después de esa caducidad",
+            "no tienen un plazo máximo de eliminación garantizado",
         ):
             with self.subTest(expected=expected):
                 self.assertIn(expected, normalized_guide)
-        self.assertIn("todavía no incluye un plugin", normalized_guide)
+        self.assertIn("Todavía no hay plugin", normalized_guide)
         self.assertIn("Asistentes → Configurar canal público", normalized_guide)
         self.assertIn("**Deshabilitar canal**", normalized_guide)
         self.assertIn("**Revocar**", normalized_guide)
@@ -195,30 +208,47 @@ class FunctionalContentTests(unittest.TestCase):
         self.assertIn("Una versión anterior nunca puede recuperarse", normalized_incidents)
         self.assertIn("Un asistente solo queda", assistants)
         self.assertIn("disponible fuera de la plataforma", assistants)
+        self.assertIn("El asistente insertado se valida en un sitio de prueba", normalized_assistants)
+        self.assertNotIn("todavía no incluye widget empotrado", normalized_assistants)
         for message in (
-            "La sesión ha caducado.",
+            "La sesión ha caducado. Solicita un nuevo inicio al sitio.",
             "El acceso a esta conversación ha sido revocado.",
             "El canal no está disponible.",
-            "Sesión pública no válida.",
-            "Inicio no disponible.",
-            "Chat no disponible.",
-            "El token Turnstile ya fue utilizado por otro inicio.",
-            "Se ha alcanzado el límite temporal de aperturas.",
-            "No se pudo verificar el inicio; reintenta la misma petición.",
-            "La verificación del inicio está en curso.",
+            "La sesión no es válida. Solicita un nuevo inicio al sitio.",
+            "El chat no está disponible temporalmente.",
+            "No se pudo verificar el inicio. Completa de nuevo la comprobación en el sitio.",
+            "Se ha alcanzado el límite temporal de uso.",
+            "Se ha alcanzado el límite de mensajes.",
+            "Se ha alcanzado el límite de mensajes de la sesión.",
+            "Se ha alcanzado el presupuesto de uso del chat.",
+            "Hay otra respuesta en curso o se alcanzó el límite de respuestas simultáneas.",
+            "La sesión no es válida.",
+            "El servicio de chat no está disponible temporalmente.",
+            "El canal no está disponible en este sitio.",
+            "Hay un envío sin confirmar. Reintenta primero el mismo mensaje o recarga la conversación.",
+            "No se pudo renovar la lectura. Vuelve a intentarlo más tarde.",
+            "especificación técnica de integración del canal",
         ):
             with self.subTest(message=message):
                 self.assertIn(message, normalized_incidents)
         self.assertIn("se deshabilitó el canal o su acceso público", normalized_incidents)
-        self.assertIn("máximo de 20 mensajes de la sesión", normalized_incidents)
-        self.assertIn("ritmo de 6 mensajes en 60 segundos", normalized_incidents)
+        self.assertIn("20 mensajes de la sesión", normalized_incidents)
+        self.assertIn("6 mensajes en 60 segundos", normalized_guide)
         self.assertIn("cada canal hasta 5", normalized_incidents)
         for opening_message in (
-            "La apertura está en curso. Vuelve a intentarlo.",
-            "No se pudo confirmar la apertura. Reintenta el mismo inicio.",
+            "No se pudo confirmar la conversación. Reintenta desde esta pestaña o utiliza el contacto alternativo.",
+            "**Reintentar apertura**",
+            "**Solicitar nuevo inicio**",
         ):
             with self.subTest(opening_message=opening_message):
                 self.assertIn(opening_message, normalized_guide)
+                self.assertIn(opening_message, normalized_incidents)
+        self.assertNotIn("**Iniciar conversación**", normalized_guide)
+        self.assertNotIn("Si un enlace de chat público no se abre", normalized_incidents)
+        self.assertNotIn("Solicita un enlace nuevo", normalized_guide)
+        self.assertNotIn("antes de pedir otro código", normalized_incidents)
+        self.assertNotIn("No se pudo confirmar la apertura.", normalized_guide)
+        self.assertNotIn("Se ha alcanzado un límite de uso del canal.", normalized_guide)
         self.assertNotIn("**Límite alcanzado**", normalized_guide)
         self.assertNotIn("gestor de secretos", normalized_guide)
         self.assertNotIn("CLI" + "Proxy", normalized_guide)
