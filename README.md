@@ -2,8 +2,10 @@
 
 Este repositorio mantiene dos zonas funcionales públicas e independientes:
 
-- ReAuditIA: <https://re-inventa.github.io/HelpDocumentation/>
-- Reagentia: <https://re-inventa.github.io/HelpDocumentation/reagentia/>
+- ReAuditIA: <https://docs.re-inventa.es/reauditia/>
+- Reagentia: <https://docs.re-inventa.es/reagentia/>
+
+La raíz <https://docs.re-inventa.es/> es una entrada neutral. Las dos guías mantienen navegación, búsqueda y contenido independientes.
 
 Ambas se escriben en Markdown y se construyen con Material for MkDocs. La documentación técnica permanece en los repositorios de código y no se publica aquí.
 
@@ -65,8 +67,11 @@ La previsualización es local y no publica contenido.
 - Una PR exclusiva del portal, sin PR de producto asociada, debe declarar `Source-PR: none`.
 - Un `push` a `main` publica únicamente las zonas afectadas en `gh-pages`.
 - Un `repository_dispatch` válido vuelve a publicar la zona funcional ya fusionada que corresponda.
-- La publicación de ReAuditIA conserva `/reagentia/`; la de Reagentia conserva la raíz y cualquier `CNAME`.
+- La publicación de ReAuditIA conserva `/reagentia/`; la de Reagentia conserva `/reauditia/`, la entrada raíz, las redirecciones y cualquier `CNAME`.
+- Si `gh-pages/CNAME` existe, debe contener exactamente `docs.re-inventa.es`; el workflow lo conserva y valida, pero no lo crea antes de la activación coordinada.
 - La issue del portal se referencia con `Refs` y solo se cierra después de que el smoke público confirme la publicación.
+
+La activación y reversión del dominio personalizado están descritas en [docs/custom-domain-runbook.md](docs/custom-domain-runbook.md).
 
 ## Reglas de contenido público
 
@@ -77,7 +82,7 @@ La previsualización es local y no publica contenido.
 
 ## Compatibilidad con la publicación anterior
 
-Las rutas, anclas y recursos públicos que deben seguir funcionando se controlan en `reauditia/scripts/validate_routes.py`. Se retiran de forma intencionada los recursos internos generados por Sphinx, como `_sources/`, `.doctrees/`, `.buildinfo`, `objects.inv`, `searchindex.js` y sus ficheros de tema; no forman parte del contrato público.
+Las rutas, anclas y recursos públicos de ReAuditIA se controlan en `reauditia/scripts/validate_routes.py`. Tras mover la guía a `/reauditia/`, las páginas profundas anteriores se conservan como redirecciones que mantienen la consulta y el ancla. Se retiran de forma intencionada los recursos internos generados por Sphinx, como `_sources/`, `.doctrees/`, `.buildinfo`, `objects.inv`, `searchindex.js` y sus ficheros de tema; no forman parte del contrato público.
 
 Si hay que bloquear un nuevo nombre interno o de cliente, genera su huella con:
 

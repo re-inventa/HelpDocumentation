@@ -13,7 +13,12 @@ REAUDITIA_PREFIXES = ("reauditia/",)
 REAGENTIA_PREFIXES = ("reagentia/",)
 SHARED_FILES = {
     ".github/workflows/push_and_publish_to_gh.yaml",
+    "docs/custom-domain-runbook.md",
+    "portal/404.html",
+    "portal/index.html",
+    "scripts/build_portal_root.py",
     "scripts/detect_documentation_changes.py",
+    "scripts/prepare_publication.py",
     "scripts/validate_publication_request.py",
     "scripts/smoke_publication.py",
 }
