@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/favicon.ico">
+  <title>Página no encontrada</title>
+  <style>
+    body { margin: 0; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f7f7f8; color: #182033; }
+    main { max-width: 42rem; margin: 0 auto; padding: 5rem 1.5rem; }
+    a { color: #b83d05; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Página no encontrada</h1>
+    <p>La dirección solicitada no existe. Puedes volver a la <a data-path="" href="/">entrada de documentación</a> o abrir directamente las guías de <a data-path="reauditia/" href="/reauditia/">ReAuditIA</a> y <a data-path="reagentia/" href="/reagentia/">Reagentia</a>.</p>
+  </main>
+  <script>
+    const base = window.location.hostname === "re-inventa.github.io" ? "/HelpDocumentation/" : "/";
+    document.querySelectorAll("[data-path]").forEach((link) => {
+      link.href = base + link.dataset.path;
+    });
+  </script>
+</body>
+</html>
