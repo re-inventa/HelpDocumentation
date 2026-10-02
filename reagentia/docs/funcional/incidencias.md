@@ -38,7 +38,14 @@ acceso de la sesión o de su integración. **El canal no está disponible.** ind
 se deshabilitó el canal o su acceso público. **La sesión no es válida. Solicita un
 nuevo inicio al sitio.** puede aparecer si se perdió el acceso guardado en la
 pestaña. **El chat no está disponible temporalmente.** señala una indisponibilidad
-temporal. Si el acceso se retiró, utiliza el contacto alternativo del sitio.
+temporal. Dentro de una conversación abierta el aviso de sesión puede abreviarse a
+**La sesión no es válida.**, y al enviar un mensaje puede aparecer **El servicio de
+chat no está disponible temporalmente.** Si el acceso se retiró, utiliza el contacto
+alternativo del sitio.
+
+**El canal no está disponible en este sitio.** puede indicar que el asistente se
+abrió sin su página anfitriona o que la prueba no está habilitada allí. Vuelve al
+sitio que ofrece el chat; si el aviso persiste, usa su contacto alternativo.
 
 Al deshabilitar el canal o revocar una integración, no se aceptan nuevos mensajes ni
 renovaciones en las sesiones afectadas. Una respuesta que ya había comenzado puede
@@ -63,6 +70,11 @@ responsable del sitio que revise la configuración. La integración debe gestion
 por su cuenta los reintentos técnicos del inicio sin pedir al visitante un código.
 Desde una misma conexión se pueden obtener como máximo 10 inicios para un canal en
 60 minutos; varias personas que comparten esa conexión pueden consumir el cupo.
+Las respuestas técnicas de la petición de inicio, incluidas **Inicio no disponible.**
+y **El token Turnstile ya fue utilizado por otro inicio.**, corresponden al servidor
+del sitio. La especificación técnica de integración del canal documenta la petición,
+su idempotencia y las condiciones para repetir el mismo intento; no son mensajes
+que deba buscar la persona visitante en el asistente insertado.
 
 **Se ha alcanzado el límite temporal de uso.** corresponde al ritmo de 6 mensajes
 en 60 segundos; espera antes de reintentar. **Se ha alcanzado el límite de mensajes.**
@@ -83,6 +95,10 @@ intento fue rechazado: envía el texto otra vez como un mensaje nuevo cuando el 
 estar disponible. Si aparece **Comprueba el historial y reintenta el mismo mensaje desde
 esta pestaña.**, revisa primero el historial. La confirmación puede llegar después; si
 el mensaje no aparece tras recuperar la conexión, vuelve a intentarlo en esa conversación.
+Si aparece **Hay un envío sin confirmar. Reintenta primero el mismo mensaje o recarga la
+conversación.**, conserva ese texto y comprueba el historial antes de enviar otro.
+**No se pudo renovar la lectura. Vuelve a intentarlo más tarde.** indica que no se
+pudo recuperar el acceso temporal a la respuesta; mantén la pestaña y reintenta después.
 
 ## La conversación está recuperando la conexión
 

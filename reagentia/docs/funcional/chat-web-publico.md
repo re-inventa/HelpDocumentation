@@ -115,6 +115,14 @@ el mismo cupo. Al alcanzarlo, el sitio debe pedir que se espere antes de solicit
 inicio o indicar su contacto alternativo. Las respuestas técnicas de reintento del inicio
 pertenecen a la integración; la persona visitante no necesita copiar ni reutilizar códigos.
 
+La petición de inicio del sitio puede responder **Inicio no disponible.** o
+**El token Turnstile ya fue utilizado por otro inicio.** También puede señalar que la
+verificación está en curso o que no pudo confirmarse. Esos mensajes llegan a la
+integración, no son el catálogo de avisos visibles del asistente insertado. La
+especificación técnica de integración del canal documenta la petición, su idempotencia
+y las condiciones de reintento; el sitio debe conservar el mismo intento cuando el
+resultado sea incierto.
+
 ## Abrir una conversación como visitante
 
 1. En el sitio autorizado durante una prueba, completa la comprobación y utiliza la
@@ -127,6 +135,15 @@ pertenecen a la integración; la persona visitante no necesita copiar ni reutili
 
 La sesión dura 30 minutos desde la primera apertura. Enviar mensajes, recargar o recuperar
 la conexión no amplía ese plazo.
+
+### Pantalla autónoma de pruebas
+
+En un entorno de prueba controlada puede estar disponible una pantalla separada
+**Chat público**, con el campo **Código de inicio** y la acción **Abrir sesión**.
+Solo se utiliza cuando la integración autorizada entrega expresamente un código
+temporal para esta prueba; el código caduca a los 2 minutos. Esta pantalla no forma
+parte del recorrido del asistente insertado ni abre el servicio al público general.
+Si no recibiste un código para una prueba concreta, inicia desde el sitio autorizado.
 
 ## Límites de uso de la prueba
 
@@ -188,9 +205,14 @@ trasladar la conversación entre dispositivos.
 - **El canal no está disponible.** El responsable deshabilitó el canal o su acceso
   público. Usa el contacto alternativo que ofrezca el sitio.
 - **La sesión no es válida. Solicita un nuevo inicio al sitio.** Comprueba que estás
-  en la pestaña original antes de solicitarlo.
+  en la pestaña original antes de solicitarlo. Dentro de una conversación ya abierta,
+  el aviso puede abreviarse a **La sesión no es válida.**
 - **El chat no está disponible temporalmente.** Vuelve a intentarlo más tarde o utiliza
-  el contacto alternativo del sitio.
+  el contacto alternativo del sitio. Al enviar un mensaje puede aparecer
+  **El servicio de chat no está disponible temporalmente.**
+- **El canal no está disponible en este sitio.** Comprueba que abriste el asistente desde
+  el sitio autorizado y dentro de una prueba habilitada; si persiste, utiliza su
+  contacto alternativo.
 - **Hay otra respuesta en curso o se alcanzó la concurrencia del canal.** Espera a que la
   respuesta activa termine antes de enviar otra consulta.
 

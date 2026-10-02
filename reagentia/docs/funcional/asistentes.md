@@ -128,10 +128,11 @@ Esta guía describe el chat autenticado dentro de Reagentia. Un asistente solo q
 disponible fuera de la plataforma cuando una persona con el permiso específico configura
 y habilita un canal independiente. La primera fase de ese recorrido se describe en
 [Chat web público en pruebas controladas](chat-web-publico.md). La administración del canal
-está en **Asistentes → Configurar canal público** para roles autorizados; todavía no incluye widget
-empotrado ni plugin para gestores de contenido. Ese canal aplica sus propios límites de
-mensajes, ritmo, presupuesto y respuestas simultáneas, independientes de los permisos del
-chat autenticado.
+está en **Asistentes → Configurar canal público** para roles autorizados. El asistente
+insertado se valida en un sitio de prueba; todavía no hay plugin para gestores de
+contenido, shortcode ni burbuja flotante, y el acceso general permanece cerrado.
+Ese canal aplica sus propios límites de mensajes, ritmo, presupuesto y respuestas
+simultáneas, independientes de los permisos del chat autenticado.
 Deshabilitar el canal público bloquea nuevas operaciones de sus sesiones, aunque
 una respuesta ya iniciada puede terminar y consumir recursos. La administración
 del canal no cambia las conversaciones del chat autenticado.

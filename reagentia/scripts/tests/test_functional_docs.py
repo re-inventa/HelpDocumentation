@@ -141,6 +141,7 @@ class FunctionalContentTests(unittest.TestCase):
         assistants = (ROOT / "docs" / "funcional" / "asistentes.md").read_text(encoding="utf-8")
         incidents = (ROOT / "docs" / "funcional" / "incidencias.md").read_text(encoding="utf-8")
         normalized_guide = " ".join(guide.split())
+        normalized_assistants = " ".join(assistants.split())
         normalized_incidents = " ".join(incidents.split())
         for expected in (
             "# Chat web público en pruebas controladas",
@@ -167,6 +168,9 @@ class FunctionalContentTests(unittest.TestCase):
             "Completa la comprobación de inicio en el sitio.",
             "No se pudo verificar el inicio. Completa de nuevo la comprobación en el sitio.",
             "la persona visitante no necesita copiar ni reutilizar códigos",
+            "especificación técnica de integración del canal",
+            "### Pantalla autónoma de pruebas",
+            "**Código de inicio**",
             "## Límites de uso de la prueba",
             "20 mensajes por sesión",
             "6 mensajes en 60 segundos",
@@ -178,6 +182,9 @@ class FunctionalContentTests(unittest.TestCase):
             "Se ha alcanzado el presupuesto de uso del chat.",
             "Hay otra respuesta en curso o se alcanzó la concurrencia del canal.",
             "Hay otra respuesta en curso o se alcanzó el límite de respuestas simultáneas.",
+            "La sesión no es válida.",
+            "El servicio de chat no está disponible temporalmente.",
+            "El canal no está disponible en este sitio.",
             "deben permanecer deshabilitados",
             "ventanas de prueba controladas y autorizadas",
             "almacenamiento de la pestaña",
@@ -201,6 +208,8 @@ class FunctionalContentTests(unittest.TestCase):
         self.assertIn("Una versión anterior nunca puede recuperarse", normalized_incidents)
         self.assertIn("Un asistente solo queda", assistants)
         self.assertIn("disponible fuera de la plataforma", assistants)
+        self.assertIn("El asistente insertado se valida en un sitio de prueba", normalized_assistants)
+        self.assertNotIn("todavía no incluye widget empotrado", normalized_assistants)
         for message in (
             "La sesión ha caducado. Solicita un nuevo inicio al sitio.",
             "El acceso a esta conversación ha sido revocado.",
@@ -213,6 +222,12 @@ class FunctionalContentTests(unittest.TestCase):
             "Se ha alcanzado el límite de mensajes de la sesión.",
             "Se ha alcanzado el presupuesto de uso del chat.",
             "Hay otra respuesta en curso o se alcanzó el límite de respuestas simultáneas.",
+            "La sesión no es válida.",
+            "El servicio de chat no está disponible temporalmente.",
+            "El canal no está disponible en este sitio.",
+            "Hay un envío sin confirmar. Reintenta primero el mismo mensaje o recarga la conversación.",
+            "No se pudo renovar la lectura. Vuelve a intentarlo más tarde.",
+            "especificación técnica de integración del canal",
         ):
             with self.subTest(message=message):
                 self.assertIn(message, normalized_incidents)
