@@ -195,7 +195,11 @@ class FunctionalContentTests(unittest.TestCase):
         ):
             with self.subTest(expected=expected):
                 self.assertIn(expected, normalized_guide)
-        self.assertIn("Todavía no hay plugin", normalized_guide)
+        self.assertIn("entrega local de prueba", normalized_guide)
+        self.assertIn("## Preparar WordPress y Elementor", guide)
+        self.assertIn("`[reagentia_chat]`", guide)
+        self.assertIn("sin periodo de solape", normalized_guide)
+        self.assertIn("no abre el piloto", normalized_guide)
         self.assertIn("Asistentes → Configurar canal público", normalized_guide)
         self.assertIn("**Deshabilitar canal**", normalized_guide)
         self.assertIn("**Revocar**", normalized_guide)

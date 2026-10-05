@@ -172,6 +172,15 @@ Verifica organización activa y rol. No compartas una sesión ni pidas que se am
 
 ## Qué incluir al pedir soporte
 
+Para la integración WordPress, **configurado** solo acredita ajustes locales. Si no
+aparece el chat, revisa habilitación, páginas permitidas y configuración del canal.
+Si no se acredita el sitio o cambió su dominio, pide al administrador revisar la
+protección del sitio y volver a configurar las credenciales. No copies sus valores en
+un ticket. Ante **Inicio no confirmado**, usa el reintento del mismo intento desde la
+pestaña; no sustituyas la comprobación mientras siga incierto. Después de desactivar,
+purga páginas cacheadas y revoca en Reagentia para retirar también el acceso emitido.
+Consulta [WordPress y Elementor](chat-web-publico.md#preparar-wordpress-y-elementor).
+
 - identificador visible de la ejecución;
 - fecha y hora aproximadas;
 - organización, sin datos personales;
