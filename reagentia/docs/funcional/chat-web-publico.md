@@ -38,6 +38,12 @@ provisionada; no permite recuperar su valor.
 
 Para modificar el canal, elige **Activo** o **Deshabilitado** y el modo de acceso.
 Introduce cada origen en una línea, como `https://chat.example.invalid`, sin ruta.
+No se admiten comodines, credenciales, parámetros ni fragmentos. Puedes registrar
+hasta 50 sitios, con un máximo de 300 caracteres por sitio. La lista completa
+admite hasta 2048 bytes, incluidos sus separadores y comillas; algunos caracteres
+ocupan más de un byte. Si el conjunto supera ese límite, reduce el número o la
+longitud de los sitios según el aviso de la pantalla. Las entradas repetidas
+también cuentan para estos límites.
 Solo se admite HTTP para pruebas locales en localhost, `127.0.0.1` o `[::1]`. La
 pantalla ofrece un único
 perfil de límites para esta prueba: 20 mensajes por sesión, 6 por minuto, hasta 5
@@ -52,6 +58,30 @@ pantalla no permite elegir otra política. Pulsa **Guardar canal**. El estado **
 solo debe usarse durante una ventana de prueba autorizada y exige marcar su
 confirmación en la pantalla. **Deshabilitar canal** permite cerrar esa ventana.
 
+### Cambiar los sitios autorizados
+
+Guardar los sitios en esta pantalla basta para actualizar dónde se permite insertar
+el widget; no hace falta repetir la lista en otra configuración. Después de un guardado
+correcto aparece el aviso:
+
+> Los cambios en los sitios autorizados pueden tardar hasta 60 segundos en aplicarse
+> a nuevas cargas del widget. Los widgets ya abiertos no se actualizan automáticamente.
+
+Este plazo se aplica tanto al añadir como al retirar sitios. Durante esos 60 segundos
+una carga nueva todavía puede utilizar la lista anterior. Para comprobar el resultado,
+espera ese plazo y recarga el widget. Un sitio autorizado debe poder cargarlo; un sitio
+retirado no debe poder insertarlo en una carga nueva.
+
+Si una carga coincide con un guardado y el widget no llega a abrirse, recárgalo.
+Esto no actualiza ni interrumpe automáticamente una conversación que ya estaba abierta.
+
+Un widget que ya estaba abierto conserva la configuración con la que se cargó.
+Retirar un sitio no modifica esa página ni revoca su sesión. Para bloquear nuevas
+operaciones usa los controles de deshabilitación o revocación descritos más abajo.
+Añadir un sitio tampoco activa el canal ni sustituye la integración autorizada.
+
+### Integraciones y acceso
+
 Cuando el canal guardado esté activo en modo de prueba controlada, vuelve a marcar la
 confirmación de la ventana autorizada antes de crear una integración con una clave y un
 nombre: la confirmación se desmarca al guardar el canal, cambiar de asistente o canal,
@@ -65,9 +95,9 @@ su provisión segura.
 permanece visible para auditoría y no puede reactivarse. No existe una acción de
 borrado físico. Si hace falta otro acceso, crea una integración nueva.
 
-En esta fase, la lista de sitios queda registrada como parte de la configuración, pero el
-acceso inicial depende de la integración autorizada. No debe interpretarse como una garantía
-de que solo esos sitios puedan solicitar o entregar un inicio.
+La lista de sitios limita dónde se permite insertar el widget. El inicio de una
+sesión de conversación exige además una integración autorizada. Autorizar un sitio
+no le concede por sí solo permiso para solicitar o entregar ese inicio.
 
 La credencial recién creada o rotada solo aparece durante esa operación administrativa.
 Al cerrar el aviso o abandonar la página desaparece y no puede consultarse de nuevo en el
