@@ -74,6 +74,8 @@ Retirar un sitio no modifica esa página ni revoca su sesión. Para bloquear nue
 operaciones usa los controles de deshabilitación o revocación descritos más abajo.
 Añadir un sitio tampoco activa el canal ni sustituye la integración autorizada.
 
+### Integraciones y acceso
+
 Cuando el canal guardado esté activo en modo de prueba controlada, vuelve a marcar la
 confirmación de la ventana autorizada antes de crear una integración con una clave y un
 nombre: la confirmación se desmarca al guardar el canal, cambiar de asistente o canal,
