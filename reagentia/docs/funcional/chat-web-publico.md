@@ -38,6 +38,9 @@ provisionada; no permite recuperar su valor.
 
 Para modificar el canal, elige **Activo** o **Deshabilitado** y el modo de acceso.
 Introduce cada origen en una línea, como `https://chat.example.invalid`, sin ruta.
+No se admiten comodines, credenciales, parámetros ni fragmentos. Puedes registrar
+hasta 50 sitios; si el conjunto supera el límite de longitud, reduce el número o
+la longitud de los sitios según el aviso de la pantalla.
 Solo se admite HTTP para pruebas locales en localhost, `127.0.0.1` o `[::1]`. La
 pantalla ofrece un único
 perfil de límites para esta prueba: 20 mensajes por sesión, 6 por minuto, hasta 5
@@ -51,6 +54,25 @@ pantalla no permite elegir otra política. Pulsa **Guardar canal**. El estado **
 **Prueba controlada**
 solo debe usarse durante una ventana de prueba autorizada y exige marcar su
 confirmación en la pantalla. **Deshabilitar canal** permite cerrar esa ventana.
+
+### Cambiar los sitios autorizados
+
+Guardar los sitios en esta pantalla basta para actualizar dónde se permite insertar
+el widget; no hace falta repetir la lista en otra configuración. Después de un guardado
+correcto aparece el aviso:
+
+> Los cambios en los sitios autorizados pueden tardar hasta 60 segundos en aplicarse
+> a nuevas cargas del widget. Los widgets ya abiertos no se actualizan automáticamente.
+
+Este plazo se aplica tanto al añadir como al retirar sitios. Durante esos 60 segundos
+una carga nueva todavía puede utilizar la lista anterior. Para comprobar el resultado,
+espera ese plazo y recarga el widget. Un sitio autorizado debe poder cargarlo; un sitio
+retirado no debe poder insertarlo en una carga nueva.
+
+Un widget que ya estaba abierto conserva la configuración con la que se cargó.
+Retirar un sitio no modifica esa página ni revoca su sesión. Para bloquear nuevas
+operaciones usa los controles de deshabilitación o revocación descritos más abajo.
+Añadir un sitio tampoco activa el canal ni sustituye la integración autorizada.
 
 Cuando el canal guardado esté activo en modo de prueba controlada, vuelve a marcar la
 confirmación de la ventana autorizada antes de crear una integración con una clave y un
