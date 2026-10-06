@@ -125,6 +125,15 @@ El estado **configurado** describe los ajustes locales; no confirma por sí solo
 conexión real ni autoriza ese sitio en Reagentia. Sus orígenes permitidos deben prepararse
 también allí. El historial y las conversaciones permanecen en Reagentia.
 
+El **Origen HTTPS de Reagentia** es la dirección donde administras el canal y se sirve
+el asistente, distinta de la dirección de WordPress. Ese origen, el identificador del
+canal, la clave pública Turnstile y el contacto alternativo son obligatorios al guardar,
+incluso con la habilitación local desmarcada. Si aparece **No se pudo guardar**, revisa
+los campos señalados: los datos no sensibles permanecen en el formulario, pero debes
+volver a introducir la credencial si estabas sustituyéndola. **Secreto de origen: ausente**
+indica que falta generarlo con su botón independiente; no significa que la credencial
+de integración sea incorrecta.
+
 ### Insertar el asistente
 
 Inserta `[reagentia_chat]` en una página WordPress o en el componente **Shortcode**
