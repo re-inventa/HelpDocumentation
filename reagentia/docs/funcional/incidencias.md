@@ -179,8 +179,12 @@ Verifica organización activa y rol. No compartas una sesión ni pidas que se am
 
 Para la integración WordPress, **configurado** solo acredita ajustes locales. Si no
 aparece el chat, revisa habilitación, páginas permitidas y configuración del canal.
-Si no se acredita el sitio o cambió su dominio, pide al administrador revisar la
-protección del sitio y volver a configurar las credenciales. No copies sus valores en
+Si cambió su dominio, pide al administrador revisar el sitio autorizado y volver a
+configurar la credencial. En 0.2.0 no hay un secreto de origen que generar ni un proxy
+obligatorio. Si el inicio no está disponible, el administrador debe comprobar la
+integración y las condiciones del sitio sin publicar direcciones o credenciales.
+Un proxy o conexión compartida puede agrupar el límite de diez aperturas por hora;
+no comparte las conversaciones ni permite ampliar el cupo automáticamente. No copies sus valores en
 un ticket. Ante **Inicio no confirmado**, usa el reintento del mismo intento desde la
 pestaña; no sustituyas la comprobación mientras siga incierto. Después de desactivar,
 purga páginas cacheadas y revoca en Reagentia para retirar también el acceso emitido.

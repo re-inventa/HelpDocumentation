@@ -128,11 +128,13 @@ en curso hayan terminado. Esto no restablece la sesión ni permite continuarla.
 
 ## Preparar WordPress y Elementor
 
-La entrega de prueba permite instalar un ZIP y configurar una integración por sitio
+La entrega local de prueba 0.2.0 permite instalar un ZIP y configurar una integración por sitio
 individual desde **Ajustes → Reagentia**. Requiere WordPress reciente (6.9 o posterior),
 PHP 8.3 o posterior y HTTPS. No requiere editar archivos del sitio, variables de entorno
 ni un gestor de credenciales del proveedor de hosting. Multisite no está soportado.
-El administrador debe contar con permisos para gestionar los ajustes.
+El administrador debe contar con permisos para gestionar los ajustes. Se conservan
+los DNS y el alojamiento: no requiere Cloudflare Proxy ni un secreto de origen del sitio.
+Turnstile sigue siendo obligatorio para iniciar una conversación.
 
 1. Conserva el ZIP anterior, si existe, y sube el nuevo desde **Plugins → Añadir →
    Subir plugin**. Activar el plugin deja el chat deshabilitado hasta configurarlo.
@@ -143,10 +145,8 @@ El administrador debe contar con permisos para gestionar los ajustes.
 3. Configura el origen HTTPS de Reagentia, el identificador del canal, la clave pública
    de Turnstile y una página HTTPS de contacto alternativo sin parámetros ni fragmento,
    por ejemplo `https://empresa.example.invalid/contacto`.
-4. Genera el secreto de origen desde WordPress. Copia el valor de entrega única a la
-   configuración de protección del sitio en Cloudflare con ayuda de su responsable.
-   No se necesita entregar al plugin una clave de administración de Cloudflare.
-   Esa protección y la exclusión de caché requieren comprobarse antes de habilitarlo.
+4. Comprueba que la ruta de inicio del plugin y sus variantes estén excluidas de las
+   cachés del sitio, si las hay. No necesitas cambiar de proveedor ni activar un proxy.
 5. Elige páginas permitidas (IDs separados por comas; vacío permite todas), posición,
    título, etiqueta y color del contenedor. Mantén la habilitación local desmarcada
    hasta que la prueba esté autorizada y las dependencias estén verificadas.
@@ -160,9 +160,8 @@ el asistente, distinta de la dirección de WordPress. Ese origen, el identificad
 canal, la clave pública Turnstile y el contacto alternativo son obligatorios al guardar,
 incluso con la habilitación local desmarcada. Si aparece **No se pudo guardar**, revisa
 los campos señalados: los datos no sensibles permanecen en el formulario, pero debes
-volver a introducir la credencial si estabas sustituyéndola. **Secreto de origen: ausente**
-indica que falta generarlo con su botón independiente; no significa que la credencial
-de integración sea incorrecta.
+volver a introducir la credencial si estabas sustituyéndola. La versión 0.2.0 no tiene
+campo ni botón para generar un secreto de origen.
 
 ### Insertar el asistente
 
@@ -187,15 +186,29 @@ Si el almacenamiento está bloqueado, el intento se conserva solo mientras la p�
 abierta y una recarga puede perder la continuidad.
 
 Para cambiar la credencial, pulsa **Rotar** en Reagentia y sustituye el valor en WordPress.
-Para cambiar el secreto de origen, genera uno nuevo y coordina inmediatamente su
-sustitución en Cloudflare: el anterior deja de servir sin periodo de solape. Durante el
-cambio pueden rechazarse inicios. Si cambia el dominio o se restaura una copia del sitio,
+Si cambia el dominio o se restaura una copia del sitio,
 revisa su autorización y vuelve a configurar las credenciales. El cifrado local depende
 de la instalación WordPress y no protege frente a un sitio comprometido o una copia
 completa que permita recuperar sus claves. Las copias de seguridad requieren protección.
 
-Actualizar manualmente el ZIP conserva la configuración. Para revertir, instala el ZIP
-anterior compatible, purga las cachés afectadas y comprueba de nuevo configuración y carga.
+Actualizar manualmente el ZIP conserva configuración, presentación y credencial cifrada.
+Mantén la habilitación local desmarcada durante el cambio y deja terminar los intentos
+anteriores. Purga las páginas/recursos cacheados y comprueba carga y configuración.
+
+La única reversión anterior soportada es al ZIP real **0.1.1**. Guarda ese archivo y
+su comprobación de integridad. La opción antigua cifrada permanece inactiva durante la
+ventana de reversión; no se elimina al actualizar. Tras la aceptación técnica explícita
+de la primera entrega 0.2, una entrega posterior permitirá retirarla desde administración
+con confirmación, conservando la credencial de integración. Aún no está disponible esa
+retirada. 0.1.1 exige su configuración de protección anterior verificada: en un sitio
+sin ella debe permanecer deshabilitada. No se repone esa configuración automáticamente.
+
+Varios visitantes tras un proxy o una conexión compartida pueden consumir el mismo
+cupo de **diez aperturas nuevas en sesenta minutos**, incluso si usan navegadores
+diferentes. Sus conversaciones siguen separadas. El límite no se ajusta automáticamente;
+si se alcanza, espera o utiliza el contacto alternativo. Un cambio de conexión durante
+un intento puede impedir su reutilización; no modifica el acceso a una sesión ya abierta.
+
 Desactivar bloquea nuevos inicios y retira el chat en nuevas páginas sin borrar datos
 remotos. No elimina un asistente ya cargado ni su acceso temporal vigente. Purga páginas
 cacheadas y revoca también en Reagentia si necesitas retirar acceso ya emitido.
@@ -203,12 +216,13 @@ Al reactivar el plugin la habilitación local continúa desmarcada.
 Desinstalar conserva los ajustes salvo que marques expresamente su eliminación; solo
 elimina los datos propios del plugin, sin borrar conversaciones ni otros complementos.
 
-La matriz publicada distinguirá pruebas locales de uso real. La entrega local usa
-WordPress 7.1.2, PHP 8.3.35 y Elementor 4.3.4; requiere comprobar además el sitio de destino,
-sus plugins de caché/seguridad y los navegadores previstos. Las pruebas sintéticas de
-inicio no acreditan conversación real ni protección Cloudflare efectiva. La actualización
-y reversión anteriores a la primera versión estable usan un ZIP previo de prueba;
-no equivalen a una versión histórica en producción. No habilites el piloto por instalarlo.
+La aceptación del sitio de destino sigue pendiente. Las pruebas locales con WordPress,
+Elementor y navegador, incluido el ZIP real 0.1.1, no acreditan una conversación real
+ni la comprobación Turnstile del sitio de destino. Deben comprobarse sus versiones,
+cachés, límites compartidos y navegadores previstos. Instalar 0.2.0 no abre el piloto.
+
+El archivo de la versión instalada y su manifiesto permiten identificar la entrega
+probada; no atribuyas a 0.2.0 los resultados de versiones anteriores.
 
 ## Comprobación del inicio
 
