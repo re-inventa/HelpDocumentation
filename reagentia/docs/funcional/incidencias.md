@@ -47,6 +47,11 @@ alternativo del sitio.
 abrió sin su página anfitriona o que la prueba no está habilitada allí. Vuelve al
 sitio que ofrece el chat; si el aviso persiste, usa su contacto alternativo.
 
+Si acabas de añadir ese sitio a la configuración del canal, espera hasta 60 segundos
+y recarga el widget: las nuevas cargas pueden utilizar la lista anterior durante ese
+plazo. Consulta [Cambiar los sitios autorizados](chat-web-publico.md#cambiar-los-sitios-autorizados).
+Si una carga coincide con un guardado y el widget no llega a abrirse, vuelve a cargarlo.
+
 Al deshabilitar el canal o revocar una integración, no se aceptan nuevos mensajes ni
 renovaciones en las sesiones afectadas. Una respuesta que ya había comenzado puede
 terminar y mostrarse después, con consumo dentro de los límites configurados. Espera a

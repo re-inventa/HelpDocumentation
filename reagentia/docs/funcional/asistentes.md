@@ -134,6 +134,11 @@ shortcode en Elementor y burbuja; su aceptación en un sitio real sigue pendient
 acceso general permanece cerrado. Consulta la [preparación de WordPress](chat-web-publico.md#preparar-wordpress-y-elementor).
 Ese canal aplica sus propios límites de mensajes, ritmo, presupuesto y respuestas
 simultáneas, independientes de los permisos del chat autenticado.
+Los sitios autorizados se gestionan desde esa pantalla. Tras guardar, las nuevas
+cargas del widget pueden tardar hasta 60 segundos en reflejar altas o retiradas;
+los widgets abiertos requieren recarga. Retirar un sitio no revoca sus sesiones.
+Consulta [Cambiar los sitios autorizados](chat-web-publico.md#cambiar-los-sitios-autorizados)
+para comprobar el cambio.
 Deshabilitar el canal público bloquea nuevas operaciones de sus sesiones, aunque
 una respuesta ya iniciada puede terminar y consumir recursos. La administración
 del canal no cambia las conversaciones del chat autenticado.
