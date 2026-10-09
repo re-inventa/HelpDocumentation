@@ -1218,8 +1218,11 @@ disponible fuera de la plataforma cuando una persona con el permiso específico 
 y habilita un canal independiente. La primera fase de ese recorrido se describe en
 <a href="../chat-web-publico/">Chat web público en pruebas controladas</a>. La administración del canal
 está en <strong>Asistentes → Configurar canal público</strong> para roles autorizados. El asistente
-insertado se valida en un sitio de prueba; todavía no hay plugin para gestores de
-contenido, shortcode ni burbuja flotante, y el acceso general permanece cerrado.
+insertado se valida en un sitio de prueba. La entrega local del plugin WordPress permite
+shortcode en Elementor y burbuja. En 0.2.0 conserva DNS/alojamiento y Turnstile,
+sin requerir proxy del sitio; visitantes tras una conexión/proxy pueden compartir el
+cupo de aperturas, con conversaciones separadas. Su aceptación en un sitio real sigue pendiente y el
+acceso general permanece cerrado. Consulta la <a href="../chat-web-publico/#preparar-wordpress-y-elementor">preparación de WordPress</a>.
 Ese canal aplica sus propios límites de mensajes, ritmo, presupuesto y respuestas
 simultáneas, independientes de los permisos del chat autenticado.
 Los sitios autorizados se gestionan desde esa pantalla. Tras guardar, las nuevas
