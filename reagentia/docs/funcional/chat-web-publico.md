@@ -7,7 +7,8 @@ para tráfico público general.
 
 !!! warning "Disponibilidad limitada"
     El asistente insertado en una página se está validando en un sitio de prueba.
-    Todavía no hay plugin para WordPress o Elementor, shortcode ni burbuja flotante.
+    El plugin WordPress tiene una entrega local de prueba con shortcode y burbuja flotante.
+    Su disponibilidad en un sitio real sigue pendiente de aceptación; no abre el piloto.
     La existencia del asistente insertable y de la pantalla de administración no abre
     el servicio al tráfico público general. La comprobación inicial reduce abusos,
     pero no garantiza que una web pública quede libre de ellos.
@@ -124,6 +125,104 @@ respuesta puede consumir recursos dentro de los límites configurados. No se adm
 mensajes ni renovaciones de lectura en las sesiones afectadas. La confirmación de
 desactivación indica que el acceso quedó bloqueado; no indica que todas las respuestas
 en curso hayan terminado. Esto no restablece la sesión ni permite continuarla.
+
+## Preparar WordPress y Elementor
+
+La entrega local de prueba 0.2.0 permite instalar un ZIP y configurar una integración por sitio
+individual desde **Ajustes → Reagentia**. Requiere WordPress reciente (6.9 o posterior),
+PHP 8.3 o posterior y HTTPS. No requiere editar archivos del sitio, variables de entorno
+ni un gestor de credenciales del proveedor de hosting. Multisite no está soportado.
+El administrador debe contar con permisos para gestionar los ajustes. Se conservan
+los DNS y el alojamiento: no requiere Cloudflare Proxy ni un secreto de origen del sitio.
+Turnstile sigue siendo obligatorio para iniciar una conversación.
+
+1. Conserva el ZIP anterior, si existe, y sube el nuevo desde **Plugins → Añadir →
+   Subir plugin**. Activar el plugin deja el chat deshabilitado hasta configurarlo.
+2. Prepara el canal y crea la integración en Reagentia conforme al apartado anterior,
+   dentro de una ventana de prueba autorizada. Introduce en WordPress la credencial
+   que Reagentia entrega una vez. Después se muestra únicamente si está guardada;
+   el campo queda vacío y no permite recuperarla. Limpiar el portapapeles al terminar.
+3. Configura el origen HTTPS de Reagentia, el identificador del canal, la clave pública
+   de Turnstile y una página HTTPS de contacto alternativo sin parámetros ni fragmento,
+   por ejemplo `https://empresa.example.invalid/contacto`.
+4. Comprueba que la ruta de inicio del plugin y sus variantes estén excluidas de las
+   cachés del sitio, si las hay. No necesitas cambiar de proveedor ni activar un proxy.
+5. Elige páginas permitidas (IDs separados por comas; vacío permite todas), posición,
+   título, etiqueta y color del contenedor. Mantén la habilitación local desmarcada
+   hasta que la prueba esté autorizada y las dependencias estén verificadas.
+
+El estado **configurado** describe los ajustes locales; no confirma por sí solo una
+conexión real ni autoriza ese sitio en Reagentia. Sus orígenes permitidos deben prepararse
+también allí. El historial y las conversaciones permanecen en Reagentia.
+
+El **Origen HTTPS de Reagentia** es la dirección donde administras el canal y se sirve
+el asistente, distinta de la dirección de WordPress. Ese origen, el identificador del
+canal, la clave pública Turnstile y el contacto alternativo son obligatorios al guardar,
+incluso con la habilitación local desmarcada. Si aparece **No se pudo guardar**, revisa
+los campos señalados: los datos no sensibles permanecen en el formulario, pero debes
+volver a introducir la credencial si estabas sustituyéndola. La versión 0.2.0 no tiene
+campo ni botón para generar un secreto de origen.
+
+### Insertar el asistente
+
+Inserta `[reagentia_chat]` en una página WordPress o en el componente **Shortcode**
+de Elementor. La vista de edición muestra una indicación sin iniciar conversaciones.
+Para mostrarlo como burbuja, activa **Burbuja flotante** en sus ajustes. Si coinciden,
+el shortcode tiene prioridad; los duplicados no abren otra instancia.
+
+La burbuja carga el asistente al abrirla por primera vez. **Cerrar** oculta el panel y
+devuelve el foco al botón; volver a abrir conserva la misma instancia. Cerrar el panel
+no detiene una respuesta, no revoca la sesión ni borra el historial. El color y el título
+personalizan el contenedor; el contenido del asistente conserva su propia presentación.
+
+### Reintentos, credenciales y retirada
+
+Si aparece **Inicio no confirmado**, utiliza **Iniciar / reintentar** desde esa pestaña.
+El sitio conserva el mismo intento durante un máximo de dos minutos; la caducidad visual
+de la comprobación no lo sustituye. Si el intento ya caducó o fue rechazado, usa
+**Solicitar nuevo inicio** y completa otra comprobación. Ante un límite o acceso retirado,
+espera o usa el contacto alternativo. El sitio no inicia otra conversación por su cuenta.
+Si el almacenamiento está bloqueado, el intento se conserva solo mientras la página siga
+abierta y una recarga puede perder la continuidad.
+
+Para cambiar la credencial, pulsa **Rotar** en Reagentia y sustituye el valor en WordPress.
+Si cambia el dominio o se restaura una copia del sitio,
+revisa su autorización y vuelve a configurar las credenciales. El cifrado local depende
+de la instalación WordPress y no protege frente a un sitio comprometido o una copia
+completa que permita recuperar sus claves. Las copias de seguridad requieren protección.
+
+Actualizar manualmente el ZIP conserva configuración, presentación y credencial cifrada.
+Mantén la habilitación local desmarcada durante el cambio y deja terminar los intentos
+anteriores. Purga las páginas/recursos cacheados y comprueba carga y configuración.
+
+La única reversión anterior soportada es al ZIP real **0.1.1**. Guarda ese archivo y
+su comprobación de integridad. La opción antigua cifrada permanece inactiva durante la
+ventana de reversión; no se elimina al actualizar. Tras la aceptación técnica explícita
+de la primera entrega 0.2, una entrega posterior permitirá retirarla desde administración
+con confirmación, conservando la credencial de integración. Aún no está disponible esa
+retirada. 0.1.1 exige su configuración de protección anterior verificada: en un sitio
+sin ella debe permanecer deshabilitada. No se repone esa configuración automáticamente.
+
+Varios visitantes tras un proxy o una conexión compartida pueden consumir el mismo
+cupo de **diez aperturas nuevas en sesenta minutos**, incluso si usan navegadores
+diferentes. Sus conversaciones siguen separadas. El límite no se ajusta automáticamente;
+si se alcanza, espera o utiliza el contacto alternativo. Un cambio de conexión durante
+un intento puede impedir su reutilización; no modifica el acceso a una sesión ya abierta.
+
+Desactivar bloquea nuevos inicios y retira el chat en nuevas páginas sin borrar datos
+remotos. No elimina un asistente ya cargado ni su acceso temporal vigente. Purga páginas
+cacheadas y revoca también en Reagentia si necesitas retirar acceso ya emitido.
+Al reactivar el plugin la habilitación local continúa desmarcada.
+Desinstalar conserva los ajustes salvo que marques expresamente su eliminación; solo
+elimina los datos propios del plugin, sin borrar conversaciones ni otros complementos.
+
+La aceptación del sitio de destino sigue pendiente. Las pruebas locales con WordPress,
+Elementor y navegador, incluido el ZIP real 0.1.1, no acreditan una conversación real
+ni la comprobación Turnstile del sitio de destino. Deben comprobarse sus versiones,
+cachés, límites compartidos y navegadores previstos. Instalar 0.2.0 no abre el piloto.
+
+El archivo de la versión instalada y su manifiesto permiten identificar la entrega
+probada; no atribuyas a 0.2.0 los resultados de versiones anteriores.
 
 ## Comprobación del inicio
 
