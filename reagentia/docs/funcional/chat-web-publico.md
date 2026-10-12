@@ -13,7 +13,7 @@ para tráfico público general.
     el servicio al tráfico público general. La comprobación inicial reduce abusos,
     pero no garantiza que una web pública quede libre de ellos.
 
-    El canal y su acceso público permanecen deshabilitados fuera de ventanas de prueba
+    El canal permanece desactivado fuera de las pruebas
     controladas y autorizadas. La disponibilidad general requiere la aceptación final.
     La matriz de navegadores y las comprobaciones de teclado, foco, lector de pantalla
     y diseño móvil siguen pendientes antes de esa apertura.
@@ -21,43 +21,36 @@ para tráfico público general.
 ## Preparar el canal
 
 Una persona con permiso para gestionar canales públicos puede abrir **Asistentes →
-Configurar canal público** y seleccionar un asistente de su organización. Puede dejar
-preparada la configuración; el acceso general debe seguir cerrado. Define:
+Configurar canal público** y seleccionar un asistente y canal de su organización.
+El canal tiene un único estado: **Activado / Desactivado**. Un canal nuevo está
+**Desactivado**. La disponibilidad del entorno y la aceptación del piloto mantienen
+sus comprobaciones propias; activar este estado no abre el servicio al público general.
 
-- el asistente y el canal que se utilizarán;
-- el estado del canal y del acceso público, que deben permanecer deshabilitados fuera de
-  una ventana de prueba autorizada;
-- los sitios previstos para la futura inserción;
-- el perfil de límites y la política de conservación previstos para la prueba;
-- la integración que se creará cuando la prueba pueda habilitarse.
+1. Mantén el canal **Desactivado** mientras preparas los sitios y la integración.
+2. Introduce cada origen en una línea, como `https://chat.example.invalid`, sin ruta.
+   No se admiten comodines, credenciales, parámetros ni fragmentos. Se admiten hasta
+   50 sitios, 300 caracteres por sitio y 2048 bytes para la lista completa. Las
+   entradas repetidas también cuentan; HTTP solo se permite para pruebas locales en
+   localhost, `127.0.0.1` o `[::1]`.
+3. Revisa el perfil de límites y la política de conservación. El perfil disponible
+   establece 20 mensajes por sesión, 6 por minuto, hasta 5 respuestas simultáneas
+   por canal y un presupuesto diario. **Perfil actual no disponible para selección**
+   indica que debes elegir un perfil disponible antes de activar. La conservación
+   prevista es de 30 días desde la caducidad de la sesión y debe verificarse en el entorno.
+4. Pulsa **Guardar canal**. Con el canal desactivado puedes guardar una preparación
+   incompleta; cualquier dato que introduzcas debe ser válido.
+5. Crea y configura la integración según el apartado siguiente. Su credencial puede
+   guardarse en el consumidor mientras el canal sigue desactivado.
+6. Cuando todo esté preparado, elige **Activado** y pulsa **Guardar canal**. Debe haber
+   al menos un origen válido y perfiles de límites y conservación disponibles. Si
+   falta algún requisito, la pantalla indica el error y el cambio no se confirma.
 
-En la pantalla se muestran el estado del canal, el modo de acceso, los orígenes
-permitidos, el perfil de límites disponible, el estado de la conservación y el
-inventario de integraciones. Cada integración muestra su nombre, clave identificadora, estado,
-versión y una pista de credencial. La pista ayuda a identificar qué credencial está
-provisionada; no permite recuperar su valor.
+No hay un selector separado de acceso ni una casilla de ventana autorizada.
+**Desactivar canal** solicita confirmación cuando el canal está activo y bloquea
+nuevas operaciones. La administración registra el cambio y quién lo realiza.
 
-Para modificar el canal, elige **Activo** o **Deshabilitado** y el modo de acceso.
-Introduce cada origen en una línea, como `https://chat.example.invalid`, sin ruta.
-No se admiten comodines, credenciales, parámetros ni fragmentos. Puedes registrar
-hasta 50 sitios, con un máximo de 300 caracteres por sitio. La lista completa
-admite hasta 2048 bytes, incluidos sus separadores y comillas; algunos caracteres
-ocupan más de un byte. Si el conjunto supera ese límite, reduce el número o la
-longitud de los sitios según el aviso de la pantalla. Las entradas repetidas
-también cuentan para estos límites.
-Solo se admite HTTP para pruebas locales en localhost, `127.0.0.1` o `[::1]`. La
-pantalla ofrece un único
-perfil de límites para esta prueba: 20 mensajes por sesión, 6 por minuto, hasta 5
-respuestas simultáneas por canal y un presupuesto diario. Si aparece **Perfil actual no
-disponible para selección**, el canal conserva una referencia anterior: selecciona el
-perfil disponible para preparar una prueba nueva o consulta a la persona responsable si
-no esperabas esa configuración. La pantalla muestra la política prevista de 30 días
-desde la caducidad de la sesión. Su ejecución en un entorno depende de que se hayan
-aplicado la actualización y las comprobaciones operativas correspondientes; la
-pantalla no permite elegir otra política. Pulsa **Guardar canal**. El estado **Activo** junto con
-**Prueba controlada**
-solo debe usarse durante una ventana de prueba autorizada y exige marcar su
-confirmación en la pantalla. **Deshabilitar canal** permite cerrar esa ventana.
+La lista de integraciones muestra nombre, clave identificadora, estado, versión y
+pista de credencial; esa pista no permite recuperar su valor.
 
 ### Cambiar los sitios autorizados
 
@@ -83,10 +76,9 @@ Añadir un sitio tampoco activa el canal ni sustituye la integración autorizada
 
 ### Integraciones y acceso
 
-Cuando el canal guardado esté activo en modo de prueba controlada, vuelve a marcar la
-confirmación de la ventana autorizada antes de crear una integración con una clave y un
-nombre: la confirmación se desmarca al guardar el canal, cambiar de asistente o canal,
-o crear una integración correctamente.
+Puedes crear una integración con una clave y un nombre mientras el canal está
+desactivado. No es necesario activarlo para emitir y provisionar su credencial.
+La integración no inicia conversaciones hasta que el canal esté activo.
 Al crearla, la pantalla muestra la credencial
 nueva **una sola vez** y permite copiarla. Guárdala en el servidor que hará las peticiones;
 el alta no instala ni configura ese componente. **Rotar** solicita confirmación,
@@ -112,14 +104,13 @@ utilice debe conservarla exclusivamente en su servidor. Rotarla impide que la
 credencial anterior solicite nuevos inicios; los códigos ya
 emitidos pueden utilizarse hasta que venza su plazo original de 2 minutos.
 
-El estado del canal y el acceso público son controles distintos. Deshabilitar solo el acceso
-público mantiene activo el canal para otros usos presentes o futuros, pero impide preparar o
-abrir nuevos accesos públicos y bloquea los mensajes y renovaciones de sus sesiones. Al
-deshabilitar el canal se detiene además su ciclo de vida completo. Volver a habilitar el
-acceso público no reactiva un canal que siga deshabilitado.
+El estado del canal controla su habilitación. **Desactivar canal** bloquea aperturas,
+mensajes y renovaciones y revoca sus sesiones. Al volver a activarlo se requieren
+sesiones nuevas: las revocadas no recuperan acceso.
 
-Revocar la integración produce el mismo cierre para los accesos asociados. Al deshabilitar
-el acceso público, deshabilitar el canal o revocar la integración, una respuesta que ya se
+**Revocar** una integración retira únicamente los accesos asociados a ese consumidor;
+las otras integraciones del canal conservan su propio estado. Al desactivar el canal
+o revocar la integración, una respuesta que ya se
 había iniciado puede terminar de generarse y aparecer después de la confirmación. Esa
 respuesta puede consumir recursos dentro de los límites configurados. No se admiten nuevos
 mensajes ni renovaciones de lectura en las sesiones afectadas. La confirmación de
@@ -139,7 +130,7 @@ Turnstile sigue siendo obligatorio para iniciar una conversación.
 1. Conserva el ZIP anterior, si existe, y sube el nuevo desde **Plugins → Añadir →
    Subir plugin**. Activar el plugin deja el chat deshabilitado hasta configurarlo.
 2. Prepara el canal y crea la integración en Reagentia conforme al apartado anterior,
-   dentro de una ventana de prueba autorizada. Introduce en WordPress la credencial
+   con el canal desactivado. Introduce en WordPress la credencial
    que Reagentia entrega una vez. Después se muestra únicamente si está guardada;
    el campo queda vacío y no permite recuperarla. Limpiar el portapapeles al terminar.
 3. Configura el origen HTTPS de Reagentia, el identificador del canal, la clave pública
@@ -353,7 +344,7 @@ una web pública quede protegida frente a automatización o abuso.
 El chat muestra una respuesta generada por un asistente automatizado. Comprueba la
 información importante antes de actuar y no introduzcas contraseñas, claves, datos bancarios
 ni otra información sensible.
-Deshabilitar el canal o perder el acceso no elimina automáticamente el historial ya
+Desactivar el canal o perder el acceso no elimina automáticamente el historial ya
 conservado ni retira información que el navegador haya mostrado antes.
 
 ## Conservación de conversaciones
