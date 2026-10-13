@@ -36,11 +36,46 @@ página deja de estar disponible al finalizar ese plazo, inicia sesión de nuevo
 sesión en un equipo compartido evita que la sesión permanezca accesible desde ese
 navegador.
 
-### No aparece registro ni recuperación de contraseña
+### No has recibido el código
 
-En esta entrega todavía no están disponibles el registro, el cambio de contraseña ni
-su recuperación. No existe un procedimiento alternativo mediante enlaces directos.
-Solicita ayuda a la persona responsable de tu organización.
+Comprueba la carpeta de correo no deseado y que estás consultando el buzón correcto. El
+código tiene seis dígitos y caduca en 10 minutos. **Reenviar código** se habilita después
+de 60 segundos y permite hasta tres reenvíos cada 15 minutos. Espera a recibir la nueva
+entrega y utiliza únicamente el código más reciente.
+
+Si el mensaje **No se puede reenviar todavía. Espera e inténtalo de nuevo.** continúa
+después de la espera, no repitas la solicitud de forma continua. Solicita soporte sin
+compartir tu contraseña ni ningún código recibido.
+
+### El código se rechaza
+
+**El código no es válido, ha caducado o ha agotado sus intentos.** puede indicar que el
+código no es el último solicitado, que han pasado 10 minutos o que se alcanzaron cinco
+intentos incorrectos. Solicita uno nuevo y escríbelo una sola vez con sus seis dígitos.
+
+### Un dispositivo recordado vuelve a pedir un código
+
+La confianza dura como máximo 30 días y depende de los datos conservados por ese
+navegador. También se revoca al cambiar o recuperar la contraseña y cuando se desactiva
+el acceso. Solicita un código nuevo; no intentes recuperar el dato anterior del
+navegador.
+
+### La contraseña nueva se rechaza
+
+Comprueba que tenga entre 12 y 128 caracteres y que no contenga el correo, la parte
+anterior a `@` ni el nombre de la organización. La aplicación también rechaza
+contraseñas que aparecen en filtraciones conocidas. Puedes usar una frase larga; no es
+obligatorio añadir símbolos o mayúsculas.
+
+### La recuperación no está disponible
+
+**La recuperación no está disponible temporalmente.** indica que la capacidad todavía
+no está habilitada en ese entorno o que no puede utilizarse en ese momento. No intentes
+acceder mediante direcciones guardadas. Pide ayuda a la persona responsable de tu
+organización.
+
+El registro de cuentas continúa sin estar disponible. No existe un procedimiento
+alternativo mediante enlaces directos.
 
 ## Chat web público
 
