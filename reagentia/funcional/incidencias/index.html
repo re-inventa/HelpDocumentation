@@ -1206,11 +1206,11 @@
 <p>Si la pantalla de administración rechaza un origen, revisa que sea una URL HTTPS
 completa sin ruta, por ejemplo <code>https://chat.example.invalid</code>, y que se haya
 introducido uno por línea. HTTP solo sirve para pruebas locales en localhost,
-<code>127.0.0.1</code> o <code>[::1]</code>. La
-<strong>Prueba controlada</strong> exige al menos un origen y se admiten como máximo 50. Si
-la creación de una integración indica que el canal no está listo, comprueba que
-el estado guardado sea <strong>Activo</strong> y el modo <strong>Prueba controlada</strong>, dentro de una
-ventana autorizada. Un error de permisos requiere que la persona responsable
+<code>127.0.0.1</code> o <code>[::1]</code>. Activar exige al menos un origen y se admiten como máximo 50. Si la activación
+se rechaza, completa los sitios y selecciona perfiles de límites y conservación
+disponibles. Puedes guardar una preparación incompleta y crear la integración
+con el canal <strong>Desactivado</strong>; su credencial solo inicia conversaciones cuando el
+estado guardado sea <strong>Activado</strong>. Un error de permisos requiere que la persona responsable
 revise tu rol; un conflicto puede indicar una clave ya utilizada o una integración
 revocada. Si falla la custodia al crear o rotar, consulta el estado actualizado
 antes de volver a intentarlo y solicita apoyo operativo. La credencial nueva aparece
@@ -1233,7 +1233,7 @@ distingue el almacenamiento principal de las copias del proveedor y los respaldo
 <p><strong>La sesión ha caducado. Solicita un nuevo inicio al sitio.</strong> indica que terminó su
 plazo. <strong>El acceso a esta conversación ha sido revocado.</strong> indica que se retiró el
 acceso de la sesión o de su integración. <strong>El canal no está disponible.</strong> indica que
-se deshabilitó el canal o su acceso público. <strong>La sesión no es válida. Solicita un
+se desactivó el canal. <strong>La sesión no es válida. Solicita un
 nuevo inicio al sitio.</strong> puede aparecer si se perdió el acceso guardado en la
 pestaña. <strong>El chat no está disponible temporalmente.</strong> señala una indisponibilidad
 temporal. Dentro de una conversación abierta el aviso de sesión puede abreviarse a
@@ -1247,11 +1247,14 @@ sitio que ofrece el chat; si el aviso persiste, usa su contacto alternativo.</p>
 y recarga el widget: las nuevas cargas pueden utilizar la lista anterior durante ese
 plazo. Consulta <a href="../chat-web-publico/#cambiar-los-sitios-autorizados">Cambiar los sitios autorizados</a>.
 Si una carga coincide con un guardado y el widget no llega a abrirse, vuelve a cargarlo.</p>
-<p>Al deshabilitar el canal o revocar una integración, no se aceptan nuevos mensajes ni
+<p>Al desactivar el canal o revocar una integración, no se aceptan nuevos mensajes ni
 renovaciones en las sesiones afectadas. Una respuesta que ya había comenzado puede
 terminar y mostrarse después, con consumo dentro de los límites configurados. Espera a
 que se cierre antes de interpretar su contenido como definitivo. La desactivación no
 elimina automáticamente el historial ni retira texto que ya se mostró.</p>
+<p>Reactivar un canal no devuelve el acceso a sus sesiones revocadas. Solicita un inicio
+nuevo cuando el canal esté disponible. Revocar una integración afecta solo a sus
+accesos; no requiere desactivar todo el canal ni borra automáticamente el historial.</p>
 <p>Si el asistente insertado indica que el almacenamiento de la pestaña está bloqueado,
 puedes continuar en esa página, pero la recarga impedirá recuperar la sesión. No se
 abrirá otra conversación automáticamente: solicita un inicio nuevo al sitio si lo
