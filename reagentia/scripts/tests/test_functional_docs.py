@@ -79,7 +79,7 @@ class FunctionalContentTests(unittest.TestCase):
         self.assertNotIn("Reintentar despacho", docs)
         self.assertIn("Reintentar lanzamiento", docs)
 
-    def test_access_guide_documents_only_the_available_account_flow(self):
+    def test_access_guide_documents_available_account_flows(self):
         guide = (ROOT / "docs" / "funcional" / "acceso-y-cuenta.md").read_text(
             encoding="utf-8"
         )
@@ -96,8 +96,15 @@ class FunctionalContentTests(unittest.TestCase):
             "Completa la verificación de seguridad.",
             "espera temporal",
             "nunca desactiva permanentemente la cuenta",
-            "cambiar la contraseña ni recuperarla",
-            "código por correo",
+            "registro de cuentas continúa sin estar disponible",
+            "código de seis dígitos",
+            "10 minutos",
+            "cinco intentos",
+            "30 días",
+            "tres reenvíos cada 15 minutos",
+            "entre 12 y 128 caracteres",
+            "demás sesiones",
+            "dispositivos recordados",
         ):
             with self.subTest(expected=expected):
                 self.assertIn(expected, normalized_guide)
@@ -106,7 +113,12 @@ class FunctionalContentTests(unittest.TestCase):
             "## Acceso a la cuenta",
             "El servicio de autenticación no está disponible temporalmente.",
             "no bloquea la cuenta de forma permanente",
-            "todavía no están disponibles el registro",
+            "### No has recibido el código",
+            "### El código se rechaza",
+            "### Un dispositivo recordado vuelve a pedir un código",
+            "### La contraseña nueva se rechaza",
+            "La recuperación no está disponible temporalmente.",
+            "El registro de cuentas continúa sin estar disponible",
         ):
             with self.subTest(expected=expected):
                 self.assertIn(expected, normalized_incidents)

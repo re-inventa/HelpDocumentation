@@ -2,13 +2,15 @@
 
 ## Alcance actual
 
-En esta entrega pueden iniciar sesión las personas que ya tienen una cuenta activa,
-el correo verificado y acceso activo a una organización. La pantalla actual no permite
-crear una cuenta, cambiar la contraseña ni recuperarla. Tampoco solicita todavía un
-código por correo al iniciar sesión.
+Pueden iniciar sesión las personas que ya tienen una cuenta activa, el correo
+verificado y acceso activo a una organización. El registro de cuentas continúa sin
+estar disponible.
 
-No intentes completar esos recorridos mediante enlaces guardados o direcciones directas:
-se habilitarán y documentarán cuando estén disponibles en la aplicación.
+Cuando la protección por código está habilitada, la aplicación solicita un código por
+correo al acceder desde un navegador o dispositivo no recordado. En esos entornos
+también están disponibles la recuperación de contraseña y la sección **Seguridad** para
+cambiarla. Si la recuperación indica que no está disponible o no aparece la sección
+**Seguridad**, la capacidad todavía no está habilitada en ese entorno.
 
 ## Iniciar sesión
 
@@ -16,6 +18,10 @@ se habilitarán y documentarán cuando estén disponibles en la aplicación.
 2. Introduce tu correo electrónico y tu contraseña.
 3. Si aparece una comprobación de seguridad, complétala antes de continuar.
 4. Pulsa **Iniciar sesión**.
+5. Si aparece **Confirma el acceso**, introduce el código recibido por correo.
+6. Marca **Recordar este dispositivo durante 30 días** solo si es un dispositivo
+   personal y protegido.
+7. Pulsa **Verificar código**.
 
 Una sesión iniciada correctamente dura como máximo cuatro horas y no amplía ese plazo
 por seguir navegando. Al finalizar, vuelve a identificarte desde la pantalla de acceso.
@@ -23,11 +29,29 @@ por seguir navegando. Al finalizar, vuelve a identificarte desde la pantalla de 
 Usa **Cerrar sesión** cuando termines, especialmente en un equipo compartido. El cierre
 retira el acceso de esa sesión y devuelve a la pantalla de inicio.
 
+## Código de acceso y dispositivo recordado
+
+El código de acceso tiene seis dígitos, caduca en 10 minutos y solo puede utilizarse una
+vez. Después de cinco intentos incorrectos deja de ser válido. Usa **Reenviar código** si
+no lo recibes: el botón vuelve a estar disponible después de 60 segundos y admite como
+máximo tres reenvíos cada 15 minutos. Cuando solicites otro, utiliza siempre el código
+más reciente.
+
+La opción **Recordar este dispositivo durante 30 días** evita pedir otro código en ese
+navegador durante ese plazo. No la marques en equipos compartidos. La aplicación volverá
+a solicitar el código si termina el plazo, si se eliminan los datos del navegador o si
+se revoca la confianza del dispositivo. Cambiar o recuperar la contraseña revoca todos
+los dispositivos recordados; la desactivación del acceso también puede revocarlos.
+
+El mensaje **El código no es válido, ha caducado o ha agotado sus intentos.** no distingue
+la causa. Solicita un código nuevo, espera a recibirlo e introduce solo el último.
+
 ## Comprobación de seguridad
 
 Según la configuración del entorno, la pantalla puede pedir una comprobación antes de
-enviar las credenciales. Complétala en la propia página. Si el acceso falla, la
-comprobación anterior deja de servir y la pantalla puede pedir una nueva.
+enviar las credenciales o solicitar la recuperación. Complétala en la propia página. Si
+el acceso falla, la comprobación anterior deja de servir y la pantalla puede pedir una
+nueva.
 
 Si aparece **Completa la verificación de seguridad.**, espera a que el control termine
 y vuelve a pulsar **Iniciar sesión**. Si no carga o se reinicia repetidamente, recarga
@@ -46,15 +70,43 @@ repitas el envío de forma continua: espera unos minutos y vuelve a intentarlo u
 vez. Si sigue fallando, pide a la persona administradora que confirme tu acceso sin
 compartir la contraseña.
 
-!!! warning "Protege tus credenciales"
-    No compartas contraseñas ni comprobaciones de seguridad. Si no reconoces actividad
-    relacionada con tu cuenta, cierra la sesión y comunícalo a la persona responsable
-    de tu organización.
+!!! warning "Protege tus credenciales y códigos"
+    No compartas contraseñas, códigos ni comprobaciones de seguridad. Si recibes un
+    código que no has solicitado, no lo utilices ni lo comuniques: cambia la contraseña
+    desde un dispositivo de confianza o avisa a la persona responsable de tu
+    organización.
 
-## Contraseñas en esta entrega
+## Requisitos de la contraseña
 
-La política reforzada para nuevas contraseñas está preparada, pero los recorridos que
-crean, cambian o recuperan una contraseña siguen deshabilitados durante esta entrega.
-Por eso la aplicación todavía no ofrece un formulario en el que aplicar sus requisitos.
-Esta página se ampliará con las reglas y el procedimiento cuando esas acciones estén
-disponibles y verificadas.
+Una contraseña nueva debe tener entre 12 y 128 caracteres. No es obligatorio combinar
+mayúsculas, minúsculas, números y símbolos, por lo que puedes usar una frase larga que
+te resulte fácil de recordar y difícil de adivinar.
+
+La contraseña no puede contener tu dirección de correo, la parte anterior a `@` ni el
+nombre de la organización. La aplicación también rechaza contraseñas que aparecen en
+filtraciones conocidas. No reutilices una contraseña de otro servicio.
+
+## Recuperar una contraseña olvidada
+
+1. En la pantalla de inicio, pulsa **¿Has olvidado tu contraseña?**.
+2. Introduce tu correo y completa la comprobación de seguridad si aparece.
+3. Pulsa **Enviar código**. La respuesta es la misma exista o no una cuenta con ese
+   correo.
+4. Introduce el código de seis dígitos recibido, la nueva contraseña y su confirmación.
+5. Pulsa **Cambiar contraseña** y vuelve al inicio de sesión.
+
+El código de recuperación comparte el plazo de 10 minutos y el máximo de cinco intentos.
+Al completar la recuperación se cierran todas las sesiones y se revocan todos los
+dispositivos recordados. La aplicación envía una confirmación al correo de la cuenta.
+
+## Cambiar la contraseña con la sesión iniciada
+
+1. Abre **Seguridad** en la navegación de la aplicación.
+2. Introduce la contraseña actual.
+3. Escribe la nueva contraseña y repítela.
+4. Pulsa **Cambiar contraseña**.
+
+La aplicación conserva la sesión actual cuando puede hacerlo, pero cierra las demás
+sesiones y revoca los dispositivos recordados. Si no puede conservarla, vuelve a la
+pantalla de inicio para identificarte con la contraseña nueva. También recibirás una
+confirmación por correo.
