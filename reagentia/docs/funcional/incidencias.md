@@ -1,5 +1,47 @@
 # Incidencias y recuperación
 
+## Acceso a la cuenta
+
+### Aparece «Credenciales incorrectas»
+
+Comprueba que el correo esté bien escrito y vuelve a introducir la contraseña. El
+mensaje no confirma si una cuenta existe ni distingue entre una contraseña incorrecta,
+un correo pendiente de verificar, una cuenta desactivada o la falta de acceso activo a
+una organización.
+
+Si ya has realizado varios intentos, deja de repetirlos y espera unos minutos. La
+protección aplica esperas temporales cada vez mayores, pero no bloquea la cuenta de
+forma permanente. Si después de la espera continúa el rechazo, pide a una persona
+administradora que revise el estado de tu acceso. No envíes tu contraseña ni capturas
+que la muestren.
+
+### La comprobación de seguridad no termina
+
+Espera a que la comprobación termine antes de pulsar **Iniciar sesión**. Tras un intento
+fallido puede ser necesario completarla otra vez. Si aparece **Completa la verificación
+de seguridad.**, termina el control mostrado en la página. Si no carga, recarga la
+página una vez y prueba de nuevo desde un navegador actualizado.
+
+### El servicio de autenticación no está disponible
+
+**El servicio de autenticación no está disponible temporalmente.** indica que el acceso
+no puede comprobarse en ese momento. Espera unos minutos y vuelve a intentarlo; no
+repitas el envío continuamente. Si persiste, anota la hora aproximada y solicita soporte
+sin incluir credenciales ni datos sensibles.
+
+### La sesión ha terminado
+
+Las sesiones duran como máximo cuatro horas. Si vuelves a la pantalla de acceso o una
+página deja de estar disponible al finalizar ese plazo, inicia sesión de nuevo. Cerrar
+sesión en un equipo compartido evita que la sesión permanezca accesible desde ese
+navegador.
+
+### No aparece registro ni recuperación de contraseña
+
+En esta entrega todavía no están disponibles el registro, el cambio de contraseña ni
+su recuperación. No existe un procedimiento alternativo mediante enlaces directos.
+Solicita ayuda a la persona responsable de tu organización.
+
 ## Chat web público
 
 Si la pantalla de administración rechaza un origen, revisa que sea una URL HTTPS
