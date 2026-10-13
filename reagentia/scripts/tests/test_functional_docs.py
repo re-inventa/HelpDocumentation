@@ -185,7 +185,7 @@ class FunctionalContentTests(unittest.TestCase):
             "La sesión no es válida.",
             "El servicio de chat no está disponible temporalmente.",
             "El canal no está disponible en este sitio.",
-            "El canal permanece desactivado fuera de las pruebas",
+            "La persona responsable debe mantener el canal desactivado fuera de las pruebas",
             "pruebas controladas y autorizadas",
             "almacenamiento de la pestaña",
             "matriz de navegadores",
@@ -258,6 +258,17 @@ class FunctionalContentTests(unittest.TestCase):
         self.assertNotIn("**Límite alcanzado**", normalized_guide)
         self.assertNotIn("gestor de secretos", normalized_guide)
         self.assertNotIn("CLI" + "Proxy", normalized_guide)
+
+    def test_public_channel_guides_do_not_describe_retired_controls(self):
+        for name in ("asistentes.md", "chat-web-publico.md", "incidencias.md"):
+            guide = (ROOT / "docs" / "funcional" / name).read_text(encoding="utf-8")
+            normalized = " ".join(guide.split()).casefold()
+            for retired in ("acceso público", "**prueba controlada**", "deshabilitar canal"):
+                with self.subTest(page=name, retired=retired):
+                    self.assertFalse(
+                        retired in normalized,
+                        f"{name} todavía describe el control retirado: {retired}",
+                    )
 
     def test_rejects_technical_content(self):
         self.assertTrue(self.validate("Postgre" + "SQL"))

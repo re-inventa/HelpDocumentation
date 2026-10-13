@@ -148,5 +148,6 @@ del canal no cambia las conversaciones del chat autenticado.
 El canal público tiene un único estado **Activado / Desactivado**. Puedes guardar
 una preparación incompleta y crear su integración mientras está desactivado.
 Activarlo exige sitios y políticas válidos; la integración no inicia conversaciones
-antes de ese cambio. Revocar una integración retira solo ese consumidor. Al volver
-a activar el canal se necesitan sesiones nuevas, sin recuperar las revocadas.
+antes de ese cambio. Revocar una integración retira únicamente los accesos asociados
+a ese consumidor. Al volver a activar el canal se necesitan sesiones nuevas, sin
+recuperar las revocadas.

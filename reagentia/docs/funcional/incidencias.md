@@ -58,6 +58,10 @@ terminar y mostrarse después, con consumo dentro de los límites configurados. 
 que se cierre antes de interpretar su contenido como definitivo. La desactivación no
 elimina automáticamente el historial ni retira texto que ya se mostró.
 
+Reactivar un canal no devuelve el acceso a sus sesiones revocadas. Solicita un inicio
+nuevo cuando el canal esté disponible. Revocar una integración afecta solo a sus
+accesos; no requiere desactivar todo el canal ni borra automáticamente el historial.
+
 Si el asistente insertado indica que el almacenamiento de la pestaña está bloqueado,
 puedes continuar en esa página, pero la recarga impedirá recuperar la sesión. No se
 abrirá otra conversación automáticamente: solicita un inicio nuevo al sitio si lo
@@ -198,7 +202,3 @@ Consulta [WordPress y Elementor](chat-web-publico.md#preparar-wordpress-y-elemen
 - si el problema se repite en un lanzamiento nuevo.
 
 No incluyas documentos, claves, tokens, enlaces temporales de descarga ni capturas con información sensible.
-
-Reactivar un canal no devuelve el acceso a sus sesiones revocadas. Solicita un inicio
-nuevo cuando el canal esté disponible. Revocar una integración afecta solo a sus
-accesos; no requiere desactivar todo el canal ni borra automáticamente el historial.

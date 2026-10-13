@@ -13,7 +13,7 @@ para tráfico público general.
     el servicio al tráfico público general. La comprobación inicial reduce abusos,
     pero no garantiza que una web pública quede libre de ellos.
 
-    El canal permanece desactivado fuera de las pruebas
+    La persona responsable debe mantener el canal desactivado fuera de las pruebas
     controladas y autorizadas. La disponibilidad general requiere la aceptación final.
     La matriz de navegadores y las comprobaciones de teclado, foco, lector de pantalla
     y diseño móvil siguen pendientes antes de esa apertura.
@@ -71,7 +71,7 @@ Esto no actualiza ni interrumpe automáticamente una conversación que ya estaba
 
 Un widget que ya estaba abierto conserva la configuración con la que se cargó.
 Retirar un sitio no modifica esa página ni revoca su sesión. Para bloquear nuevas
-operaciones usa los controles de deshabilitación o revocación descritos más abajo.
+operaciones usa los controles de desactivación o revocación descritos más abajo.
 Añadir un sitio tampoco activa el canal ni sustituye la integración autorizada.
 
 ### Integraciones y acceso
@@ -322,8 +322,8 @@ trasladar la conversación entre dispositivos.
   admite nuevas operaciones desde esa sesión.
 - **El acceso a esta conversación ha sido revocado.** El responsable retiró el acceso a
   esa sesión o a la integración que la habilitó. Solicita ayuda al sitio.
-- **El canal no está disponible.** El responsable deshabilitó el canal o su acceso
-  público. Usa el contacto alternativo que ofrezca el sitio.
+- **El canal no está disponible.** El responsable desactivó el canal. Usa el contacto
+  alternativo que ofrezca el sitio.
 - **La sesión no es válida. Solicita un nuevo inicio al sitio.** Comprueba que estás
   en la pestaña original antes de solicitarlo. Dentro de una conversación ya abierta,
   el aviso puede abreviarse a **La sesión no es válida.**
