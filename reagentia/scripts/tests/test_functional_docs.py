@@ -79,6 +79,43 @@ class FunctionalContentTests(unittest.TestCase):
         self.assertNotIn("Reintentar despacho", docs)
         self.assertIn("Reintentar lanzamiento", docs)
 
+    def test_access_guide_documents_only_the_available_account_flow(self):
+        guide = (ROOT / "docs" / "funcional" / "acceso-y-cuenta.md").read_text(
+            encoding="utf-8"
+        )
+        incidents = (ROOT / "docs" / "funcional" / "incidencias.md").read_text(
+            encoding="utf-8"
+        )
+        navigation = (ROOT / "mkdocs.yml").read_text(encoding="utf-8")
+        normalized_guide = " ".join(guide.split())
+        normalized_incidents = " ".join(incidents.split())
+
+        for expected in (
+            "cuatro horas",
+            "Credenciales incorrectas.",
+            "Completa la verificación de seguridad.",
+            "espera temporal",
+            "nunca desactiva permanentemente la cuenta",
+            "cambiar la contraseña ni recuperarla",
+            "código por correo",
+        ):
+            with self.subTest(expected=expected):
+                self.assertIn(expected, normalized_guide)
+
+        for expected in (
+            "## Acceso a la cuenta",
+            "El servicio de autenticación no está disponible temporalmente.",
+            "no bloquea la cuenta de forma permanente",
+            "todavía no están disponibles el registro",
+        ):
+            with self.subTest(expected=expected):
+                self.assertIn(expected, normalized_incidents)
+
+        self.assertIn(
+            "Acceso y cuenta: funcional/acceso-y-cuenta.md",
+            navigation,
+        )
+
     def test_assistant_guide_documents_compact_tool_activity(self):
         guide = (ROOT / "docs" / "funcional" / "asistentes.md").read_text(encoding="utf-8")
         for expected in (
