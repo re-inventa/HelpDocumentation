@@ -153,10 +153,10 @@ class FunctionalContentTests(unittest.TestCase):
             "**El acceso a esta conversación ha sido revocado.**",
             "comprobación inicial reduce abusos",
             "asistente automatizado",
-            "El estado del canal y el acceso público son controles distintos",
-            "Deshabilitar solo el acceso público mantiene activo el canal",
-            "Volver a habilitar el acceso público no reactiva un canal",
-            "Al deshabilitar el acceso público, deshabilitar el canal o revocar la integración",
+            "El canal tiene un único estado: **Activado / Desactivado**",
+            "Puedes crear una integración con una clave y un nombre mientras el canal está desactivado",
+            "las revocadas no recuperan acceso",
+            "Al desactivar el canal o revocar la integración",
             "una respuesta que ya se había iniciado puede terminar de generarse",
             "Esa respuesta puede consumir recursos dentro de los límites configurados",
             "## Comprobación del inicio",
@@ -185,8 +185,8 @@ class FunctionalContentTests(unittest.TestCase):
             "La sesión no es válida.",
             "El servicio de chat no está disponible temporalmente.",
             "El canal no está disponible en este sitio.",
-            "deben permanecer deshabilitados",
-            "ventanas de prueba controladas y autorizadas",
+            "La persona responsable debe mantener el canal desactivado fuera de las pruebas",
+            "pruebas controladas y autorizadas",
             "almacenamiento de la pestaña",
             "matriz de navegadores",
             "lector de pantalla",
@@ -197,13 +197,19 @@ class FunctionalContentTests(unittest.TestCase):
                 self.assertIn(expected, normalized_guide)
         self.assertIn("entrega local de prueba", normalized_guide)
         self.assertIn("## Preparar WordPress y Elementor", guide)
+        wordpress_setup = normalized_guide.split("## Preparar WordPress y Elementor", 1)[1].split(
+            "### Insertar el asistente", 1
+        )[0]
+        self.assertIn("elige **Activado** y pulsa **Guardar canal**", wordpress_setup)
+        self.assertIn("Después marca la habilitación local del plugin en WordPress", wordpress_setup)
+        self.assertIn("[Preparar el canal](#preparar-el-canal)", wordpress_setup)
         self.assertIn("`[reagentia_chat]`", guide)
         self.assertIn("no requiere Cloudflare Proxy", normalized_guide)
         self.assertIn("ZIP real **0.1.1**", normalized_guide)
         self.assertIn("Sus conversaciones siguen separadas", normalized_guide)
         self.assertIn("no abre el piloto", normalized_guide)
         self.assertIn("Asistentes → Configurar canal público", normalized_guide)
-        self.assertIn("**Deshabilitar canal**", normalized_guide)
+        self.assertIn("**Desactivar canal**", normalized_guide)
         self.assertIn("**Revocar**", normalized_guide)
         self.assertIn("No existe una acción de borrado físico", normalized_guide)
         self.assertIn("30 días después de esa caducidad", normalized_guide)
@@ -237,7 +243,7 @@ class FunctionalContentTests(unittest.TestCase):
         ):
             with self.subTest(message=message):
                 self.assertIn(message, normalized_incidents)
-        self.assertIn("se deshabilitó el canal o su acceso público", normalized_incidents)
+        self.assertIn("se desactivó el canal", normalized_incidents)
         self.assertIn("20 mensajes de la sesión", normalized_incidents)
         self.assertIn("6 mensajes en 60 segundos", normalized_guide)
         self.assertIn("cada canal hasta 5", normalized_incidents)
@@ -258,6 +264,24 @@ class FunctionalContentTests(unittest.TestCase):
         self.assertNotIn("**Límite alcanzado**", normalized_guide)
         self.assertNotIn("gestor de secretos", normalized_guide)
         self.assertNotIn("CLI" + "Proxy", normalized_guide)
+
+    def test_public_channel_guides_do_not_describe_retired_controls(self):
+        for name in ("asistentes.md", "chat-web-publico.md", "incidencias.md"):
+            guide = (ROOT / "docs" / "funcional" / name).read_text(encoding="utf-8")
+            normalized = " ".join(guide.split()).casefold()
+            for retired in (
+                "**acceso público**",
+                "**modo de acceso**",
+                "**prueba controlada**",
+                "deshabilitar canal",
+                "canal o su acceso público",
+                "canal o el acceso público",
+            ):
+                with self.subTest(page=name, retired=retired):
+                    self.assertFalse(
+                        retired in normalized,
+                        f"{name} todavía describe el control retirado: {retired}",
+                    )
 
     def test_rejects_technical_content(self):
         self.assertTrue(self.validate("Postgre" + "SQL"))
