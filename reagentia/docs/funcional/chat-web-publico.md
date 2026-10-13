@@ -141,6 +141,11 @@ Turnstile sigue siendo obligatorio para iniciar una conversación.
 5. Elige páginas permitidas (IDs separados por comas; vacío permite todas), posición,
    título, etiqueta y color del contenedor. Mantén la habilitación local desmarcada
    hasta que la prueba esté autorizada y las dependencias estén verificadas.
+6. Cuando la prueba esté autorizada, vuelve a **Asistentes → Configurar canal público**
+   en Reagentia, elige **Activado** y pulsa **Guardar canal**, conforme a
+   [Preparar el canal](#preparar-el-canal). Después marca la habilitación local del
+   plugin en WordPress. Para iniciar conversaciones deben estar activos tanto el
+   canal en Reagentia como el chat en el plugin.
 
 El estado **configurado** describe los ajustes locales; no confirma por sí solo una
 conexión real ni autoriza ese sitio en Reagentia. Sus orígenes permitidos deben prepararse

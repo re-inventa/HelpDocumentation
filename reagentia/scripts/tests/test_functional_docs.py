@@ -197,6 +197,12 @@ class FunctionalContentTests(unittest.TestCase):
                 self.assertIn(expected, normalized_guide)
         self.assertIn("entrega local de prueba", normalized_guide)
         self.assertIn("## Preparar WordPress y Elementor", guide)
+        wordpress_setup = normalized_guide.split("## Preparar WordPress y Elementor", 1)[1].split(
+            "### Insertar el asistente", 1
+        )[0]
+        self.assertIn("elige **Activado** y pulsa **Guardar canal**", wordpress_setup)
+        self.assertIn("Después marca la habilitación local del plugin en WordPress", wordpress_setup)
+        self.assertIn("[Preparar el canal](#preparar-el-canal)", wordpress_setup)
         self.assertIn("`[reagentia_chat]`", guide)
         self.assertIn("no requiere Cloudflare Proxy", normalized_guide)
         self.assertIn("ZIP real **0.1.1**", normalized_guide)
@@ -263,7 +269,14 @@ class FunctionalContentTests(unittest.TestCase):
         for name in ("asistentes.md", "chat-web-publico.md", "incidencias.md"):
             guide = (ROOT / "docs" / "funcional" / name).read_text(encoding="utf-8")
             normalized = " ".join(guide.split()).casefold()
-            for retired in ("acceso público", "**prueba controlada**", "deshabilitar canal"):
+            for retired in (
+                "**acceso público**",
+                "**modo de acceso**",
+                "**prueba controlada**",
+                "deshabilitar canal",
+                "canal o su acceso público",
+                "canal o el acceso público",
+            ):
                 with self.subTest(page=name, retired=retired):
                     self.assertFalse(
                         retired in normalized,
