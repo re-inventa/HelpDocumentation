@@ -136,6 +136,36 @@ class FunctionalContentTests(unittest.TestCase):
             navigation,
         )
 
+    def test_organization_administration_guide_documents_available_flows(self):
+        guide = (ROOT / "docs" / "funcional" / "administracion.md").read_text(
+            encoding="utf-8"
+        )
+        navigation = (ROOT / "mkdocs.yml").read_text(encoding="utf-8")
+        normalized = " ".join(guide.split())
+
+        for expected in (
+            "Administrador de plataforma",
+            "Administración → Organizaciones",
+            "Crear organización",
+            "Guardar nombre",
+            "identificador corto",
+            "Suspender organización",
+            "Reactivar organización",
+            "deben iniciar sesión de nuevo",
+            "Añadir dominio",
+            "proveedores de correo público",
+            "Retirar",
+            "no elimina usuarios ni membresías existentes",
+        ):
+            with self.subTest(expected=expected):
+                self.assertIn(expected, normalized)
+
+        self.assertIn(
+            "Administración de organizaciones: funcional/administracion.md",
+            navigation,
+        )
+        self.assertNotIn("CLI" + "Proxy", guide)
+
     def test_assistant_guide_documents_compact_tool_activity(self):
         guide = (ROOT / "docs" / "funcional" / "asistentes.md").read_text(encoding="utf-8")
         for expected in (
