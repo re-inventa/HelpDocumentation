@@ -18,6 +18,7 @@ Esta guía está dirigida a usuarios, operadores y responsables funcionales. Exp
 - [Conceptos y alcance](conceptos.md)
 - [Casos de uso y ejemplos](casos-de-uso.md)
 - [Acceso y cuenta](acceso-y-cuenta.md)
+- [Administración de organizaciones](administracion.md)
 - [Roles y permisos](roles-permisos.md)
 - [Conexión LLM](conexion-llm.md)
 - [Workflows, agentes y recursos](configuracion.md)
