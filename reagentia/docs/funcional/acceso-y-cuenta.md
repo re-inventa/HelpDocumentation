@@ -2,15 +2,40 @@
 
 ## Alcance actual
 
-Pueden iniciar sesión las personas que ya tienen una cuenta activa, el correo
-verificado y acceso activo a una organización. El registro de cuentas continúa sin
-estar disponible.
+Pueden crear una cuenta las personas cuyo correo pertenece a un dominio habilitado por
+una organización activa. El registro solo aparece en los entornos donde esta capacidad
+está habilitada. Antes del primer acceso es obligatorio verificar el correo.
 
 Cuando la protección por código está habilitada, la aplicación solicita un código por
 correo al acceder desde un navegador o dispositivo no recordado. En esos entornos
 también están disponibles la recuperación de contraseña y la sección **Seguridad** para
 cambiarla. Si la recuperación indica que no está disponible o no aparece la sección
 **Seguridad**, la capacidad todavía no está habilitada en ese entorno.
+
+## Crear una cuenta
+
+1. Abre la pantalla de inicio de sesión y pulsa **Crear cuenta**.
+2. Introduce tu nombre y el correo electrónico de tu organización.
+3. Escribe una contraseña de entre 12 y 128 caracteres y repítela.
+4. Completa la comprobación de seguridad y pulsa **Crear cuenta**.
+5. Introduce el código de seis dígitos recibido por correo y pulsa **Verificar email**.
+6. Vuelve al inicio e inicia sesión con el correo y la contraseña elegidos.
+
+El código caduca en 10 minutos y admite cinco intentos. **Reenviar código** se habilita
+después de 60 segundos y permite como máximo tres reenvíos cada 15 minutos. Cada reenvío
+invalida el código anterior; utiliza siempre el último recibido. El alta completa caduca
+si el correo no se verifica en 24 horas. Después puedes empezar un registro nuevo con el
+mismo correo.
+
+La organización y el acceso inicial se determinan a partir del dominio del correo. No
+puedes elegir otra organización ni solicitar un rol desde el formulario. Una cuenta
+nueva entra como **Observador**, con acceso de consulta. Pide a una persona administradora
+que cambie tu rol si necesitas realizar otras acciones.
+
+La pantalla muestra la misma confirmación cuando el correo ya tiene una cuenta. En ese
+caso no modifica la cuenta, la contraseña ni sus permisos, y el titular recibe un aviso
+de seguridad. Esta respuesta uniforme evita revelar a otras personas qué correos están
+registrados.
 
 ## Iniciar sesión
 
