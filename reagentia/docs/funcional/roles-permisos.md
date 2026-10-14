@@ -2,6 +2,11 @@
 
 Los permisos se aplican dentro de la organización activa. El administrador de plataforma es el único rol que puede actuar de forma transversal.
 
+Las cuentas creadas mediante el registro por dominio entran siempre como **Observador**
+en la organización correspondiente. Ese rol permite consultar la información disponible,
+pero no lanzar ejecuciones ni modificar configuración. Una persona administradora debe
+asignar otro rol si se necesitan más permisos.
+
 | Acción | Administrador de plataforma | Administrador de organización | Operador | Observador |
 | --- | :---: | :---: | :---: | :---: |
 | Ver workflows, agentes y ejecuciones | Sí | Sí | Sí | Sí |

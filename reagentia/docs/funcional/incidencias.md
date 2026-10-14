@@ -74,8 +74,32 @@ no está habilitada en ese entorno o que no puede utilizarse en ese momento. No 
 acceder mediante direcciones guardadas. Pide ayuda a la persona responsable de tu
 organización.
 
-El registro de cuentas continúa sin estar disponible. No existe un procedimiento
-alternativo mediante enlaces directos.
+### No aparece «Crear cuenta»
+
+El registro solo se muestra cuando está habilitado en ese entorno. No intentes acceder
+mediante direcciones guardadas. Si necesitas una cuenta, pide a la persona responsable
+de tu organización que confirme que el registro está disponible.
+
+### El dominio no está habilitado para el registro
+
+Usa el correo profesional asociado a tu organización. Los correos personales y los
+dominios no configurados no permiten crear cuentas. Si consideras que el dominio debería
+estar admitido, contacta con la persona administradora de la organización; no pruebes
+dominios alternativos para obtener acceso.
+
+### No llega el código de registro
+
+Comprueba el buzón y la carpeta de correo no deseado. La pantalla muestra la misma
+confirmación aunque el correo ya tenga una cuenta; en ese caso el titular recibe un aviso
+de seguridad y la cuenta no cambia. Espera 60 segundos antes de usar **Reenviar código**
+y utiliza solo el último código recibido. Si tú no solicitaste el registro, no compartas
+ningún código y revisa la seguridad de tu cuenta.
+
+### El registro ha caducado
+
+La verificación debe completarse dentro de las 24 horas siguientes al inicio del alta.
+Si el plazo ha terminado, vuelve a **Crear cuenta** y empieza un registro nuevo. Un código
+de inicio de sesión o de recuperación de contraseña no sirve para verificar el registro.
 
 ## Chat web público
 

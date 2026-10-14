@@ -96,7 +96,12 @@ class FunctionalContentTests(unittest.TestCase):
             "Completa la verificación de seguridad.",
             "espera temporal",
             "nunca desactiva permanentemente la cuenta",
-            "registro de cuentas continúa sin estar disponible",
+            "## Crear una cuenta",
+            "dominio habilitado",
+            "Verificar email",
+            "24 horas",
+            "Observador",
+            "misma confirmación",
             "código de seis dígitos",
             "10 minutos",
             "cinco intentos",
@@ -118,7 +123,10 @@ class FunctionalContentTests(unittest.TestCase):
             "### Un dispositivo recordado vuelve a pedir un código",
             "### La contraseña nueva se rechaza",
             "La recuperación no está disponible temporalmente.",
-            "El registro de cuentas continúa sin estar disponible",
+            "### No aparece «Crear cuenta»",
+            "### El dominio no está habilitado para el registro",
+            "### No llega el código de registro",
+            "### El registro ha caducado",
         ):
             with self.subTest(expected=expected):
                 self.assertIn(expected, normalized_incidents)

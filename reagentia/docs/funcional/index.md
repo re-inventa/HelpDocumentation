@@ -5,7 +5,7 @@ Esta guía está dirigida a usuarios, operadores y responsables funcionales. Exp
 ## Qué puedes hacer
 
 1. Consultar los workflows disponibles para tu organización.
-2. Acceder con una cuenta activa y cerrar la sesión de forma segura.
+2. Crear una cuenta con el correo de una organización habilitada, verificarla y acceder.
 3. Revisar la configuración, los agentes y los recursos publicados.
 4. Conectar el acceso a modelos de lenguaje si tu rol lo permite.
 5. Conversar con un asistente habilitado y retomar su historial guardado.
