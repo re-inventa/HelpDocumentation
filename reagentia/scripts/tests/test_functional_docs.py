@@ -100,10 +100,7 @@ class FunctionalContentTests(unittest.TestCase):
             "dominio habilitado",
             "Verificar email",
             "24 horas",
-            "Lector",
-            "## Cambiar de organización activa",
-            "Organización activa",
-            "Tu rol puede ser diferente en cada una",
+            "Observador",
             "misma confirmación",
             "código de seis dígitos",
             "10 minutos",
@@ -139,7 +136,7 @@ class FunctionalContentTests(unittest.TestCase):
             navigation,
         )
 
-    def test_identity_administration_guide_documents_available_flows(self):
+    def test_organization_administration_guide_documents_available_flows(self):
         guide = (ROOT / "docs" / "funcional" / "administracion.md").read_text(
             encoding="utf-8"
         )
@@ -159,55 +156,15 @@ class FunctionalContentTests(unittest.TestCase):
             "proveedores de correo público",
             "Retirar",
             "no elimina usuarios ni membresías existentes",
-            "Administración → Miembros",
-            "Confirmar rol",
-            "Forzar cierre",
-            "Administración → Usuarios",
-            "Preparar alta",
-            "Confirmar alta",
-            "Rol protegido",
-            "Desactivar cuenta",
-            "Forzar cierre global",
-            "al menos una persona con rol",
         ):
             with self.subTest(expected=expected):
                 self.assertIn(expected, normalized)
 
         self.assertIn(
-            "Administración: funcional/administracion.md",
+            "Administración de organizaciones: funcional/administracion.md",
             navigation,
         )
         self.assertNotIn("CLI" + "Proxy", guide)
-
-    def test_roles_and_incidents_distinguish_organization_and_platform_scope(self):
-        roles = (ROOT / "docs" / "funcional" / "roles-permisos.md").read_text(
-            encoding="utf-8"
-        )
-        incidents = (ROOT / "docs" / "funcional" / "incidencias.md").read_text(
-            encoding="utf-8"
-        )
-        normalized_roles = " ".join(roles.split())
-        normalized_incidents = " ".join(incidents.split())
-
-        for expected in (
-            "miembros de la organización activa",
-            "cuentas y membresías de cualquier organización",
-            "una misma persona puede ser administradora en una organización",
-            "administrador de plataforma está protegido",
-        ):
-            with self.subTest(expected=expected):
-                self.assertIn(expected, normalized_roles)
-
-        for expected in (
-            "## Organización activa y administración",
-            "### No aparece el selector «Organización activa»",
-            "### No aparece «Miembros» o «Usuarios»",
-            "### No se puede cambiar o desactivar una administración",
-            "### Una desactivación ha cerrado la sesión",
-            "### No aparece una organización al preparar un alta",
-        ):
-            with self.subTest(expected=expected):
-                self.assertIn(expected, normalized_incidents)
 
     def test_assistant_guide_documents_compact_tool_activity(self):
         guide = (ROOT / "docs" / "funcional" / "asistentes.md").read_text(encoding="utf-8")

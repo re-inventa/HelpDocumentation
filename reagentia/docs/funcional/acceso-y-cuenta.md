@@ -29,7 +29,7 @@ mismo correo.
 
 La organización y el acceso inicial se determinan a partir del dominio del correo. No
 puedes elegir otra organización ni solicitar un rol desde el formulario. Una cuenta
-nueva entra como **Lector**, con acceso de consulta. Pide a una persona administradora
+nueva entra como **Observador**, con acceso de consulta. Pide a una persona administradora
 que cambie tu rol si necesitas realizar otras acciones.
 
 La pantalla muestra la misma confirmación cuando el correo ya tiene una cuenta. En ese
@@ -53,24 +53,6 @@ por seguir navegando. Al finalizar, vuelve a identificarte desde la pantalla de 
 
 Usa **Cerrar sesión** cuando termines, especialmente en un equipo compartido. El cierre
 retira el acceso de esa sesión y devuelve a la pantalla de inicio.
-
-## Cambiar de organización activa
-
-Si perteneces a más de una organización activa, la navegación muestra el selector
-**Organización activa**. Cada opción corresponde a una membresía activa en una organización
-que también está activa.
-
-1. Abre el selector **Organización activa**.
-2. Elige la organización con la que quieres trabajar.
-3. Espera a que la aplicación recargue la pantalla y sus datos.
-
-Los datos, acciones y permisos visibles pasan a corresponder a la organización elegida. Tu rol
-puede ser diferente en cada una. Elegir una organización no concede permisos nuevos ni permite
-ver información de las demás.
-
-El selector no aparece si solo tienes una opción válida. Si la membresía seleccionada se
-desactiva o la organización deja de estar activa, la aplicación pasa a otra opción válida. Si
-no queda ninguna, el acceso termina y debes solicitar ayuda a una persona administradora.
 
 ## Código de acceso y dispositivo recordado
 

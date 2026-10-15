@@ -52,7 +52,7 @@ nav:
       - Conceptos y alcance: funcional/conceptos.md
       - Casos de uso y ejemplos: funcional/casos-de-uso.md
       - Acceso y cuenta: funcional/acceso-y-cuenta.md
-      - Administración: funcional/administracion.md
+      - Administración de organizaciones: funcional/administracion.md
       - Roles y permisos: funcional/roles-permisos.md
       - Conexión LLM: funcional/conexion-llm.md
       - Workflows, agentes y recursos: funcional/configuracion.md

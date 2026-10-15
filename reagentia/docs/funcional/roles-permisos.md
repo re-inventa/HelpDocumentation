@@ -2,12 +2,12 @@
 
 Los permisos se aplican dentro de la organización activa. El administrador de plataforma es el único rol que puede actuar de forma transversal.
 
-Las cuentas creadas mediante el registro por dominio entran siempre como **Lector**
+Las cuentas creadas mediante el registro por dominio entran siempre como **Observador**
 en la organización correspondiente. Ese rol permite consultar la información disponible,
 pero no lanzar ejecuciones ni modificar configuración. Una persona administradora debe
 asignar otro rol si se necesitan más permisos.
 
-| Acción | Administrador de plataforma | Administrador de organización | Operador | Lector |
+| Acción | Administrador de plataforma | Administrador de organización | Operador | Observador |
 | --- | :---: | :---: | :---: | :---: |
 | Ver workflows, agentes y ejecuciones | Sí | Sí | Sí | Sí |
 | Ver asistentes | Sí | Sí | Sí | Sí |
@@ -17,17 +17,9 @@ asignar otro rol si se necesitan más permisos.
 | Editar y publicar agentes | Sí | Sí | No | No |
 | Configurar y revocar canales públicos de asistentes | Sí | Sí | No | No |
 | Configurar y publicar workflows | Sí | Sí | No | No |
-| Gestionar tools y miembros de la organización activa | Sí | Sí | No | No |
-| Gestionar cuentas y membresías de cualquier organización | Sí | No | No | No |
+| Gestionar tools, miembros y auditoría | Sí | Sí | No | No |
 | Eliminar artifacts antes de su vencimiento | Sí | Sí | No | No |
-| Gestionar organizaciones y dominios | Sí | No | No | No |
-
-El rol se asigna por membresía: una misma persona puede ser administradora en una organización
-y lectora u operadora en otra. El selector **Organización activa** determina qué membresía se
-aplica en ese momento.
-
-El rol de administrador de plataforma está protegido. No puede concederse, modificarse ni
-retirarse desde las pantallas de administración.
+| Gestionar organizaciones | Sí | No | No | No |
 
 !!! warning "El permiso es la regla"
     La tabla refleja la configuración inicial. La autorización efectiva se valida por permiso en cada operación; el nombre del rol por sí solo no concede acceso.

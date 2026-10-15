@@ -101,47 +101,6 @@ La verificación debe completarse dentro de las 24 horas siguientes al inicio de
 Si el plazo ha terminado, vuelve a **Crear cuenta** y empieza un registro nuevo. Un código
 de inicio de sesión o de recuperación de contraseña no sirve para verificar el registro.
 
-## Organización activa y administración
-
-### No aparece el selector «Organización activa»
-
-El selector solo aparece cuando tienes más de una membresía activa en organizaciones activas.
-Si esperabas otra opción, pide a una persona administradora que compruebe el estado de la
-organización, de tu cuenta y de la membresía correspondiente.
-
-Si la organización con la que trabajabas deja de estar disponible, la aplicación selecciona
-otra opción válida. Si no queda ninguna, tendrás que iniciar sesión de nuevo después de que se
-restaure tu acceso.
-
-### No aparece «Miembros» o «Usuarios»
-
-**Miembros** requiere permisos para administrar la organización activa. **Usuarios** es una
-vista global reservada a la administración de plataforma. Que una sección no aparezca no se
-soluciona cambiando direcciones guardadas: solicita que revisen tu rol en la organización
-correcta.
-
-### No se puede cambiar o desactivar una administración
-
-La aplicación impide dejar una organización activa sin al menos una cuenta activa con rol
-**Administrador de organización** y membresía activa. Añade o asciende primero a otra persona
-y vuelve a intentar la operación.
-
-Una membresía marcada como **Rol protegido** pertenece a una administración de plataforma y
-no puede modificarse desde **Miembros** ni **Usuarios**.
-
-### Una desactivación ha cerrado la sesión
-
-Desactivar una cuenta retira su acceso a todas las organizaciones. Desactivar una membresía
-retira solo el acceso a esa organización, pero puede cerrar las sesiones si no queda otra
-membresía válida. Reactivar la cuenta o la membresía no recupera las sesiones cerradas: la
-persona debe identificarse de nuevo.
-
-### No aparece una organización al preparar un alta
-
-Comprueba que hayas abierto el detalle de la cuenta correcta y que la persona no pertenezca ya
-a esa organización. Esta pantalla añade únicamente usuarios existentes; no crea cuentas ni
-envía invitaciones.
-
 ## Chat web público
 
 Si la pantalla de administración rechaza un origen, revisa que sea una URL HTTPS
