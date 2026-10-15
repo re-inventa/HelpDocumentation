@@ -492,7 +492,7 @@
   <span class="md-ellipsis">
     
   
-    Administración
+    Administración de organizaciones
   
 
     
@@ -955,7 +955,7 @@
 
 <h1 id="roles-y-permisos">Roles y permisos<a class="headerlink" href="#roles-y-permisos" title="Permanent link">&para;</a></h1>
 <p>Los permisos se aplican dentro de la organización activa. El administrador de plataforma es el único rol que puede actuar de forma transversal.</p>
-<p>Las cuentas creadas mediante el registro por dominio entran siempre como <strong>Lector</strong>
+<p>Las cuentas creadas mediante el registro por dominio entran siempre como <strong>Observador</strong>
 en la organización correspondiente. Ese rol permite consultar la información disponible,
 pero no lanzar ejecuciones ni modificar configuración. Una persona administradora debe
 asignar otro rol si se necesitan más permisos.</p>
@@ -966,7 +966,7 @@ asignar otro rol si se necesitan más permisos.</p>
 <th style="text-align: center;">Administrador de plataforma</th>
 <th style="text-align: center;">Administrador de organización</th>
 <th style="text-align: center;">Operador</th>
-<th style="text-align: center;">Lector</th>
+<th style="text-align: center;">Observador</th>
 </tr>
 </thead>
 <tbody>
@@ -1027,16 +1027,9 @@ asignar otro rol si se necesitan más permisos.</p>
 <td style="text-align: center;">No</td>
 </tr>
 <tr>
-<td>Gestionar tools y miembros de la organización activa</td>
+<td>Gestionar tools, miembros y auditoría</td>
 <td style="text-align: center;">Sí</td>
 <td style="text-align: center;">Sí</td>
-<td style="text-align: center;">No</td>
-<td style="text-align: center;">No</td>
-</tr>
-<tr>
-<td>Gestionar cuentas y membresías de cualquier organización</td>
-<td style="text-align: center;">Sí</td>
-<td style="text-align: center;">No</td>
 <td style="text-align: center;">No</td>
 <td style="text-align: center;">No</td>
 </tr>
@@ -1048,7 +1041,7 @@ asignar otro rol si se necesitan más permisos.</p>
 <td style="text-align: center;">No</td>
 </tr>
 <tr>
-<td>Gestionar organizaciones y dominios</td>
+<td>Gestionar organizaciones</td>
 <td style="text-align: center;">Sí</td>
 <td style="text-align: center;">No</td>
 <td style="text-align: center;">No</td>
@@ -1056,11 +1049,6 @@ asignar otro rol si se necesitan más permisos.</p>
 </tr>
 </tbody>
 </table>
-<p>El rol se asigna por membresía: una misma persona puede ser administradora en una organización
-y lectora u operadora en otra. El selector <strong>Organización activa</strong> determina qué membresía se
-aplica en ese momento.</p>
-<p>El rol de administrador de plataforma está protegido. No puede concederse, modificarse ni
-retirarse desde las pantallas de administración.</p>
 <div class="admonition warning">
 <p class="admonition-title">El permiso es la regla</p>
 <p>La tabla refleja la configuración inicial. La autorización efectiva se valida por permiso en cada operación; el nombre del rol por sí solo no concede acceso.</p>
