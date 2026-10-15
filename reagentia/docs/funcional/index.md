@@ -12,13 +12,14 @@ Esta guía está dirigida a usuarios, operadores y responsables funcionales. Exp
 6. Preparar documentos y lanzar una ejecución.
 7. Seguir su avance y descargar los resultados.
 8. Cancelar, reintentar el despacho o relanzar cuando la situación lo permita.
+9. Cambiar de organización y, si tu rol lo permite, administrar organizaciones, usuarios y accesos.
 
 ## Recorrido recomendado
 
 - [Conceptos y alcance](conceptos.md)
 - [Casos de uso y ejemplos](casos-de-uso.md)
 - [Acceso y cuenta](acceso-y-cuenta.md)
-- [Administración de organizaciones](administracion.md)
+- [Administración](administracion.md)
 - [Roles y permisos](roles-permisos.md)
 - [Conexión LLM](conexion-llm.md)
 - [Workflows, agentes y recursos](configuracion.md)
