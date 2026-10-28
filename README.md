@@ -42,10 +42,6 @@ python scripts/build_reagentia.py
 
 Para comprobar además enlaces externos, añade `--external-links`.
 
-Cada guía aplica sus propias reglas de nombres a su contenido y sus fuentes,
-además de los archivos compartidos del portal. El escaneo de secretos cubre
-todo el repositorio, incluidas ambas guías.
-
 Para ejecutar también la comprobación real en navegador de escritorio y móvil, instala `reauditia/requirements-responsive.txt` y añade `--responsive`.
 
 ## Previsualizar
