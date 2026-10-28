@@ -284,6 +284,34 @@ class FunctionalContentTests(unittest.TestCase):
             scripts.joinpath("unsafe.py").write_text(f'VALUE = "{value}"', encoding="utf-8")
             self.assertTrue(content.validate_repository_sources(root))
 
+    def test_name_rules_are_scoped_to_the_guide_and_shared_sources(self):
+        value = "privateidentifier"
+        digest = content.text_digest(value)
+        cases = (
+            ("reagentia/docs/page.md", False),
+            ("reagentia/scripts/config.py", False),
+            ("reauditia/scripts/config.py", True),
+            ("shared.md", True),
+            ("reagentia-extra/page.md", True),
+        )
+        for relative, rejected in cases:
+            with self.subTest(path=relative), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                path = root / relative
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text(value, encoding="utf-8")
+                with patch.dict(content.FORBIDDEN_TEXT_DIGESTS, {digest: "internal"}, clear=True):
+                    self.assertEqual(rejected, bool(content.validate_repository_sources(root)))
+
+    def test_secret_scan_still_covers_both_guides_and_shared_sources(self):
+        for relative in ("reauditia/docs/page.md", "reagentia/docs/page.md", "shared.yml"):
+            with self.subTest(path=relative), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                path = root / relative
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text("Authorization: " + "Bearer " + "x" * 24, encoding="utf-8")
+                self.assertTrue(content.validate_repository_secrets(root))
+
     def test_public_repository_rejects_secret_outside_functional_tree(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

@@ -332,10 +332,13 @@ def validate_separation() -> list[str]:
 
 
 def validate_repository_sources(root: Path = REPOSITORY_ROOT) -> list[str]:
-    """Reject forbidden names in every maintained source of the public portal."""
+    """Apply this guide's name rules to its sources and the shared portal."""
     failures: list[str] = []
     docs_root = ROOT / "docs" if root == REPOSITORY_ROOT else root / "docs"
     for path, text, read_error in iter_text_files(root, built=False):
+        # The sibling guide owns its vocabulary. Secret scanning remains global.
+        if path.is_relative_to(root / "reagentia"):
+            continue
         if read_error:
             failures.append(f"{path}: {read_error}")
             continue
