@@ -52,6 +52,23 @@ nuevas operaciones. La administración registra el cambio y quién lo realiza.
 La lista de integraciones muestra nombre, clave identificadora, estado, versión y
 pista de credencial; esa pista no permite recuperar su valor.
 
+### Obtener el UUID del canal
+
+En **Asistentes → Configurar canal público**, selecciona el asistente y el canal que
+quieres integrar. Junto a su nombre aparece **UUID del canal**, completo y de solo
+lectura. Pulsa **Copiar UUID**: el aviso **UUID copiado.** confirma la copia.
+Si no se puede copiar automáticamente, selecciona el valor del campo y cópialo
+manualmente. También puedes obtenerlo con el canal **Desactivado**.
+
+Usa ese valor en el campo del canal de **Ajustes → Reagentia** en WordPress. El UUID
+es distinto de la clave del canal, del identificador del asistente y del identificador
+de integración; tampoco sustituye la credencial. Copiarlo no guarda ajustes ni activa
+el canal; tampoco crea integraciones ni inicia conversaciones.
+
+Al cambiar de asistente o canal, comprueba el UUID de la nueva selección. Mientras
+carga, si hay un error o si no existe canal, la pantalla no ofrece un UUID anterior
+para copiar. El aviso de copia se descarta al cambiar la selección o actualizar el estado.
+
 ### Cambiar los sitios autorizados
 
 Guardar los sitios en esta pantalla basta para actualizar dónde se permite insertar
@@ -136,6 +153,8 @@ Turnstile sigue siendo obligatorio para iniciar una conversación.
 3. Configura el origen HTTPS de Reagentia, el identificador del canal, la clave pública
    de Turnstile y una página HTTPS de contacto alternativo sin parámetros ni fragmento,
    por ejemplo `https://empresa.example.invalid/contacto`.
+   Para el identificador, usa **UUID del canal** y **Copiar UUID** según
+   [Obtener el UUID del canal](#obtener-el-uuid-del-canal).
 4. Comprueba que la ruta de inicio del plugin y sus variantes estén excluidas de las
    cachés del sitio, si las hay. No necesitas cambiar de proveedor ni activar un proxy.
 5. Elige páginas permitidas (IDs separados por comas; vacío permite todas), posición,

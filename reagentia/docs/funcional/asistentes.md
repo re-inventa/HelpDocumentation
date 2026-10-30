@@ -149,3 +149,11 @@ antes de ese cambio. Desactivarlo bloquea nuevas operaciones de sus sesiones, au
 una respuesta ya iniciada puede terminar y consumir recursos. Revocar una integración
 retira únicamente los accesos asociados a ese consumidor. Al volver a activar el
 canal se necesitan sesiones nuevas, sin recuperar las revocadas.
+
+En esa pantalla, **UUID del canal** muestra el identificador completo de solo lectura
+del canal seleccionado. **Copiar UUID** confirma la copia; si falla el portapapeles,
+puedes seleccionar y copiar el campo manualmente. Está disponible con el canal
+desactivado. Úsalo al configurar el canal en WordPress; no es la clave del canal,
+el identificador del asistente ni el identificador o la credencial de integración.
+Copiarlo no guarda ajustes ni activa el canal. Consulta
+[Obtener el UUID del canal](chat-web-publico.md#obtener-el-uuid-del-canal).
