@@ -697,6 +697,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#obtener-el-uuid-del-canal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Obtener el UUID del canal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#cambiar-los-sitios-autorizados" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1099,6 +1110,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#obtener-el-uuid-del-canal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Obtener el UUID del canal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#cambiar-los-sitios-autorizados" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1313,7 +1335,7 @@ sus comprobaciones propias; activar este estado no abre el servicio al público 
    prevista es de 30 días desde la caducidad de la sesión y debe verificarse en el entorno.</li>
 <li>Pulsa <strong>Guardar canal</strong>. Con el canal desactivado puedes guardar una preparación
    incompleta; cualquier dato que introduzcas debe ser válido.</li>
-<li>Crea y configura la integración según el apartado siguiente. Su credencial puede
+<li>Crea y configura la integración según <a href="#integraciones-y-acceso">Integraciones y acceso</a>. Su credencial puede
    guardarse en el consumidor mientras el canal sigue desactivado.</li>
 <li>Cuando todo esté preparado, elige <strong>Activado</strong> y pulsa <strong>Guardar canal</strong>. Debe haber
    al menos un origen válido y perfiles de límites y conservación disponibles. Si
@@ -1324,6 +1346,20 @@ sus comprobaciones propias; activar este estado no abre el servicio al público 
 nuevas operaciones. La administración registra el cambio y quién lo realiza.</p>
 <p>La lista de integraciones muestra nombre, clave identificadora, estado, versión y
 pista de credencial; esa pista no permite recuperar su valor.</p>
+<h3 id="obtener-el-uuid-del-canal">Obtener el UUID del canal<a class="headerlink" href="#obtener-el-uuid-del-canal" title="Permanent link">&para;</a></h3>
+<p>En <strong>Asistentes → Configurar canal público</strong>, selecciona el asistente y el canal que
+quieres integrar. Junto a su clave identificadora aparece <strong>UUID del canal</strong>, completo y de solo
+lectura. Pulsa <strong>Copiar UUID</strong>: el aviso <strong>UUID copiado.</strong> confirma la copia.
+Si aparece <strong>No se pudo copiar automáticamente. Selecciona el UUID para copiarlo manualmente.</strong>,
+selecciona el valor del campo y cópialo manualmente. También puedes obtenerlo con el
+canal <strong>Desactivado</strong>.</p>
+<p>Usa ese valor en el campo del canal de <strong>Ajustes → Reagentia</strong> en WordPress. El UUID
+es distinto de la clave del canal, del identificador del asistente y del identificador
+de integración; tampoco sustituye la credencial. Copiarlo no guarda ajustes ni activa
+el canal; tampoco crea integraciones ni inicia conversaciones.</p>
+<p>Al cambiar de asistente o canal, comprueba el UUID de la nueva selección. Mientras
+carga, si hay un error o si no existe canal, la pantalla no ofrece un UUID anterior
+para copiar. El aviso de copia se descarta al cambiar la selección o actualizar el estado.</p>
 <h3 id="cambiar-los-sitios-autorizados">Cambiar los sitios autorizados<a class="headerlink" href="#cambiar-los-sitios-autorizados" title="Permanent link">&para;</a></h3>
 <p>Guardar los sitios en esta pantalla basta para actualizar dónde se permite insertar
 el widget; no hace falta repetir la lista en otra configuración. Después de un guardado
@@ -1396,7 +1432,9 @@ Turnstile sigue siendo obligatorio para iniciar una conversación.</p>
    el campo queda vacío y no permite recuperarla. Limpiar el portapapeles al terminar.</li>
 <li>Configura el origen HTTPS de Reagentia, el identificador del canal, la clave pública
    de Turnstile y una página HTTPS de contacto alternativo sin parámetros ni fragmento,
-   por ejemplo <code>https://empresa.example.invalid/contacto</code>.</li>
+   por ejemplo <code>https://empresa.example.invalid/contacto</code>.
+   Para el identificador, usa <strong>UUID del canal</strong> y <strong>Copiar UUID</strong> según
+   <a href="#obtener-el-uuid-del-canal">Obtener el UUID del canal</a>.</li>
 <li>Comprueba que la ruta de inicio del plugin y sus variantes estén excluidas de las
    cachés del sitio, si las hay. No necesitas cambiar de proveedor ni activar un proxy.</li>
 <li>Elige páginas permitidas (IDs separados por comas; vacío permite todas), posición,
