@@ -39,7 +39,7 @@ sus comprobaciones propias; activar este estado no abre el servicio al público 
    prevista es de 30 días desde la caducidad de la sesión y debe verificarse en el entorno.
 4. Pulsa **Guardar canal**. Con el canal desactivado puedes guardar una preparación
    incompleta; cualquier dato que introduzcas debe ser válido.
-5. Crea y configura la integración según el apartado siguiente. Su credencial puede
+5. Crea y configura la integración según [Integraciones y acceso](#integraciones-y-acceso). Su credencial puede
    guardarse en el consumidor mientras el canal sigue desactivado.
 6. Cuando todo esté preparado, elige **Activado** y pulsa **Guardar canal**. Debe haber
    al menos un origen válido y perfiles de límites y conservación disponibles. Si
@@ -55,10 +55,11 @@ pista de credencial; esa pista no permite recuperar su valor.
 ### Obtener el UUID del canal
 
 En **Asistentes → Configurar canal público**, selecciona el asistente y el canal que
-quieres integrar. Junto a su nombre aparece **UUID del canal**, completo y de solo
+quieres integrar. Junto a su clave identificadora aparece **UUID del canal**, completo y de solo
 lectura. Pulsa **Copiar UUID**: el aviso **UUID copiado.** confirma la copia.
-Si no se puede copiar automáticamente, selecciona el valor del campo y cópialo
-manualmente. También puedes obtenerlo con el canal **Desactivado**.
+Si aparece **No se pudo copiar automáticamente. Selecciona el UUID para copiarlo manualmente.**,
+selecciona el valor del campo y cópialo manualmente. También puedes obtenerlo con el
+canal **Desactivado**.
 
 Usa ese valor en el campo del canal de **Ajustes → Reagentia** en WordPress. El UUID
 es distinto de la clave del canal, del identificador del asistente y del identificador
