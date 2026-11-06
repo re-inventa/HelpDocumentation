@@ -70,6 +70,76 @@ Esta unión es una operación manual realizada desde el formulario. No sustituye
 la agrupación automática que pueda realizar una regla de origen; consulta
 [Subidas conector](subidas_conector.md) para seguir esas cargas.
 
+## Doblar audios al español y publicarlos en SharePoint
+
+Un formulario configurado para doblaje recibe MP3 o WAV y entrega un WAV en
+español en SharePoint. Este flujo realiza el doblaje y la publicación; no genera
+una transcripción ni una evaluación de calidad en ReAuditIA.
+
+### Revisar el workflow
+
+Los perfiles con permisos de administración pueden abrir **Workflow de audio >
+Ver configuración JSON** y usar **Editar configuración** para guardar cambios.
+La configuración contiene dos pasos, en este orden: `doblaje` y
+`subida_sharepoint`. Cada paso se identifica en el JSON con `type`.
+
+Antes de guardar, revisa:
+
+| Campo | Qué configura |
+| --- | --- |
+| `doblajeId` | El servicio de doblaje facilitado por la administración. Su tarifa se gestiona fuera del formulario. |
+| `sourceLanguage` | El idioma original; `auto` permite detectarlo automáticamente. |
+| `targetLanguage` | `es`, para obtener el audio en español. |
+| `sharepointSourceId` | El ID de una fuente SharePoint ya creada en la organización. Puedes consultarlo en **Subida automática > Fuentes SharePoint**. |
+| `destinationUrl` | La dirección de la carpeta base donde quieres recibir los resultados. Se configura independientemente de la carpeta de entrada de la fuente. |
+| `folderTemplate` | La estructura de subcarpetas; por ejemplo, `Doblajes/{yyyy}/{MM}/{dd}`. |
+| `timeZone` | La zona horaria que determina la fecha de las carpetas; por ejemplo, `Europe/Madrid`. |
+
+El proceso crea las carpetas de salida al publicar el audio. La fecha corresponde
+a la recepción del fichero, aunque la publicación termine más tarde. El nombre
+del resultado incluye un identificador del trabajo y el idioma de destino.
+
+La fuente aporta la autorización de Microsoft; no necesitas crear una regla de
+subida automática para hacer una carga manual. No incluyas contraseñas, claves
+ni tokens en el JSON.
+
+### Comprobar la conexión antes de subir
+
+1. Revisa **Conexión con SharePoint** en el formulario y comprueba que aparece
+   la fuente asignada.
+2. Si indica **Pendiente de conectar** o **Requiere reconexión**, un usuario con
+   permisos de administración debe pulsar **Conectar con Microsoft** o **Reconectar con
+   Microsoft** y aceptar el acceso de escritura solicitado.
+3. Al volver de Microsoft, el formulario actualiza el estado automáticamente.
+   También puedes usar **Comprobar conexión**.
+4. Espera a que aparezca **Conectado** antes de subir. La aplicación comprueba de
+   nuevo la conexión inmediatamente antes de transferir los ficheros.
+
+La subida permanece deshabilitada mientras la conexión no esté disponible.
+Si la autorización falla antes de transferir, la selección de ficheros se conserva
+para que puedas intentarlo después de recuperar la conexión.
+
+Los perfiles con permisos de administración disponen de **Editar**, que abre
+[Subida automática](subida_automatica.md) para gestionar las fuentes. Desde el
+formulario se gestiona la autorización de la fuente asignada; la creación de
+fuentes se realiza en Subida automática.
+
+### Revisar el resultado y recuperar un fallo
+
+Sigue el trabajo en [Estado de los ficheros](estado_audios.md) y abre la carpeta
+de SharePoint configurada para escuchar el resultado. Una subida aceptada por el
+formulario todavía puede estar esperando o procesando el doblaje.
+
+Si el doblaje termina y falla la publicación, el resultado se conserva
+temporalmente para recuperarlo en los reintentos del mismo trabajo. Una entrega
+confirmada seguida de un fallo de limpieza solo repite la limpieza. Al terminar
+correctamente la publicación y la limpieza, la copia temporal se elimina.
+
+El cargo corresponde al doblaje completado, incluso si después falla SharePoint.
+Los reintentos del mismo trabajo no repiten ese cargo. Volver a subir el fichero
+crea otra operación; no es un reintento de la anterior. Consulta el detalle en
+[Cartera y consumo](cartera.md#consumo-de-doblaje).
+
 ## Configuración disponible
 
 Los usuarios autorizados pueden ver opciones adicionales, como el método de procesamiento, las instrucciones del formulario, los metadatos, el destino de resultados o las bases de conocimiento asociadas. Modifica únicamente los campos cuyo efecto conozcas y guarda antes de salir.
