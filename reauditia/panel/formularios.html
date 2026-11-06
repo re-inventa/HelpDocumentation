@@ -728,6 +728,56 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#doblar-audios-al-espanol-y-publicarlos-en-sharepoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Doblar audios al español y publicarlos en SharePoint
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Doblar audios al español y publicarlos en SharePoint">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#revisar-el-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Revisar el workflow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comprobar-la-conexion-antes-de-subir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comprobar la conexión antes de subir
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#revisar-el-resultado-y-recuperar-un-fallo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Revisar el resultado y recuperar un fallo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configuracion-disponible" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1512,6 +1562,56 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#doblar-audios-al-espanol-y-publicarlos-en-sharepoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Doblar audios al español y publicarlos en SharePoint
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Doblar audios al español y publicarlos en SharePoint">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#revisar-el-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Revisar el workflow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comprobar-la-conexion-antes-de-subir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comprobar la conexión antes de subir
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#revisar-el-resultado-y-recuperar-un-fallo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Revisar el resultado y recuperar un fallo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configuracion-disponible" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1612,6 +1712,91 @@ disponible <strong>Reintentar subida sin volver a unir</strong>.</p>
 <p>Esta unión es una operación manual realizada desde el formulario. No sustituye
 la agrupación automática que pueda realizar una regla de origen; consulta
 <a href="subidas_conector.html">Subidas conector</a> para seguir esas cargas.</p>
+<h2 id="doblar-audios-al-espanol-y-publicarlos-en-sharepoint">Doblar audios al español y publicarlos en SharePoint<a class="headerlink" href="#doblar-audios-al-espanol-y-publicarlos-en-sharepoint" title="Permanent link">&para;</a></h2>
+<p>Un formulario configurado para doblaje recibe MP3 o WAV y entrega un WAV en
+español en SharePoint. Este flujo realiza el doblaje y la publicación; no genera
+una transcripción ni una evaluación de calidad en ReAuditIA.</p>
+<h3 id="revisar-el-workflow">Revisar el workflow<a class="headerlink" href="#revisar-el-workflow" title="Permanent link">&para;</a></h3>
+<p>Los perfiles con permisos de administración pueden abrir <strong>Workflow de audio &gt;
+Ver configuración JSON</strong> y usar <strong>Editar configuración</strong> para guardar cambios.
+La configuración contiene dos pasos, en este orden: <code>doblaje</code> y
+<code>subida_sharepoint</code>. Cada paso se identifica en el JSON con <code>type</code>.</p>
+<p>Antes de guardar, revisa:</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Qué configura</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>doblajeId</code></td>
+<td>El servicio de doblaje facilitado por la administración. Su tarifa se gestiona fuera del formulario.</td>
+</tr>
+<tr>
+<td><code>sourceLanguage</code></td>
+<td>El idioma original; <code>auto</code> permite detectarlo automáticamente.</td>
+</tr>
+<tr>
+<td><code>targetLanguage</code></td>
+<td><code>es</code>, para obtener el audio en español.</td>
+</tr>
+<tr>
+<td><code>sharepointSourceId</code></td>
+<td>El ID de una fuente SharePoint ya creada en la organización. Puedes consultarlo en <strong>Subida automática &gt; Fuentes SharePoint</strong>.</td>
+</tr>
+<tr>
+<td><code>destinationUrl</code></td>
+<td>La dirección de la carpeta base donde quieres recibir los resultados. Se configura independientemente de la carpeta de entrada de la fuente.</td>
+</tr>
+<tr>
+<td><code>folderTemplate</code></td>
+<td>La estructura de subcarpetas; por ejemplo, <code>Doblajes/{yyyy}/{MM}/{dd}</code>.</td>
+</tr>
+<tr>
+<td><code>timeZone</code></td>
+<td>La zona horaria que determina la fecha de las carpetas; por ejemplo, <code>Europe/Madrid</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>El proceso crea las carpetas de salida al publicar el audio. La fecha corresponde
+a la recepción del fichero, aunque la publicación termine más tarde. El nombre
+del resultado incluye un identificador del trabajo y el idioma de destino.</p>
+<p>La fuente aporta la autorización de Microsoft; no necesitas crear una regla de
+subida automática para hacer una carga manual. No incluyas contraseñas, claves
+ni tokens en el JSON.</p>
+<h3 id="comprobar-la-conexion-antes-de-subir">Comprobar la conexión antes de subir<a class="headerlink" href="#comprobar-la-conexion-antes-de-subir" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Revisa <strong>Conexión con SharePoint</strong> en el formulario y comprueba que aparece
+   la fuente asignada.</li>
+<li>Si indica <strong>Pendiente de conectar</strong> o <strong>Requiere reconexión</strong>, un usuario con
+   permisos de administración debe pulsar <strong>Conectar con Microsoft</strong> o <strong>Reconectar con
+   Microsoft</strong> y aceptar el acceso de escritura solicitado.</li>
+<li>Al volver de Microsoft, el formulario actualiza el estado automáticamente.
+   También puedes usar <strong>Comprobar conexión</strong>.</li>
+<li>Espera a que aparezca <strong>Conectado</strong> antes de subir. La aplicación comprueba de
+   nuevo la conexión inmediatamente antes de transferir los ficheros.</li>
+</ol>
+<p>La subida permanece deshabilitada mientras la conexión no esté disponible.
+Si la autorización falla antes de transferir, la selección de ficheros se conserva
+para que puedas intentarlo después de recuperar la conexión.</p>
+<p>Los perfiles con permisos de administración disponen de <strong>Editar</strong>, que abre
+<a href="subida_automatica.html">Subida automática</a> para gestionar las fuentes. Desde el
+formulario se gestiona la autorización de la fuente asignada; la creación de
+fuentes se realiza en Subida automática.</p>
+<h3 id="revisar-el-resultado-y-recuperar-un-fallo">Revisar el resultado y recuperar un fallo<a class="headerlink" href="#revisar-el-resultado-y-recuperar-un-fallo" title="Permanent link">&para;</a></h3>
+<p>Sigue el trabajo en <a href="estado_audios.html">Estado de los ficheros</a> y abre la carpeta
+de SharePoint configurada para escuchar el resultado. Una subida aceptada por el
+formulario todavía puede estar esperando o procesando el doblaje.</p>
+<p>Si el doblaje termina y falla la publicación, el resultado se conserva
+temporalmente para recuperarlo en los reintentos del mismo trabajo. Una entrega
+confirmada seguida de un fallo de limpieza solo repite la limpieza. Al terminar
+correctamente la publicación y la limpieza, la copia temporal se elimina.</p>
+<p>El cargo corresponde al doblaje completado, incluso si después falla SharePoint.
+Los reintentos del mismo trabajo no repiten ese cargo. Volver a subir el fichero
+crea otra operación; no es un reintento de la anterior. Consulta el detalle en
+<a href="cartera.html#consumo-de-doblaje">Cartera y consumo</a>.</p>
 <h2 id="configuracion-disponible">Configuración disponible<a class="headerlink" href="#configuracion-disponible" title="Permanent link">&para;</a></h2>
 <p>Los usuarios autorizados pueden ver opciones adicionales, como el método de procesamiento, las instrucciones del formulario, los metadatos, el destino de resultados o las bases de conocimiento asociadas. Modifica únicamente los campos cuyo efecto conozcas y guarda antes de salir.</p>
 <h2 id="eliminar-un-formulario">Eliminar un formulario<a class="headerlink" href="#eliminar-un-formulario" title="Permanent link">&para;</a></h2>

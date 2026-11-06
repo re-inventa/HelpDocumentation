@@ -877,6 +877,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cartera y consumo
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="cartera.html" class="md-nav__link md-nav__link--active">
         
   
@@ -893,6 +911,36 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#consumo-de-doblaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consumo de doblaje
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1380,6 +1428,25 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#consumo-de-doblaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consumo de doblaje
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1406,6 +1473,20 @@
 <li>detalle de operaciones o descarga del historial.</li>
 </ul>
 <p>El consumo puede agrupar distintas fases de un procesamiento. Para comparar dos periodos, utiliza las mismas fechas y espera a que los trabajos asociados hayan finalizado.</p>
+<h2 id="consumo-de-doblaje">Consumo de doblaje<a class="headerlink" href="#consumo-de-doblaje" title="Permanent link">&para;</a></h2>
+<p>El detalle de doblaje muestra el formulario, el servicio utilizado, los minutos
+facturados, la tarifa aplicada y el importe. Los minutos se calculan a partir de
+la duración del audio original y el precio es la tarifa configurada del servicio.</p>
+<p>El cálculo es proporcional: duración en segundos / 60 × tarifa por minuto. No se
+redondea la duración a minutos completos ni se añade un fijo por los pasos de
+doblaje y publicación. Por ejemplo, 150 segundos a una tarifa ilustrativa de
+0,40 por minuto generan un cargo de 1,00 en las unidades monetarias del saldo.</p>
+<p>El cargo se registra cuando termina el doblaje, aunque la publicación posterior
+en SharePoint falle. Un doblaje fallido no genera ese cargo y los reintentos de
+publicación o limpieza del mismo trabajo no lo duplican.</p>
+<p>La tarifa aplicada queda guardada en la operación: cambiar la tarifa del servicio
+no recalcula consumos anteriores. Si no hay una tarifa válida o está a cero, no
+se solicita el doblaje. La tarifa no se edita desde el formulario.</p>
 <p>Si detectas una operación que no reconoces, anota la fecha, el formulario y el fichero relacionado sin copiar datos personales en la solicitud de soporte.</p>
 
 
