@@ -22,6 +22,21 @@ Utiliza una cuenta técnica con el acceso mínimo a las carpetas necesarias. Al 
 
 Solo una fuente **Conectado** puede utilizarse en una regla. Si la autorización caduca o se revoca, utiliza la acción de reconexión de la tabla y completa de nuevo el acceso con Microsoft 365. No compartas credenciales en nombres, descripciones o capturas.
 
+### Usar la fuente para publicar doblajes
+
+Una fuente SharePoint existente también puede aportar la autorización para
+publicar los resultados de un [formulario de doblaje](formularios.md#doblar-audios-al-espanol-y-publicarlos-en-sharepoint).
+La conexión debe permitir escribir en la ubicación de salida. Si se conectó
+anteriormente solo con acceso de lectura, vuelve a autorizarla con Microsoft.
+
+La dirección de salida se configura en el workflow del formulario; es
+independiente de la carpeta de entrada y de las reglas de subida automática.
+El proceso crea las subcarpetas necesarias cuando dispone del resultado.
+
+También puedes conectar o reconectar la fuente asignada desde **Conexión con
+SharePoint** en el formulario. Su botón **Editar**, disponible para los perfiles
+con permisos de administración, abre este apartado. No crea otra fuente ni una regla.
+
 ## 3. Crear una regla
 
 1. Selecciona la fuente.
