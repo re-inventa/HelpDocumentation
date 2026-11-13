@@ -218,7 +218,7 @@ class FunctionalContentTests(unittest.TestCase):
             self.assertIn(contract, callback)
         for contract in (
             "formato Parquet",
-            "incorporación es diaria",
+            "actualización automática será horaria",
             "**lectura** y **listado**",
             "carpeta con el identificador de tu organización",
             "Ruta relativa a la carpeta de la organización",
@@ -230,7 +230,7 @@ class FunctionalContentTests(unittest.TestCase):
             "nombre del formulario",
             "`document_id`",
             "`array_index`",
-            "24 horas",
+            "frecuencia configurada",
             "Power BI",
             "Databricks",
         ):
