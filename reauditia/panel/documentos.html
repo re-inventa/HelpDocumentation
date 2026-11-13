@@ -1062,6 +1062,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#sincronizar-los-resultados-con-insights" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sincronizar los resultados con Insights
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1511,6 +1522,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#sincronizar-los-resultados-con-insights" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sincronizar los resultados con Insights
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1560,6 +1582,67 @@ El modo elegido se conserva al guardar y volver a editar el clasificador.</p>
 conservan su propia configuración, tanto extractores como otros clasificadores.</p>
 <h2 id="asistencia-para-instrucciones">Asistencia para instrucciones<a class="headerlink" href="#asistencia-para-instrucciones" title="Permanent link">&para;</a></h2>
 <p>Algunos formularios ofrecen ayuda para proponer o evaluar instrucciones. La propuesta no se aplica automáticamente: revisa el resultado, compara el comportamiento y confirma el cambio solo si mejora el objetivo del formulario.</p>
+<h2 id="sincronizar-los-resultados-con-insights">Sincronizar los resultados con Insights<a class="headerlink" href="#sincronizar-los-resultados-con-insights" title="Permanent link">&para;</a></h2>
+<p>Cuando la función esté habilitada para tu organización, abre el formulario
+documental y pulsa <strong>Sincronizar</strong> en el apartado <strong>Insights</strong>. Se abrirá un popup
+con el aviso de qué documentos se incluyen y cuándo pueden verse en Insights.
+Revisa el aviso y pulsa <strong>Aceptar</strong> para lanzar la sincronización. <strong>Cancelar</strong>,
+Escape o cerrar el popup no envían ninguna solicitud. Un usuario normal
+puede sincronizar sus formularios; un administrador, los de su organización.
+El botón aparece cuando la organización tiene Insights y la exportación preparada.</p>
+<blockquote>
+<p>Solo se sincronizarán con Insights los documentos que aparezcan como completados en Tareas en segundo plano.</p>
+</blockquote>
+<p>Los que sigan en procesamiento no se incluirán.</p>
+<p>La acción publica los resultados disponibles; no inicia ni repite el análisis.
+Por ejemplo, si tres documentos están completados y dos siguen en procesamiento,
+se publican los tres completados. Los otros podrán entrar en una sincronización
+posterior, cuando sus tareas estén completadas.</p>
+<table>
+<thead>
+<tr>
+<th>Estado</th>
+<th>Qué verás</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pendiente</td>
+<td>Actualización solicitada. Pendiente de ejecución</td>
+</tr>
+<tr>
+<td>En curso</td>
+<td>Actualizando Insights</td>
+</tr>
+<tr>
+<td>Completada</td>
+<td>Exportación completada a las HH:mm</td>
+</tr>
+<tr>
+<td>Fallida durante la sincronización</td>
+<td>No se ha podido completar la sincronización con Insights. Por favor, contacta con el servicio técnico e indica que ha fallado la sincronización del formulario.</td>
+</tr>
+</tbody>
+</table>
+<p>Puedes cerrar la pestaña y volver después: el seguimiento se conserva. La fecha
+de la última exportación correcta permanece visible aunque otra solicitud falle.
+Si terminan más documentos mientras se actualiza Insights, puedes volver a pulsar
+<strong>Sincronizar</strong> y confirmar con <strong>Aceptar</strong> para incluir los resultados posteriores. Los clics repetidos que
+cubren los mismos resultados se agrupan. Tras un fallo puedes reintentar; si se
+te pide esperar, deja pasar unos segundos antes de volver a solicitarlo.</p>
+<p>Si todos los documentos completados ya están publicados, el botón confirma:
+<strong>Insights ya está actualizado. No hay nuevos documentos completados que
+sincronizar.</strong> La fecha de exportación se conserva. Si la solicitud sigue
+pendiente o en curso, otro clic también lo confirma en pantalla.</p>
+<p>Si no se puede iniciar la sincronización, se te pedirá contactar con el servicio
+técnico y la solicitud quedará conservada. Si el arranque no puede confirmarse,
+seguirá pendiente hasta que una ejecución la atienda; esto no significa que esté
+procesando ni que haya fallado. Una petición recibida al terminar otra ejecución
+puede esperar hasta la siguiente actualización automática u otra ejecución que se inicie antes.</p>
+<p>Usa <strong>Abrir Insights</strong> cuando aparezca el enlace. Una exportación completada puede
+tardar en reflejarse en la pantalla o caché de Insights. La actualización automática
+será horaria en los entornos donde se ponga en servicio esta función; consulta
+<a href="../insights/datalake.html">Data Lake para BI</a> para el acceso a los datos publicados.</p>
 
 
 
