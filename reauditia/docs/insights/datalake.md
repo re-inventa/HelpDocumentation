@@ -1,6 +1,6 @@
 # Data Lake para BI
 
-El módulo Insights publica datos de ReAuditIA en formato Parquet para analizarlos con herramientas de BI. La incorporación es diaria: no es una consulta en tiempo real y una configuración nueva puede aparecer en el siguiente ciclo.
+El módulo Insights publica datos de ReAuditIA en formato Parquet para analizarlos con herramientas de BI. En los entornos con la sincronización documental habilitada, la actualización automática será horaria. Hasta su puesta en servicio se mantiene la frecuencia configurada. Puedes solicitar la publicación de documentos completados desde su formulario: consulta [Sincronizar los resultados con Insights](../panel/documentos.md#sincronizar-los-resultados-con-insights). La publicación es por ciclos y una configuración nueva puede aparecer en el siguiente ciclo.
 
 ## Datos necesarios para conectarse
 
@@ -88,7 +88,7 @@ formularios/FormularioEjemplo/items/category=Pedidos/field=Lineas/year=2026/mont
 | --- | --- |
 | Acceso denegado | Revisa la caducidad del token, los permisos de lectura/listado y la IP de salida |
 | No se puede abrir el endpoint | Prueba el endpoint alternativo entregado y confirma que tu red permite la conexión |
-| La carpeta está vacía | Comprueba el nombre del formulario, la fecha y si ya terminó el siguiente ciclo diario; el retraso puede llegar a 24 horas |
+| La carpeta está vacía | Comprueba el nombre del formulario, la fecha y si ya terminó el siguiente ciclo según la frecuencia configurada; para documentos completados puedes solicitar la sincronización desde el formulario cuando esté habilitada |
 | Faltan columnas | Revisa si estás combinando categorías o periodos con esquemas diferentes |
 | Faltan elementos de una lista | Consulta la capa `items` además de `facts` y `details` |
 | La actualización programada falla | Sustituye el token caducado en las credenciales de la fuente y vuelve a probar |

@@ -147,3 +147,11 @@ Los usuarios autorizados pueden ver opciones adicionales, como el método de pro
 ## Eliminar un formulario
 
 La eliminación puede continuar en segundo plano. Si tu rol permite iniciarla, confirma el formulario seleccionado y consulta **Estado del borrado Formularios** hasta que termine. No crees otro formulario con el mismo propósito hasta conocer el resultado.
+
+## Publicar resultados documentales en Insights
+
+En los formularios documentales con esta función habilitada, **Sincronizar**
+abre un popup con el aviso de documentos completados; **Aceptar** inicia su
+publicación y permite seguir la exportación. Consulta
+[Sincronizar los resultados con Insights](documentos.md#sincronizar-los-resultados-con-insights)
+para conocer los permisos, estados y tratamiento de documentos en procesamiento.
