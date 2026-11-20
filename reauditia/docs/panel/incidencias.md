@@ -94,6 +94,21 @@ procesamiento posterior de un fallo durante la unión.
 - Si la conexión funciona pero faltan datos recientes, espera al siguiente ciclo diario.
 - Consulta la [guía de Data Lake](../insights/datalake.md).
 
+## Un borrado de organización no termina
+
+- Consulta la misma solicitud en **Administración > Organizaciones > Borrado de
+  organizaciones**; sigue disponible al recargar y después de desaparecer la
+  organización del listado.
+- Si espera continuidad o copias retenidas, revisa el mensaje y la próxima
+  comprobación. La desaparición del listado no acredita el borrado completo.
+- Si no arrancó o falló una comprobación, usa **Reintentar borrado**; conserva
+  el progreso. No recrees la organización para resolverlo.
+- Si pide revisar permisos, configuración o inventario, solicita soporte con el
+  identificador de la solicitud, la hora y el mensaje visible.
+
+Consulta [Borrado de organizaciones](borrado_organizaciones.md) para interpretar
+las fases y revisar las condiciones de uso.
+
 ## Pedir soporte
 
 Incluye siempre:
