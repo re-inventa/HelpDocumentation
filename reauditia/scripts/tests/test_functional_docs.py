@@ -354,7 +354,7 @@ class FunctionalContentTests(unittest.TestCase):
         self.assertEqual([], self.validate("Carga un fichero y consulta su resultado."))
 
     def test_accepts_the_public_organization_deletion_role_and_navigation(self):
-        for label in ("Superadmin", "rol 3", "Administración > Organizaciones"):
+        for label in ("Superadmin", "Administración > Organizaciones"):
             with self.subTest(label=label):
                 self.assertEqual([], self.validate(label))
 

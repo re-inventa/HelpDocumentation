@@ -2,7 +2,7 @@
 
 El borrado definitivo retira una organización que lleva tiempo inactiva, sin
 interacción ni trabajo en curso. Solo puede solicitarlo una cuenta
-**Superadmin (rol 3)** desde **Administración > Organizaciones**.
+**Superadmin** desde **Administración > Organizaciones**.
 
 !!! danger "Acción irreversible"
     La confirmación inicia una baja definitiva. No hay una opción para cancelar
@@ -39,7 +39,8 @@ SharePoint. Eliminar una copia gestionada por ReAuditIA no borra ese original.
    comprobación ni establece un plazo automático de días.
 5. Escribe el nombre exacto que aparece, respetando espacios y mayúsculas.
 6. Pulsa **Solicitar borrado irreversible**.
-7. Consulta **Borrado de organizaciones** para seguir la solicitud.
+7. En la parte inferior de **Administración > Organizaciones**, consulta la sección
+   **Borrado de organizaciones** para seguir la solicitud.
 
 Puedes usar **Cancelar** antes de confirmar. Tras registrar la solicitud se
 bloquean nuevos accesos de carga y su renovación; una URL de carga emitida
