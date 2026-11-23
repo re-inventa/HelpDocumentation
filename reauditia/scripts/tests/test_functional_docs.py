@@ -353,6 +353,11 @@ class FunctionalContentTests(unittest.TestCase):
     def test_accepts_neutral_functional_content(self):
         self.assertEqual([], self.validate("Carga un fichero y consulta su resultado."))
 
+    def test_accepts_the_public_organization_deletion_role_and_navigation(self):
+        for label in ("Superadmin", "Administración > Organizaciones"):
+            with self.subTest(label=label):
+                self.assertEqual([], self.validate(label))
+
     def test_public_tree_contains_no_technical_directory(self):
         self.assertFalse((ROOT / "docs" / "tecnica").exists())
 

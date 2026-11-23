@@ -74,6 +74,8 @@ nav:
       - Consulta de consumo: api/logs.md
   - Insights:
       - Data Lake para BI: insights/datalake.md
+  - Administración:
+      - Borrado de organizaciones: panel/borrado_organizaciones.md
   - Ayuda:
       - Incidencias frecuentes: panel/incidencias.md
       - Disponibilidad: estado/trazabilidad.md
