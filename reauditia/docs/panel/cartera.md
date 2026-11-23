@@ -13,6 +13,16 @@ Puede incluir:
 
 El consumo puede agrupar distintas fases de un procesamiento. Para comparar dos periodos, utiliza las mismas fechas y espera a que los trabajos asociados hayan finalizado.
 
+## Auditorías manuales
+
+La modalidad Manual de un formulario de audio no exige saldo ni consume cuotas
+de procesamiento. Cargar, escuchar, guardar borradores y finalizar no generan
+cargos por procesamiento automático.
+
+La modalidad se elige para cada nueva carga. Consulta
+[Auditoría manual de grabaciones](formularios.md#auditoria-manual-de-grabaciones)
+para revisar sus controles y plazo.
+
 ## Consumo de doblaje
 
 El detalle de doblaje muestra el formulario, el servicio utilizado, los minutos

@@ -10,6 +10,10 @@ Un formulario define qué comprobaciones se aplican a los ficheros y cómo se pr
 
 ## Cargar ficheros manualmente
 
+Esta sección describe la carga que inicia el procesamiento de los ficheros.
+Para escuchar y responder tú mismo una grabación, consulta
+[Auditoría manual de grabaciones](#auditoria-manual-de-grabaciones).
+
 1. Comprueba que estás en el formulario correcto.
 2. Completa los metadatos que haya configurado el administrador. Un campo bloqueado solo admite sus valores disponibles; uno abierto permite escribir otro valor.
 3. Selecciona o arrastra los ficheros admitidos. Puedes preparar cargas separadas con distintos metadatos para comparar después sus resultados.
@@ -19,10 +23,95 @@ Un formulario define qué comprobaciones se aplican a los ficheros y cómo se pr
 
 No cierres la ventana mientras la propia pantalla indique que la carga local sigue en curso. Una carga aceptada todavía puede necesitar procesamiento posterior.
 
+## Formularios compartidos
+
+El propietario conserva su acceso al formulario. Un Administrador de su
+organización o un Superadmin puede abrir **Supervisores autorizados**, pulsar
+**Editar accesos**, seleccionar otros Supervisores de la misma organización y
+confirmar con **Guardar accesos**.
+
+Los Supervisores asignados pueden abrir el formulario, cargar ficheros, trabajar
+en las auditorías manuales y consultar resultados, fichas y exportaciones.
+Compartir no concede permisos para administrar o borrar el formulario, ni cambia
+su propietario o las atribuciones de los resultados anteriores.
+
+## Auditoría manual de grabaciones
+
+### Subir un audio para auditar
+
+1. Abre un formulario de audio al que tengas acceso.
+2. En **Modalidad de la nueva carga**, selecciona **Manual**.
+3. Selecciona las grabaciones nuevas y pulsa **Subir para auditoría manual**.
+4. Espera a que termine la subida y se confirme su disponibilidad. Después puedes
+   abrir la bandeja con **Auditar**.
+
+La modalidad se fija para esa carga. Los resultados anteriores no se convierten
+en auditorías manuales al cambiar el selector.
+
+La opción Manual solo está disponible cuando todos los ítems activos son Sí/No
+o tienen una lista de respuestas válida. Si hay ítems incompatibles, la pantalla
+los identifica para que la administración revise el formulario. Las preguntas y
+opciones de cada grabación se conservan tal como estaban al subirla.
+
+La auditoría manual no exige saldo ni consume cuotas de procesamiento. No inicia
+transcripción ni evaluación automática, ni activa sus notificaciones de resultados.
+
+### Guardar y retomar un borrador
+
+1. Pulsa **Auditar** en el formulario para consultar pendientes, borradores y
+   caducadas. Revisa la fecha límite y si la grabación está libre u ocupada.
+2. Pulsa **Auditar** junto a una grabación disponible. Se abre una ventana con
+   el reproductor y todas las preguntas.
+3. Escucha el audio y selecciona las respuestas disponibles. **No aplica** solo
+   se puede elegir si está incluido en la lista de ese ítem.
+4. Pulsa **Guardar borrador** cuando quieras conservar el trabajo, aunque todavía
+   queden preguntas sin responder.
+5. Para salir, usa **Salir**. Si hay cambios sin guardar, revisa el aviso antes
+   de descartarlos.
+
+**Las respuestas no se guardan automáticamente.** Mantener abierta la ventana
+conserva temporalmente la ocupación del audio, pero no sustituye a Guardar
+borrador. Otro usuario autorizado puede retomar lo que hayas guardado cuando la
+grabación quede libre.
+
+Solo una ventana puede editar una grabación a la vez, incluso si las dos
+pertenecen al mismo usuario. Si pierdes la conexión o se cierra la ventana sin
+liberar la ocupación, espera a que caduque y vuelve a abrirla. Ante un aviso de
+conflicto, consulta de nuevo el estado antes de seguir respondiendo.
+
+### Finalizar y consultar el resultado
+
+**Finalizar** exige responder todos los ítems. La finalización publica un único
+resultado y deja las respuestas cerradas a cambios. Se registra quién cargó la
+grabación, quién hizo el último cambio guardado en cada respuesta y quién
+finalizó, con sus fechas.
+
+La puntuación se calcula con el informe vigente y la misma lógica de las
+auditorías automáticas. Un cambio posterior del informe puede modificar la
+puntuación sin alterar las respuestas finalizadas.
+
+Solo las auditorías finalizadas aparecen en resultados, CSV, visualizaciones,
+fichas y publicación analítica. Los borradores se consultan en la bandeja de
+auditoría. Consulta [Informes](informes.md#auditorias-automaticas-y-manuales) para
+distinguir modalidades y fechas.
+
+### Fecha límite y retirada del audio
+
+Cada grabación dispone de **15 días desde su carga**. Escucharla, guardar un
+borrador o retomarla no amplía ese plazo. Una auditoría caducada no puede
+continuarse ni finalizarse.
+
+Al finalizar o caducar se retira el acceso al audio; su eliminación física se
+gestiona en segundo plano. Una auditoría finalizada conserva sus respuestas y
+su resultado aunque el audio ya no esté disponible. La bandeja muestra las
+caducadas para que puedas conocer su estado.
+
 ## Unir varios audios en una sola carga
 
 En los formularios de audio puedes activar **Unir en un único audio** para
 evaluar varios segmentos consecutivos como una sola conversación.
+
+Esta preparación corresponde a la carga Automática.
 
 1. Completa todos los metadatos obligatorios del formulario.
 2. Activa **Unir en un único audio** y selecciona al menos dos segmentos MP3 o

@@ -19,5 +19,17 @@ El borrado definitivo está reservado a Superadmin; ser Administrador de una
 organización no concede ese permiso. Consulta [Borrado de organizaciones](borrado_organizaciones.md)
 para revisar su alcance irreversible y las condiciones de confirmación.
 
+## Acceso compartido a formularios
+
+Un Supervisor puede acceder a sus formularios y a los que le asigne la
+administración dentro de su organización. Ese acceso incluye cargas, auditorías
+manuales, resultados, fichas y exportaciones del formulario.
+
+El propietario conserva su acceso. Las asignaciones adicionales no conceden
+administración ni borrado, ni cambian la autoría de los datos anteriores. Un
+Administrador de la organización o un Superadmin gestiona la lista de
+**Supervisores autorizados**; consulta
+[Formularios compartidos](formularios.md#formularios-compartidos).
+
 !!! warning "Permiso insuficiente"
     No intentes acceder mediante una dirección guardada si la opción no aparece en el menú. Solicita mediante **Soporte** que comprueben tu rol.

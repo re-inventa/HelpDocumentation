@@ -2,6 +2,29 @@
 
 Los informes permiten consultar y descargar los resultados de los formularios.
 
+## Auditorías automáticas y manuales
+
+Los resultados de audio indican si la auditoría es **Automática** o **Manual**.
+Utiliza el filtro de modalidad en las vistas y descargas que lo ofrecen para
+consultarlas juntas o por separado. El acceso de un Supervisor incluye los
+formularios propios y los que tenga asignados.
+
+Solo se publican las auditorías manuales finalizadas. Las pendientes, los
+borradores y las caducadas no se incluyen en tablas, CSV, gráficas ni fichas.
+La fecha de auditoría de una manual es su finalización; la fecha de carga se
+conserva por separado. Tenlo en cuenta al elegir el periodo.
+
+El resultado conserva las respuestas y la autoría de carga, guardado y
+finalización. La puntuación usa el informe vigente: editar su diseño puede
+recalcular la nota sin modificar las respuestas cerradas.
+
+En Insights/Metabase, la modalidad acompaña a los resultados cuando la
+publicación analítica del formulario está habilitada. La disponibilidad depende
+de esa publicación; no basta con haber guardado un borrador.
+
+Consulta [Auditoría manual de grabaciones](formularios.md#auditoria-manual-de-grabaciones)
+para conocer la carga, el guardado y la fecha límite.
+
 ## Resultado de Formulario
 
 Esta descarga está disponible para el perfil Supervisor.
