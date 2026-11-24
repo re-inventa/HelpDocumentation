@@ -39,8 +39,9 @@ su propietario o las atribuciones de los resultados anteriores.
 
 ### Subir un audio para auditar
 
-1. Abre un formulario de audio al que tengas acceso.
-2. En **Modalidad de la nueva carga**, selecciona **Manual**.
+1. Accede como Supervisor y abre un formulario de audio al que tengas acceso.
+2. En la sección **Subir ficheros**, situada después de los ítems del formulario,
+   selecciona **Manual** en **Modalidad de la nueva carga**.
 3. Selecciona las grabaciones nuevas y pulsa **Subir para auditoría manual**.
 4. Espera a que termine la subida y se confirme su disponibilidad. Después puedes
    abrir la bandeja con **Auditar**.

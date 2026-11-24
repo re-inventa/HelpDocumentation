@@ -4,11 +4,15 @@ ReAuditIA adapta el menú y las acciones al rol de cada cuenta.
 
 | Rol | Uso principal | Acciones habituales |
 | --- | --- | --- |
-| Supervisor | Revisar el trabajo asignado | Abrir formularios, cargar ficheros, consultar resultados e informes |
+| Supervisor | Revisar el trabajo asignado | Abrir formularios, cargar ficheros para auditoría automática o manual, auditar manualmente y consultar resultados e informes |
 | Administrador | Configurar el trabajo de su organización | Crear y editar formularios, informes y reglas de subida automática; asociar a formularios los analizadores disponibles para su organización |
 | Superadmin | Administración global de organizaciones | Solicitar el borrado definitivo de organizaciones inactivas y consultar su seguimiento |
 
 Una opción puede estar limitada además por la organización o por la configuración del formulario.
+
+La carga para auditoría automática y el trabajo de auditoría manual corresponden
+al Supervisor. Administrador y Superadmin configuran el trabajo y consultan los
+resultados según sus permisos; esos roles no ejecutan auditorías directamente.
 
 El registro crea la cuenta con rol **Supervisor**. El cambio a Administrador debe solicitarse mediante **Soporte** en el menú.
 
