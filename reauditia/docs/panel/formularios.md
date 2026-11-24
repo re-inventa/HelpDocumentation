@@ -41,13 +41,18 @@ su propietario o las atribuciones de los resultados anteriores.
 
 1. Accede como Supervisor y abre un formulario de audio al que tengas acceso.
 2. En la sección **Subir ficheros**, situada después de los ítems del formulario,
-   selecciona **Manual** en **Modalidad de la nueva carga**.
+   marca **Manual** en los botones de opción de **Tipo de auditoría**.
 3. Selecciona las grabaciones nuevas y pulsa **Subir para auditoría manual**.
-4. Espera a que termine la subida y se confirme su disponibilidad. Después puedes
-   abrir la bandeja con **Auditar**.
+4. La bandeja aparece al seleccionar **Manual**. Espera a que termine la subida
+   y se confirme la disponibilidad de la grabación para poder auditarla.
 
 La modalidad se fija para esa carga. Los resultados anteriores no se convierten
 en auditorías manuales al cambiar el selector.
+
+**Automática** y **Manual** son modalidades de cada carga en un formulario de
+audio; no son tipos distintos de formulario ni requieren preguntas distintas.
+En **Automática** se oculta la bandeja manual y se muestran los controles de
+**Modo de carga**, para subir archivos por separado o unirlos en un único audio.
 
 La opción Manual solo está disponible cuando todos los ítems activos son Sí/No
 o tienen una lista de respuestas válida. Si hay ítems incompatibles, la pantalla
@@ -59,21 +64,28 @@ transcripción ni evaluación automática, ni activa sus notificaciones de resul
 
 ### Guardar y retomar un borrador
 
-1. Pulsa **Auditar** en el formulario para consultar pendientes, borradores y
-   caducadas. Revisa la fecha límite y si la grabación está libre u ocupada.
-2. Pulsa **Auditar** junto a una grabación disponible. Se abre una ventana con
-   el reproductor y todas las preguntas.
+1. Marca **Manual** para consultar pendientes, borradores y caducadas. La bandeja
+   tiene las columnas **Nombre**, **Estado** y **Acción**. Revisa la fecha límite
+   y el estado: borrador, ocupado o confirmando subida, entre otros.
+2. Pulsa **Auditar** en la fila de una grabación disponible. Se abre una ventana
+   con el reproductor y todas las preguntas. El botón no está disponible mientras
+   se confirma la subida, si otra ventana la ocupa o si ha finalizado o caducado.
 3. Escucha el audio y selecciona las respuestas disponibles. **No aplica** solo
    se puede elegir si está incluido en la lista de ese ítem.
-4. Pulsa **Guardar borrador** cuando quieras conservar el trabajo, aunque todavía
-   queden preguntas sin responder.
-5. Para salir, usa **Salir**. Si hay cambios sin guardar, revisa el aviso antes
-   de descartarlos.
+4. Cada respuesta se guarda automáticamente en el mismo borrador, aunque queden
+   preguntas sin responder. Los cambios posteriores actualizan ese borrador.
+   Elegir **Sin responder** elimina la respuesta guardada de ese ítem.
+5. Comprueba el indicador **Guardando**, **Guardado** o el aviso de error. Si falla
+   la conexión, usa **Reintentar**; un error no significa que el cambio se haya
+   guardado. No hay botón **Guardar borrador**.
+6. Para salir, usa **Salir**. La ventana espera a confirmar los cambios pendientes;
+   si falla el guardado, permanece abierta para que puedas reintentarlo.
 
-**Las respuestas no se guardan automáticamente.** Mantener abierta la ventana
-conserva temporalmente la ocupación del audio, pero no sustituye a Guardar
-borrador. Otro usuario autorizado puede retomar lo que hayas guardado cuando la
-grabación quede libre.
+Las respuestas confirmadas como **Guardado** se conservan al cerrar y otro
+Supervisor autorizado puede retomarlas cuando la grabación quede libre. Cerrar
+el navegador con cambios pendientes puede perder esos últimos cambios. Mantener
+abierta la ventana renueva temporalmente la ocupación; esa renovación no guarda
+respuestas ni amplía el plazo de la auditoría.
 
 Solo una ventana puede editar una grabación a la vez, incluso si las dos
 pertenecen al mismo usuario. Si pierdes la conexión o se cierra la ventana sin
@@ -82,7 +94,9 @@ conflicto, consulta de nuevo el estado antes de seguir respondiendo.
 
 ### Finalizar y consultar el resultado
 
-**Finalizar** exige responder todos los ítems. La finalización publica un único
+El autoguardado no publica resultados, aunque ya estén respondidos todos los
+ítems. **Finalizar** sigue siendo una acción explícita: espera al guardado
+pendiente y exige responder todos los ítems. La finalización publica un único
 resultado y deja las respuestas cerradas a cambios. Se registra quién cargó la
 grabación, quién hizo el último cambio guardado en cada respuesta y quién
 finalizó, con sus fechas.
