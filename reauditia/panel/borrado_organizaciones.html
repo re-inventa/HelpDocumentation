@@ -1626,7 +1626,7 @@ interacción ni trabajo en curso. Solo puede solicitarlo una cuenta
 <div class="admonition danger">
 <p class="admonition-title">Acción irreversible</p>
 <p>La confirmación inicia una baja definitiva. No hay una opción para cancelar
-la solicitud ni recuperar los datos ya eliminados.</p>
+la solicitud ni restaurar la organización desde la aplicación.</p>
 </div>
 <h2 id="que-se-elimina-y-que-se-conserva">Qué se elimina y qué se conserva<a class="headerlink" href="#que-se-elimina-y-que-se-conserva" title="Permanent link">&para;</a></h2>
 <p>El alcance incluye usuarios, movimientos económicos, formularios, resultados,
@@ -1637,12 +1637,13 @@ la <strong>continuidad</strong>, la copia operativa mantenida en un segundo dest
 <p>Se conservan los datos y recursos de otras organizaciones, los recursos
 compartidos y los ficheros originales de los sistemas externos, como FTP o
 SharePoint. Eliminar una copia gestionada por ReAuditIA no borra ese original.</p>
-<div class="admonition warning">
-<p class="admonition-title">Las copias pueden seguir pendientes</p>
-<p>Las copias gestionadas sujetas a retención no desaparecen de inmediato.
-La solicitud sigue pendiente hasta comprobar su caducidad y la eliminación
-en ambos destinos. Que la organización ya no aparezca en el listado no
-significa que todo el borrado haya terminado.</p>
+<div class="admonition info">
+<p class="admonition-title">Organización borrada y seguimiento de copias</p>
+<p>La aplicación muestra <strong>Organización borrada</strong> en cuanto se han retirado sus
+datos de origen y recursos activos. Las copias que Azure confirma como
+borradas pueden seguir recuperables durante su retención: esto no retrasa
+la baja ni mantiene la organización pendiente de borrar. La propagación
+a continuidad y las copias de recuperación se siguen comprobando aparte.</p>
 </div>
 <h2 id="solicitar-el-borrado">Solicitar el borrado<a class="headerlink" href="#solicitar-el-borrado" title="Permanent link">&para;</a></h2>
 <ol>
@@ -1691,23 +1692,24 @@ de la página después de seleccionar la solicitud para volver a ella.</p>
 <td>La eliminación avanza conservando el progreso confirmado</td>
 </tr>
 <tr>
-<td>Verificando continuidad y copias</td>
-<td>Los datos de origen ya se han retirado; faltan comprobaciones de destino o copias retenidas</td>
-</tr>
-<tr>
-<td>Borrado verificado</td>
-<td>Se ha comprobado la finalización del alcance completo</td>
+<td>Organización borrada</td>
+<td>Se han retirado los datos de origen y recursos activos; pueden continuar las comprobaciones de continuidad y copias</td>
 </tr>
 </tbody>
 </table>
-<p>El detalle muestra filas eliminadas, recursos pendientes y, cuando corresponde,
-la próxima comprobación. No son un porcentaje ni una estimación del tiempo
-restante. Una solicitud registrada o un reintento aceptado no equivale a un
-borrado verificado.</p>
+<p>El listado se actualiza automáticamente al completarse la baja. El detalle
+conserva el recuento de filas eliminadas y muestra los recursos pendientes
+durante el borrado. Después muestra las copias en seguimiento y su próxima
+comprobación; al terminar ese seguimiento indica <strong>Seguimiento finalizado</strong>
+con su fecha. No son un porcentaje ni una estimación del tiempo restante.
+Una solicitud registrada o un reintento aceptado todavía no equivale a la baja.</p>
 <p>Si no se pudo iniciar el proceso o una comprobación falla, pulsa
 <strong>Reintentar borrado</strong> en la misma solicitud. El reintento conserva el progreso;
-no crea otra baja ni vuelve a eliminar lo ya confirmado. La acción deja de
-aparecer cuando el estado es <strong>Borrado verificado</strong>.</p>
+no crea otra baja ni vuelve a eliminar lo ya confirmado. Si la organización
+ya está borrada y falla una comprobación, la acción es <strong>Reintentar comprobación</strong>.
+Una mera retención de copias no requiere reintentar el borrado.
+Con la organización ya borrada, la acción solo aparece ante un error real;
+desaparece al finalizar el seguimiento y no se ofrece por una espera normal.</p>
 <p>Si el estado pide revisar permisos, configuración o inventario, o no puedes
 consultarlo, contacta con <a href="incidencias.html#pedir-soporte">Soporte</a>. Conserva el
 identificador de la solicitud, la hora y el mensaje visible. No recrees la
