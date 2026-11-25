@@ -78,7 +78,7 @@ transcripción ni evaluación automática, ni activa sus notificaciones de resul
 5. Comprueba el indicador **Guardando**, **Guardado** o el aviso de error. Si falla
    la conexión, usa **Reintentar**; un error no significa que el cambio se haya
    guardado. No hay botón **Guardar borrador**.
-6. Para salir, usa **Salir**. La ventana espera a confirmar los cambios pendientes;
+6. Para salir, pulsa **Salir** o la tecla **Esc**. La ventana espera a confirmar los cambios pendientes;
    si falla el guardado, permanece abierta para que puedas reintentarlo.
 
 Las respuestas confirmadas como **Guardado** se conservan al cerrar y otro
