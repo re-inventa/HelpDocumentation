@@ -6,7 +6,7 @@ interacción ni trabajo en curso. Solo puede solicitarlo una cuenta
 
 !!! danger "Acción irreversible"
     La confirmación inicia una baja definitiva. No hay una opción para cancelar
-    la solicitud ni recuperar los datos ya eliminados.
+    la solicitud ni restaurar la organización desde la aplicación.
 
 ## Qué se elimina y qué se conserva
 
@@ -20,11 +20,12 @@ Se conservan los datos y recursos de otras organizaciones, los recursos
 compartidos y los ficheros originales de los sistemas externos, como FTP o
 SharePoint. Eliminar una copia gestionada por ReAuditIA no borra ese original.
 
-!!! warning "Las copias pueden seguir pendientes"
-    Las copias gestionadas sujetas a retención no desaparecen de inmediato.
-    La solicitud sigue pendiente hasta comprobar su caducidad y la eliminación
-    en ambos destinos. Que la organización ya no aparezca en el listado no
-    significa que todo el borrado haya terminado.
+!!! info "Organización borrada y seguimiento de copias"
+    La aplicación muestra **Organización borrada** en cuanto se han retirado sus
+    datos de origen y recursos activos. Las copias que Azure confirma como
+    borradas pueden seguir recuperables durante su retención: esto no retrasa
+    la baja ni mantiene la organización pendiente de borrar. La propagación
+    a continuidad y las copias de recuperación se siguen comprobando aparte.
 
 ## Solicitar el borrado
 
@@ -61,18 +62,22 @@ de la página después de seleccionar la solicitud para volver a ella.
 | Solicitud registrada | El cierre está registrado; el proceso puede seguir pendiente de arrancar |
 | Inventario preparado | Se han identificado los datos y recursos que debe comprobar el borrado |
 | Borrando datos | La eliminación avanza conservando el progreso confirmado |
-| Verificando continuidad y copias | Los datos de origen ya se han retirado; faltan comprobaciones de destino o copias retenidas |
-| Borrado verificado | Se ha comprobado la finalización del alcance completo |
+| Organización borrada | Se han retirado los datos de origen y recursos activos; pueden continuar las comprobaciones de continuidad y copias |
 
-El detalle muestra filas eliminadas, recursos pendientes y, cuando corresponde,
-la próxima comprobación. No son un porcentaje ni una estimación del tiempo
-restante. Una solicitud registrada o un reintento aceptado no equivale a un
-borrado verificado.
+El listado se actualiza automáticamente al completarse la baja. El detalle
+conserva el recuento de filas eliminadas y muestra los recursos pendientes
+durante el borrado. Después muestra las copias en seguimiento y su próxima
+comprobación; al terminar ese seguimiento indica **Seguimiento finalizado**
+con su fecha. No son un porcentaje ni una estimación del tiempo restante.
+Una solicitud registrada o un reintento aceptado todavía no equivale a la baja.
 
 Si no se pudo iniciar el proceso o una comprobación falla, pulsa
 **Reintentar borrado** en la misma solicitud. El reintento conserva el progreso;
-no crea otra baja ni vuelve a eliminar lo ya confirmado. La acción deja de
-aparecer cuando el estado es **Borrado verificado**.
+no crea otra baja ni vuelve a eliminar lo ya confirmado. Si la organización
+ya está borrada y falla una comprobación, la acción es **Reintentar comprobación**.
+Una mera retención de copias no requiere reintentar el borrado.
+Con la organización ya borrada, la acción solo aparece ante un error real;
+desaparece al finalizar el seguimiento y no se ofrece por una espera normal.
 
 Si el estado pide revisar permisos, configuración o inventario, o no puedes
 consultarlo, contacta con [Soporte](incidencias.md#pedir-soporte). Conserva el
