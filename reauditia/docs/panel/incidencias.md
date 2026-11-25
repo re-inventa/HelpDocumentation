@@ -99,10 +99,13 @@ procesamiento posterior de un fallo durante la unión.
 - Consulta la misma solicitud en **Administración > Organizaciones > Borrado de
   organizaciones**; sigue disponible al recargar y después de desaparecer la
   organización del listado.
-- Si espera continuidad o copias retenidas, revisa el mensaje y la próxima
-  comprobación. La desaparición del listado no acredita el borrado completo.
-- Si no arrancó o falló una comprobación, usa **Reintentar borrado**; conserva
-  el progreso. No recrees la organización para resolverlo.
+- Si muestra **Organización borrada**, la baja operativa ya ha terminado.
+  Las comprobaciones de continuidad y las copias recuperables pueden seguir
+  en seguimiento; revisa el mensaje y la próxima comprobación. La retención
+  por sí sola no requiere repetir el borrado.
+- Si no arrancó o falla antes de la baja, usa **Reintentar borrado**. Si ya está borrada
+  y falla una comprobación, usa **Reintentar comprobación** cuando se ofrezca.
+  Conserva el progreso. No recrees la organización para resolverlo.
 - Si pide revisar permisos, configuración o inventario, solicita soporte con el
   identificador de la solicitud, la hora y el mensaje visible.
 

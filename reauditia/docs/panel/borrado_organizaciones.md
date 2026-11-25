@@ -21,7 +21,7 @@ compartidos y los ficheros originales de los sistemas externos, como FTP o
 SharePoint. Eliminar una copia gestionada por ReAuditIA no borra ese original.
 
 !!! info "Organización borrada y seguimiento de copias"
-    El Front muestra **Organización borrada** en cuanto se han retirado sus
+    La aplicación muestra **Organización borrada** en cuanto se han retirado sus
     datos de origen y recursos activos. Las copias que Azure confirma como
     borradas pueden seguir recuperables durante su retención: esto no retrasa
     la baja ni mantiene la organización pendiente de borrar. La propagación
@@ -65,9 +65,10 @@ de la página después de seleccionar la solicitud para volver a ella.
 | Organización borrada | Se han retirado los datos de origen y recursos activos; pueden continuar las comprobaciones de continuidad y copias |
 
 El listado se actualiza automáticamente al completarse la baja. El detalle
-muestra filas eliminadas y recursos pendientes durante el borrado; una vez
-borrada la organización, muestra las copias en seguimiento y su próxima
-comprobación. No son un porcentaje ni una estimación del tiempo restante.
+conserva el recuento de filas eliminadas y muestra los recursos pendientes
+durante el borrado. Después muestra las copias en seguimiento y su próxima
+comprobación; al terminar ese seguimiento indica **Seguimiento finalizado**
+con su fecha. No son un porcentaje ni una estimación del tiempo restante.
 Una solicitud registrada o un reintento aceptado todavía no equivale a la baja.
 
 Si no se pudo iniciar el proceso o una comprobación falla, pulsa
@@ -75,6 +76,8 @@ Si no se pudo iniciar el proceso o una comprobación falla, pulsa
 no crea otra baja ni vuelve a eliminar lo ya confirmado. Si la organización
 ya está borrada y falla una comprobación, la acción es **Reintentar comprobación**.
 Una mera retención de copias no requiere reintentar el borrado.
+Con la organización ya borrada, la acción solo aparece ante un error real;
+desaparece al finalizar el seguimiento y no se ofrece por una espera normal.
 
 Si el estado pide revisar permisos, configuración o inventario, o no puedes
 consultarlo, contacta con [Soporte](incidencias.md#pedir-soporte). Conserva el
