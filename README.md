@@ -91,3 +91,13 @@ python reauditia/scripts/validate_content.py --hash-name "<nuevo-término>"
 ```
 
 Añade únicamente la huella al mapa correspondiente. No guardes el término literal ni lo reconstruyas por fragmentos en el repositorio. La huella sirve para comparar nombres normalizados; no cifra ni protege un dato confidencial.
+
+## Continuidad de auditorías manuales (#60)
+
+El trabajo de la guía continúa con `javierouton` en
+`codex/60-manual-audits-guide`. El estado, las relaciones con las entregas de
+producto y los siguientes pasos se mantienen en
+[HelpDocumentation #60](https://github.com/re-inventa/HelpDocumentation/issues/60).
+La documentación describe el comportamiento previsto; una rama publicada no
+acredita integración, publicación del portal ni aceptación del producto.
+Los detalles operativos y las credenciales permanecen fuera de esta guía pública.

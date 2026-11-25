@@ -41,7 +41,8 @@ su propietario o las atribuciones de los resultados anteriores.
 
 1. Accede como Supervisor y abre un formulario de audio al que tengas acceso.
 2. En la sección **Subir ficheros**, situada después de los ítems del formulario,
-   marca **Manual** en los botones de opción de **Tipo de auditoría**.
+   verás **Automática** seleccionada por defecto. Marca **Manual** en los
+   botones de opción de **Tipo de auditoría**.
 3. Selecciona las grabaciones nuevas y pulsa **Subir para auditoría manual**.
 4. La bandeja aparece al seleccionar **Manual**. Espera a que termine la subida
    y se confirme la disponibilidad de la grabación para poder auditarla.
@@ -77,7 +78,8 @@ transcripción ni evaluación automática, ni activa sus notificaciones de resul
    Elegir **Sin responder** elimina la respuesta guardada de ese ítem.
 5. Comprueba el indicador **Guardando**, **Guardado** o el aviso de error. Si falla
    la conexión, usa **Reintentar**; un error no significa que el cambio se haya
-   guardado. No hay botón **Guardar borrador**.
+   guardado. El indicador es un estado, no un botón. No hay botón **Guardar
+   borrador**.
 6. Para salir, pulsa **Salir** o la tecla **Esc**. La ventana espera a confirmar los cambios pendientes;
    si falla el guardado, permanece abierta para que puedas reintentarlo.
 
@@ -94,9 +96,16 @@ conflicto, consulta de nuevo el estado antes de seguir respondiendo.
 
 ### Finalizar y consultar el resultado
 
+La duración del audio se obtiene al cargarlo. Si un borrador anterior aún no
+la tiene, el reproductor la mide y la guarda sin cambiar tus respuestas.
+**Finalizar** espera a que se confirme también esa duración; si falla, puedes
+reintentar sin perder las respuestas confirmadas. **Salir/Esc** espera una
+confirmación de duración ya iniciada y permite conservar el borrador aunque
+la medición todavía no esté disponible.
+
 El autoguardado no publica resultados, aunque ya estén respondidos todos los
-ítems. **Finalizar** sigue siendo una acción explícita: espera al guardado
-pendiente y exige responder todos los ítems. La finalización publica un único
+ítems. **Finalizar**, situado a la derecha, sigue siendo una acción explícita:
+espera al guardado pendiente y exige responder todos los ítems. La finalización publica un único
 resultado y deja las respuestas cerradas a cambios. Se registra quién cargó la
 grabación, quién hizo el último cambio guardado en cada respuesta y quién
 finalizó, con sus fechas.
