@@ -22,6 +22,10 @@ En Insights/Metabase, la modalidad acompaña a los resultados cuando la
 publicación analítica del formulario está habilitada. La disponibilidad depende
 de esa publicación; no basta con haber guardado un borrador.
 
+La duración del audio se publica en segundos también en las auditorías manuales.
+El detalle técnico `autoria_respuestas` conserva quién guardó cada respuesta y
+cuándo; permanece disponible para trazabilidad y se oculta por defecto en las tablas.
+
 Consulta [Auditoría manual de grabaciones](formularios.md#auditoria-manual-de-grabaciones)
 para conocer la carga, el guardado y la fecha límite.
 
